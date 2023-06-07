@@ -2,7 +2,7 @@
 
 resource "github_repository" "viguno" {
   name        = "viguno"
-  description = "Search Engine API for HPO Ranking and Similarity Evaluation"
+  description = "Versatile Interface for Genetics Utilization of Nice Ontologies"
 
   has_issues = true
   visibility = "public"
