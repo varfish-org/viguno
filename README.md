@@ -8,7 +8,7 @@
 
 <img src="https://raw.githubusercontent.com/bihealth/viguno/main/utils/vicuna-wrangling-ontology-and-genes.png" width="256px" height="256px" align="right">
 
-Viguno (Search Engine API for HPO Ranking and Similarity Evaluation) is the component of a VarFish installation that provides information on HPO phenotypes, diseases, and their relation to genes.
+Viguno (Versatile Interface for Genetics Utilization of Nice Ontologies) is the component of a VarFish installation that provides information on HPO phenotypes, diseases, and their relation to genes.
 
 Viguno provides a REST API.
 
