@@ -94,7 +94,7 @@ impl Ord for ResultEntry {
 impl ResultEntry {
     pub fn from_term_with_ontology(term: &HpoTerm, ontology: &Ontology, genes: bool) -> Self {
         let genes = if genes {
-            let mut result = term
+            let mut genes = term
                 .gene_ids()
                 .iter()
                 .filter_map(|gene_id| ontology.gene(gene_id))
@@ -103,8 +103,8 @@ impl ResultEntry {
                     gene_symbol: gene.name().to_string(),
                 })
                 .collect::<Vec<_>>();
-            result.sort();
-            Some(result)
+            genes.sort();
+            Some(genes)
         } else {
             None
         };

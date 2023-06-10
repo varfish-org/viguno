@@ -55,7 +55,7 @@ fn _default_hpo_terms() -> bool {
 }
 
 /// Result entry for `handle`.
-#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone, Eq, PartialEq, Ord, PartialOrd)]
 struct ResultEntry {
     /// The gene's NCBI ID.
     pub gene_ncbi_id: u32,
@@ -69,16 +69,17 @@ struct ResultEntry {
 impl ResultEntry {
     pub fn from_gene_with_ontology(gene: &Gene, ontology: &Ontology, hpo_terms: bool) -> Self {
         let hpo_terms = if hpo_terms {
-            Some(
-                gene.to_hpo_set(ontology)
-                    .child_nodes()
-                    .into_iter()
-                    .map(|term| ResultHpoTerm {
-                        term_id: term.id().to_string(),
-                        name: term.name().to_string(),
-                    })
-                    .collect(),
-            )
+            let mut terms = gene
+                .to_hpo_set(ontology)
+                .child_nodes()
+                .into_iter()
+                .map(|term| ResultHpoTerm {
+                    term_id: term.id().to_string(),
+                    name: term.name().to_string(),
+                })
+                .collect::<Vec<_>>();
+            terms.sort();
+            Some(terms)
         } else {
             None
         };
@@ -144,6 +145,8 @@ async fn handle(
             gene = it.next();
         }
     }
+
+    result.sort();
 
     Ok(Json(result))
 }
