@@ -42,3 +42,28 @@ pub fn progress_bar(#[allow(unused_variables)] len: usize) -> indicatif::Progres
     pb.enable_steady_tick(std::time::Duration::from_millis(100));
     pb
 }
+
+/// Load HPO either from binary `$path_hpo/hpo.bin` if it exist, otherwise load as
+/// standard directory from `$path_hpo`.
+///
+/// # Errors
+///
+/// In the case of loading failure.
+pub fn load_hpo<P: AsRef<std::path::Path>>(path: P) -> Result<hpo::Ontology, anyhow::Error> {
+    if path.as_ref().join("hpo.bin").exists() {
+        tracing::info!(
+            "  attempting to load binary HPO file from {}",
+            path.as_ref().display()
+        );
+        Ok(hpo::Ontology::from_binary(path.as_ref().join("hpo.bin"))?)
+    } else {
+        tracing::info!(
+            "  attempting to load HPO from standard file {}",
+            path.as_ref().display()
+        );
+        Ok(hpo::Ontology::from_standard(&format!(
+            "{}",
+            path.as_ref().display()
+        ))?)
+    }
+}

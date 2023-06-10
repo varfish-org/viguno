@@ -150,7 +150,13 @@ async fn handle(
     }?;
 
     // Perform similarity computation.
-    let result = query::run_query(&query_terms, &genes, hpo, &data.db).map_err(CustomError::new)?;
+    let result = query::run_query(
+        &query_terms,
+        &genes,
+        hpo,
+        data.db.as_ref().expect("must provide RocksDB"),
+    )
+    .map_err(CustomError::new)?;
 
     Ok(Json(result))
 }

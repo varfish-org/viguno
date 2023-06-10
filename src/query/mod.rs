@@ -9,12 +9,11 @@ use std::time::Instant;
 use clap::Parser;
 use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
 
-
 use crate::algos::phenomizer;
 use crate::pbs::simulation::SimulationResults;
-use crate::simulate::VERSION;
 use crate::query::query_result::TermDetails;
 use crate::server::actix_server::hpo_sim::term_gene::SimilarityMethod;
+use crate::simulate::VERSION;
 
 /// Command line arguments for `query` command.
 #[derive(Parser, Debug)]
@@ -259,7 +258,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
 
     tracing::info!("Loading HPO...");
     let before_loading = Instant::now();
-    let hpo = Ontology::from_standard(&args.path_hpo_dir)?;
+    let hpo = crate::common::load_hpo(&args.path_hpo_dir)?;
     tracing::info!("...done loading HPO in {:?}", before_loading.elapsed());
 
     tracing::info!("Opening RocksDB for reading...");
@@ -325,7 +324,10 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
 
     tracing::info!(
         "{: >4} | {: <10} | {: >10} | {: >10}",
-        "rank", "gene", "P-value", "score"
+        "rank",
+        "gene",
+        "P-value",
+        "score"
     );
     tracing::info!("     |            |            |");
     for (i, gene) in result.result.iter().enumerate() {

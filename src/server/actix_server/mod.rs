@@ -6,7 +6,7 @@ pub mod hpo_sim;
 pub mod hpo_terms;
 
 use actix_web::{middleware::Logger, web::Data, App, HttpServer, ResponseError};
-use serde::{Deserialize, Deserializer, Serialize};
+use serde::{Deserialize, Deserializer};
 
 use super::{Args, WebServerData};
 
@@ -41,7 +41,7 @@ enum Match {
 }
 
 /// Representation of a gene.
-#[derive(Serialize, Debug, Clone)]
+#[derive(serde::Deserialize, serde::Serialize, Debug, Clone, PartialOrd, Ord, PartialEq, Eq)]
 struct ResultGene {
     /// The HPO ID.
     pub gene_id: u32,
@@ -50,7 +50,7 @@ struct ResultGene {
 }
 
 /// Representation of an HPO term.
-#[derive(Serialize, Debug, Clone)]
+#[derive(serde::Deserialize, serde::Serialize, Debug, Clone, PartialOrd, Ord, PartialEq, Eq)]
 struct ResultHpoTerm {
     /// The HPO ID.
     pub term_id: String,

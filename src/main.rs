@@ -5,12 +5,12 @@
 #![warn(missing_docs)]
 
 pub mod algos;
-pub mod convert;
 pub mod common;
+pub mod convert;
 pub mod pbs;
-pub mod simulate;
 pub mod query;
 pub mod server;
+pub mod simulate;
 
 use clap::{Parser, Subcommand};
 

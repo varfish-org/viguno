@@ -41,13 +41,9 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
 
     tracing::info!("Loading HPO...");
     let before_loading = std::time::Instant::now();
-    let hpo = hpo::Ontology::from_standard(&args.path_hpo_dir)?;
+    let hpo = crate::common::load_hpo(&args.path_hpo_dir)?;
     tracing::info!("...done loading HPO in {:?}", before_loading.elapsed());
-    tracing::info!(
-        "Ontology [{}] with {} terms",
-        hpo.hpo_version(),
-        hpo.len()
-    );
+    tracing::info!("Ontology [{}] with {} terms", hpo.hpo_version(), hpo.len());
 
     tracing::info!("Writing binary file...");
     let before_writing = std::time::Instant::now();

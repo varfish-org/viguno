@@ -10,7 +10,7 @@ pub struct WebServerData {
     /// The HPO ontology.
     pub ontology: Ontology,
     /// The database with precomputed Resnik P-values.
-    pub db: rocksdb::DBWithThreadMode<rocksdb::MultiThreaded>,
+    pub db: Option<rocksdb::DBWithThreadMode<rocksdb::MultiThreaded>>,
 }
 
 /// Command line arguments for `server pheno` sub command.
@@ -125,7 +125,10 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     )?;
     tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());
 
-    let data = actix_web::web::Data::new(WebServerData { ontology, db });
+    let data = actix_web::web::Data::new(WebServerData {
+        ontology,
+        db: Some(db),
+    });
 
     // Print the server URL and some hints (the latter: unless suppressed).
     print_hints(args);

@@ -10,7 +10,6 @@ use std::time::Instant;
 use clap::Parser;
 use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
 
-
 use super::algos::phenomizer;
 use crate::pbs::simulation::SimulationResults;
 

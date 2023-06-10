@@ -6,7 +6,6 @@ use actix_web::{
     Responder,
 };
 use hpo::{annotations::AnnotationId, HpoTerm, HpoTermId, Ontology};
-use serde::{Deserialize, Serialize};
 
 use crate::server::WebServerData;
 
@@ -25,7 +24,7 @@ use super::{CustomError, Match, ResultGene};
 /// The following propery defines how matches are performed:
 ///
 /// - `match` -- how to match
-#[derive(Deserialize, Debug, Clone)]
+#[derive(serde::Deserialize, Debug, Clone)]
 struct Request {
     /// The term ID to search for.
     pub term_id: Option<String>,
@@ -53,7 +52,7 @@ fn _default_genes() -> bool {
 }
 
 /// Result entry for `fetch_hpo_genes`.
-#[derive(Serialize, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
 struct ResultEntry {
     /// The HPO term's ID.
     pub term_id: String,
@@ -64,23 +63,48 @@ struct ResultEntry {
     pub genes: Option<Vec<ResultGene>>,
 }
 
+impl PartialEq for ResultEntry {
+    fn eq(&self, other: &Self) -> bool {
+        (self.term_id == other.term_id) && (self.name == other.name)
+    }
+}
+
+impl Eq for ResultEntry {}
+
+impl PartialOrd for ResultEntry {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        match self.term_id.partial_cmp(&other.term_id) {
+            Some(core::cmp::Ordering::Equal) => {}
+            ord => return ord,
+        }
+        self.name.partial_cmp(&other.name)
+    }
+}
+
+impl Ord for ResultEntry {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        match self.term_id.cmp(&other.term_id) {
+            core::cmp::Ordering::Equal => {}
+            ord => return ord,
+        }
+        self.name.cmp(&other.name)
+    }
+}
+
 impl ResultEntry {
     pub fn from_term_with_ontology(term: &HpoTerm, ontology: &Ontology, genes: bool) -> Self {
         let genes = if genes {
-            Some(
-                term.gene_ids()
-                    .iter()
-                    .map(|gene_id| ontology.gene(gene_id))
-                    .filter(std::option::Option::is_some)
-                    .map(|term| {
-                        let gene = term.expect("filtered above");
-                        ResultGene {
-                            gene_id: gene.id().as_u32(),
-                            gene_symbol: gene.name().to_string(),
-                        }
-                    })
-                    .collect(),
-            )
+            let mut result = term
+                .gene_ids()
+                .into_iter()
+                .filter_map(|gene_id| ontology.gene(gene_id))
+                .map(|gene| ResultGene {
+                    gene_id: gene.id().as_u32(),
+                    gene_symbol: gene.name().to_string(),
+                })
+                .collect::<Vec<_>>();
+            result.sort();
+            Some(result)
         } else {
             None
         };
@@ -156,21 +180,100 @@ async fn handle(
         }
     }
 
+    result.sort();
+
     Ok(Json(result))
 }
 
 // #[cfg(test)]
-// mod test {
-//     use actix_web::{http::header::ContentType, test, web, App};
+mod test {
+    /// Helper function for running a query.
+    #[allow(dead_code)]
+    async fn run_query(uri: &str) -> Result<Vec<super::ResultEntry>, anyhow::Error> {
+        let ontology = crate::common::load_hpo("tests/data/hpo")?;
+        let app = actix_web::test::init_service(
+            actix_web::App::new()
+                .app_data(actix_web::web::Data::new(crate::server::WebServerData {
+                    ontology,
+                    db: None,
+                }))
+                .service(super::handle),
+        )
+        .await;
+        let req = actix_web::test::TestRequest::get().uri(uri).to_request();
+        let resp: Vec<super::ResultEntry> =
+            actix_web::test::call_and_read_body_json(&app, req).await;
 
-//     #[actix_web::test]
-//     async fn test_index_ok() {
-//         let app =
-//             test::init_service(App::new().servic(super::handle))).await;
-//         let req = test::TestRequest::default()
-//             .insert_header(ContentType::plaintext())
-//             .to_request();
-//         let resp = test::call_service(&app, req).await;
-//         assert!(resp.status().is_success());
-//     }
-// }
+        Ok(resp)
+    }
+
+    #[actix_web::test]
+    async fn hpo_terms_term_id_exact_no_genes() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/terms?term_id=HP:0000023").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_terms_term_id_exact_with_genes() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/terms?term_id=HP:0000023&genes=true").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_terms_name_exact_no_genes() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/terms?name=Inguinal+hernia").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_terms_name_exact_with_genes() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/terms?name=Inguinal+hernia&genes=true").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_terms_name_prefix_no_genes() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/terms?name=Inguinal+hern&match=prefix").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_terms_name_prefix_with_genes() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/terms?name=Inguinal+hern&match=prefix&genes=true").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_terms_name_suffix_no_genes() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/terms?name=guinal+hernia&match=suffix").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_terms_name_suffix_with_genes() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/terms?name=guinal+hernia&match=suffix&genes=true").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_terms_name_contains_no_genes() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/terms?name=guinal+hern&match=contains").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_terms_name_contains_with_genes() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/terms?name=guinal+hern&match=contains&genes=true").await?
+        ))
+    }
+}
