@@ -50,12 +50,10 @@ pub struct HpoTerm {
 
 /// Query result records.
 pub mod query_result {
-    use serde::Serialize;
-
     use super::HpoTerm;
 
     /// Result container data structure.
-    #[derive(Serialize, Debug, Clone)]
+    #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
     pub struct Container {
         /// Version of the HPO.
         pub hpo_version: String,
@@ -70,7 +68,7 @@ pub mod query_result {
     }
 
     /// Store score for a record with information on individual terms.
-    #[derive(Serialize, Debug, Clone)]
+    #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
     pub struct Record {
         /// The gene symbol.
         pub gene_symbol: String,
@@ -84,7 +82,7 @@ pub mod query_result {
     }
 
     /// Detailed term scores.
-    #[derive(Serialize, Debug, Clone)]
+    #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
     pub struct TermDetails {
         /// The query HPO term.
         pub term_query: Option<HpoTerm>,

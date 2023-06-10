@@ -88,19 +88,6 @@ mod help {
     }
 }
 
-/// Result entry for one gene.
-#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
-struct ResultEntry {
-    /// The gene ID of the entry.
-    pub gene_id: u32,
-    /// The gene HGNC symbol of the gene.
-    pub gene_symbol: String,
-    /// The similarity score.
-    pub score: f32,
-    /// The score type that was used to compute the similarity for.
-    pub sim: String,
-}
-
 /// Query for similarity between a set of terms to each entry in a
 /// list of genes.
 #[allow(clippy::unused_async)]
@@ -164,7 +151,7 @@ async fn handle(
 mod test {
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(uri: &str) -> Result<Vec<super::ResultEntry>, anyhow::Error> {
+    async fn run_query(uri: &str) -> Result<crate::query::query_result::Container, anyhow::Error> {
         let hpo_path = "tests/data/hpo";
         let ontology = crate::common::load_hpo(hpo_path)?;
         let db = Some(rocksdb::DB::open_cf_for_read_only(
@@ -184,7 +171,7 @@ mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: Vec<super::ResultEntry> =
+        let resp: crate::query::query_result::Container =
             actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
