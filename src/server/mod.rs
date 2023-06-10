@@ -15,7 +15,7 @@ pub struct WebServerData {
 
 /// Command line arguments for `server pheno` sub command.
 #[derive(Parser, Debug)]
-#[command(author, version, about = "Run seahorse REST API server", long_about = None)]
+#[command(author, version, about = "Run viguno REST API server", long_about = None)]
 pub struct Args {
     /// Path to the directory with the HPO files.
     #[arg(long, required = true)]

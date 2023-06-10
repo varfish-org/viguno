@@ -5,9 +5,10 @@
 #![warn(missing_docs)]
 
 pub mod algos;
+pub mod convert;
 pub mod common;
 pub mod pbs;
-pub mod prepare;
+pub mod simulate;
 pub mod query;
 pub mod server;
 
@@ -37,9 +38,10 @@ struct Cli {
 #[allow(clippy::large_enum_variant)]
 #[derive(Debug, Subcommand)]
 enum Commands {
-    Prepare(crate::prepare::Args),
+    Convert(crate::convert::Args),
     Query(crate::query::Args),
     RunServer(crate::server::Args),
+    Simulate(crate::simulate::Args),
 }
 
 fn main() -> Result<(), anyhow::Error> {
@@ -64,14 +66,17 @@ fn main() -> Result<(), anyhow::Error> {
     // Install collector and go into sub commands.
     tracing::subscriber::with_default(collector, || {
         match &cli.command {
-            Commands::Prepare(args) => {
-                prepare::run(&cli.common, args)?;
+            Commands::Convert(args) => {
+                convert::run(&cli.common, args)?;
             }
             Commands::Query(args) => {
                 query::run(&cli.common, args)?;
             }
             Commands::RunServer(args) => {
                 server::run(&cli.common, args)?;
+            }
+            Commands::Simulate(args) => {
+                simulate::run(&cli.common, args)?;
             }
         }
 

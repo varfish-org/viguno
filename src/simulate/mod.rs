@@ -9,7 +9,7 @@ use std::time::Instant;
 
 use clap::Parser;
 use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
-use tracing::info;
+
 
 use super::algos::phenomizer;
 use crate::pbs::simulation::SimulationResults;
@@ -60,7 +60,7 @@ fn run_simulation(
     args: &Args,
     num_terms: usize,
 ) -> Result<(), anyhow::Error> {
-    info!("  running simulation for {} terms ...", num_terms);
+    tracing::info!("  running simulation for {} terms ...", num_terms);
     let before = Instant::now();
 
     // We want at least two simulations.
@@ -172,7 +172,7 @@ fn run_simulation(
             db.put_cf(&cf_resnik, key.as_bytes(), sim_res)
                 .expect("writing to RocksDB failed");
         });
-    info!("  ... done in {:?}", before.elapsed());
+    tracing::info!("  ... done in {:?}", before.elapsed());
 
     Ok(())
 }
@@ -183,8 +183,8 @@ fn run_simulation(
 ///
 /// In the case that there is an error in running the preparation command.
 pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow::Error> {
-    info!("args_common = {:?}", &args_common);
-    info!("args = {:?}", &args);
+    tracing::info!("args_common = {:?}", &args_common);
+    tracing::info!("args = {:?}", &args);
 
     if let Some(level) = args_common.verbose.log_level() {
         match level {
@@ -196,12 +196,12 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         }
     }
 
-    info!("Loading HPO...");
+    tracing::info!("Loading HPO...");
     let before_loading = Instant::now();
     let ontology = Ontology::from_standard(&args.path_hpo_dir)?;
-    info!("...done loading HPO in {:?}", before_loading.elapsed());
+    tracing::info!("...done loading HPO in {:?}", before_loading.elapsed());
 
-    info!("Opening RocksDB for writing...");
+    tracing::info!("Opening RocksDB for writing...");
     let before_rocksdb = Instant::now();
     let options = rocksdb_utils_lookup::tune_options(rocksdb::Options::default(), None);
     let cf_names = &["meta", "resnik_pvalues"];
@@ -219,9 +219,9 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         .ok_or(anyhow::anyhow!("column family meta not found"))?;
     db.put_cf(&cf_meta, "hpo-version", ontology.hpo_version())?;
     db.put_cf(&cf_meta, "app-version", VERSION)?;
-    info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());
+    tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());
 
-    info!("Running simulations...");
+    tracing::info!("Running simulations...");
     let before_simulations = Instant::now();
     if let Some(seed) = args.seed {
         fastrand::seed(seed);
@@ -234,14 +234,14 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     for num_terms in args.min_terms..=args.max_terms {
         run_simulation(&db, &ontology, args, num_terms)?;
     }
-    info!(
+    tracing::info!(
         "... done with simulations in {:?}",
         before_simulations.elapsed()
     );
 
     tracing::info!("Enforcing manual compaction");
     rocksdb_utils_lookup::force_compaction_cf(&db, cf_names, Some("  "), true)?;
-    info!("All done. Have a nice day!");
+    tracing::info!("All done. Have a nice day!");
     Ok(())
 }
 

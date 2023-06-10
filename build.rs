@@ -1,7 +1,6 @@
 // The custom build script, needed as we use protocolbuffers.
 
 fn main() {
-    println!("cargo:rerun-if-changed=viguno/v1/simulation.proto");
     prost_build::Config::new()
         .protoc_arg("-Isrc/proto")
         // Add serde serialization and deserialization to the generated code.

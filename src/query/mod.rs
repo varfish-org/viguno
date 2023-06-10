@@ -8,17 +8,17 @@ use std::time::Instant;
 
 use clap::Parser;
 use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
-use tracing::info;
+
 
 use crate::algos::phenomizer;
 use crate::pbs::simulation::SimulationResults;
-use crate::prepare::VERSION;
+use crate::simulate::VERSION;
 use crate::query::query_result::TermDetails;
 use crate::server::actix_server::hpo_sim::term_gene::SimilarityMethod;
 
-/// Command line arguments for `server prepare-pheno` sub command.
+/// Command line arguments for `query` command.
 #[derive(Parser, Debug)]
-#[command(author, version, about = "Prepare values for `server pheno`", long_about = None)]
+#[command(author, version, about = "Prepare values for `query`", long_about = None)]
 pub struct Args {
     /// Path to the directory with the HPO files.
     #[arg(long, required = true)]
@@ -234,7 +234,7 @@ pub fn run_query(
     Ok(result)
 }
 
-/// Main entry point for `server pheno-cli` sub command.
+/// Main entry point for `query` sub command.
 ///
 /// # Errors
 ///
@@ -244,8 +244,8 @@ pub fn run_query(
 ///
 /// In the case of term lookup failure.
 pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow::Error> {
-    info!("args_common = {:?}", &args_common);
-    info!("args = {:?}", &args);
+    tracing::info!("args_common = {:?}", &args_common);
+    tracing::info!("args = {:?}", &args);
 
     if let Some(level) = args_common.verbose.log_level() {
         match level {
@@ -257,12 +257,12 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         }
     }
 
-    info!("Loading HPO...");
+    tracing::info!("Loading HPO...");
     let before_loading = Instant::now();
     let hpo = Ontology::from_standard(&args.path_hpo_dir)?;
-    info!("...done loading HPO in {:?}", before_loading.elapsed());
+    tracing::info!("...done loading HPO in {:?}", before_loading.elapsed());
 
-    info!("Opening RocksDB for reading...");
+    tracing::info!("Opening RocksDB for reading...");
     let before_rocksdb = Instant::now();
     let path_rocksdb = format!("{}/resnik", args.path_hpo_dir);
     let db = rocksdb::DB::open_cf_for_read_only(
@@ -271,9 +271,9 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         ["meta", "resnik_pvalues"],
         true,
     )?;
-    info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());
+    tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());
 
-    info!("Loading genes...");
+    tracing::info!("Loading genes...");
     let before_load_genes = Instant::now();
     let genes_json = std::fs::read_to_string(&args.path_genes_json)?;
     let genes: Vec<Gene> = serde_json::from_str(&genes_json)?;
@@ -288,9 +288,9 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
             mapped
         })
         .collect::<Vec<_>>();
-    info!("... done loadin genes in {:?}", before_load_genes.elapsed());
+    tracing::info!("... done loadin genes in {:?}", before_load_genes.elapsed());
 
-    info!("Loading (patient/query) HPO term ids...");
+    tracing::info!("Loading (patient/query) HPO term ids...");
     let before_load_genes = Instant::now();
     let query_json = std::fs::read_to_string(&args.path_terms_json)?;
     let query: Vec<HpoTerm> = serde_json::from_str(&query_json)?;
@@ -308,28 +308,28 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         }
         group
     };
-    info!(
+    tracing::info!(
         "... done loading HPO IDs in {:?}",
         before_load_genes.elapsed()
     );
 
-    info!("Starting priorization...");
+    tracing::info!("Starting priorization...");
     let before_priorization = Instant::now();
     let result = run_query(&query, &genes, &hpo, &db)?;
-    info!(
+    tracing::info!(
         "... done with prioritization in {:?}",
         before_priorization.elapsed()
     );
 
     println!("{result:#?}");
 
-    info!(
+    tracing::info!(
         "{: >4} | {: <10} | {: >10} | {: >10}",
         "rank", "gene", "P-value", "score"
     );
-    info!("     |            |            |");
+    tracing::info!("     |            |            |");
     for (i, gene) in result.result.iter().enumerate() {
-        info!(
+        tracing::info!(
             "{: >4} | {: <10} | {: >10.5} | {: >10.2}",
             i + 1,
             gene.gene_symbol,
@@ -338,6 +338,6 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         );
     }
 
-    info!("All done. Have a nice day!");
+    tracing::info!("All done. Have a nice day!");
     Ok(())
 }
