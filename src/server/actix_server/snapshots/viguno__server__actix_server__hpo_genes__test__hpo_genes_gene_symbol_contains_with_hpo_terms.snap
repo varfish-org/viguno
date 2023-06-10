@@ -1,0 +1,2075 @@
+---
+source: src/server/actix_server/hpo_genes.rs
+expression: "&run_query(\"/hpo/genes?gene_symbol=GD&match=contains&hpo_terms=true\").await?"
+---
+- gene_ncbi_id: 396
+  gene_symbol: ARHGDIA
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000093"
+      name: Proteinuria
+    - term_id: "HP:0000097"
+      name: Focal segmental glomerulosclerosis
+    - term_id: "HP:0000100"
+      name: Nephrotic syndrome
+    - term_id: "HP:0000407"
+      name: Sensorineural hearing impairment
+    - term_id: "HP:0000737"
+      name: Irritability
+    - term_id: "HP:0001249"
+      name: Intellectual disability
+    - term_id: "HP:0001250"
+      name: Seizure
+    - term_id: "HP:0001945"
+      name: Fever
+    - term_id: "HP:0001967"
+      name: Diffuse mesangial sclerosis
+    - term_id: "HP:0002027"
+      name: Abdominal pain
+    - term_id: "HP:0002315"
+      name: Headache
+    - term_id: "HP:0002586"
+      name: Peritonitis
+    - term_id: "HP:0003073"
+      name: Hypoalbuminemia
+    - term_id: "HP:0003623"
+      name: Neonatal onset
+    - term_id: "HP:0003678"
+      name: Rapidly progressive
+    - term_id: "HP:0003774"
+      name: Stage 5 chronic kidney disease
+    - term_id: "HP:0007430"
+      name: Generalized edema
+    - term_id: "HP:0011947"
+      name: Respiratory tract infection
+    - term_id: "HP:0012577"
+      name: Thin glomerular basement membrane
+    - term_id: "HP:0012579"
+      name: Minimal change glomerulonephritis
+    - term_id: "HP:0031504"
+      name: Foamy urine
+    - term_id: "HP:0100539"
+      name: Periorbital edema
+    - term_id: "HP:0100704"
+      name: Cerebral visual impairment
+- gene_ncbi_id: 1421
+  gene_symbol: CRYGD
+  hpo_terms:
+    - term_id: "HP:0000006"
+      name: Autosomal dominant inheritance
+    - term_id: "HP:0000482"
+      name: Microcornea
+    - term_id: "HP:0000519"
+      name: Developmental cataract
+    - term_id: "HP:0000545"
+      name: Myopia
+    - term_id: "HP:0000612"
+      name: Iris coloboma
+    - term_id: "HP:0000639"
+      name: Nystagmus
+    - term_id: "HP:0001131"
+      name: Corneal dystrophy
+    - term_id: "HP:0007957"
+      name: Corneal opacity
+- gene_ncbi_id: 2245
+  gene_symbol: FGD1
+  hpo_terms:
+    - term_id: "HP:0000023"
+      name: Inguinal hernia
+    - term_id: "HP:0000029"
+      name: Testicular atrophy
+    - term_id: "HP:0000049"
+      name: Shawl scrotum
+    - term_id: "HP:0000144"
+      name: Decreased fertility
+    - term_id: "HP:0000175"
+      name: Cleft palate
+    - term_id: "HP:0000204"
+      name: Cleft upper lip
+    - term_id: "HP:0000232"
+      name: Everted lower lip vermilion
+    - term_id: "HP:0000286"
+      name: Epicanthus
+    - term_id: "HP:0000289"
+      name: Broad philtrum
+    - term_id: "HP:0000311"
+      name: Round face
+    - term_id: "HP:0000316"
+      name: Hypertelorism
+    - term_id: "HP:0000327"
+      name: Hypoplasia of the maxilla
+    - term_id: "HP:0000337"
+      name: Broad forehead
+    - term_id: "HP:0000343"
+      name: Long philtrum
+    - term_id: "HP:0000349"
+      name: "Widow's peak"
+    - term_id: "HP:0000368"
+      name: "Low-set, posteriorly rotated ears"
+    - term_id: "HP:0000431"
+      name: Wide nasal bridge
+    - term_id: "HP:0000463"
+      name: Anteverted nares
+    - term_id: "HP:0000470"
+      name: Short neck
+    - term_id: "HP:0000485"
+      name: Megalocornea
+    - term_id: "HP:0000486"
+      name: Strabismus
+    - term_id: "HP:0000494"
+      name: Downslanted palpebral fissures
+    - term_id: "HP:0000508"
+      name: Ptosis
+    - term_id: "HP:0000540"
+      name: Hypermetropia
+    - term_id: "HP:0000668"
+      name: Hypodontia
+    - term_id: "HP:0000684"
+      name: Delayed eruption of teeth
+    - term_id: "HP:0000767"
+      name: Pectus excavatum
+    - term_id: "HP:0000823"
+      name: Delayed puberty
+    - term_id: "HP:0000954"
+      name: Single transverse palmar crease
+    - term_id: "HP:0000974"
+      name: Hyperextensible skin
+    - term_id: "HP:0001156"
+      name: Brachydactyly
+    - term_id: "HP:0001169"
+      name: Broad palm
+    - term_id: "HP:0001187"
+      name: Hyperextensibility of the finger joints
+    - term_id: "HP:0001256"
+      name: "Intellectual disability, mild"
+    - term_id: "HP:0001263"
+      name: Global developmental delay
+    - term_id: "HP:0001388"
+      name: Joint laxity
+    - term_id: "HP:0001419"
+      name: X-linked recessive inheritance
+    - term_id: "HP:0001508"
+      name: Failure to thrive
+    - term_id: "HP:0001537"
+      name: Umbilical hernia
+    - term_id: "HP:0001544"
+      name: Prominent umbilicus
+    - term_id: "HP:0001635"
+      name: Congestive heart failure
+    - term_id: "HP:0001763"
+      name: Pes planus
+    - term_id: "HP:0001769"
+      name: Broad foot
+    - term_id: "HP:0001773"
+      name: Short foot
+    - term_id: "HP:0001883"
+      name: Talipes
+    - term_id: "HP:0002055"
+      name: Curved linear dimple below the lower lip
+    - term_id: "HP:0002650"
+      name: Scoliosis
+    - term_id: "HP:0002816"
+      name: Genu recurvatum
+    - term_id: "HP:0003196"
+      name: Short nose
+    - term_id: "HP:0003311"
+      name: Hypoplasia of the odontoid process
+    - term_id: "HP:0003318"
+      name: Cervical spine hypermobility
+    - term_id: "HP:0003502"
+      name: Mild short stature
+    - term_id: "HP:0004209"
+      name: Clinodactyly of the 5th finger
+    - term_id: "HP:0004279"
+      name: Short palm
+    - term_id: "HP:0005640"
+      name: Abnormal vertebral segmentation and fusion
+    - term_id: "HP:0005692"
+      name: Joint hyperflexibility
+    - term_id: "HP:0006101"
+      name: Finger syndactyly
+    - term_id: "HP:0007018"
+      name: Attention deficit hyperactivity disorder
+    - term_id: "HP:0008232"
+      name: Elevated circulating follicle stimulating hormone level
+    - term_id: "HP:0008572"
+      name: External ear malformation
+    - term_id: "HP:0008689"
+      name: Bilateral cryptorchidism
+    - term_id: "HP:0009237"
+      name: Short 5th finger
+    - term_id: "HP:0009466"
+      name: Radial deviation of finger
+    - term_id: "HP:0009748"
+      name: Large earlobe
+    - term_id: "HP:0011969"
+      name: Elevated circulating luteinizing hormone level
+    - term_id: "HP:0012774"
+      name: Increased upper to lower segment ratio
+    - term_id: "HP:0030680"
+      name: Abnormality of cardiovascular system morphology
+    - term_id: "HP:0032277"
+      name: Lozenge-shaped umbilicus
+    - term_id: "HP:0040171"
+      name: Decreased serum testosterone concentration
+    - term_id: "HP:0100490"
+      name: Camptodactyly of finger
+    - term_id: "HP:0100543"
+      name: Cognitive impairment
+    - term_id: "HP:0200055"
+      name: Small hand
+- gene_ncbi_id: 2657
+  gene_symbol: GDF1
+  hpo_terms:
+    - term_id: "HP:0000006"
+      name: Autosomal dominant inheritance
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000023"
+      name: Inguinal hernia
+    - term_id: "HP:0000028"
+      name: Cryptorchidism
+    - term_id: "HP:0000233"
+      name: Thin vermilion border
+    - term_id: "HP:0000268"
+      name: Dolichocephaly
+    - term_id: "HP:0000337"
+      name: Broad forehead
+    - term_id: "HP:0000520"
+      name: Proptosis
+    - term_id: "HP:0001156"
+      name: Brachydactyly
+    - term_id: "HP:0001274"
+      name: Agenesis of corpus callosum
+    - term_id: "HP:0001511"
+      name: Intrauterine growth retardation
+    - term_id: "HP:0001629"
+      name: Ventricular septal defect
+    - term_id: "HP:0001636"
+      name: Tetralogy of Fallot
+    - term_id: "HP:0001642"
+      name: Pulmonic stenosis
+    - term_id: "HP:0001669"
+      name: Transposition of the great arteries
+    - term_id: "HP:0001674"
+      name: Complete atrioventricular canal defect
+    - term_id: "HP:0001680"
+      name: Coarctation of aorta
+    - term_id: "HP:0001684"
+      name: Secundum atrial septal defect
+    - term_id: "HP:0001696"
+      name: Situs inversus totalis
+    - term_id: "HP:0001719"
+      name: Double outlet right ventricle
+    - term_id: "HP:0001746"
+      name: Asplenia
+    - term_id: "HP:0001748"
+      name: Polysplenia
+    - term_id: "HP:0001750"
+      name: Single ventricle
+    - term_id: "HP:0002101"
+      name: Abnormal lung lobation
+    - term_id: "HP:0004209"
+      name: Clinodactyly of the 5th finger
+    - term_id: "HP:0004467"
+      name: Preauricular pit
+    - term_id: "HP:0004935"
+      name: Pulmonary artery atresia
+    - term_id: "HP:0005105"
+      name: Abnormal nasal morphology
+    - term_id: "HP:0005160"
+      name: Total anomalous pulmonary venous return
+    - term_id: "HP:0005304"
+      name: Hypoplastic pulmonary veins
+    - term_id: "HP:0009891"
+      name: Underdeveloped supraorbital ridges
+    - term_id: "HP:0011536"
+      name: Right atrial isomerism
+    - term_id: "HP:0011565"
+      name: Common atrium
+    - term_id: "HP:0012020"
+      name: Right aortic arch
+    - term_id: "HP:0031565"
+      name: Abdominal situs ambiguus
+    - term_id: "HP:0031834"
+      name: Aortopulmonary collateral arteries
+    - term_id: "HP:0032092"
+      name: Left ventricular outflow tract obstruction
+- gene_ncbi_id: 2658
+  gene_symbol: GDF2
+  hpo_terms:
+    - term_id: "HP:0000006"
+      name: Autosomal dominant inheritance
+    - term_id: "HP:0000524"
+      name: Conjunctival telangiectasia
+    - term_id: "HP:0000646"
+      name: Amblyopia
+    - term_id: "HP:0000787"
+      name: Nephrolithiasis
+    - term_id: "HP:0000790"
+      name: Hematuria
+    - term_id: "HP:0001048"
+      name: Cavernous hemangioma
+    - term_id: "HP:0001081"
+      name: Cholelithiasis
+    - term_id: "HP:0001082"
+      name: Cholecystitis
+    - term_id: "HP:0001250"
+      name: Seizure
+    - term_id: "HP:0001342"
+      name: Cerebral hemorrhage
+    - term_id: "HP:0001394"
+      name: Cirrhosis
+    - term_id: "HP:0001399"
+      name: Hepatic failure
+    - term_id: "HP:0001409"
+      name: Portal hypertension
+    - term_id: "HP:0001635"
+      name: Congestive heart failure
+    - term_id: "HP:0001935"
+      name: Microcytic anemia
+    - term_id: "HP:0002040"
+      name: Esophageal varix
+    - term_id: "HP:0002076"
+      name: Migraine
+    - term_id: "HP:0002092"
+      name: Pulmonary arterial hypertension
+    - term_id: "HP:0002105"
+      name: Hemoptysis
+    - term_id: "HP:0002138"
+      name: Subarachnoid hemorrhage
+    - term_id: "HP:0002204"
+      name: Pulmonary embolism
+    - term_id: "HP:0002239"
+      name: Gastrointestinal hemorrhage
+    - term_id: "HP:0002326"
+      name: Transient ischemic attack
+    - term_id: "HP:0002910"
+      name: Elevated hepatic transaminase
+    - term_id: "HP:0004406"
+      name: "Spontaneous, recurrent epistaxis"
+    - term_id: "HP:0004936"
+      name: Venous thrombosis
+    - term_id: "HP:0007420"
+      name: Spontaneous hematomas
+    - term_id: "HP:0007763"
+      name: Retinal telangiectasia
+    - term_id: "HP:0100585"
+      name: Telangiectasia of the skin
+    - term_id: "HP:0100761"
+      name: Visceral angiomatosis
+    - term_id: "HP:0100784"
+      name: Peripheral arteriovenous fistula
+    - term_id: "HP:0200008"
+      name: Intestinal polyposis
+- gene_ncbi_id: 2661
+  gene_symbol: GDF9
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000786"
+      name: Primary amenorrhea
+    - term_id: "HP:0008214"
+      name: Decreased serum estradiol
+    - term_id: "HP:0008232"
+      name: Elevated circulating follicle stimulating hormone level
+    - term_id: "HP:0011462"
+      name: Young adult onset
+    - term_id: "HP:0011969"
+      name: Elevated circulating luteinizing hormone level
+- gene_ncbi_id: 2664
+  gene_symbol: GDI1
+  hpo_terms:
+    - term_id: "HP:0001256"
+      name: "Intellectual disability, mild"
+    - term_id: "HP:0001263"
+      name: Global developmental delay
+    - term_id: "HP:0001328"
+      name: Specific learning disability
+    - term_id: "HP:0001423"
+      name: X-linked dominant inheritance
+    - term_id: "HP:0002121"
+      name: Generalized non-motor (absence) seizure
+    - term_id: "HP:0008936"
+      name: Axial hypotonia
+    - term_id: "HP:0010864"
+      name: "Intellectual disability, severe"
+- gene_ncbi_id: 2668
+  gene_symbol: GDNF
+  hpo_terms:
+    - term_id: "HP:0000006"
+      name: Autosomal dominant inheritance
+    - term_id: "HP:0000407"
+      name: Sensorineural hearing impairment
+    - term_id: "HP:0001181"
+      name: Adducted thumb
+    - term_id: "HP:0001249"
+      name: Intellectual disability
+    - term_id: "HP:0001250"
+      name: Seizure
+    - term_id: "HP:0001252"
+      name: Hypotonia
+    - term_id: "HP:0001531"
+      name: Failure to thrive in infancy
+    - term_id: "HP:0001824"
+      name: Weight loss
+    - term_id: "HP:0002014"
+      name: Diarrhea
+    - term_id: "HP:0002017"
+      name: Nausea and vomiting
+    - term_id: "HP:0002019"
+      name: Constipation
+    - term_id: "HP:0002027"
+      name: Abdominal pain
+    - term_id: "HP:0002093"
+      name: Respiratory insufficiency
+    - term_id: "HP:0003005"
+      name: Ganglioneuroma
+    - term_id: "HP:0003577"
+      name: Congenital onset
+    - term_id: "HP:0004322"
+      name: Short stature
+    - term_id: "HP:0005214"
+      name: Intestinal obstruction
+    - term_id: "HP:0006747"
+      name: Ganglioneuroblastoma
+    - term_id: "HP:0011285"
+      name: Long-segment aganglionic megacolon
+    - term_id: "HP:0011286"
+      name: Total colonic aganglionosis
+    - term_id: "HP:0100031"
+      name: Neoplasm of the thyroid gland
+    - term_id: "HP:0100543"
+      name: Cognitive impairment
+    - term_id: "HP:0100806"
+      name: Sepsis
+    - term_id: "HP:0200008"
+      name: Intestinal polyposis
+- gene_ncbi_id: 3081
+  gene_symbol: HGD
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000024"
+      name: Prostatitis
+    - term_id: "HP:0000364"
+      name: Hearing abnormality
+    - term_id: "HP:0000366"
+      name: Abnormality of the nose
+    - term_id: "HP:0000504"
+      name: Abnormality of vision
+    - term_id: "HP:0000592"
+      name: Blue sclerae
+    - term_id: "HP:0000787"
+      name: Nephrolithiasis
+    - term_id: "HP:0000822"
+      name: Hypertension
+    - term_id: "HP:0001373"
+      name: Joint dislocation
+    - term_id: "HP:0001386"
+      name: Joint swelling
+    - term_id: "HP:0001387"
+      name: Joint stiffness
+    - term_id: "HP:0001507"
+      name: Growth abnormality
+    - term_id: "HP:0001597"
+      name: Abnormality of the nail
+    - term_id: "HP:0001658"
+      name: Myocardial infarction
+    - term_id: "HP:0001717"
+      name: Coronary artery calcification
+    - term_id: "HP:0002621"
+      name: Atherosclerosis
+    - term_id: "HP:0002758"
+      name: Osteoarthritis
+    - term_id: "HP:0002808"
+      name: Kyphosis
+    - term_id: "HP:0002829"
+      name: Arthralgia
+    - term_id: "HP:0002948"
+      name: Vertebral fusion
+    - term_id: "HP:0003040"
+      name: Arthropathy
+    - term_id: "HP:0003355"
+      name: Aminoaciduria
+    - term_id: "HP:0003419"
+      name: Low back pain
+    - term_id: "HP:0003581"
+      name: Adult onset
+    - term_id: "HP:0003593"
+      name: Infantile onset
+    - term_id: "HP:0004349"
+      name: Reduced bone mineral density
+    - term_id: "HP:0004380"
+      name: Aortic valve calcification
+    - term_id: "HP:0004382"
+      name: Mitral valve calcification
+    - term_id: "HP:0004690"
+      name: Thickened Achilles tendon
+    - term_id: "HP:0004942"
+      name: Aortic aneurysm
+    - term_id: "HP:0005645"
+      name: Intervertebral disk calcification
+    - term_id: "HP:0006467"
+      name: Limited shoulder movement
+    - term_id: "HP:0007400"
+      name: Irregular hyperpigmentation
+    - term_id: "HP:0007832"
+      name: Pigmentation of the sclera
+    - term_id: "HP:0008419"
+      name: Intervertebral disc degeneration
+    - term_id: "HP:0008800"
+      name: Limited hip movement
+    - term_id: "HP:0010501"
+      name: Limitation of knee mobility
+    - term_id: "HP:0012213"
+      name: Decreased glomerular filtration rate
+    - term_id: "HP:0030764"
+      name: Ochronosis
+    - term_id: "HP:0033666"
+      name: Diminished physical functioning
+    - term_id: "HP:0033704"
+      name: Elevated urinary homogentisic acid
+    - term_id: "HP:0100550"
+      name: Tendon rupture
+    - term_id: "HP:0100593"
+      name: Calcification of cartilage
+    - term_id: "HP:0100773"
+      name: Cartilage destruction
+- gene_ncbi_id: 3248
+  gene_symbol: HPGD
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000218"
+      name: High palate
+    - term_id: "HP:0000239"
+      name: Large fontanelles
+    - term_id: "HP:0000280"
+      name: Coarse facial features
+    - term_id: "HP:0000508"
+      name: Ptosis
+    - term_id: "HP:0000767"
+      name: Pectus excavatum
+    - term_id: "HP:0000771"
+      name: Gynecomastia
+    - term_id: "HP:0000845"
+      name: Elevated circulating growth hormone concentration
+    - term_id: "HP:0000890"
+      name: Long clavicles
+    - term_id: "HP:0000938"
+      name: Osteopenia
+    - term_id: "HP:0000939"
+      name: Osteoporosis
+    - term_id: "HP:0000975"
+      name: Hyperhidrosis
+    - term_id: "HP:0000976"
+      name: Eczematoid dermatitis
+    - term_id: "HP:0000982"
+      name: Palmoplantar keratoderma
+    - term_id: "HP:0001051"
+      name: Seborrheic dermatitis
+    - term_id: "HP:0001061"
+      name: Acne
+    - term_id: "HP:0001070"
+      name: Mottled pigmentation
+    - term_id: "HP:0001386"
+      name: Joint swelling
+    - term_id: "HP:0001387"
+      name: Joint stiffness
+    - term_id: "HP:0001519"
+      name: Disproportionate tall stature
+    - term_id: "HP:0001582"
+      name: Redundant skin
+    - term_id: "HP:0001643"
+      name: Patent ductus arteriosus
+    - term_id: "HP:0001744"
+      name: Splenomegaly
+    - term_id: "HP:0001795"
+      name: Hyperconvex nail
+    - term_id: "HP:0001805"
+      name: Onychogryposis
+    - term_id: "HP:0001821"
+      name: Broad nail
+    - term_id: "HP:0001837"
+      name: Broad toe
+    - term_id: "HP:0001903"
+      name: Anemia
+    - term_id: "HP:0002024"
+      name: Malabsorption
+    - term_id: "HP:0002239"
+      name: Gastrointestinal hemorrhage
+    - term_id: "HP:0002240"
+      name: Hepatomegaly
+    - term_id: "HP:0002645"
+      name: Wormian bones
+    - term_id: "HP:0002650"
+      name: Scoliosis
+    - term_id: "HP:0002653"
+      name: Bone pain
+    - term_id: "HP:0002684"
+      name: Thickened calvaria
+    - term_id: "HP:0002754"
+      name: Osteomyelitis
+    - term_id: "HP:0002758"
+      name: Osteoarthritis
+    - term_id: "HP:0002829"
+      name: Arthralgia
+    - term_id: "HP:0002970"
+      name: Genu varum
+    - term_id: "HP:0002992"
+      name: Abnormality of tibia morphology
+    - term_id: "HP:0003040"
+      name: Arthropathy
+    - term_id: "HP:0003103"
+      name: Abnormal cortical bone morphology
+    - term_id: "HP:0003549"
+      name: Abnormality of connective tissue
+    - term_id: "HP:0003577"
+      name: Congenital onset
+    - term_id: "HP:0004097"
+      name: Deviation of finger
+    - term_id: "HP:0004398"
+      name: Peptic ulcer
+    - term_id: "HP:0005561"
+      name: Abnormality of bone marrow cell morphology
+    - term_id: "HP:0005930"
+      name: Abnormal epiphysis morphology
+    - term_id: "HP:0008069"
+      name: Neoplasm of the skin
+    - term_id: "HP:0008391"
+      name: Dystrophic fingernails
+    - term_id: "HP:0009771"
+      name: Osteolytic defects of the phalanges of the hand
+    - term_id: "HP:0010541"
+      name: Cutis gyrata of scalp
+    - term_id: "HP:0010720"
+      name: Abnormal hair pattern
+    - term_id: "HP:0010783"
+      name: Erythema
+    - term_id: "HP:0010829"
+      name: Impaired temperature sensation
+    - term_id: "HP:0010885"
+      name: Avascular necrosis
+    - term_id: "HP:0011300"
+      name: Broad fingertip
+    - term_id: "HP:0011304"
+      name: Broad thumb
+    - term_id: "HP:0011362"
+      name: Abnormal hair quantity
+    - term_id: "HP:0012203"
+      name: Onychomycosis
+    - term_id: "HP:0031284"
+      name: Flushing
+    - term_id: "HP:0100021"
+      name: Cerebral palsy
+    - term_id: "HP:0100526"
+      name: Neoplasm of the lung
+    - term_id: "HP:0100759"
+      name: Clubbing of fingers
+    - term_id: "HP:0100760"
+      name: Clubbing of toes
+    - term_id: "HP:0200055"
+      name: Small hand
+- gene_ncbi_id: 4967
+  gene_symbol: OGDH
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000238"
+      name: Hydrocephalus
+    - term_id: "HP:0000750"
+      name: Delayed speech and language development
+    - term_id: "HP:0000816"
+      name: Abnormality of Krebs cycle metabolism
+    - term_id: "HP:0001252"
+      name: Hypotonia
+    - term_id: "HP:0001263"
+      name: Global developmental delay
+    - term_id: "HP:0001310"
+      name: Dysmetria
+    - term_id: "HP:0001332"
+      name: Dystonia
+    - term_id: "HP:0001942"
+      name: Metabolic acidosis
+    - term_id: "HP:0002063"
+      name: Rigidity
+    - term_id: "HP:0002066"
+      name: Gait ataxia
+    - term_id: "HP:0002069"
+      name: Bilateral tonic-clonic seizure
+    - term_id: "HP:0002119"
+      name: Ventriculomegaly
+    - term_id: "HP:0002151"
+      name: Increased serum lactate
+    - term_id: "HP:0002194"
+      name: Delayed gross motor development
+    - term_id: "HP:0002317"
+      name: Unsteady gait
+    - term_id: "HP:0002527"
+      name: Falls
+    - term_id: "HP:0003593"
+      name: Infantile onset
+    - term_id: "HP:0003700"
+      name: Generalized amyotrophy
+    - term_id: "HP:0003819"
+      name: Death in childhood
+    - term_id: "HP:0004322"
+      name: Short stature
+    - term_id: "HP:0004902"
+      name: Congenital lactic acidosis
+    - term_id: "HP:0010286"
+      name: Abnormal salivary gland morphology
+    - term_id: "HP:0012401"
+      name: Abnormal urine alpha-ketoglutarate concentration
+- gene_ncbi_id: 7358
+  gene_symbol: UGDH
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000179"
+      name: Thick lower lip vermilion
+    - term_id: "HP:0000252"
+      name: Microcephaly
+    - term_id: "HP:0000286"
+      name: Epicanthus
+    - term_id: "HP:0000307"
+      name: Pointed chin
+    - term_id: "HP:0000319"
+      name: Smooth philtrum
+    - term_id: "HP:0000490"
+      name: Deeply set eye
+    - term_id: "HP:0000508"
+      name: Ptosis
+    - term_id: "HP:0000581"
+      name: Blepharophimosis
+    - term_id: "HP:0000664"
+      name: Synophrys
+    - term_id: "HP:0001284"
+      name: Areflexia
+    - term_id: "HP:0001290"
+      name: Generalized hypotonia
+    - term_id: "HP:0001332"
+      name: Dystonia
+    - term_id: "HP:0001347"
+      name: Hyperreflexia
+    - term_id: "HP:0001357"
+      name: Plagiocephaly
+    - term_id: "HP:0002072"
+      name: Chorea
+    - term_id: "HP:0002119"
+      name: Ventriculomegaly
+    - term_id: "HP:0002179"
+      name: Opisthotonus
+    - term_id: "HP:0002188"
+      name: Delayed CNS myelination
+    - term_id: "HP:0002521"
+      name: Hypsarrhythmia
+    - term_id: "HP:0003487"
+      name: Babinski sign
+    - term_id: "HP:0008936"
+      name: Axial hypotonia
+    - term_id: "HP:0009748"
+      name: Large earlobe
+    - term_id: "HP:0010851"
+      name: EEG with burst suppression
+    - term_id: "HP:0011097"
+      name: Epileptic spasm
+    - term_id: "HP:0011344"
+      name: Severe global developmental delay
+    - term_id: "HP:0011471"
+      name: Gastrostomy tube feeding in infancy
+    - term_id: "HP:0012745"
+      name: Short palpebral fissure
+    - term_id: "HP:0025336"
+      name: Delayed ability to sit
+    - term_id: "HP:0200134"
+      name: Epileptic encephalopathy
+- gene_ncbi_id: 8200
+  gene_symbol: GDF5
+  hpo_terms:
+    - term_id: "HP:0000006"
+      name: Autosomal dominant inheritance
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000324"
+      name: Facial asymmetry
+    - term_id: "HP:0000405"
+      name: Conductive hearing impairment
+    - term_id: "HP:0000407"
+      name: Sensorineural hearing impairment
+    - term_id: "HP:0000445"
+      name: Wide nose
+    - term_id: "HP:0000446"
+      name: Narrow nasal bridge
+    - term_id: "HP:0000486"
+      name: Strabismus
+    - term_id: "HP:0000668"
+      name: Hypodontia
+    - term_id: "HP:0000684"
+      name: Delayed eruption of teeth
+    - term_id: "HP:0001162"
+      name: Postaxial hand polydactyly
+    - term_id: "HP:0001204"
+      name: Distal symphalangism of hands
+    - term_id: "HP:0001230"
+      name: Broad metacarpals
+    - term_id: "HP:0001231"
+      name: Abnormal fingernail morphology
+    - term_id: "HP:0001249"
+      name: Intellectual disability
+    - term_id: "HP:0001385"
+      name: Hip dysplasia
+    - term_id: "HP:0001387"
+      name: Joint stiffness
+    - term_id: "HP:0001522"
+      name: Death in infancy
+    - term_id: "HP:0001763"
+      name: Pes planus
+    - term_id: "HP:0001772"
+      name: Talipes equinovalgus
+    - term_id: "HP:0001773"
+      name: Short foot
+    - term_id: "HP:0001776"
+      name: Bilateral talipes equinovarus
+    - term_id: "HP:0001792"
+      name: Small nail
+    - term_id: "HP:0001822"
+      name: Hallux valgus
+    - term_id: "HP:0002167"
+      name: Abnormality of speech or vocalization
+    - term_id: "HP:0002650"
+      name: Scoliosis
+    - term_id: "HP:0002652"
+      name: Skeletal dysplasia
+    - term_id: "HP:0002750"
+      name: Delayed skeletal maturation
+    - term_id: "HP:0002827"
+      name: Hip dislocation
+    - term_id: "HP:0002948"
+      name: Vertebral fusion
+    - term_id: "HP:0002983"
+      name: Micromelia
+    - term_id: "HP:0002984"
+      name: Hypoplasia of the radius
+    - term_id: "HP:0002986"
+      name: Radial bowing
+    - term_id: "HP:0002990"
+      name: Fibular aplasia
+    - term_id: "HP:0002999"
+      name: Patellar dislocation
+    - term_id: "HP:0003022"
+      name: Hypoplasia of the ulna
+    - term_id: "HP:0003028"
+      name: Abnormality of the ankle
+    - term_id: "HP:0003038"
+      name: Fibular hypoplasia
+    - term_id: "HP:0003041"
+      name: Humeroradial synostosis
+    - term_id: "HP:0003042"
+      name: Elbow dislocation
+    - term_id: "HP:0003067"
+      name: Madelung deformity
+    - term_id: "HP:0003070"
+      name: Elbow ankylosis
+    - term_id: "HP:0003086"
+      name: Acromesomelia
+    - term_id: "HP:0003097"
+      name: Short femur
+    - term_id: "HP:0003577"
+      name: Congenital onset
+    - term_id: "HP:0003826"
+      name: Stillbirth
+    - term_id: "HP:0004209"
+      name: Clinodactyly of the 5th finger
+    - term_id: "HP:0004220"
+      name: Short middle phalanx of the 5th finger
+    - term_id: "HP:0004279"
+      name: Short palm
+    - term_id: "HP:0004691"
+      name: 2-3 toe syndactyly
+    - term_id: "HP:0005048"
+      name: Synostosis of carpal bones
+    - term_id: "HP:0005096"
+      name: Distal femoral bowing
+    - term_id: "HP:0005692"
+      name: Joint hyperflexibility
+    - term_id: "HP:0005736"
+      name: Short tibia
+    - term_id: "HP:0005792"
+      name: Short humerus
+    - term_id: "HP:0005880"
+      name: Metacarpophalangeal synostosis
+    - term_id: "HP:0006011"
+      name: Cuboidal metacarpal
+    - term_id: "HP:0006014"
+      name: Abnormally shaped carpal bones
+    - term_id: "HP:0006092"
+      name: Malaligned carpal bone
+    - term_id: "HP:0006101"
+      name: Finger syndactyly
+    - term_id: "HP:0006110"
+      name: Shortening of all middle phalanges of the fingers
+    - term_id: "HP:0006143"
+      name: Abnormal finger flexion crease
+    - term_id: "HP:0006144"
+      name: Shortening of all proximal phalanges of the fingers
+    - term_id: "HP:0006206"
+      name: Hypersegmentation of proximal phalanx of second finger
+    - term_id: "HP:0006228"
+      name: Valgus hand deformity
+    - term_id: "HP:0006498"
+      name: Aplasia/Hypoplasia of the patella
+    - term_id: "HP:0007598"
+      name: Bilateral single transverse palmar creases
+    - term_id: "HP:0008081"
+      name: Pes valgus
+    - term_id: "HP:0008096"
+      name: Medially deviated second toe
+    - term_id: "HP:0008119"
+      name: Deformed tarsal bones
+    - term_id: "HP:0008368"
+      name: Tarsal synostosis
+    - term_id: "HP:0008843"
+      name: Hip osteoarthritis
+    - term_id: "HP:0008890"
+      name: Severe short-limb dwarfism
+    - term_id: "HP:0008905"
+      name: Rhizomelia
+    - term_id: "HP:0009177"
+      name: Proximal/middle symphalangism of 5th finger
+    - term_id: "HP:0009182"
+      name: Triangular shaped middle phalanx of the 5th finger
+    - term_id: "HP:0009295"
+      name: Short middle phalanx of the 4th finger
+    - term_id: "HP:0009324"
+      name: Enlarged epiphysis of the middle phalanx of the 3rd finger
+    - term_id: "HP:0009331"
+      name: Triangular epiphysis of the middle phalanx of the 3rd finger
+    - term_id: "HP:0009349"
+      name: Enlarged epiphysis of the proximal phalanx of the 3rd finger
+    - term_id: "HP:0009356"
+      name: Triangular epiphysis of the proximal phalanx of the 3rd finger
+    - term_id: "HP:0009372"
+      name: Type A2 brachydactyly
+    - term_id: "HP:0009373"
+      name: Type C brachydactyly
+    - term_id: "HP:0009417"
+      name: Pseudoepiphyses of the 3rd finger
+    - term_id: "HP:0009436"
+      name: Triangular shaped middle phalanx of the 3rd finger
+    - term_id: "HP:0009439"
+      name: Short middle phalanx of the 3rd finger
+    - term_id: "HP:0009456"
+      name: Triangular shaped proximal phalanx of the 3rd finger
+    - term_id: "HP:0009463"
+      name: Ulnar deviation of the 3rd finger
+    - term_id: "HP:0009464"
+      name: Ulnar deviation of the 2nd finger
+    - term_id: "HP:0009467"
+      name: Radial deviation of the 2nd finger
+    - term_id: "HP:0009495"
+      name: Pseudoepiphysis of the 2nd finger
+    - term_id: "HP:0009516"
+      name: Enlarged epiphysis of the middle phalanx of the 2nd finger
+    - term_id: "HP:0009523"
+      name: Triangular epiphysis of the middle phalanx of the 2nd finger
+    - term_id: "HP:0009527"
+      name: Enlarged epiphysis of the proximal phalanx of the 2nd finger
+    - term_id: "HP:0009534"
+      name: Triangular epiphysis of the proximal phalanx of the 2nd finger
+    - term_id: "HP:0009575"
+      name: Triangular shaped middle phalanx of the 2nd finger
+    - term_id: "HP:0009577"
+      name: Short middle phalanx of the 2nd finger
+    - term_id: "HP:0009587"
+      name: Triangular shaped proximal phalanx of the 2nd finger
+    - term_id: "HP:0009606"
+      name: Complete duplication of distal phalanx of the thumb
+    - term_id: "HP:0009684"
+      name: Stippling of the epiphysis of the distal phalanx of the thumb
+    - term_id: "HP:0009882"
+      name: Short distal phalanx of finger
+    - term_id: "HP:0010034"
+      name: Short 1st metacarpal
+    - term_id: "HP:0010038"
+      name: Short 2nd metacarpal
+    - term_id: "HP:0010055"
+      name: Broad hallux
+    - term_id: "HP:0010109"
+      name: Short hallux
+    - term_id: "HP:0010259"
+      name: Cone-shaped epiphyses of the middle phalanges of the hand
+    - term_id: "HP:0010508"
+      name: Metatarsus valgus
+    - term_id: "HP:0010624"
+      name: Aplastic/hypoplastic toenail
+    - term_id: "HP:0010743"
+      name: Short metatarsal
+    - term_id: "HP:0011304"
+      name: Broad thumb
+    - term_id: "HP:0011929"
+      name: Hypersegmentation of proximal phalanx of third finger
+    - term_id: "HP:0032078"
+      name: Angel-shaped phalanx
+    - term_id: "HP:0100242"
+      name: Sarcoma
+    - term_id: "HP:0100387"
+      name: Aplasia of the middle phalanges of the toes
+    - term_id: "HP:0100490"
+      name: Camptodactyly of finger
+    - term_id: "HP:0100543"
+      name: Cognitive impairment
+- gene_ncbi_id: 9573
+  gene_symbol: GDF3
+  hpo_terms:
+    - term_id: "HP:0000006"
+      name: Autosomal dominant inheritance
+    - term_id: "HP:0000175"
+      name: Cleft palate
+    - term_id: "HP:0000324"
+      name: Facial asymmetry
+    - term_id: "HP:0000365"
+      name: Hearing impairment
+    - term_id: "HP:0000465"
+      name: Webbed neck
+    - term_id: "HP:0000470"
+      name: Short neck
+    - term_id: "HP:0000505"
+      name: Visual impairment
+    - term_id: "HP:0000567"
+      name: Chorioretinal coloboma
+    - term_id: "HP:0000612"
+      name: Iris coloboma
+    - term_id: "HP:0000639"
+      name: Nystagmus
+    - term_id: "HP:0000772"
+      name: Abnormal rib morphology
+    - term_id: "HP:0000912"
+      name: Sprengel anomaly
+    - term_id: "HP:0001291"
+      name: Abnormal cranial nerve morphology
+    - term_id: "HP:0001629"
+      name: Ventricular septal defect
+    - term_id: "HP:0002023"
+      name: Anal atresia
+    - term_id: "HP:0002162"
+      name: Low posterior hairline
+    - term_id: "HP:0002414"
+      name: Spina bifida
+    - term_id: "HP:0002943"
+      name: Thoracic scoliosis
+    - term_id: "HP:0003043"
+      name: Abnormal shoulder morphology
+    - term_id: "HP:0003577"
+      name: Congenital onset
+    - term_id: "HP:0004374"
+      name: Hemiplegia/hemiparesis
+    - term_id: "HP:0004397"
+      name: Ectopic anus
+    - term_id: "HP:0004602"
+      name: Cervical C2/C3 vertebral fusion
+    - term_id: "HP:0004635"
+      name: Cervical C5/C6 vertebrae fusion
+    - term_id: "HP:0005107"
+      name: Abnormal sacrum morphology
+    - term_id: "HP:0005640"
+      name: Abnormal vertebral segmentation and fusion
+    - term_id: "HP:0005988"
+      name: Congenital muscular torticollis
+    - term_id: "HP:0007633"
+      name: Bilateral microphthalmos
+    - term_id: "HP:0007750"
+      name: Hypoplasia of the fovea
+    - term_id: "HP:0007766"
+      name: Optic disc hypoplasia
+    - term_id: "HP:0008678"
+      name: Renal hypoplasia/aplasia
+    - term_id: "HP:0009911"
+      name: Abnormal temporal bone morphology
+    - term_id: "HP:0010984"
+      name: Digenic inheritance
+    - term_id: "HP:0030281"
+      name: Cervical C3/C4 vertebral fusion
+    - term_id: "HP:0100543"
+      name: Cognitive impairment
+- gene_ncbi_id: 10220
+  gene_symbol: GDF11
+  hpo_terms:
+    - term_id: "HP:0000006"
+      name: Autosomal dominant inheritance
+    - term_id: "HP:0000023"
+      name: Inguinal hernia
+    - term_id: "HP:0000176"
+      name: Submucous cleft hard palate
+    - term_id: "HP:0000269"
+      name: Prominent occiput
+    - term_id: "HP:0000286"
+      name: Epicanthus
+    - term_id: "HP:0000347"
+      name: Micrognathia
+    - term_id: "HP:0000349"
+      name: "Widow's peak"
+    - term_id: "HP:0000391"
+      name: Thickened helices
+    - term_id: "HP:0000463"
+      name: Anteverted nares
+    - term_id: "HP:0000592"
+      name: Blue sclerae
+    - term_id: "HP:0000767"
+      name: Pectus excavatum
+    - term_id: "HP:0001382"
+      name: Joint hypermobility
+    - term_id: "HP:0001763"
+      name: Pes planus
+    - term_id: "HP:0002558"
+      name: Supernumerary nipple
+    - term_id: "HP:0003577"
+      name: Congenital onset
+    - term_id: "HP:0003691"
+      name: Scapular winging
+    - term_id: "HP:0005815"
+      name: Supernumerary ribs
+    - term_id: "HP:0008416"
+      name: Six lumbar vertebrae
+    - term_id: "HP:0011261"
+      name: Darwin tubercle of helix
+    - term_id: "HP:0011800"
+      name: Midface retrusion
+    - term_id: "HP:0100333"
+      name: Unilateral cleft lip
+    - term_id: "HP:0100334"
+      name: Unilateral cleft palate
+- gene_ncbi_id: 23483
+  gene_symbol: TGDS
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000023"
+      name: Inguinal hernia
+    - term_id: "HP:0000028"
+      name: Cryptorchidism
+    - term_id: "HP:0000160"
+      name: Narrow mouth
+    - term_id: "HP:0000162"
+      name: Glossoptosis
+    - term_id: "HP:0000175"
+      name: Cleft palate
+    - term_id: "HP:0000193"
+      name: Bifid uvula
+    - term_id: "HP:0000201"
+      name: Pierre-Robin sequence
+    - term_id: "HP:0000204"
+      name: Cleft upper lip
+    - term_id: "HP:0000218"
+      name: High palate
+    - term_id: "HP:0000272"
+      name: Malar flattening
+    - term_id: "HP:0000293"
+      name: Full cheeks
+    - term_id: "HP:0000316"
+      name: Hypertelorism
+    - term_id: "HP:0000347"
+      name: Micrognathia
+    - term_id: "HP:0000368"
+      name: "Low-set, posteriorly rotated ears"
+    - term_id: "HP:0000389"
+      name: Chronic otitis media
+    - term_id: "HP:0000460"
+      name: Narrow nose
+    - term_id: "HP:0000470"
+      name: Short neck
+    - term_id: "HP:0000476"
+      name: Cystic hygroma
+    - term_id: "HP:0000520"
+      name: Proptosis
+    - term_id: "HP:0000579"
+      name: Nasolacrimal duct obstruction
+    - term_id: "HP:0000582"
+      name: Upslanted palpebral fissure
+    - term_id: "HP:0000767"
+      name: Pectus excavatum
+    - term_id: "HP:0000768"
+      name: Pectus carinatum
+    - term_id: "HP:0000954"
+      name: Single transverse palmar crease
+    - term_id: "HP:0001181"
+      name: Adducted thumb
+    - term_id: "HP:0001250"
+      name: Seizure
+    - term_id: "HP:0001263"
+      name: Global developmental delay
+    - term_id: "HP:0001373"
+      name: Joint dislocation
+    - term_id: "HP:0001387"
+      name: Joint stiffness
+    - term_id: "HP:0001388"
+      name: Joint laxity
+    - term_id: "HP:0001508"
+      name: Failure to thrive
+    - term_id: "HP:0001511"
+      name: Intrauterine growth retardation
+    - term_id: "HP:0001537"
+      name: Umbilical hernia
+    - term_id: "HP:0001629"
+      name: Ventricular septal defect
+    - term_id: "HP:0001631"
+      name: Atrial septal defect
+    - term_id: "HP:0001651"
+      name: Dextrocardia
+    - term_id: "HP:0001680"
+      name: Coarctation of aorta
+    - term_id: "HP:0001762"
+      name: Talipes equinovarus
+    - term_id: "HP:0001831"
+      name: Short toe
+    - term_id: "HP:0002119"
+      name: Ventriculomegaly
+    - term_id: "HP:0002553"
+      name: Highly arched eyebrow
+    - term_id: "HP:0002623"
+      name: Overriding aorta
+    - term_id: "HP:0002650"
+      name: Scoliosis
+    - term_id: "HP:0002857"
+      name: Genu valgum
+    - term_id: "HP:0003097"
+      name: Short femur
+    - term_id: "HP:0003577"
+      name: Congenital onset
+    - term_id: "HP:0004209"
+      name: Clinodactyly of the 5th finger
+    - term_id: "HP:0004322"
+      name: Short stature
+    - term_id: "HP:0005692"
+      name: Joint hyperflexibility
+    - term_id: "HP:0005792"
+      name: Short humerus
+    - term_id: "HP:0005930"
+      name: Abnormal epiphysis morphology
+    - term_id: "HP:0008897"
+      name: Postnatal growth retardation
+    - term_id: "HP:0009464"
+      name: Ulnar deviation of the 2nd finger
+    - term_id: "HP:0009467"
+      name: Radial deviation of the 2nd finger
+    - term_id: "HP:0009933"
+      name: Narrow naris
+    - term_id: "HP:0010049"
+      name: Short metacarpal
+    - term_id: "HP:0010285"
+      name: Oral synechia
+    - term_id: "HP:0010508"
+      name: Metatarsus valgus
+    - term_id: "HP:0010763"
+      name: Low insertion of columella
+    - term_id: "HP:0030368"
+      name: Hyperphalangy of the 2nd finger
+    - term_id: "HP:0045074"
+      name: Thin eyebrow
+    - term_id: "HP:0100490"
+      name: Camptodactyly of finger
+- gene_ncbi_id: 26227
+  gene_symbol: PHGDH
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000023"
+      name: Inguinal hernia
+    - term_id: "HP:0000028"
+      name: Cryptorchidism
+    - term_id: "HP:0000104"
+      name: Renal agenesis
+    - term_id: "HP:0000135"
+      name: Hypogonadism
+    - term_id: "HP:0000136"
+      name: Bifid uterus
+    - term_id: "HP:0000175"
+      name: Cleft palate
+    - term_id: "HP:0000179"
+      name: Thick lower lip vermilion
+    - term_id: "HP:0000204"
+      name: Cleft upper lip
+    - term_id: "HP:0000316"
+      name: Hypertelorism
+    - term_id: "HP:0000340"
+      name: Sloping forehead
+    - term_id: "HP:0000347"
+      name: Micrognathia
+    - term_id: "HP:0000369"
+      name: Low-set ears
+    - term_id: "HP:0000400"
+      name: Macrotia
+    - term_id: "HP:0000445"
+      name: Wide nose
+    - term_id: "HP:0000457"
+      name: Depressed nasal ridge
+    - term_id: "HP:0000470"
+      name: Short neck
+    - term_id: "HP:0000475"
+      name: Broad neck
+    - term_id: "HP:0000519"
+      name: Developmental cataract
+    - term_id: "HP:0000520"
+      name: Proptosis
+    - term_id: "HP:0000561"
+      name: Absent eyelashes
+    - term_id: "HP:0000565"
+      name: Esotropia
+    - term_id: "HP:0000568"
+      name: Microphthalmia
+    - term_id: "HP:0000639"
+      name: Nystagmus
+    - term_id: "HP:0000737"
+      name: Irritability
+    - term_id: "HP:0001059"
+      name: Pterygium
+    - term_id: "HP:0001181"
+      name: Adducted thumb
+    - term_id: "HP:0001196"
+      name: Short umbilical cord
+    - term_id: "HP:0001249"
+      name: Intellectual disability
+    - term_id: "HP:0001274"
+      name: Agenesis of corpus callosum
+    - term_id: "HP:0001305"
+      name: Dandy-Walker malformation
+    - term_id: "HP:0001339"
+      name: Lissencephaly
+    - term_id: "HP:0001508"
+      name: Failure to thrive
+    - term_id: "HP:0001511"
+      name: Intrauterine growth retardation
+    - term_id: "HP:0001537"
+      name: Umbilical hernia
+    - term_id: "HP:0001561"
+      name: Polyhydramnios
+    - term_id: "HP:0001629"
+      name: Ventricular septal defect
+    - term_id: "HP:0001643"
+      name: Patent ductus arteriosus
+    - term_id: "HP:0001655"
+      name: Patent foramen ovale
+    - term_id: "HP:0001669"
+      name: Transposition of the great arteries
+    - term_id: "HP:0001770"
+      name: Toe syndactyly
+    - term_id: "HP:0001838"
+      name: Rocker bottom foot
+    - term_id: "HP:0001848"
+      name: Calcaneovalgus deformity
+    - term_id: "HP:0001873"
+      name: Thrombocytopenia
+    - term_id: "HP:0001889"
+      name: Megaloblastic anemia
+    - term_id: "HP:0001989"
+      name: Fetal akinesia sequence
+    - term_id: "HP:0001999"
+      name: Abnormal facial shape
+    - term_id: "HP:0002013"
+      name: Vomiting
+    - term_id: "HP:0002020"
+      name: Gastroesophageal reflux
+    - term_id: "HP:0002069"
+      name: Bilateral tonic-clonic seizure
+    - term_id: "HP:0002079"
+      name: Hypoplasia of the corpus callosum
+    - term_id: "HP:0002089"
+      name: Pulmonary hypoplasia
+    - term_id: "HP:0002121"
+      name: Generalized non-motor (absence) seizure
+    - term_id: "HP:0002123"
+      name: Generalized myoclonic seizure
+    - term_id: "HP:0002190"
+      name: Choroid plexus cyst
+    - term_id: "HP:0002305"
+      name: Athetosis
+    - term_id: "HP:0002324"
+      name: Hydranencephaly
+    - term_id: "HP:0002414"
+      name: Spina bifida
+    - term_id: "HP:0002510"
+      name: Spastic tetraplegia
+    - term_id: "HP:0002521"
+      name: Hypsarrhythmia
+    - term_id: "HP:0002983"
+      name: Micromelia
+    - term_id: "HP:0003577"
+      name: Congenital onset
+    - term_id: "HP:0003811"
+      name: Neonatal death
+    - term_id: "HP:0003826"
+      name: Stillbirth
+    - term_id: "HP:0004322"
+      name: Short stature
+    - term_id: "HP:0006101"
+      name: Finger syndactyly
+    - term_id: "HP:0006266"
+      name: Small placenta
+    - term_id: "HP:0006808"
+      name: Cerebral hypomyelination
+    - term_id: "HP:0006872"
+      name: Cerebral hypoplasia
+    - term_id: "HP:0007266"
+      name: Cerebral dysmyelination
+    - term_id: "HP:0007281"
+      name: Developmental stagnation
+    - term_id: "HP:0007430"
+      name: Generalized edema
+    - term_id: "HP:0007503"
+      name: Generalized ichthyosis
+    - term_id: "HP:0007525"
+      name: "Yellow subcutaneous tissue covered by thin, scaly skin"
+    - term_id: "HP:0008734"
+      name: Decreased testicular size
+    - term_id: "HP:0009466"
+      name: Radial deviation of finger
+    - term_id: "HP:0009473"
+      name: Joint contracture of the hand
+    - term_id: "HP:0010719"
+      name: Abnormality of hair texture
+    - term_id: "HP:0010819"
+      name: Atonic seizure
+    - term_id: "HP:0010821"
+      name: Focal emotional seizure with laughing
+    - term_id: "HP:0011097"
+      name: Epileptic spasm
+    - term_id: "HP:0011224"
+      name: Ablepharon
+    - term_id: "HP:0011343"
+      name: Moderate global developmental delay
+    - term_id: "HP:0011344"
+      name: Severe global developmental delay
+    - term_id: "HP:0011451"
+      name: Primary microcephaly
+    - term_id: "HP:0011968"
+      name: Feeding difficulties
+    - term_id: "HP:0012277"
+      name: Hypoglycinemia
+    - term_id: "HP:0012279"
+      name: Hyposerinemia
+    - term_id: "HP:0012385"
+      name: Camptodactyly
+    - term_id: "HP:0012444"
+      name: Brain atrophy
+    - term_id: "HP:0012448"
+      name: Delayed myelination
+    - term_id: "HP:0012762"
+      name: Cerebral white matter atrophy
+    - term_id: "HP:0030084"
+      name: Clinodactyly
+    - term_id: "HP:0030215"
+      name: Inappropriate crying
+    - term_id: "HP:0031244"
+      name: Swollen lip
+    - term_id: "HP:0034691"
+      name: Reduced 3-phosphoglycerate dehydrogenase activity
+    - term_id: "HP:0100633"
+      name: Esophagitis
+    - term_id: "HP:0100704"
+      name: Cerebral visual impairment
+    - term_id: "HP:0100807"
+      name: Long fingers
+- gene_ncbi_id: 29958
+  gene_symbol: DMGDH
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0003236"
+      name: Elevated circulating creatine kinase concentration
+    - term_id: "HP:0003750"
+      name: Increased muscle fatiguability
+    - term_id: "HP:0012379"
+      name: Abnormal circulating enzyme concentration or activity
+    - term_id: "HP:0031945"
+      name: "Elevated circulating N,N-dimethylglycine concentration"
+    - term_id: "HP:0031946"
+      name: "Elevated urinary N,N-dimethylglycine level"
+    - term_id: "HP:0410020"
+      name: Fish odor
+- gene_ncbi_id: 54332
+  gene_symbol: GDAP1
+  hpo_terms:
+    - term_id: "HP:0000006"
+      name: Autosomal dominant inheritance
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000765"
+      name: Abnormal thorax morphology
+    - term_id: "HP:0001171"
+      name: Split hand
+    - term_id: "HP:0001178"
+      name: Ulnar claw
+    - term_id: "HP:0001270"
+      name: Motor delay
+    - term_id: "HP:0001284"
+      name: Areflexia
+    - term_id: "HP:0001604"
+      name: Vocal cord paresis
+    - term_id: "HP:0001609"
+      name: Hoarse voice
+    - term_id: "HP:0001761"
+      name: Pes cavus
+    - term_id: "HP:0001765"
+      name: Hammertoe
+    - term_id: "HP:0001776"
+      name: Bilateral talipes equinovarus
+    - term_id: "HP:0002091"
+      name: Restrictive ventilatory defect
+    - term_id: "HP:0002317"
+      name: Unsteady gait
+    - term_id: "HP:0002359"
+      name: Frequent falls
+    - term_id: "HP:0002505"
+      name: Loss of ambulation
+    - term_id: "HP:0002751"
+      name: Kyphoscoliosis
+    - term_id: "HP:0003376"
+      name: Steppage gait
+    - term_id: "HP:0003378"
+      name: Axonal degeneration/regeneration
+    - term_id: "HP:0003382"
+      name: Hypertrophic nerve changes
+    - term_id: "HP:0003387"
+      name: Decreased number of large peripheral myelinated nerve fibers
+    - term_id: "HP:0003400"
+      name: Basal lamina onion bulb formation
+    - term_id: "HP:0003429"
+      name: CNS hypomyelination
+    - term_id: "HP:0003431"
+      name: Decreased motor nerve conduction velocity
+    - term_id: "HP:0003445"
+      name: "EMG: neuropathic changes"
+    - term_id: "HP:0003447"
+      name: Axonal loss
+    - term_id: "HP:0003448"
+      name: Decreased sensory nerve conduction velocity
+    - term_id: "HP:0003547"
+      name: Shoulder girdle muscle weakness
+    - term_id: "HP:0003577"
+      name: Congenital onset
+    - term_id: "HP:0003593"
+      name: Infantile onset
+    - term_id: "HP:0003678"
+      name: Rapidly progressive
+    - term_id: "HP:0003731"
+      name: Quadriceps muscle weakness
+    - term_id: "HP:0006064"
+      name: Limited interphalangeal movement
+    - term_id: "HP:0006248"
+      name: Limited wrist movement
+    - term_id: "HP:0006858"
+      name: Impaired distal proprioception
+    - term_id: "HP:0006886"
+      name: Impaired distal vibration sensation
+    - term_id: "HP:0006915"
+      name: Inability to walk by childhood/adolescence
+    - term_id: "HP:0006937"
+      name: Impaired distal tactile sensation
+    - term_id: "HP:0007010"
+      name: Poor fine motor coordination
+    - term_id: "HP:0007015"
+      name: Poor gross motor coordination
+    - term_id: "HP:0007107"
+      name: Segmental peripheral demyelination
+    - term_id: "HP:0007108"
+      name: Demyelinating peripheral neuropathy
+    - term_id: "HP:0007141"
+      name: Sensorimotor neuropathy
+    - term_id: "HP:0007230"
+      name: Decreased distal sensory nerve action potential
+    - term_id: "HP:0007233"
+      name: Clusters of axonal regeneration
+    - term_id: "HP:0007249"
+      name: Decreased number of small peripheral myelinated nerve fibers
+    - term_id: "HP:0007267"
+      name: Chronic axonal neuropathy
+    - term_id: "HP:0007328"
+      name: Impaired pain sensation
+    - term_id: "HP:0008443"
+      name: Neuropathic spinal arthropathy
+    - term_id: "HP:0008935"
+      name: Generalized neonatal hypotonia
+    - term_id: "HP:0008954"
+      name: Intrinsic hand muscle atrophy
+    - term_id: "HP:0008959"
+      name: Distal upper limb muscle weakness
+    - term_id: "HP:0008997"
+      name: Proximal muscle weakness in upper limbs
+    - term_id: "HP:0009027"
+      name: Foot dorsiflexor weakness
+    - term_id: "HP:0009072"
+      name: Decreased Achilles reflex
+    - term_id: "HP:0009109"
+      name: Denervation of the diaphragm
+    - term_id: "HP:0009473"
+      name: Joint contracture of the hand
+    - term_id: "HP:0011463"
+      name: Childhood onset
+    - term_id: "HP:0011675"
+      name: Arrhythmia
+    - term_id: "HP:0011727"
+      name: Peroneal muscle weakness
+    - term_id: "HP:0012078"
+      name: Motor conduction block
+    - term_id: "HP:0012391"
+      name: Hyporeflexia of upper limbs
+    - term_id: "HP:0030237"
+      name: Hand muscle weakness
+    - term_id: "HP:0030319"
+      name: Weakness of facial musculature
+    - term_id: "HP:0031629"
+      name: Impaired tandem gait
+    - term_id: "HP:0040078"
+      name: Axonal degeneration
+- gene_ncbi_id: 54834
+  gene_symbol: GDAP2
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000473"
+      name: Torticollis
+    - term_id: "HP:0000640"
+      name: Gaze-evoked nystagmus
+    - term_id: "HP:0000716"
+      name: Depression
+    - term_id: "HP:0000718"
+      name: Aggressive behavior
+    - term_id: "HP:0000741"
+      name: Apathy
+    - term_id: "HP:0001257"
+      name: Spasticity
+    - term_id: "HP:0001260"
+      name: Dysarthria
+    - term_id: "HP:0001268"
+      name: Mental deterioration
+    - term_id: "HP:0001272"
+      name: Cerebellar atrophy
+    - term_id: "HP:0001348"
+      name: Brisk reflexes
+    - term_id: "HP:0002015"
+      name: Dysphagia
+    - term_id: "HP:0002066"
+      name: Gait ataxia
+    - term_id: "HP:0002120"
+      name: Cerebral cortical atrophy
+    - term_id: "HP:0002141"
+      name: Gait imbalance
+    - term_id: "HP:0002171"
+      name: Gliosis
+    - term_id: "HP:0002359"
+      name: Frequent falls
+    - term_id: "HP:0002497"
+      name: Spastic ataxia
+    - term_id: "HP:0003677"
+      name: Slowly progressive
+    - term_id: "HP:0006895"
+      name: Lower limb hypertonia
+    - term_id: "HP:0007338"
+      name: Hypermetric saccades
+    - term_id: "HP:0008003"
+      name: Jerky ocular pursuit movements
+    - term_id: "HP:0025710"
+      name: Late young adult onset
+- gene_ncbi_id: 55753
+  gene_symbol: OGDHL
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000218"
+      name: High palate
+    - term_id: "HP:0000252"
+      name: Microcephaly
+    - term_id: "HP:0000338"
+      name: Hypomimic face
+    - term_id: "HP:0000365"
+      name: Hearing impairment
+    - term_id: "HP:0000494"
+      name: Downslanted palpebral fissures
+    - term_id: "HP:0000505"
+      name: Visual impairment
+    - term_id: "HP:0000639"
+      name: Nystagmus
+    - term_id: "HP:0000648"
+      name: Optic atrophy
+    - term_id: "HP:0001251"
+      name: Ataxia
+    - term_id: "HP:0001257"
+      name: Spasticity
+    - term_id: "HP:0001385"
+      name: Hip dysplasia
+    - term_id: "HP:0001488"
+      name: Bilateral ptosis
+    - term_id: "HP:0001508"
+      name: Failure to thrive
+    - term_id: "HP:0001761"
+      name: Pes cavus
+    - term_id: "HP:0002059"
+      name: Cerebral atrophy
+    - term_id: "HP:0002069"
+      name: Bilateral tonic-clonic seizure
+    - term_id: "HP:0002079"
+      name: Hypoplasia of the corpus callosum
+    - term_id: "HP:0002119"
+      name: Ventriculomegaly
+    - term_id: "HP:0002133"
+      name: Status epilepticus
+    - term_id: "HP:0002521"
+      name: Hypsarrhythmia
+    - term_id: "HP:0002540"
+      name: Inability to walk
+    - term_id: "HP:0002650"
+      name: Scoliosis
+    - term_id: "HP:0003577"
+      name: Congenital onset
+    - term_id: "HP:0003593"
+      name: Infantile onset
+    - term_id: "HP:0003621"
+      name: Juvenile onset
+    - term_id: "HP:0006970"
+      name: Periventricular leukomalacia
+    - term_id: "HP:0011170"
+      name: Generalized myoclonic-atonic seizure
+    - term_id: "HP:0011344"
+      name: Severe global developmental delay
+    - term_id: "HP:0012469"
+      name: Infantile spasms
+    - term_id: "HP:0030799"
+      name: Scaphocephaly
+- gene_ncbi_id: 79641
+  gene_symbol: ROGDI
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000238"
+      name: Hydrocephalus
+    - term_id: "HP:0000252"
+      name: Microcephaly
+    - term_id: "HP:0000705"
+      name: Amelogenesis imperfecta
+    - term_id: "HP:0000726"
+      name: Dementia
+    - term_id: "HP:0000750"
+      name: Delayed speech and language development
+    - term_id: "HP:0000966"
+      name: Hypohidrosis
+    - term_id: "HP:0001251"
+      name: Ataxia
+    - term_id: "HP:0001257"
+      name: Spasticity
+    - term_id: "HP:0001263"
+      name: Global developmental delay
+    - term_id: "HP:0001321"
+      name: Cerebellar hypoplasia
+    - term_id: "HP:0002059"
+      name: Cerebral atrophy
+    - term_id: "HP:0002069"
+      name: Bilateral tonic-clonic seizure
+    - term_id: "HP:0002119"
+      name: Ventriculomegaly
+    - term_id: "HP:0002376"
+      name: Developmental regression
+    - term_id: "HP:0002521"
+      name: Hypsarrhythmia
+    - term_id: "HP:0004322"
+      name: Short stature
+    - term_id: "HP:0006286"
+      name: Yellow-brown discoloration of the teeth
+    - term_id: "HP:0006297"
+      name: Enamel hypoplasia
+    - term_id: "HP:0007359"
+      name: Focal-onset seizure
+    - term_id: "HP:0010864"
+      name: "Intellectual disability, severe"
+    - term_id: "HP:0031936"
+      name: Delayed ability to walk
+    - term_id: "HP:0032794"
+      name: Myoclonic seizure
+    - term_id: "HP:0200134"
+      name: Epileptic encephalopathy
+- gene_ncbi_id: 79944
+  gene_symbol: L2HGDH
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000256"
+      name: Macrocephaly
+    - term_id: "HP:0000365"
+      name: Hearing impairment
+    - term_id: "HP:0000486"
+      name: Strabismus
+    - term_id: "HP:0000639"
+      name: Nystagmus
+    - term_id: "HP:0000648"
+      name: Optic atrophy
+    - term_id: "HP:0000708"
+      name: Atypical behavior
+    - term_id: "HP:0001250"
+      name: Seizure
+    - term_id: "HP:0001251"
+      name: Ataxia
+    - term_id: "HP:0001252"
+      name: Hypotonia
+    - term_id: "HP:0001272"
+      name: Cerebellar atrophy
+    - term_id: "HP:0001285"
+      name: Spastic tetraparesis
+    - term_id: "HP:0002062"
+      name: Morphological abnormality of the pyramidal tract
+    - term_id: "HP:0002071"
+      name: Abnormality of extrapyramidal motor function
+    - term_id: "HP:0002171"
+      name: Gliosis
+    - term_id: "HP:0002283"
+      name: Global brain atrophy
+    - term_id: "HP:0002352"
+      name: Leukoencephalopathy
+    - term_id: "HP:0002376"
+      name: Developmental regression
+    - term_id: "HP:0002381"
+      name: Aphasia
+    - term_id: "HP:0002383"
+      name: Infectious encephalitis
+    - term_id: "HP:0003593"
+      name: Infantile onset
+    - term_id: "HP:0004375"
+      name: Neoplasm of the nervous system
+    - term_id: "HP:0006887"
+      name: "Intellectual disability, progressive"
+    - term_id: "HP:0007256"
+      name: Abnormal pyramidal sign
+    - term_id: "HP:0007258"
+      name: Severe demyelination of the white matter
+    - term_id: "HP:0007360"
+      name: Aplasia/Hypoplasia of the cerebellum
+    - term_id: "HP:0007371"
+      name: Corpus callosum atrophy
+    - term_id: "HP:0010864"
+      name: "Intellectual disability, severe"
+    - term_id: "HP:0040144"
+      name: L-2-hydroxyglutaric aciduria
+    - term_id: "HP:0040147"
+      name: L-2-hydroxyglutaric acidemia
+- gene_ncbi_id: 121512
+  gene_symbol: FGD4
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0001245"
+      name: Small thenar eminence
+    - term_id: "HP:0001265"
+      name: Hyporeflexia
+    - term_id: "HP:0001270"
+      name: Motor delay
+    - term_id: "HP:0001284"
+      name: Areflexia
+    - term_id: "HP:0001761"
+      name: Pes cavus
+    - term_id: "HP:0001762"
+      name: Talipes equinovarus
+    - term_id: "HP:0002317"
+      name: Unsteady gait
+    - term_id: "HP:0002515"
+      name: Waddling gait
+    - term_id: "HP:0002650"
+      name: Scoliosis
+    - term_id: "HP:0002936"
+      name: Distal sensory impairment
+    - term_id: "HP:0003380"
+      name: Decreased number of peripheral myelinated nerve fibers
+    - term_id: "HP:0003383"
+      name: Onion bulb formation
+    - term_id: "HP:0003431"
+      name: Decreased motor nerve conduction velocity
+    - term_id: "HP:0003484"
+      name: Upper limb muscle weakness
+    - term_id: "HP:0007182"
+      name: Peripheral hypomyelination
+    - term_id: "HP:0008944"
+      name: Distal lower limb amyotrophy
+    - term_id: "HP:0009053"
+      name: Distal lower limb muscle weakness
+    - term_id: "HP:0010487"
+      name: Small hypothenar eminence
+    - term_id: "HP:0011463"
+      name: Childhood onset
+    - term_id: "HP:0033748"
+      name: Hypoesthesia
+- gene_ncbi_id: 392255
+  gene_symbol: GDF6
+  hpo_terms:
+    - term_id: "HP:0000006"
+      name: Autosomal dominant inheritance
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000122"
+      name: Unilateral renal agenesis
+    - term_id: "HP:0000175"
+      name: Cleft palate
+    - term_id: "HP:0000324"
+      name: Facial asymmetry
+    - term_id: "HP:0000362"
+      name: Otosclerosis
+    - term_id: "HP:0000410"
+      name: Mixed hearing impairment
+    - term_id: "HP:0000465"
+      name: Webbed neck
+    - term_id: "HP:0000466"
+      name: Limited neck range of motion
+    - term_id: "HP:0000470"
+      name: Short neck
+    - term_id: "HP:0000512"
+      name: Abnormal electroretinogram
+    - term_id: "HP:0000518"
+      name: Cataract
+    - term_id: "HP:0000563"
+      name: Keratoconus
+    - term_id: "HP:0000589"
+      name: Coloboma
+    - term_id: "HP:0000639"
+      name: Nystagmus
+    - term_id: "HP:0000772"
+      name: Abnormal rib morphology
+    - term_id: "HP:0000912"
+      name: Sprengel anomaly
+    - term_id: "HP:0001141"
+      name: Severely reduced visual acuity
+    - term_id: "HP:0001156"
+      name: Brachydactyly
+    - term_id: "HP:0001249"
+      name: Intellectual disability
+    - term_id: "HP:0001250"
+      name: Seizure
+    - term_id: "HP:0001252"
+      name: Hypotonia
+    - term_id: "HP:0001263"
+      name: Global developmental delay
+    - term_id: "HP:0001291"
+      name: Abnormal cranial nerve morphology
+    - term_id: "HP:0001335"
+      name: Bimanual synkinesia
+    - term_id: "HP:0001629"
+      name: Ventricular septal defect
+    - term_id: "HP:0001763"
+      name: Pes planus
+    - term_id: "HP:0001769"
+      name: Broad foot
+    - term_id: "HP:0001845"
+      name: Overlapping toe
+    - term_id: "HP:0002023"
+      name: Anal atresia
+    - term_id: "HP:0002084"
+      name: Encephalocele
+    - term_id: "HP:0002162"
+      name: Low posterior hairline
+    - term_id: "HP:0002269"
+      name: Abnormality of neuronal migration
+    - term_id: "HP:0002414"
+      name: Spina bifida
+    - term_id: "HP:0002650"
+      name: Scoliosis
+    - term_id: "HP:0003043"
+      name: Abnormal shoulder morphology
+    - term_id: "HP:0004374"
+      name: Hemiplegia/hemiparesis
+    - term_id: "HP:0004397"
+      name: Ectopic anus
+    - term_id: "HP:0004602"
+      name: Cervical C2/C3 vertebral fusion
+    - term_id: "HP:0005107"
+      name: Abnormal sacrum morphology
+    - term_id: "HP:0005640"
+      name: Abnormal vertebral segmentation and fusion
+    - term_id: "HP:0005988"
+      name: Congenital muscular torticollis
+    - term_id: "HP:0006817"
+      name: Aplasia/Hypoplasia of the cerebellar vermis
+    - term_id: "HP:0007291"
+      name: Posterior fossa cyst
+    - term_id: "HP:0007633"
+      name: Bilateral microphthalmos
+    - term_id: "HP:0007703"
+      name: Abnormality of retinal pigmentation
+    - term_id: "HP:0007750"
+      name: Hypoplasia of the fovea
+    - term_id: "HP:0007766"
+      name: Optic disc hypoplasia
+    - term_id: "HP:0008368"
+      name: Tarsal synostosis
+    - term_id: "HP:0009911"
+      name: Abnormal temporal bone morphology
+    - term_id: "HP:0010469"
+      name: Absent testis
+    - term_id: "HP:0010984"
+      name: Digenic inheritance
+    - term_id: "HP:0012795"
+      name: Abnormal optic disc morphology
+    - term_id: "HP:0030325"
+      name: Cervicomedullary schisis
+    - term_id: "HP:0032284"
+      name: Ultra-low vision with retained motion projection
+    - term_id: "HP:0100259"
+      name: Postaxial polydactyly
+    - term_id: "HP:0100543"
+      name: Cognitive impairment
+- gene_ncbi_id: 728294
+  gene_symbol: D2HGDH
+  hpo_terms:
+    - term_id: "HP:0000007"
+      name: Autosomal recessive inheritance
+    - term_id: "HP:0000256"
+      name: Macrocephaly
+    - term_id: "HP:0000347"
+      name: Micrognathia
+    - term_id: "HP:0001249"
+      name: Intellectual disability
+    - term_id: "HP:0001252"
+      name: Hypotonia
+    - term_id: "HP:0001263"
+      name: Global developmental delay
+    - term_id: "HP:0001324"
+      name: Muscle weakness
+    - term_id: "HP:0001638"
+      name: Cardiomyopathy
+    - term_id: "HP:0001659"
+      name: Aortic regurgitation
+    - term_id: "HP:0002007"
+      name: Frontal bossing
+    - term_id: "HP:0002069"
+      name: Bilateral tonic-clonic seizure
+    - term_id: "HP:0002104"
+      name: Apnea
+    - term_id: "HP:0002188"
+      name: Delayed CNS myelination
+    - term_id: "HP:0002416"
+      name: Subependymal cysts
+    - term_id: "HP:0002521"
+      name: Hypsarrhythmia
+    - term_id: "HP:0002572"
+      name: Episodic vomiting
+    - term_id: "HP:0003150"
+      name: Glutaric aciduria
+    - term_id: "HP:0003593"
+      name: Infantile onset
+    - term_id: "HP:0005348"
+      name: Inspiratory stridor
+    - term_id: "HP:0006956"
+      name: Lateral ventricle dilatation
+    - term_id: "HP:0007052"
+      name: Multifocal cerebral white matter abnormalities
+    - term_id: "HP:0007105"
+      name: Infantile encephalopathy
+    - term_id: "HP:0011220"
+      name: Prominent forehead
+    - term_id: "HP:0012321"
+      name: D-2-hydroxyglutaric aciduria
+    - term_id: "HP:0012469"
+      name: Infantile spasms
+    - term_id: "HP:0032792"
+      name: Tonic seizure
+    - term_id: "HP:0032794"
+      name: Myoclonic seizure
+    - term_id: "HP:0100704"
+      name: Cerebral visual impairment
+

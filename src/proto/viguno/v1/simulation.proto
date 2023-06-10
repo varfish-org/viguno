@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package viguno.v1.simulation;
+
+// Stores the empirical distribution for a gene and term count.
+message SimulationResults {
+    // The NCBI gene id.
+    uint32 ncbi_gene_id = 1;
+    // The gene symbol.
+    string gene_symbol = 2;
+    // The number of terms.
+    uint32 term_count = 3;
+    // The sorted scores.
+    repeated float scores = 4;
+}

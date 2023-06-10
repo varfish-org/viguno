@@ -1,0 +1,7 @@
+---
+source: src/server/actix_server/hpo_genes.rs
+expression: "&run_query(\"/hpo/genes?gene_symbol=TGD&match=prefix\").await?"
+---
+- gene_ncbi_id: 23483
+  gene_symbol: TGDS
+

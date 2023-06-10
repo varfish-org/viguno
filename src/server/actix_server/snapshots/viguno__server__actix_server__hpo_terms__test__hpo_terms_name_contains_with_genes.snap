@@ -1,0 +1,592 @@
+---
+source: src/server/actix_server/hpo_terms.rs
+expression: "&run_query(\"/hpo/terms?name=guinal+hern&match=contains&genes=true\").await?"
+---
+- term_id: "HP:0000023"
+  name: Inguinal hernia
+  genes:
+    - gene_id: 59
+      gene_symbol: ACTA2
+    - gene_id: 165
+      gene_symbol: AEBP1
+    - gene_id: 175
+      gene_symbol: AGA
+    - gene_id: 268
+      gene_symbol: AMH
+    - gene_id: 269
+      gene_symbol: AMHR2
+    - gene_id: 367
+      gene_symbol: AR
+    - gene_id: 411
+      gene_symbol: ARSB
+    - gene_id: 421
+      gene_symbol: ARVCF
+    - gene_id: 477
+      gene_symbol: ATP1A2
+    - gene_id: 523
+      gene_symbol: ATP6V1A
+    - gene_id: 529
+      gene_symbol: ATP6V1E1
+    - gene_id: 538
+      gene_symbol: ATP7A
+    - gene_id: 613
+      gene_symbol: BCR
+    - gene_id: 699
+      gene_symbol: BUB1
+    - gene_id: 715
+      gene_symbol: C1R
+    - gene_id: 716
+      gene_symbol: C1S
+    - gene_id: 871
+      gene_symbol: SERPINH1
+    - gene_id: 875
+      gene_symbol: CBS
+    - gene_id: 998
+      gene_symbol: CDC42
+    - gene_id: 1028
+      gene_symbol: CDKN1C
+    - gene_id: 1107
+      gene_symbol: CHD3
+    - gene_id: 1146
+      gene_symbol: CHRNG
+    - gene_id: 1183
+      gene_symbol: CLCN4
+    - gene_id: 1277
+      gene_symbol: COL1A1
+    - gene_id: 1278
+      gene_symbol: COL1A2
+    - gene_id: 1280
+      gene_symbol: COL2A1
+    - gene_id: 1281
+      gene_symbol: COL3A1
+    - gene_id: 1289
+      gene_symbol: COL5A1
+    - gene_id: 1290
+      gene_symbol: COL5A2
+    - gene_id: 1312
+      gene_symbol: COMT
+    - gene_id: 1387
+      gene_symbol: CREBBP
+    - gene_id: 1399
+      gene_symbol: CRKL
+    - gene_id: 1457
+      gene_symbol: CSNK2A1
+    - gene_id: 1501
+      gene_symbol: CTNND2
+    - gene_id: 1656
+      gene_symbol: DDX6
+    - gene_id: 1801
+      gene_symbol: DPH1
+    - gene_id: 1836
+      gene_symbol: SLC26A2
+    - gene_id: 1855
+      gene_symbol: DVL1
+    - gene_id: 1857
+      gene_symbol: DVL3
+    - gene_id: 1859
+      gene_symbol: DYRK1A
+    - gene_id: 1861
+      gene_symbol: TOR1A
+    - gene_id: 2006
+      gene_symbol: ELN
+    - gene_id: 2146
+      gene_symbol: EZH2
+    - gene_id: 2187
+      gene_symbol: FANCB
+    - gene_id: 2200
+      gene_symbol: FBN1
+    - gene_id: 2239
+      gene_symbol: GPC4
+    - gene_id: 2245
+      gene_symbol: FGD1
+    - gene_id: 2260
+      gene_symbol: FGFR1
+    - gene_id: 2301
+      gene_symbol: FOXE3
+    - gene_id: 2313
+      gene_symbol: FLI1
+    - gene_id: 2316
+      gene_symbol: FLNA
+    - gene_id: 2317
+      gene_symbol: FLNB
+    - gene_id: 2535
+      gene_symbol: FZD2
+    - gene_id: 2542
+      gene_symbol: SLC37A4
+    - gene_id: 2588
+      gene_symbol: GALNS
+    - gene_id: 2626
+      gene_symbol: GATA4
+    - gene_id: 2627
+      gene_symbol: GATA6
+    - gene_id: 2657
+      gene_symbol: GDF1
+    - gene_id: 2719
+      gene_symbol: GPC3
+    - gene_id: 2720
+      gene_symbol: GLB1
+    - gene_id: 2737
+      gene_symbol: GLI3
+    - gene_id: 2741
+      gene_symbol: GLRA1
+    - gene_id: 2783
+      gene_symbol: GNB2
+    - gene_id: 2799
+      gene_symbol: GNS
+    - gene_id: 2812
+      gene_symbol: GP1BB
+    - gene_id: 2904
+      gene_symbol: GRIN2B
+    - gene_id: 2969
+      gene_symbol: GTF2I
+    - gene_id: 2972
+      gene_symbol: BRF1
+    - gene_id: 2990
+      gene_symbol: GUSB
+    - gene_id: 3339
+      gene_symbol: HSPG2
+    - gene_id: 3423
+      gene_symbol: IDS
+    - gene_id: 3425
+      gene_symbol: IDUA
+    - gene_id: 3481
+      gene_symbol: IGF2
+    - gene_id: 3670
+      gene_symbol: ISL1
+    - gene_id: 3955
+      gene_symbol: LFNG
+    - gene_id: 3984
+      gene_symbol: LIMK1
+    - gene_id: 4015
+      gene_symbol: LOX
+    - gene_id: 4052
+      gene_symbol: LTBP1
+    - gene_id: 4087
+      gene_symbol: SMAD2
+    - gene_id: 4088
+      gene_symbol: SMAD3
+    - gene_id: 4089
+      gene_symbol: SMAD4
+    - gene_id: 4094
+      gene_symbol: MAF
+    - gene_id: 4125
+      gene_symbol: MAN2B1
+    - gene_id: 4144
+      gene_symbol: MAT2A
+    - gene_id: 4212
+      gene_symbol: MEIS2
+    - gene_id: 4281
+      gene_symbol: MID1
+    - gene_id: 4621
+      gene_symbol: MYH3
+    - gene_id: 4629
+      gene_symbol: MYH11
+    - gene_id: 4638
+      gene_symbol: MYLK
+    - gene_id: 4702
+      gene_symbol: NDUFA8
+    - gene_id: 4758
+      gene_symbol: NEU1
+    - gene_id: 4774
+      gene_symbol: NFIA
+    - gene_id: 4851
+      gene_symbol: NOTCH1
+    - gene_id: 4853
+      gene_symbol: NOTCH2
+    - gene_id: 4854
+      gene_symbol: NOTCH3
+    - gene_id: 4920
+      gene_symbol: ROR2
+    - gene_id: 4952
+      gene_symbol: OCRL
+    - gene_id: 4953
+      gene_symbol: ODC1
+    - gene_id: 5048
+      gene_symbol: PAFAH1B1
+    - gene_id: 5295
+      gene_symbol: PIK3R1
+    - gene_id: 5324
+      gene_symbol: PLAG1
+    - gene_id: 5337
+      gene_symbol: PLD1
+    - gene_id: 5351
+      gene_symbol: PLOD1
+    - gene_id: 5352
+      gene_symbol: PLOD2
+    - gene_id: 5430
+      gene_symbol: POLR2A
+    - gene_id: 5515
+      gene_symbol: PPP2CA
+    - gene_id: 5518
+      gene_symbol: PPP2R1A
+    - gene_id: 5592
+      gene_symbol: PRKG1
+    - gene_id: 5594
+      gene_symbol: MAPK1
+    - gene_id: 5826
+      gene_symbol: ABCD4
+    - gene_id: 5831
+      gene_symbol: PYCR1
+    - gene_id: 5832
+      gene_symbol: ALDH18A1
+    - gene_id: 5982
+      gene_symbol: RFC2
+    - gene_id: 6134
+      gene_symbol: RPL10
+    - gene_id: 6197
+      gene_symbol: RPS6KA3
+    - gene_id: 6239
+      gene_symbol: RREB1
+    - gene_id: 6418
+      gene_symbol: SET
+    - gene_id: 6448
+      gene_symbol: SGSH
+    - gene_id: 6497
+      gene_symbol: SKI
+    - gene_id: 6499
+      gene_symbol: SKIC2
+    - gene_id: 6595
+      gene_symbol: SMARCA2
+    - gene_id: 6598
+      gene_symbol: SMARCB1
+    - gene_id: 6601
+      gene_symbol: SMARCC2
+    - gene_id: 6785
+      gene_symbol: ELOVL4
+    - gene_id: 6804
+      gene_symbol: STX1A
+    - gene_id: 6899
+      gene_symbol: TBX1
+    - gene_id: 6926
+      gene_symbol: TBX3
+    - gene_id: 6935
+      gene_symbol: ZEB1
+    - gene_id: 7042
+      gene_symbol: TGFB2
+    - gene_id: 7043
+      gene_symbol: TGFB3
+    - gene_id: 7046
+      gene_symbol: TGFBR1
+    - gene_id: 7048
+      gene_symbol: TGFBR2
+    - gene_id: 7290
+      gene_symbol: HIRA
+    - gene_id: 7317
+      gene_symbol: UBA1
+    - gene_id: 7353
+      gene_symbol: UFD1
+    - gene_id: 7458
+      gene_symbol: EIF4H
+    - gene_id: 7461
+      gene_symbol: CLIP2
+    - gene_id: 7474
+      gene_symbol: WNT5A
+    - gene_id: 7518
+      gene_symbol: XRCC4
+    - gene_id: 7531
+      gene_symbol: YWHAE
+    - gene_id: 8036
+      gene_symbol: SHOC2
+    - gene_id: 8076
+      gene_symbol: MFAP5
+    - gene_id: 8091
+      gene_symbol: HMGA2
+    - gene_id: 8214
+      gene_symbol: DGCR6
+    - gene_id: 8220
+      gene_symbol: ESS2
+    - gene_id: 8260
+      gene_symbol: NAA10
+    - gene_id: 8289
+      gene_symbol: ARID1A
+    - gene_id: 8295
+      gene_symbol: TRRAP
+    - gene_id: 8425
+      gene_symbol: LTBP4
+    - gene_id: 8443
+      gene_symbol: GNPAT
+    - gene_id: 8450
+      gene_symbol: CUL4B
+    - gene_id: 8468
+      gene_symbol: FKBP6
+    - gene_id: 8481
+      gene_symbol: OFD1
+    - gene_id: 8626
+      gene_symbol: TP63
+    - gene_id: 8720
+      gene_symbol: MBTPS1
+    - gene_id: 8726
+      gene_symbol: EED
+    - gene_id: 8788
+      gene_symbol: DLK1
+    - gene_id: 8884
+      gene_symbol: SLC5A6
+    - gene_id: 8905
+      gene_symbol: AP1S2
+    - gene_id: 9031
+      gene_symbol: BAZ1B
+    - gene_id: 9037
+      gene_symbol: SEMA5A
+    - gene_id: 9091
+      gene_symbol: PIGQ
+    - gene_id: 9158
+      gene_symbol: FIBP
+    - gene_id: 9275
+      gene_symbol: BCL7B
+    - gene_id: 9469
+      gene_symbol: CHST3
+    - gene_id: 9509
+      gene_symbol: ADAMTS2
+    - gene_id: 9569
+      gene_symbol: GTF2IRD1
+    - gene_id: 9632
+      gene_symbol: SEC24C
+    - gene_id: 9652
+      gene_symbol: SKIC3
+    - gene_id: 9719
+      gene_symbol: ADAMTSL2
+    - gene_id: 9791
+      gene_symbol: PTDSS1
+    - gene_id: 9897
+      gene_symbol: WASHC5
+    - gene_id: 9968
+      gene_symbol: MED12
+    - gene_id: 9993
+      gene_symbol: DGCR2
+    - gene_id: 10020
+      gene_symbol: GNE
+    - gene_id: 10056
+      gene_symbol: FARSB
+    - gene_id: 10093
+      gene_symbol: ARPC4
+    - gene_id: 10128
+      gene_symbol: LRPPRC
+    - gene_id: 10220
+      gene_symbol: GDF11
+    - gene_id: 10243
+      gene_symbol: GPHN
+    - gene_id: 10265
+      gene_symbol: IRX5
+    - gene_id: 10283
+      gene_symbol: CWC27
+    - gene_id: 10297
+      gene_symbol: APC2
+    - gene_id: 10516
+      gene_symbol: FBLN5
+    - gene_id: 10526
+      gene_symbol: IPO8
+    - gene_id: 10664
+      gene_symbol: CTCF
+    - gene_id: 10683
+      gene_symbol: DLL3
+    - gene_id: 10765
+      gene_symbol: KDM5B
+    - gene_id: 10847
+      gene_symbol: SRCAP
+    - gene_id: 10907
+      gene_symbol: TXNL4A
+    - gene_id: 10982
+      gene_symbol: MAPRE2
+    - gene_id: 10984
+      gene_symbol: KCNQ1OT1
+    - gene_id: 11107
+      gene_symbol: PRDM5
+    - gene_id: 11342
+      gene_symbol: RNF13
+    - gene_id: 22827
+      gene_symbol: PUF60
+    - gene_id: 22872
+      gene_symbol: SEC31A
+    - gene_id: 23112
+      gene_symbol: TNRC6B
+    - gene_id: 23126
+      gene_symbol: POGZ
+    - gene_id: 23291
+      gene_symbol: FBXW11
+    - gene_id: 23314
+      gene_symbol: SATB2
+    - gene_id: 23322
+      gene_symbol: RPGRIP1L
+    - gene_id: 23347
+      gene_symbol: SMCHD1
+    - gene_id: 23394
+      gene_symbol: ADNP
+    - gene_id: 23405
+      gene_symbol: DICER1
+    - gene_id: 23483
+      gene_symbol: TGDS
+    - gene_id: 23493
+      gene_symbol: HEY2
+    - gene_id: 23512
+      gene_symbol: SUZ12
+    - gene_id: 23545
+      gene_symbol: ATP6V0A2
+    - gene_id: 23729
+      gene_symbol: SHPK
+    - gene_id: 25782
+      gene_symbol: RAB3GAP2
+    - gene_id: 25836
+      gene_symbol: NIPBL
+    - gene_id: 25942
+      gene_symbol: SIN3A
+    - gene_id: 26040
+      gene_symbol: SETBP1
+    - gene_id: 26053
+      gene_symbol: AUTS2
+    - gene_id: 26227
+      gene_symbol: PHGDH
+    - gene_id: 26229
+      gene_symbol: B3GAT3
+    - gene_id: 26608
+      gene_symbol: TBL2
+    - gene_id: 27031
+      gene_symbol: NPHP3
+    - gene_id: 28952
+      gene_symbol: CCDC22
+    - gene_id: 29072
+      gene_symbol: SETD2
+    - gene_id: 29940
+      gene_symbol: DSE
+    - gene_id: 29969
+      gene_symbol: MDFIC
+    - gene_id: 30008
+      gene_symbol: EFEMP2
+    - gene_id: 51085
+      gene_symbol: MLXIPL
+    - gene_id: 51360
+      gene_symbol: MBTPS2
+    - gene_id: 51780
+      gene_symbol: KDM3B
+    - gene_id: 54101
+      gene_symbol: RIPK4
+    - gene_id: 54487
+      gene_symbol: DGCR8
+    - gene_id: 54499
+      gene_symbol: TMCO1
+    - gene_id: 54914
+      gene_symbol: FOCAD
+    - gene_id: 54968
+      gene_symbol: TMEM70
+    - gene_id: 55033
+      gene_symbol: FKBP14
+    - gene_id: 55384
+      gene_symbol: MEG3
+    - gene_id: 55503
+      gene_symbol: TRPV6
+    - gene_id: 55617
+      gene_symbol: TASP1
+    - gene_id: 55690
+      gene_symbol: PACS1
+    - gene_id: 55764
+      gene_symbol: IFT122
+    - gene_id: 56623
+      gene_symbol: INPP5E
+    - gene_id: 57492
+      gene_symbol: ARID1B
+    - gene_id: 57539
+      gene_symbol: WDR35
+    - gene_id: 57545
+      gene_symbol: CC2D2A
+    - gene_id: 57589
+      gene_symbol: RIC1
+    - gene_id: 57728
+      gene_symbol: WDR19
+    - gene_id: 58508
+      gene_symbol: KMT2C
+    - gene_id: 63895
+      gene_symbol: PIEZO2
+    - gene_id: 64175
+      gene_symbol: P3H1
+    - gene_id: 64220
+      gene_symbol: STRA6
+    - gene_id: 64324
+      gene_symbol: NSD1
+    - gene_id: 64359
+      gene_symbol: NXN
+    - gene_id: 64412
+      gene_symbol: GZF1
+    - gene_id: 64840
+      gene_symbol: PORCN
+    - gene_id: 79158
+      gene_symbol: GNPTAB
+    - gene_id: 79633
+      gene_symbol: FAT4
+    - gene_id: 79813
+      gene_symbol: EHMT1
+    - gene_id: 79989
+      gene_symbol: IFT56
+    - gene_id: 81031
+      gene_symbol: SLC2A10
+    - gene_id: 81857
+      gene_symbol: MED25
+    - gene_id: 84068
+      gene_symbol: SLC10A7
+    - gene_id: 84163
+      gene_symbol: GTF2IRD2
+    - gene_id: 84277
+      gene_symbol: DNAJC30
+    - gene_id: 84314
+      gene_symbol: TMEM107
+    - gene_id: 84667
+      gene_symbol: HES7
+    - gene_id: 84896
+      gene_symbol: ATAD1
+    - gene_id: 84992
+      gene_symbol: PIGY
+    - gene_id: 91147
+      gene_symbol: TMEM67
+    - gene_id: 92579
+      gene_symbol: G6PC3
+    - gene_id: 94005
+      gene_symbol: PIGS
+    - gene_id: 113189
+      gene_symbol: CHST14
+    - gene_id: 114049
+      gene_symbol: BUD23
+    - gene_id: 123263
+      gene_symbol: MTFMT
+    - gene_id: 129563
+      gene_symbol: DIS3L2
+    - gene_id: 134701
+      gene_symbol: RIPPLY2
+    - gene_id: 135886
+      gene_symbol: TMEM270
+    - gene_id: 145173
+      gene_symbol: B3GLCT
+    - gene_id: 145873
+      gene_symbol: MESP2
+    - gene_id: 149461
+      gene_symbol: CLDN19
+    - gene_id: 155368
+      gene_symbol: METTL27
+    - gene_id: 155382
+      gene_symbol: VPS37D
+    - gene_id: 168667
+      gene_symbol: BMPER
+    - gene_id: 170302
+      gene_symbol: ARX
+    - gene_id: 197257
+      gene_symbol: LDHD
+    - gene_id: 203068
+      gene_symbol: TUBB
+    - gene_id: 221037
+      gene_symbol: JMJD1C
+    - gene_id: 221927
+      gene_symbol: BRAT1
+    - gene_id: 259232
+      gene_symbol: NALCN
+    - gene_id: 283120
+      gene_symbol: H19
+    - gene_id: 284098
+      gene_symbol: PIGW
+    - gene_id: 285590
+      gene_symbol: SH3PXD2B
+    - gene_id: 339983
+      gene_symbol: NAT8L
+    - gene_id: 374654
+      gene_symbol: KIF7
+    - gene_id: 388015
+      gene_symbol: RTL1
+    - gene_id: 653361
+      gene_symbol: NCF1
+

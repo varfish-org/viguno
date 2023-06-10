@@ -1,0 +1,7 @@
+---
+source: src/server/actix_server/hpo_terms.rs
+expression: "&run_query(\"/hpo/terms?name=Inguinal+hern&match=prefix\").await?"
+---
+- term_id: "HP:0000023"
+  name: Inguinal hernia
+

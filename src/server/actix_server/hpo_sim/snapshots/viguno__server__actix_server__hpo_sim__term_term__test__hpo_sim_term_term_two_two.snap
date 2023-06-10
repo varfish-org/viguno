@@ -1,0 +1,21 @@
+---
+source: src/server/actix_server/hpo_sim/term_term.rs
+expression: "&run_query(\"/hpo/sim/term-term?lhs=HP:0010442,HP:0000347&rhs=HP:0001780,HP:0000252\").await?"
+---
+- lhs: "HP:0010442"
+  rhs: "HP:0001780"
+  score: 1.2074362
+  sim: "resnik::gene"
+- lhs: "HP:0000347"
+  rhs: "HP:0000252"
+  score: 0.7606594
+  sim: "resnik::gene"
+- lhs: "HP:0010442"
+  rhs: "HP:0000252"
+  score: 0.48051217
+  sim: "resnik::gene"
+- lhs: "HP:0000347"
+  rhs: "HP:0001780"
+  score: 0.48051217
+  sim: "resnik::gene"
+
