@@ -30,10 +30,13 @@ pub struct Request {
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
     pub rhs: Vec<String>,
     /// What should information content be based on.
+    #[serde(default = "IcBasedOn::default")]
     pub ic_base: IcBasedOn,
     /// The similarity method to use.
+    #[serde(default = "SimilarityMethod::default")]
     pub similarity: SimilarityMethod,
     /// The score combiner.
+    #[serde(default = "ScoreCombiner::default")]
     pub combiner: ScoreCombiner,
 }
 

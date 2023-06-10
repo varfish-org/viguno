@@ -5,5 +5,4 @@ expression: "&run_query(\"/hpo/sim/term-term?lhs=HP:0010442&rhs=HP:0001780\").aw
 - lhs: "HP:0010442"
   rhs: "HP:0001780"
   score: 1.2074362
-  sim: "resnik::gene"
 
