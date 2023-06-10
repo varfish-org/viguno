@@ -11,7 +11,7 @@ use clap::Parser;
 use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
 
 use super::algos::phenomizer;
-use crate::{pbs::simulation::SimulationResults};
+use crate::pbs::simulation::SimulationResults;
 
 /// The version of `varfish-server-worker` package.
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
