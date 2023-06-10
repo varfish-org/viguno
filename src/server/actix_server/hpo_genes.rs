@@ -9,7 +9,6 @@ use hpo::{
     annotations::{AnnotationId, Gene, GeneId},
     Ontology,
 };
-use serde::{Deserialize, Serialize};
 
 use crate::server::WebServerData;
 
@@ -28,7 +27,7 @@ use super::{CustomError, Match, ResultHpoTerm};
 /// The following propery defines how matches are performed:
 ///
 /// - `match` -- how to match
-#[derive(Deserialize, Debug, Clone)]
+#[derive(serde::Deserialize, Debug, Clone)]
 struct Request {
     /// The gene ID to search for.
     pub gene_id: Option<String>,
@@ -56,7 +55,7 @@ fn _default_hpo_terms() -> bool {
 }
 
 /// Result entry for `handle`.
-#[derive(Serialize, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
 struct ResultEntry {
     /// The gene's NCBI ID.
     pub gene_ncbi_id: u32,
@@ -151,10 +150,93 @@ async fn handle(
 
 #[cfg(test)]
 mod test {
-    #[test]
-    fn test_handle() -> Result<(), anyhow::Error> {
-        assert!(false, "actually write the test");
+    /// Helper function for running a query.
+    #[allow(dead_code)]
+    async fn run_query(uri: &str) -> Result<Vec<super::ResultEntry>, anyhow::Error> {
+        let ontology = crate::common::load_hpo("tests/data/hpo")?;
+        let app = actix_web::test::init_service(
+            actix_web::App::new()
+                .app_data(actix_web::web::Data::new(crate::server::WebServerData {
+                    ontology,
+                    db: None,
+                }))
+                .service(super::handle),
+        )
+        .await;
+        let req = actix_web::test::TestRequest::get().uri(uri).to_request();
+        let resp: Vec<super::ResultEntry> =
+            actix_web::test::call_and_read_body_json(&app, req).await;
 
-        Ok(())
+        Ok(resp)
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_gene_id_exact_no_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_id=2348").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_gene_id_exact_with_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_id=2348&hpo_terms=true").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_gene_symbol_exact_no_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_symbol=TGDS").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_gene_symbol_exact_with_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_symbol=TGDS&hpo_terms=true").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_gene_symbol_prefix_no_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_symbol=TGD&match=prefix").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_gene_symbol_prefix_with_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_symbol=TGD&match=prefix&hpo_terms=true").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_gene_symbol_suffix_no_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_symbol=GDS&match=suffix").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_gene_symbol_suffix_with_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_symbol=GDS&match=suffix&hpo_terms=true").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_gene_symbol_contains_no_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_symbol=GD&match=contains").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_gene_symbol_contains_with_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_symbol=GD&match=contains&hpo_terms=true").await?
+        ))
     }
 }

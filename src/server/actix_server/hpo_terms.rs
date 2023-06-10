@@ -185,7 +185,7 @@ async fn handle(
     Ok(Json(result))
 }
 
-// #[cfg(test)]
+#[cfg(test)]
 mod test {
     /// Helper function for running a query.
     #[allow(dead_code)]

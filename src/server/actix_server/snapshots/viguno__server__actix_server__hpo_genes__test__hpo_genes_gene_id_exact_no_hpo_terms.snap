@@ -1,0 +1,7 @@
+---
+source: src/server/actix_server/hpo_genes.rs
+expression: "&run_query(\"/hpo/genes?gene_id=2348\").await?"
+---
+- gene_ncbi_id: 2348
+  gene_symbol: FOLR1
+
