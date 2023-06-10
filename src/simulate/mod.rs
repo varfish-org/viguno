@@ -11,7 +11,7 @@ use clap::Parser;
 use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
 
 use super::algos::phenomizer;
-use crate::pbs::simulation::SimulationResults;
+use crate::{pbs::simulation::SimulationResults};
 
 /// The version of `varfish-server-worker` package.
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -197,7 +197,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
 
     tracing::info!("Loading HPO...");
     let before_loading = Instant::now();
-    let ontology = Ontology::from_standard(&args.path_hpo_dir)?;
+    let ontology = crate::common::load_hpo(&args.path_hpo_dir)?;
     tracing::info!("...done loading HPO in {:?}", before_loading.elapsed());
 
     tracing::info!("Opening RocksDB for writing...");

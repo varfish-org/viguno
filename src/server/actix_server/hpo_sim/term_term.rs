@@ -14,7 +14,6 @@ use hpo::{
     HpoTermId, Ontology,
 };
 use itertools::Itertools;
-use serde::{Deserialize, Serialize};
 
 use crate::server::{actix_server::CustomError, WebServerData};
 
@@ -52,7 +51,7 @@ impl From<SimilarityMethod> for Builtins {
 ///
 /// - `lhs` -- first set of terms to compute similarity for
 /// - `rhs` -- econd set of terms to compute similarity for
-#[derive(Deserialize, Debug, Clone)]
+#[derive(serde::Deserialize, Debug, Clone)]
 struct Request {
     /// The one set of HPO terms to compute similarity for.
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
@@ -88,7 +87,7 @@ mod help {
 }
 
 /// Result entry for `handle`.
-#[derive(Serialize, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 struct ResultEntry {
     /// The lhs entry.
     pub lhs: String,
@@ -143,15 +142,57 @@ async fn handle(
         result.push(elem);
     }
 
+    result.sort_by(|lhs, rhs| {
+        rhs.score
+            .partial_cmp(&lhs.score)
+            .expect("could not sort by score")
+    });
+
     Ok(Json(result))
 }
 
 #[cfg(test)]
 mod test {
-    #[test]
-    fn test_handle() -> Result<(), anyhow::Error> {
-        assert!(false, "actually write the test");
+    /// Helper function for running a query.
+    #[allow(dead_code)]
+    async fn run_query(uri: &str) -> Result<Vec<super::ResultEntry>, anyhow::Error> {
+        let hpo_path = "tests/data/hpo";
+        let ontology = crate::common::load_hpo("tests/data/hpo")?;
+        let db = Some(rocksdb::DB::open_cf_for_read_only(
+            &rocksdb::Options::default(),
+            format!("{}/{}", hpo_path, "resnik"),
+            ["meta", "resnik_pvalues"],
+            true,
+        )?);
 
-        Ok(())
+        let app = actix_web::test::init_service(
+            actix_web::App::new()
+                .app_data(actix_web::web::Data::new(crate::server::WebServerData {
+                    ontology,
+                    db,
+                }))
+                .service(super::handle),
+        )
+        .await;
+        let req = actix_web::test::TestRequest::get().uri(uri).to_request();
+        let resp: Vec<super::ResultEntry> =
+            actix_web::test::call_and_read_body_json(&app, req).await;
+
+        Ok(resp)
+    }
+
+    #[actix_web::test]
+    async fn hpo_sim_term_term_one_one() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/sim/term-term?lhs=HP:0010442&rhs=HP:0001780").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_sim_term_term_two_two() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/sim/term-term?lhs=HP:0010442,HP:0000347&rhs=HP:0001780,HP:0000252")
+                .await?
+        ))
     }
 }

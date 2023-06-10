@@ -10,7 +10,6 @@ use actix_web::{
 };
 
 use hpo::{annotations::GeneId, term::HpoGroup, HpoTermId, Ontology};
-use serde::{Deserialize, Serialize};
 
 use super::super::CustomError;
 use crate::{query, server::WebServerData};
@@ -43,7 +42,7 @@ impl FromStr for SimilarityMethod {
 /// - `gene_ids` -- set of ids for genes to use as "database"
 /// - `gene_symbols` -- set of symbols for genes to use as
 ///   "database"
-#[derive(Deserialize, Debug, Clone)]
+#[derive(serde::Deserialize, Debug, Clone)]
 struct Request {
     /// Set of terms to use as query.
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
@@ -90,7 +89,7 @@ mod help {
 }
 
 /// Result entry for one gene.
-#[derive(Serialize, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
 struct ResultEntry {
     /// The gene ID of the entry.
     pub gene_id: u32,
@@ -163,10 +162,47 @@ async fn handle(
 
 #[cfg(test)]
 mod test {
-    #[test]
-    fn test_handle() -> Result<(), anyhow::Error> {
-        assert!(false, "actually write the test");
+    /// Helper function for running a query.
+    #[allow(dead_code)]
+    async fn run_query(uri: &str) -> Result<Vec<super::ResultEntry>, anyhow::Error> {
+        let hpo_path = "tests/data/hpo";
+        let ontology = crate::common::load_hpo(hpo_path)?;
+        let db = Some(rocksdb::DB::open_cf_for_read_only(
+            &rocksdb::Options::default(),
+            format!("{}/{}", hpo_path, "resnik"),
+            ["meta", "resnik_pvalues"],
+            true,
+        )?);
 
-        Ok(())
+        let app = actix_web::test::init_service(
+            actix_web::App::new()
+                .app_data(actix_web::web::Data::new(crate::server::WebServerData {
+                    ontology,
+                    db,
+                }))
+                .service(super::handle),
+        )
+        .await;
+        let req = actix_web::test::TestRequest::get().uri(uri).to_request();
+        let resp: Vec<super::ResultEntry> =
+            actix_web::test::call_and_read_body_json(&app, req).await;
+
+        Ok(resp)
+    }
+
+    #[actix_web::test]
+    async fn hpo_sim_term_gene_terms_gene_ids() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=23483,7273&sim=resnik::gene")
+                .await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_sim_term_gene_terms_symbols() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN&sim=resnik::gene")
+                .await?
+        ))
     }
 }

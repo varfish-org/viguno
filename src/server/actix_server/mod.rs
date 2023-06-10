@@ -106,13 +106,3 @@ pub async fn main(args: &Args, dbs: Data<WebServerData>) -> std::io::Result<()> 
     .run()
     .await
 }
-
-#[cfg(test)]
-mod test {
-    #[test]
-    fn test_run_server() -> Result<(), anyhow::Error> {
-        assert!(false, "actually write the test");
-
-        Ok(())
-    }
-}
