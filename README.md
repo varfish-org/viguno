@@ -12,6 +12,26 @@ Viguno (Search Engine API for HPO Ranking and Similarity Evaluation) is the comp
 
 Viguno provides a REST API.
 
+## Preparing Data
+
+The initial step is to download the official HPO data to a local directory.
+We fix ourselves to the release from 2023-06-06.
+
+```
+# RELEASE=2023-06-06
+# URL=https://github.com/obophenotype/human-phenotype-ontology/releases/download
+# NAMES="hp.obo phenotype.hpoa phenotype_to_genes.txt genes_to_phenotype.txt"
+
+# mkdir -p /tmp/data/hpo
+# for name in $NAMES; do \
+    wget \
+        -O /tmp/data/hpo/$name \
+        $URL/v$RELEASE/$name;
+  done
+```
+
+To use the similarity computations, you will need to run some simulation as precomputation.
+
 ## Managing Project with Terraform
 
 ```
