@@ -12,7 +12,6 @@ use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
 use crate::algos::phenomizer;
 use crate::pbs::simulation::SimulationResults;
 use crate::query::query_result::TermDetails;
-use crate::server::actix_server::hpo_sim::term_gene::SimilarityMethod;
 use crate::simulate::VERSION;
 
 /// Command line arguments for `query` command.
@@ -57,10 +56,8 @@ pub mod query_result {
     pub struct Container {
         /// Version of the HPO.
         pub hpo_version: String,
-        /// Version of the `varfish-server-worker` package.
-        pub varfish_version: String,
-        /// The scoring method used.
-        pub score_method: String,
+        /// Version of the `viguno` package.
+        pub viguno_version: String,
         /// The original query records.
         pub query: Vec<HpoTerm>,
         /// The resulting records for the scored genes.
@@ -123,14 +120,13 @@ pub fn run_query(
     db: &DBWithThreadMode<MultiThreaded>,
 ) -> Result<query_result::Container, anyhow::Error> {
     let cf_resnik = db
-        .cf_handle("resnik_pvalues")
-        .expect("database is missing resnik_pvalues column family");
+        .cf_handle("scores")
+        .expect("database is missing 'scores' column family");
 
     let num_terms = std::cmp::min(10, patient.len());
     let mut result = query_result::Container {
         hpo_version: hpo.hpo_version(),
-        varfish_version: VERSION.to_string(),
-        score_method: SimilarityMethod::Phenomizer.to_string(),
+        viguno_version: VERSION.to_string(),
         query: patient
             .iter()
             .map(|t| {
@@ -265,7 +261,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     let db = rocksdb::DB::open_cf_for_read_only(
         &rocksdb::Options::default(),
         &path_rocksdb,
-        ["meta", "resnik_pvalues"],
+        ["meta", "scores"],
         true,
     )?;
     tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());

@@ -157,7 +157,7 @@ mod test {
         let db = Some(rocksdb::DB::open_cf_for_read_only(
             &rocksdb::Options::default(),
             format!("{}/{}", hpo_path, "resnik"),
-            ["meta", "resnik_pvalues"],
+            ["meta", "scores"],
             true,
         )?);
 

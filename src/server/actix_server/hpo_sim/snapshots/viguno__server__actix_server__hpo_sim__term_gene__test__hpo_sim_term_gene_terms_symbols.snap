@@ -3,7 +3,7 @@ source: src/server/actix_server/hpo_sim/term_gene.rs
 expression: "&run_query(\"/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN&sim=resnik::gene\").await?"
 ---
 hpo_version: 2023-04-05
-varfish_version: 0.1.0
+viguno_version: 0.1.0
 score_method: phenomizer
 query:
   - term_id: "HP:0000347"

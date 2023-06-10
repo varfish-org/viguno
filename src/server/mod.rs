@@ -120,7 +120,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     let db = rocksdb::DB::open_cf_for_read_only(
         &rocksdb::Options::default(),
         format!("{}/{}", &args.path_hpo_dir, "resnik"),
-        ["meta", "resnik_pvalues"],
+        ["meta", "scores"],
         true,
     )?;
     tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());

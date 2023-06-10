@@ -1,8 +1,6 @@
 //! Entry point `/hpo/sim/term-term` allows the pairwise similary computation between two sets
 //! of HPO terms.
 
-use std::str::FromStr;
-
 use actix_web::{
     get,
     web::{self, Data, Json, Path},
@@ -10,40 +8,12 @@ use actix_web::{
 };
 use hpo::{
     similarity::{Builtins, Similarity},
-    term::InformationContentKind,
     HpoTermId, Ontology,
 };
 use itertools::Itertools;
 
+use crate::common::{to_pairwise_sim, IcBasedOn, ScoreCombiner, SimilarityMethod};
 use crate::server::{actix_server::CustomError, WebServerData};
-
-/// Enum for representing similarity method to use.
-#[derive(Default, Debug, Clone, Copy, derive_more::Display)]
-pub enum SimilarityMethod {
-    /// Resnik similarity with gene-wise information content.
-    #[default]
-    #[display(fmt = "resnik::gene")]
-    ResnikGene,
-}
-
-impl FromStr for SimilarityMethod {
-    type Err = anyhow::Error;
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        Ok(match s {
-            "resnik::gene" => Self::ResnikGene,
-            _ => anyhow::bail!("unknown similarity method: {}", s),
-        })
-    }
-}
-
-impl From<SimilarityMethod> for Builtins {
-    fn from(val: SimilarityMethod) -> Self {
-        match val {
-            SimilarityMethod::ResnikGene => Builtins::Resnik(InformationContentKind::Gene),
-        }
-    }
-}
 
 /// Parameters for `handle`.
 ///
@@ -51,52 +21,44 @@ impl From<SimilarityMethod> for Builtins {
 ///
 /// - `lhs` -- first set of terms to compute similarity for
 /// - `rhs` -- econd set of terms to compute similarity for
-#[derive(serde::Deserialize, Debug, Clone)]
-struct Request {
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
+pub struct Request {
     /// The one set of HPO terms to compute similarity for.
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
     pub lhs: Vec<String>,
     /// The second set of HPO terms to compute similarity for.
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
     pub rhs: Vec<String>,
+    /// What should information content be based on.
+    pub ic_base: IcBasedOn,
     /// The similarity method to use.
-    #[serde(
-        deserialize_with = "help::similarity_deserialize",
-        default = "help::default_sim"
-    )]
-    pub sim: SimilarityMethod,
+    pub similarity: SimilarityMethod,
+    /// The score combiner.
+    pub combiner: ScoreCombiner,
 }
 
-/// Helpers for deserializing `Request`.
-mod help {
-    /// Helper to deserialize a similarity
-    pub fn similarity_deserialize<'de, D>(
-        deserializer: D,
-    ) -> Result<super::SimilarityMethod, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        let s = <String as serde::Deserialize>::deserialize(deserializer)?;
-        std::str::FromStr::from_str(&s).map_err(serde::de::Error::custom)
-    }
-
-    /// Default value for `Request::sim`.
-    pub fn default_sim() -> super::SimilarityMethod {
-        super::SimilarityMethod::ResnikGene
-    }
+/// Result container.
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
+pub struct Container {
+    /// Version of the HPO.
+    pub hpo_version: String,
+    /// Version of the `viguno` package.
+    pub viguno_version: String,
+    /// The original query records.
+    pub query: Request,
+    /// The resulting records for the scored genes.
+    pub result: Vec<ResultEntry>,
 }
 
 /// Result entry for `handle`.
 #[derive(serde::Serialize, serde::Deserialize, Debug, Clone, PartialEq, PartialOrd)]
-struct ResultEntry {
+pub struct ResultEntry {
     /// The lhs entry.
     pub lhs: String,
     /// The rhs entry.
     pub rhs: String,
     /// The similarity score.
     pub score: f32,
-    /// The score type that was used to compute the similarity for.
-    pub sim: String,
 }
 
 /// Query for pairwise term similarity.
@@ -116,7 +78,7 @@ async fn handle(
     let ontology: &Ontology = &data.ontology;
     let mut result = Vec::new();
 
-    let ic: Builtins = query.sim.into();
+    let ic: Builtins = to_pairwise_sim(query.similarity, query.ic_base);
 
     // Translate strings from the query into HPO terms.
     let lhs = query
@@ -137,7 +99,6 @@ async fn handle(
             lhs: lhs.id().to_string(),
             rhs: rhs.id().to_string(),
             score: similarity,
-            sim: query.sim.to_string(),
         };
         result.push(elem);
     }
@@ -161,7 +122,7 @@ mod test {
         let db = Some(rocksdb::DB::open_cf_for_read_only(
             &rocksdb::Options::default(),
             format!("{}/{}", hpo_path, "resnik"),
-            ["meta", "resnik_pvalues"],
+            ["meta", "scores"],
             true,
         )?);
 
