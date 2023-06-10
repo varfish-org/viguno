@@ -96,7 +96,7 @@ impl ResultEntry {
         let genes = if genes {
             let mut result = term
                 .gene_ids()
-                .into_iter()
+                .iter()
                 .filter_map(|gene_id| ontology.gene(gene_id))
                 .map(|gene| ResultGene {
                     gene_id: gene.id().as_u32(),
