@@ -73,12 +73,10 @@ pub fn print_hints(args: &Args) {
         args.listen_port
     );
     // We can use `/hpo/sim/term-term` to compute similarity between two HPO term sets `lhs`
-    // and `rhs` using a similarity metric.  Currently, only `resnik::gene` is implemented
-    // which provides ranking using Resnik's similarity metrics using the information content
-    // by looking at phenotype-to-gene associations.
+    // and `rhs` using a similarity metric.
     tracing::info!(
         "  try: http://{}:{}/hpo/sim/term-term?lhs=HP:0001166,HP:0040069&rhs=HP:0005918,\
-        HP:0004188&sim=resnik::gene",
+        HP:0004188",
         args.listen_host.as_str(),
         args.listen_port
     );
@@ -119,7 +117,10 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     let before_rocksdb = std::time::Instant::now();
     let db = rocksdb::DB::open_cf_for_read_only(
         &rocksdb::Options::default(),
-        format!("{}/{}", &args.path_hpo_dir, "resnik"),
+        format!(
+            "{}/{}",
+            &args.path_hpo_dir, "scores-fun-sim-avg-resnik-gene"
+        ),
         ["meta", "scores"],
         true,
     )?;

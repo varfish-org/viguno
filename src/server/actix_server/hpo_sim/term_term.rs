@@ -121,7 +121,7 @@ mod test {
         let ontology = crate::common::load_hpo("tests/data/hpo")?;
         let db = Some(rocksdb::DB::open_cf_for_read_only(
             &rocksdb::Options::default(),
-            format!("{}/{}", hpo_path, "resnik"),
+            format!("{}/{}", hpo_path, "scores-fun-sim-avg-resnik-gene"),
             ["meta", "scores"],
             true,
         )?);

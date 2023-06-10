@@ -257,7 +257,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
 
     tracing::info!("Opening RocksDB for reading...");
     let before_rocksdb = Instant::now();
-    let path_rocksdb = format!("{}/resnik", args.path_hpo_dir);
+    let path_rocksdb = format!("{}/scores-fun-sim-avg-resnik-gene", args.path_hpo_dir);
     let db = rocksdb::DB::open_cf_for_read_only(
         &rocksdb::Options::default(),
         &path_rocksdb,

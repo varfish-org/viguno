@@ -45,10 +45,13 @@ pub struct Args {
     pub max_terms: usize,
 
     /// What should information content be based on.
+    #[arg(long)]
     pub ic_base: IcBasedOn,
     /// The similarity method to use.
+    #[arg(long)]
     pub similarity: SimilarityMethod,
     /// The score combiner.
+    #[arg(long)]
     pub combiner: ScoreCombiner,
 
     /// Optional gene ID or symbol to limit to.
@@ -276,7 +279,7 @@ mod test {
     use clap_verbosity_flag::Verbosity;
     use temp_testdir::TempDir;
 
-    use crate::common::{IcBasedOn, SimilarityMethod, ScoreCombiner};
+    use crate::common::{IcBasedOn, ScoreCombiner, SimilarityMethod};
 
     #[test]
     fn smoke_test_run() -> Result<(), anyhow::Error> {
