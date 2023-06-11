@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/usr/bin/bash
 
 set -x
 set -euo pipefail
@@ -21,7 +21,7 @@ HTTP_PORT=${HTTP_PORT-8080}
 
 first=${1-}
 
-if [[ "$first" == exec ]]; then
+if [ "$first" == exec ]; then
   shift
   exec "$@"
 else
