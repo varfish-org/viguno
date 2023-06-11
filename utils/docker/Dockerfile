@@ -55,7 +55,7 @@ RUN cargo build --release
 # Runtime
 # ---------------------------------------------------------------------------
 
-FROM rust:1-buster AS runtime
+FROM debian:buster-slim AS runtime
 
 # Copy application binary from builder image
 COPY --from=builder \
