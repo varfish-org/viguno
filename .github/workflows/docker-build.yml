@@ -4,7 +4,6 @@ on:
       - 'v**'
     branches:
       - main
-      - 6-create-docker-builds-on-github-releases
 
 name: Docker Build
 

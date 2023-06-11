@@ -12,6 +12,20 @@ Viguno (Versatile Interface for Genetics Utilization of Nice Ontologies) is the 
 
 Viguno provides a REST API.
 
+## Running the Docker Image
+
+The commands used below assume that you have a `viguno` executable on your machine (e.g., via `cargo install`).
+However, we also provide Docker images.
+You can run version `v0.1.1` as follows.
+We assume that the current working directory is a check of `viguno` so we have a copy of the HPO and HGNC xlink table in `tests/data`.
+We bind-mount this into the container with `-v $PWD/tests/data:/data`.
+
+```
+# docker run \
+    -v $PWD/tests/data:/data \
+    -it ghcr.io/bihealth/viguno:0.1.1
+```
+
 ## Preparing Data
 
 The initial step is to download the official HPO data to a local directory.
