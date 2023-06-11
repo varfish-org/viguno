@@ -191,8 +191,7 @@ mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: super::Container =
-            actix_web::test::call_and_read_body_json(&app, req).await;
+        let resp: super::Container = actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
     }
