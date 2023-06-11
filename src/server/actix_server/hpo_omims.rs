@@ -28,7 +28,7 @@ use super::{CustomError, Match, ResultHpoTerm};
 /// The following propery defines how matches are performed:
 ///
 /// - `match` -- how to match
-#[derive(serde::Deserialize, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
 struct Query {
     /// The OMIM ID to search for.
     pub omim_id: Option<String>,
@@ -131,6 +131,17 @@ impl ResultEntry {
     }
 }
 
+/// Container for the result.
+#[derive(Debug, serde::Serialize, serde::Deserialize)]
+struct Container {
+    /// Version information.
+    pub version: crate::common::Version,
+    /// The original query records.
+    pub query: Query,
+    /// The resulting records for the scored genes.
+    pub result: Vec<ResultEntry>,
+}
+
 /// Query for OMIM diseases in the HPO database.
 #[allow(clippy::unused_async)]
 #[get("/hpo/omims")]
@@ -194,6 +205,12 @@ async fn handle(
 
     result.sort();
 
+    let result = Container {
+        version: crate::common::Version::new(&data.ontology.hpo_version()),
+        query: query.into_inner(),
+        result,
+    };
+
     Ok(Json(result))
 }
 
@@ -201,19 +218,24 @@ async fn handle(
 mod test {
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(uri: &str) -> Result<Vec<super::ResultEntry>, anyhow::Error> {
+    async fn run_query(uri: &str) -> Result<super::Container, anyhow::Error> {
         let ontology = crate::common::load_hpo("tests/data/hpo")?;
+        let ncbi_to_hgnc =
+            crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;
+        let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(crate::server::WebServerData {
                     ontology,
                     db: None,
+                    ncbi_to_hgnc,
+                    hgnc_to_ncbi,
                 }))
                 .service(super::handle),
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: Vec<super::ResultEntry> =
+        let resp: super::Container =
             actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)

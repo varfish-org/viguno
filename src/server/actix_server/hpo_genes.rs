@@ -19,7 +19,7 @@ use super::{CustomError, Match, ResultHpoTerm};
 /// This allows to query for genes.  The first given of the following is
 /// interpreted.
 ///
-/// - `gene_id` -- specify gene ID
+/// - `gene_id` -- specify gene ID (either NCBI or HGNC gene ID)
 /// - `gene_symbol` -- specify the gene symbol
 /// - `max_results` -- the maximnum number of records to return
 /// - `hpo_terms` -- whether to include `"hpo_terms"` in result
@@ -27,7 +27,7 @@ use super::{CustomError, Match, ResultHpoTerm};
 /// The following propery defines how matches are performed:
 ///
 /// - `match` -- how to match
-#[derive(serde::Deserialize, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
 struct Query {
     /// The gene ID to search for.
     pub gene_id: Option<String>,
@@ -91,6 +91,17 @@ impl ResultEntry {
     }
 }
 
+/// Container for the result.
+#[derive(Debug, serde::Serialize, serde::Deserialize)]
+struct Container {
+    /// Version information.
+    pub version: crate::common::Version,
+    /// The original query records.
+    pub query: Query,
+    /// The resulting records for the scored genes.
+    pub result: Vec<ResultEntry>,
+}
+
 /// Query for genes in the HPO database.
 #[allow(clippy::unused_async)]
 #[get("/hpo/genes")]
@@ -104,12 +115,14 @@ async fn handle(
     let mut result: Vec<ResultEntry> = Vec::new();
 
     if match_ == Match::Exact {
-        let gene = if let Some(gene_ncbi_id) = &query.gene_id {
-            let gene_id = GeneId::from(
-                gene_ncbi_id
-                    .parse::<u32>()
-                    .map_err(|e| CustomError::new(anyhow::anyhow!(e)))?,
-            );
+        let gene = if let Some(gene_id) = &query.gene_id {
+            let gene_id = if let Ok(ncbi_gene_id) = gene_id.parse::<u32>() {
+                Ok(GeneId::from(ncbi_gene_id))
+            } else if let Some(ncbi_gene_id) = data.hgnc_to_ncbi.get(gene_id) {
+                Ok(GeneId::from(*ncbi_gene_id))
+            } else {
+                Err(CustomError::new(anyhow::anyhow!("could not parse gene ID")))
+            }?;
             ontology.gene(&gene_id)
         } else if let Some(gene_symbol) = &query.gene_symbol {
             ontology.gene_by_name(gene_symbol)
@@ -148,6 +161,12 @@ async fn handle(
 
     result.sort();
 
+    let result = Container {
+        version: crate::common::Version::new(&data.ontology.hpo_version()),
+        query: query.into_inner(),
+        result,
+    };
+
     Ok(Json(result))
 }
 
@@ -155,35 +174,54 @@ async fn handle(
 mod test {
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(uri: &str) -> Result<Vec<super::ResultEntry>, anyhow::Error> {
+    async fn run_query(uri: &str) -> Result<super::Container, anyhow::Error> {
         let ontology = crate::common::load_hpo("tests/data/hpo")?;
+        let ncbi_to_hgnc =
+            crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;
+        let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(crate::server::WebServerData {
                     ontology,
                     db: None,
+                    ncbi_to_hgnc,
+                    hgnc_to_ncbi,
                 }))
                 .service(super::handle),
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: Vec<super::ResultEntry> =
+        let resp: super::Container =
             actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
     }
 
     #[actix_web::test]
-    async fn hpo_genes_gene_id_exact_no_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_ncbi_gene_id_exact_no_hpo_terms() -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
             &run_query("/hpo/genes?gene_id=2348").await?
         ))
     }
 
     #[actix_web::test]
-    async fn hpo_genes_gene_id_exact_with_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_ncbi_gene_id_exact_with_hpo_terms() -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
             &run_query("/hpo/genes?gene_id=2348&hpo_terms=true").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_hgnc_gene_id_exact_no_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_id=HGNC:3791").await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_genes_hgnc_gene_id_exact_with_hpo_terms() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query("/hpo/genes?gene_id=HGNC:3791&hpo_terms=true").await?
         ))
     }
 

@@ -4,6 +4,7 @@ use hpo::similarity::Builtins;
 use prost::Message;
 use rocksdb::{DBWithThreadMode, MultiThreaded};
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use std::time::Instant;
 
 use clap::Parser;
@@ -20,6 +21,9 @@ pub struct Args {
     /// Path to the directory with the HPO files.
     #[arg(long, required = true)]
     pub path_hpo_dir: String,
+    /// Path to the TSV file with the HGNC xlink data.
+    #[arg(long, required = true)]
+    pub path_hgnc_xlink: String,
 
     /// Path to JSON file with the genes to rank.
     #[arg(long)]
@@ -54,11 +58,14 @@ pub mod query_result {
     #[derive(
         serde::Serialize, serde::Deserialize, PartialEq, Eq, PartialOrd, Ord, Debug, Clone,
     )]
+    #[serde_with::skip_serializing_none]
     pub struct Gene {
         /// The NCBI gene ID.
         pub entrez_id: u32,
         /// The gene symbol.
         pub gene_symbol: String,
+        /// The HGNC ID.
+        pub hgnc_id: Option<String>,
     }
 
     /// The performed query.
@@ -131,12 +138,16 @@ pub mod query_result {
 #[allow(clippy::cast_possible_truncation)]
 #[allow(clippy::cast_precision_loss)]
 #[allow(clippy::too_many_lines)]
-pub fn run_query(
+pub fn run_query<S>(
     patient: &HpoGroup,
     genes: &Vec<&hpo::annotations::Gene>,
     hpo: &Ontology,
     db: &DBWithThreadMode<MultiThreaded>,
-) -> Result<query_result::Container, anyhow::Error> {
+    ncbi_to_hgnc: &HashMap<u32, String, S>,
+) -> Result<query_result::Container, anyhow::Error>
+where
+    S: std::hash::BuildHasher,
+{
     let cf_resnik = db
         .cf_handle("scores")
         .expect("database is missing 'scores' column family");
@@ -234,6 +245,7 @@ pub fn run_query(
         result.query.genes.push(query_result::Gene {
             entrez_id: ncbi_gene_id,
             gene_symbol: gene.name().to_string(),
+            hgnc_id: ncbi_to_hgnc.get(&ncbi_gene_id).cloned(),
         });
 
         result.result.push(query_result::Record {
@@ -336,9 +348,17 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         before_load_genes.elapsed()
     );
 
+    tracing::info!("Loading HGNC xlink...");
+    let before_load_xlink = Instant::now();
+    let ncbi_to_hgnc = crate::common::hgnc_xlink::load_ncbi_to_hgnc(&args.path_hgnc_xlink)?;
+    tracing::info!(
+        "... done loading HGNC xlink in {:?}",
+        before_load_xlink.elapsed()
+    );
+
     tracing::info!("Starting priorization...");
     let before_priorization = Instant::now();
-    let result = run_query(&query, &genes, &hpo, &db)?;
+    let result = run_query(&query, &genes, &hpo, &db, &ncbi_to_hgnc)?;
     tracing::info!(
         "... done with prioritization in {:?}",
         before_priorization.elapsed()

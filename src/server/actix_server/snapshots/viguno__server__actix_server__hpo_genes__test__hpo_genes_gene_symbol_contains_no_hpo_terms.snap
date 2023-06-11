@@ -2,56 +2,66 @@
 source: src/server/actix_server/hpo_genes.rs
 expression: "&run_query(\"/hpo/genes?gene_symbol=GD&match=contains\").await?"
 ---
-- gene_ncbi_id: 396
-  gene_symbol: ARHGDIA
-- gene_ncbi_id: 1421
-  gene_symbol: CRYGD
-- gene_ncbi_id: 2245
-  gene_symbol: FGD1
-- gene_ncbi_id: 2657
-  gene_symbol: GDF1
-- gene_ncbi_id: 2658
-  gene_symbol: GDF2
-- gene_ncbi_id: 2661
-  gene_symbol: GDF9
-- gene_ncbi_id: 2664
-  gene_symbol: GDI1
-- gene_ncbi_id: 2668
-  gene_symbol: GDNF
-- gene_ncbi_id: 3081
-  gene_symbol: HGD
-- gene_ncbi_id: 3248
-  gene_symbol: HPGD
-- gene_ncbi_id: 4967
-  gene_symbol: OGDH
-- gene_ncbi_id: 7358
-  gene_symbol: UGDH
-- gene_ncbi_id: 8200
-  gene_symbol: GDF5
-- gene_ncbi_id: 9573
-  gene_symbol: GDF3
-- gene_ncbi_id: 10220
-  gene_symbol: GDF11
-- gene_ncbi_id: 23483
-  gene_symbol: TGDS
-- gene_ncbi_id: 26227
-  gene_symbol: PHGDH
-- gene_ncbi_id: 29958
-  gene_symbol: DMGDH
-- gene_ncbi_id: 54332
-  gene_symbol: GDAP1
-- gene_ncbi_id: 54834
-  gene_symbol: GDAP2
-- gene_ncbi_id: 55753
-  gene_symbol: OGDHL
-- gene_ncbi_id: 79641
-  gene_symbol: ROGDI
-- gene_ncbi_id: 79944
-  gene_symbol: L2HGDH
-- gene_ncbi_id: 121512
-  gene_symbol: FGD4
-- gene_ncbi_id: 392255
-  gene_symbol: GDF6
-- gene_ncbi_id: 728294
-  gene_symbol: D2HGDH
+version:
+  hpo: 2023-04-05
+  viguno: 0.1.0
+query:
+  gene_id: ~
+  gene_symbol: GD
+  match_: contains
+  max_results: 100
+  hpo_terms: false
+result:
+  - gene_ncbi_id: 396
+    gene_symbol: ARHGDIA
+  - gene_ncbi_id: 1421
+    gene_symbol: CRYGD
+  - gene_ncbi_id: 2245
+    gene_symbol: FGD1
+  - gene_ncbi_id: 2657
+    gene_symbol: GDF1
+  - gene_ncbi_id: 2658
+    gene_symbol: GDF2
+  - gene_ncbi_id: 2661
+    gene_symbol: GDF9
+  - gene_ncbi_id: 2664
+    gene_symbol: GDI1
+  - gene_ncbi_id: 2668
+    gene_symbol: GDNF
+  - gene_ncbi_id: 3081
+    gene_symbol: HGD
+  - gene_ncbi_id: 3248
+    gene_symbol: HPGD
+  - gene_ncbi_id: 4967
+    gene_symbol: OGDH
+  - gene_ncbi_id: 7358
+    gene_symbol: UGDH
+  - gene_ncbi_id: 8200
+    gene_symbol: GDF5
+  - gene_ncbi_id: 9573
+    gene_symbol: GDF3
+  - gene_ncbi_id: 10220
+    gene_symbol: GDF11
+  - gene_ncbi_id: 23483
+    gene_symbol: TGDS
+  - gene_ncbi_id: 26227
+    gene_symbol: PHGDH
+  - gene_ncbi_id: 29958
+    gene_symbol: DMGDH
+  - gene_ncbi_id: 54332
+    gene_symbol: GDAP1
+  - gene_ncbi_id: 54834
+    gene_symbol: GDAP2
+  - gene_ncbi_id: 55753
+    gene_symbol: OGDHL
+  - gene_ncbi_id: 79641
+    gene_symbol: ROGDI
+  - gene_ncbi_id: 79944
+    gene_symbol: L2HGDH
+  - gene_ncbi_id: 121512
+    gene_symbol: FGD4
+  - gene_ncbi_id: 392255
+    gene_symbol: GDF6
+  - gene_ncbi_id: 728294
+    gene_symbol: D2HGDH
 

@@ -2,6 +2,8 @@
 
 pub mod actix_server;
 
+use std::collections::HashMap;
+
 use clap::Parser;
 use hpo::Ontology;
 
@@ -13,6 +15,10 @@ pub struct WebServerData {
     pub ontology: Ontology,
     /// The database with precomputed Resnik P-values.
     pub db: Option<rocksdb::DBWithThreadMode<rocksdb::MultiThreaded>>,
+    /// Xlink map from NCBI gene ID to HGNC gene ID.
+    pub ncbi_to_hgnc: HashMap<u32, String>,
+    /// Xlink map from HGNC gene ID to NCBI gene ID.
+    pub hgnc_to_ncbi: HashMap<String, u32>,
 }
 
 /// Command line arguments for `server pheno` sub command.
@@ -22,6 +28,9 @@ pub struct Args {
     /// Path to the directory with the HPO files.
     #[arg(long, required = true)]
     pub path_hpo_dir: String,
+    /// Path to the TSV file with the HGNC xlink data.
+    #[arg(long, required = true)]
+    pub path_hgnc_xlink: String,
 
     /// Whether to suppress printing hints.
     #[arg(long, default_value_t = false)]
@@ -128,9 +137,20 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     )?;
     tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());
 
+    tracing::info!("Loading HGNC xlink...");
+    let before_load_xlink = std::time::Instant::now();
+    let ncbi_to_hgnc = crate::common::hgnc_xlink::load_ncbi_to_hgnc(&args.path_hgnc_xlink)?;
+    let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
+    tracing::info!(
+        "... done loading HGNC xlink in {:?}",
+        before_load_xlink.elapsed()
+    );
+
     let data = actix_web::web::Data::new(WebServerData {
         ontology,
         db: Some(db),
+        ncbi_to_hgnc,
+        hgnc_to_ncbi,
     });
 
     // Print the server URL and some hints (the latter: unless suppressed).

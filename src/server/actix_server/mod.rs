@@ -6,7 +6,7 @@ pub mod hpo_sim;
 pub mod hpo_terms;
 
 use actix_web::{middleware::Logger, web::Data, App, HttpServer, ResponseError};
-use serde::{Deserialize, Deserializer};
+use serde::{Deserialize, Deserializer, Serialize};
 
 use super::{Args, WebServerData};
 
@@ -30,7 +30,7 @@ impl CustomError {
 impl ResponseError for CustomError {}
 
 /// Specify how to perform query matches in the API calls.
-#[derive(Deserialize, Debug, Clone, Copy, Default, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, Default, PartialEq, Eq)]
 #[serde(rename_all = "lowercase")]
 enum Match {
     #[default]
@@ -42,11 +42,14 @@ enum Match {
 
 /// Representation of a gene.
 #[derive(serde::Deserialize, serde::Serialize, Debug, Clone, PartialOrd, Ord, PartialEq, Eq)]
+#[serde_with::skip_serializing_none]
 struct ResultGene {
     /// The HPO ID.
-    pub gene_id: u32,
+    pub ncbi_gene_id: u32,
     /// The description.
     pub gene_symbol: String,
+    /// The HGNC ID.
+    pub hgnc_id: Option<String>,
 }
 
 /// Representation of an HPO term.
