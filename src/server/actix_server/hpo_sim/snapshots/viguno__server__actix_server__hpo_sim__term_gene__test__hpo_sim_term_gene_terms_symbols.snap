@@ -2,8 +2,9 @@
 source: src/server/actix_server/hpo_sim/term_gene.rs
 expression: "&run_query(\"/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN\").await?"
 ---
-hpo_version: 2023-04-05
-viguno_version: 0.1.0
+version:
+  hpo: 2023-04-05
+  viguno: 0.1.0
 query:
   terms:
     - term_id: "HP:0000347"

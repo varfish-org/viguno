@@ -12,7 +12,6 @@ use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
 use crate::algos::phenomizer;
 use crate::pbs::simulation::SimulationResults;
 use crate::query::query_result::TermDetails;
-use crate::simulate::VERSION;
 
 /// Command line arguments for `query` command.
 #[derive(Parser, Debug)]
@@ -52,7 +51,9 @@ pub mod query_result {
     use super::HpoTerm;
 
     /// Struct for storing gene information in the result.
-    #[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq, PartialOrd, Ord, Debug, Clone)]
+    #[derive(
+        serde::Serialize, serde::Deserialize, PartialEq, Eq, PartialOrd, Ord, Debug, Clone,
+    )]
     pub struct Gene {
         /// The NCBI gene ID.
         pub entrez_id: u32,
@@ -72,10 +73,8 @@ pub mod query_result {
     /// Result container data structure.
     #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
     pub struct Container {
-        /// Version of the HPO.
-        pub hpo_version: String,
-        /// Version of the `viguno` package.
-        pub viguno_version: String,
+        /// Version information.
+        pub version: crate::common::Version,
         /// The original query records.
         pub query: Query,
         /// The resulting records for the scored genes.
@@ -131,6 +130,7 @@ pub mod query_result {
 /// In the case that a term or database lookup fails.
 #[allow(clippy::cast_possible_truncation)]
 #[allow(clippy::cast_precision_loss)]
+#[allow(clippy::too_many_lines)]
 pub fn run_query(
     patient: &HpoGroup,
     genes: &Vec<&hpo::annotations::Gene>,
@@ -144,20 +144,19 @@ pub fn run_query(
     let num_terms = std::cmp::min(10, patient.len());
     let query = query_result::Query {
         terms: patient
-        .iter()
-        .map(|t| {
-            let term = hpo.hpo(t).expect("could not resolve HPO term");
-            HpoTerm {
-                term_id: term.id().to_string(),
-                term_name: Some(term.name().to_string()),
-            }
-        })
-        .collect(),
+            .iter()
+            .map(|t| {
+                let term = hpo.hpo(t).expect("could not resolve HPO term");
+                HpoTerm {
+                    term_id: term.id().to_string(),
+                    term_name: Some(term.name().to_string()),
+                }
+            })
+            .collect(),
         genes: Vec::new(),
     };
     let mut result = query_result::Container {
-        hpo_version: hpo.hpo_version(),
-        viguno_version: VERSION.to_string(),
+        version: crate::common::Version::new(&hpo.hpo_version()),
         query,
         result: Vec::new(),
     };

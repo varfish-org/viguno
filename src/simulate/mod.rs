@@ -20,9 +20,6 @@ use crate::{
     pbs::simulation::SimulationResults,
 };
 
-/// The version of `viguno` package.
-pub const VERSION: &str = env!("CARGO_PKG_VERSION");
-
 /// Command line arguments for Viguno.
 #[derive(Parser, Debug)]
 #[command(author, version, about = "Prepare values for Viguno", long_about = None)]
@@ -247,7 +244,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         .cf_handle("meta")
         .ok_or(anyhow::anyhow!("column family meta not found"))?;
     db.put_cf(&cf_meta, "hpo-version", ontology.hpo_version())?;
-    db.put_cf(&cf_meta, "app-version", VERSION)?;
+    db.put_cf(&cf_meta, "app-version", crate::common::VERSION)?;
     tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());
 
     tracing::info!("Running simulations...");

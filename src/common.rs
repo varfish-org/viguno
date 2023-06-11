@@ -240,3 +240,27 @@ impl FromStr for ScoreCombiner {
             .ok_or(anyhow::anyhow!("unknown score combiner: {}", s))
     }
 }
+
+/// The version of `viguno` package.
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+
+/// Version information that is returned by the HTTP server.
+#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
+pub struct Version {
+    /// Version of the HPO.
+    pub hpo: String,
+    /// Version of the `viguno` package.
+    pub viguno: String,
+}
+
+impl Version {
+    /// Construct a new version.
+    ///
+    /// The viguno version is filed automatically.
+    pub fn new(hpo: &str) -> Self {
+        Self {
+            hpo: hpo.to_string(),
+            viguno: VERSION.to_string(),
+        }
+    }
+}

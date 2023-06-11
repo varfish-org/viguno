@@ -12,11 +12,8 @@ use hpo::{
 };
 use itertools::Itertools;
 
+use crate::common::{to_pairwise_sim, IcBasedOn, ScoreCombiner, SimilarityMethod};
 use crate::server::{actix_server::CustomError, WebServerData};
-use crate::{
-    common::{to_pairwise_sim, IcBasedOn, ScoreCombiner, SimilarityMethod},
-    simulate::VERSION,
-};
 
 /// Parameters for `handle`.
 ///
@@ -66,10 +63,8 @@ pub struct ResponseQuery {
 /// Result container.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
 pub struct Container {
-    /// Version of the HPO.
-    pub hpo_version: String,
-    /// Version of the `viguno` package.
-    pub viguno_version: String,
+    /// Version information.
+    pub version: crate::common::Version,
     /// The original query records.
     pub query: ResponseQuery,
     /// The resulting records for the scored genes.
@@ -146,8 +141,7 @@ async fn handle(
     } = query.into_inner();
 
     let result = Container {
-        hpo_version: data.ontology.hpo_version().to_string(),
-        viguno_version: VERSION.to_string(),
+        version: crate::common::Version::new(&data.ontology.hpo_version()),
         query: ResponseQuery {
             lhs,
             rhs,
