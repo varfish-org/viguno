@@ -17,7 +17,8 @@ use crate::{query, server::WebServerData};
 /// This allows to compute differences between
 ///
 /// - `terms` -- set of terms to use as query
-/// - `gene_ids` -- set of ids for genes to use as "database"
+/// - `gene_ids` -- set of ids for genes to use as "database", can be NCBI\
+///                 gene ID or HGNC gene ID.
 /// - `gene_symbols` -- set of symbols for genes to use as
 ///   "database"
 #[derive(serde::Deserialize, Debug, Clone)]
@@ -70,6 +71,8 @@ async fn handle(
             .filter_map(|gene_id| {
                 if let Ok(gene_id) = gene_id.parse::<u32>() {
                     hpo.gene(&GeneId::from(gene_id))
+                } else if let Some(gene_id) = data.hgnc_to_ncbi.get(gene_id) {
+                    hpo.gene(&GeneId::from(*gene_id))
                 } else {
                     None
                 }
@@ -92,6 +95,7 @@ async fn handle(
         &genes,
         hpo,
         data.db.as_ref().expect("must provide RocksDB"),
+        &data.ncbi_to_hgnc,
     )
     .map_err(CustomError::new)?;
 
@@ -105,6 +109,9 @@ mod test {
     async fn run_query(uri: &str) -> Result<crate::query::query_result::Container, anyhow::Error> {
         let hpo_path = "tests/data/hpo";
         let ontology = crate::common::load_hpo(hpo_path)?;
+        let ncbi_to_hgnc =
+            crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;
+        let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
         let db = Some(rocksdb::DB::open_cf_for_read_only(
             &rocksdb::Options::default(),
             format!("{}/{}", hpo_path, "scores-fun-sim-avg-resnik-gene"),
@@ -117,6 +124,8 @@ mod test {
                 .app_data(actix_web::web::Data::new(crate::server::WebServerData {
                     ontology,
                     db,
+                    ncbi_to_hgnc,
+                    hgnc_to_ncbi,
                 }))
                 .service(super::handle),
         )
@@ -129,10 +138,20 @@ mod test {
     }
 
     #[actix_web::test]
-    async fn hpo_sim_term_gene_terms_gene_ids() -> Result<(), anyhow::Error> {
+    async fn hpo_sim_term_gene_terms_ncbi_gene_ids() -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
             &run_query("/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=23483,7273")
                 .await?
+        ))
+    }
+
+    #[actix_web::test]
+    async fn hpo_sim_term_gene_terms_hgnc_gene_ids() -> Result<(), anyhow::Error> {
+        Ok(insta::assert_yaml_snapshot!(
+            &run_query(
+                "/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=HGNC:20324,HGNC:12403"
+            )
+            .await?
         ))
     }
 

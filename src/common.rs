@@ -264,3 +264,68 @@ impl Version {
         }
     }
 }
+
+/// Code related to the HGNC xlink table.
+pub mod hgnc_xlink {
+    use std::collections::HashMap;
+
+    /// Data structure for representing an entry of the table.
+    #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+    #[serde_with::skip_serializing_none]
+    pub struct Entry {
+        /// HGNC gene ID.
+        pub hgnc_id: String,
+        /// Ensembl gene ID.
+        pub ensembl_gene_id: Option<String>,
+        /// Entrez gene ID.
+        #[serde(alias = "entrez_id")]
+        pub ncgi_gene_id: Option<u32>,
+        /// Gene symbol.
+        pub gene_symbol: String,
+    }
+
+    /// Read the `hgnc_xlink.tsv` file using the `csv` crate via serde.
+    ///
+    /// # Errors
+    ///
+    /// In the case that the file could not be read.
+    pub fn load_entries<P: AsRef<std::path::Path>>(path: &P) -> Result<Vec<Entry>, anyhow::Error> {
+        let mut rdr = csv::ReaderBuilder::new()
+            .delimiter(b'\t')
+            .has_headers(true)
+            .from_path(path.as_ref())?;
+        let mut entries = Vec::new();
+        for result in rdr.deserialize() {
+            let entry: Entry = result?;
+            entries.push(entry);
+        }
+        Ok(entries)
+    }
+
+    /// Read the `hgnc_xlink.tsv` into a map from NCBI gene ID to HGNC gene ID.
+    ///
+    /// # Errors
+    ///
+    /// In the case that the file could not be read.
+    pub fn load_ncbi_to_hgnc<P: AsRef<std::path::Path>>(
+        path: P,
+    ) -> Result<HashMap<u32, String>, anyhow::Error> {
+        let mut map = HashMap::new();
+        for entry in load_entries(&path)? {
+            if let Some(ncbi_gene_id) = entry.ncgi_gene_id {
+                map.insert(ncbi_gene_id, entry.hgnc_id);
+            }
+        }
+        Ok(map)
+    }
+
+    /// Uility function to make the inverse of a `HashMap`.
+    pub fn inverse_hashmap<K, V, S>(map: &HashMap<K, V, S>) -> HashMap<V, K, S>
+    where
+        K: std::hash::Hash + Eq + Clone,
+        V: std::hash::Hash + Eq + Clone,
+        S: std::hash::BuildHasher + Default,
+    {
+        map.iter().map(|(k, v)| (v.clone(), k.clone())).collect()
+    }
+}

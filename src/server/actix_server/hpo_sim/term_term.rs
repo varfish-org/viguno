@@ -164,6 +164,9 @@ mod test {
     async fn run_query(uri: &str) -> Result<super::Container, anyhow::Error> {
         let hpo_path = "tests/data/hpo";
         let ontology = crate::common::load_hpo("tests/data/hpo")?;
+        let ncbi_to_hgnc =
+            crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;
+        let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
         let db = Some(rocksdb::DB::open_cf_for_read_only(
             &rocksdb::Options::default(),
             format!("{}/{}", hpo_path, "scores-fun-sim-avg-resnik-gene"),
@@ -176,6 +179,8 @@ mod test {
                 .app_data(actix_web::web::Data::new(crate::server::WebServerData {
                     ontology,
                     db,
+                    ncbi_to_hgnc,
+                    hgnc_to_ncbi,
                 }))
                 .service(super::handle),
         )

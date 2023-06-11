@@ -1,6 +1,6 @@
 ---
 source: src/server/actix_server/hpo_sim/term_gene.rs
-expression: "&run_query(\"/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN\").await?"
+expression: "&run_query(\"/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=HGNC:20324,HGNC:12403\").await?"
 ---
 version:
   hpo: 2023-04-05

@@ -1,5 +1,7 @@
 //! Implementation of `/hpo/terms`.
 
+use std::collections::HashMap;
+
 use actix_web::{
     get,
     web::{self, Data, Json, Path},
@@ -24,7 +26,7 @@ use super::{CustomError, Match, ResultGene};
 /// The following propery defines how matches are performed:
 ///
 /// - `match` -- how to match
-#[derive(serde::Deserialize, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
 struct Query {
     /// The term ID to search for.
     pub term_id: Option<String>,
@@ -92,15 +94,21 @@ impl Ord for ResultEntry {
 }
 
 impl ResultEntry {
-    pub fn from_term_with_ontology(term: &HpoTerm, ontology: &Ontology, genes: bool) -> Self {
+    pub fn from_term_with_ontology(
+        term: &HpoTerm,
+        ontology: &Ontology,
+        genes: bool,
+        ncbi_to_hgnc: &HashMap<u32, String>,
+    ) -> Self {
         let genes = if genes {
             let mut genes = term
                 .gene_ids()
                 .iter()
                 .filter_map(|gene_id| ontology.gene(gene_id))
                 .map(|gene| ResultGene {
-                    gene_id: gene.id().as_u32(),
+                    ncbi_gene_id: gene.id().as_u32(),
                     gene_symbol: gene.name().to_string(),
+                    hgnc_id: ncbi_to_hgnc.get(&gene.id().as_u32()).cloned(),
                 })
                 .collect::<Vec<_>>();
             genes.sort();
@@ -114,6 +122,17 @@ impl ResultEntry {
             genes,
         }
     }
+}
+
+/// Container for the result.
+#[derive(Debug, serde::Serialize, serde::Deserialize)]
+struct Container {
+    /// Version information.
+    pub version: crate::common::Version,
+    /// The original query records.
+    pub query: Query,
+    /// The resulting records for the scored genes.
+    pub result: Vec<ResultEntry>,
 }
 
 /// Query for terms in the HPO database.
@@ -155,6 +174,7 @@ async fn handle(
                 term,
                 ontology,
                 query.genes,
+                &data.ncbi_to_hgnc,
             ));
         }
     } else if let Some(name) = &query.name {
@@ -173,6 +193,7 @@ async fn handle(
                     term.as_ref().expect("checked above"),
                     ontology,
                     query.genes,
+                    &data.ncbi_to_hgnc,
                 ));
             }
 
@@ -182,6 +203,12 @@ async fn handle(
 
     result.sort();
 
+    let result = Container {
+        version: crate::common::Version::new(&data.ontology.hpo_version()),
+        query: query.into_inner(),
+        result,
+    };
+
     Ok(Json(result))
 }
 
@@ -189,20 +216,24 @@ async fn handle(
 mod test {
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(uri: &str) -> Result<Vec<super::ResultEntry>, anyhow::Error> {
+    async fn run_query(uri: &str) -> Result<super::Container, anyhow::Error> {
         let ontology = crate::common::load_hpo("tests/data/hpo")?;
+        let ncbi_to_hgnc =
+            crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;
+        let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(crate::server::WebServerData {
                     ontology,
                     db: None,
+                    ncbi_to_hgnc,
+                    hgnc_to_ncbi,
                 }))
                 .service(super::handle),
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: Vec<super::ResultEntry> =
-            actix_web::test::call_and_read_body_json(&app, req).await;
+        let resp: super::Container = actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
     }
