@@ -4,7 +4,7 @@ expression: "&run_query(\"/hpo/omims?name=Catel-Manzke+syndrome\").await?"
 ---
 version:
   hpo: 2023-04-05
-  viguno: 0.1.0
+  viguno: 0.0.0
 query:
   omim_id: ~
   name: Catel-Manzke syndrome

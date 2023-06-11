@@ -4,7 +4,7 @@ expression: "&run_query(\"/hpo/genes?gene_symbol=GD&match=contains\").await?"
 ---
 version:
   hpo: 2023-04-05
-  viguno: 0.1.0
+  viguno: 0.0.0
 query:
   gene_id: ~
   gene_symbol: GD
@@ -14,54 +14,80 @@ query:
 result:
   - gene_ncbi_id: 396
     gene_symbol: ARHGDIA
+    hgnc_id: "HGNC:678"
   - gene_ncbi_id: 1421
     gene_symbol: CRYGD
+    hgnc_id: "HGNC:2411"
   - gene_ncbi_id: 2245
     gene_symbol: FGD1
+    hgnc_id: "HGNC:3663"
   - gene_ncbi_id: 2657
     gene_symbol: GDF1
+    hgnc_id: "HGNC:4214"
   - gene_ncbi_id: 2658
     gene_symbol: GDF2
+    hgnc_id: "HGNC:4217"
   - gene_ncbi_id: 2661
     gene_symbol: GDF9
+    hgnc_id: "HGNC:4224"
   - gene_ncbi_id: 2664
     gene_symbol: GDI1
+    hgnc_id: "HGNC:4226"
   - gene_ncbi_id: 2668
     gene_symbol: GDNF
+    hgnc_id: "HGNC:4232"
   - gene_ncbi_id: 3081
     gene_symbol: HGD
+    hgnc_id: "HGNC:4892"
   - gene_ncbi_id: 3248
     gene_symbol: HPGD
+    hgnc_id: "HGNC:5154"
   - gene_ncbi_id: 4967
     gene_symbol: OGDH
+    hgnc_id: "HGNC:8124"
   - gene_ncbi_id: 7358
     gene_symbol: UGDH
+    hgnc_id: "HGNC:12525"
   - gene_ncbi_id: 8200
     gene_symbol: GDF5
+    hgnc_id: "HGNC:4220"
   - gene_ncbi_id: 9573
     gene_symbol: GDF3
+    hgnc_id: "HGNC:4218"
   - gene_ncbi_id: 10220
     gene_symbol: GDF11
+    hgnc_id: "HGNC:4216"
   - gene_ncbi_id: 23483
     gene_symbol: TGDS
+    hgnc_id: "HGNC:20324"
   - gene_ncbi_id: 26227
     gene_symbol: PHGDH
+    hgnc_id: "HGNC:8923"
   - gene_ncbi_id: 29958
     gene_symbol: DMGDH
+    hgnc_id: "HGNC:24475"
   - gene_ncbi_id: 54332
     gene_symbol: GDAP1
+    hgnc_id: "HGNC:15968"
   - gene_ncbi_id: 54834
     gene_symbol: GDAP2
+    hgnc_id: "HGNC:18010"
   - gene_ncbi_id: 55753
     gene_symbol: OGDHL
+    hgnc_id: "HGNC:25590"
   - gene_ncbi_id: 79641
     gene_symbol: ROGDI
+    hgnc_id: "HGNC:29478"
   - gene_ncbi_id: 79944
     gene_symbol: L2HGDH
+    hgnc_id: "HGNC:20499"
   - gene_ncbi_id: 121512
     gene_symbol: FGD4
+    hgnc_id: "HGNC:19125"
   - gene_ncbi_id: 392255
     gene_symbol: GDF6
+    hgnc_id: "HGNC:4221"
   - gene_ncbi_id: 728294
     gene_symbol: D2HGDH
+    hgnc_id: "HGNC:28358"
 
