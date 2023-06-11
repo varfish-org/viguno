@@ -242,7 +242,18 @@ impl FromStr for ScoreCombiner {
 }
 
 /// The version of `viguno` package.
-pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+#[cfg(not(test))]
+const VERSION: &str = env!("CARGO_PKG_VERSION");
+
+/// Returns the current version of `viguno`.
+///
+/// This allows us to override the version to `0.0.0` in tests.
+pub fn version() -> &'static str {
+    #[cfg(test)]
+    return "0.0.0";
+    #[cfg(not(test))]
+    return VERSION;
+}
 
 /// Version information that is returned by the HTTP server.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
@@ -260,7 +271,7 @@ impl Version {
     pub fn new(hpo: &str) -> Self {
         Self {
             hpo: hpo.to_string(),
-            viguno: VERSION.to_string(),
+            viguno: version().to_string(),
         }
     }
 }

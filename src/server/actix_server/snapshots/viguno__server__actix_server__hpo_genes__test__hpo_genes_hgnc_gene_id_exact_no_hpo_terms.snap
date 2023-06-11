@@ -4,7 +4,7 @@ expression: "&run_query(\"/hpo/genes?gene_id=HGNC:3791\").await?"
 ---
 version:
   hpo: 2023-04-05
-  viguno: 0.1.0
+  viguno: 0.0.0
 query:
   gene_id: "HGNC:3791"
   gene_symbol: ~
@@ -14,4 +14,5 @@ query:
 result:
   - gene_ncbi_id: 2348
     gene_symbol: FOLR1
+    hgnc_id: "HGNC:3791"
 

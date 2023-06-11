@@ -1,5 +1,7 @@
 //! Implementation of `/hpo/genes`.
 
+use std::collections::HashMap;
+
 use actix_web::{
     get,
     web::{self, Data, Json, Path},
@@ -56,18 +58,26 @@ fn _default_hpo_terms() -> bool {
 
 /// Result entry for `handle`.
 #[derive(serde::Serialize, serde::Deserialize, Debug, Clone, Eq, PartialEq, Ord, PartialOrd)]
+#[serde_with::skip_serializing_none]
 struct ResultEntry {
     /// The gene's NCBI ID.
     pub gene_ncbi_id: u32,
     /// The gene's HGNC symbol.
     pub gene_symbol: String,
+    /// The gene's HGNC ID.
+    pub hgnc_id: Option<String>,
     /// The gene's associated HPO terms.
     #[serde(default = "Option::default", skip_serializing_if = "Option::is_none")]
     pub hpo_terms: Option<Vec<ResultHpoTerm>>,
 }
 
 impl ResultEntry {
-    pub fn from_gene_with_ontology(gene: &Gene, ontology: &Ontology, hpo_terms: bool) -> Self {
+    pub fn from_gene_with_ontology(
+        gene: &Gene,
+        ontology: &Ontology,
+        hpo_terms: bool,
+        ncbi_to_hgnc: &HashMap<u32, String>,
+    ) -> Self {
         let hpo_terms = if hpo_terms {
             let mut terms = gene
                 .to_hpo_set(ontology)
@@ -86,6 +96,7 @@ impl ResultEntry {
         ResultEntry {
             gene_ncbi_id: gene.id().as_u32(),
             gene_symbol: gene.name().to_string(),
+            hgnc_id: ncbi_to_hgnc.get(&gene.id().as_u32()).cloned(),
             hpo_terms,
         }
     }
@@ -134,6 +145,7 @@ async fn handle(
                 gene,
                 ontology,
                 query.hpo_terms,
+                &data.ncbi_to_hgnc,
             ));
         }
     } else if let Some(gene_symbol) = &query.gene_symbol {
@@ -152,6 +164,7 @@ async fn handle(
                     gene.expect("checked above"),
                     ontology,
                     query.hpo_terms,
+                    &data.ncbi_to_hgnc,
                 ));
             }
 

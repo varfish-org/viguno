@@ -4,7 +4,7 @@ expression: "&run_query(\"/hpo/genes?gene_symbol=GD&match=contains&hpo_terms=tru
 ---
 version:
   hpo: 2023-04-05
-  viguno: 0.1.0
+  viguno: 0.0.0
 query:
   gene_id: ~
   gene_symbol: GD
@@ -14,6 +14,7 @@ query:
 result:
   - gene_ncbi_id: 396
     gene_symbol: ARHGDIA
+    hgnc_id: "HGNC:678"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -65,6 +66,7 @@ result:
         name: Cerebral visual impairment
   - gene_ncbi_id: 1421
     gene_symbol: CRYGD
+    hgnc_id: "HGNC:2411"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
@@ -84,6 +86,7 @@ result:
         name: Corneal opacity
   - gene_ncbi_id: 2245
     gene_symbol: FGD1
+    hgnc_id: "HGNC:3663"
     hpo_terms:
       - term_id: "HP:0000023"
         name: Inguinal hernia
@@ -231,6 +234,7 @@ result:
         name: Small hand
   - gene_ncbi_id: 2657
     gene_symbol: GDF1
+    hgnc_id: "HGNC:4214"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
@@ -308,6 +312,7 @@ result:
         name: Left ventricular outflow tract obstruction
   - gene_ncbi_id: 2658
     gene_symbol: GDF2
+    hgnc_id: "HGNC:4217"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
@@ -375,6 +380,7 @@ result:
         name: Intestinal polyposis
   - gene_ncbi_id: 2661
     gene_symbol: GDF9
+    hgnc_id: "HGNC:4224"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -390,6 +396,7 @@ result:
         name: Elevated circulating luteinizing hormone level
   - gene_ncbi_id: 2664
     gene_symbol: GDI1
+    hgnc_id: "HGNC:4226"
     hpo_terms:
       - term_id: "HP:0001256"
         name: "Intellectual disability, mild"
@@ -407,6 +414,7 @@ result:
         name: "Intellectual disability, severe"
   - gene_ncbi_id: 2668
     gene_symbol: GDNF
+    hgnc_id: "HGNC:4232"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
@@ -458,6 +466,7 @@ result:
         name: Intestinal polyposis
   - gene_ncbi_id: 3081
     gene_symbol: HGD
+    hgnc_id: "HGNC:4892"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -549,6 +558,7 @@ result:
         name: Cartilage destruction
   - gene_ncbi_id: 3248
     gene_symbol: HPGD
+    hgnc_id: "HGNC:5154"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -684,6 +694,7 @@ result:
         name: Small hand
   - gene_ncbi_id: 4967
     gene_symbol: OGDH
+    hgnc_id: "HGNC:8124"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -735,6 +746,7 @@ result:
         name: Abnormal urine alpha-ketoglutarate concentration
   - gene_ncbi_id: 7358
     gene_symbol: UGDH
+    hgnc_id: "HGNC:12525"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -798,6 +810,7 @@ result:
         name: Epileptic encephalopathy
   - gene_ncbi_id: 8200
     gene_symbol: GDF5
+    hgnc_id: "HGNC:4220"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
@@ -1033,6 +1046,7 @@ result:
         name: Cognitive impairment
   - gene_ncbi_id: 9573
     gene_symbol: GDF3
+    hgnc_id: "HGNC:4218"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
@@ -1106,6 +1120,7 @@ result:
         name: Cognitive impairment
   - gene_ncbi_id: 10220
     gene_symbol: GDF11
+    hgnc_id: "HGNC:4216"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
@@ -1153,6 +1168,7 @@ result:
         name: Unilateral cleft palate
   - gene_ncbi_id: 23483
     gene_symbol: TGDS
+    hgnc_id: "HGNC:20324"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -1282,6 +1298,7 @@ result:
         name: Camptodactyly of finger
   - gene_ncbi_id: 26227
     gene_symbol: PHGDH
+    hgnc_id: "HGNC:8923"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -1483,6 +1500,7 @@ result:
         name: Long fingers
   - gene_ncbi_id: 29958
     gene_symbol: DMGDH
+    hgnc_id: "HGNC:24475"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -1500,6 +1518,7 @@ result:
         name: Fish odor
   - gene_ncbi_id: 54332
     gene_symbol: GDAP1
+    hgnc_id: "HGNC:15968"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
@@ -1635,6 +1654,7 @@ result:
         name: Axonal degeneration
   - gene_ncbi_id: 54834
     gene_symbol: GDAP2
+    hgnc_id: "HGNC:18010"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -1684,6 +1704,7 @@ result:
         name: Late young adult onset
   - gene_ncbi_id: 55753
     gene_symbol: OGDHL
+    hgnc_id: "HGNC:25590"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -1749,6 +1770,7 @@ result:
         name: Scaphocephaly
   - gene_ncbi_id: 79641
     gene_symbol: ROGDI
+    hgnc_id: "HGNC:29478"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -1800,6 +1822,7 @@ result:
         name: Epileptic encephalopathy
   - gene_ncbi_id: 79944
     gene_symbol: L2HGDH
+    hgnc_id: "HGNC:20499"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -1863,6 +1886,7 @@ result:
         name: L-2-hydroxyglutaric acidemia
   - gene_ncbi_id: 121512
     gene_symbol: FGD4
+    hgnc_id: "HGNC:19125"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
@@ -1908,6 +1932,7 @@ result:
         name: Hypoesthesia
   - gene_ncbi_id: 392255
     gene_symbol: GDF6
+    hgnc_id: "HGNC:4221"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
@@ -2025,6 +2050,7 @@ result:
         name: Cognitive impairment
   - gene_ncbi_id: 728294
     gene_symbol: D2HGDH
+    hgnc_id: "HGNC:28358"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
