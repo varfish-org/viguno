@@ -20,7 +20,8 @@ COPY Cargo.toml Cargo.lock /usr/src/medium-rust-dockerize/
 # Set the working directory
 WORKDIR /usr/src/viguno
 # Install build dependency protoc
-RUN bash utils/install-protoc
+COPY utils/install-protoc.sh /tmp
+RUN bash /tmp/install-protoc.sh
 # Install target platform (Cross-Compilation) --> Needed for Alpine
 RUN rustup target add x86_64-unknown-linux-musl
 # This is a dummy build to get the dependencies cached.

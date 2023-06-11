@@ -8,7 +8,7 @@
 mkdir -p utils/var
 cd utils/var
 
-sudo apt-get install g++ git
+apt-get install git cmake build-essentials
 
 if [[ ! -e protobuf ]]; then
     git clone https://github.com/protocolbuffers/protobuf.git

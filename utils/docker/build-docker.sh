@@ -17,7 +17,8 @@ REPO=viguno
 GIT_DEPTH=$(($(git rev-list HEAD ^$(git describe --abbrev=0 --tags) --count) + 1))
 GIT_URL=https://github.com/$ORG/$REPO.git
 
-docker build utils/docker \
+docker build . \
+    --file utils/docker/Dockerfile \
     --build-arg git_treeish=$GIT_TAG \
     --build-arg git_url=$GIT_URL \
     --no-cache \
