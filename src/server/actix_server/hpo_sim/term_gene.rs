@@ -21,7 +21,7 @@ use crate::{query, server::WebServerData};
 /// - `gene_symbols` -- set of symbols for genes to use as
 ///   "database"
 #[derive(serde::Deserialize, Debug, Clone)]
-struct Request {
+struct Query {
     /// Set of terms to use as query.
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
     pub terms: Vec<String>,
@@ -48,7 +48,7 @@ struct Request {
 async fn handle(
     data: Data<WebServerData>,
     _path: Path<()>,
-    query: web::Query<Request>,
+    query: web::Query<Query>,
 ) -> actix_web::Result<impl Responder, CustomError> {
     let hpo: &Ontology = &data.ontology;
 

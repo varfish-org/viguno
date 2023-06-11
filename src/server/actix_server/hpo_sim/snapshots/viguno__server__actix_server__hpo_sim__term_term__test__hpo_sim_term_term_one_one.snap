@@ -2,7 +2,18 @@
 source: src/server/actix_server/hpo_sim/term_term.rs
 expression: "&run_query(\"/hpo/sim/term-term?lhs=HP:0010442&rhs=HP:0001780\").await?"
 ---
-- lhs: "HP:0010442"
-  rhs: "HP:0001780"
-  score: 1.2074362
+hpo_version: 2023-04-05
+viguno_version: 0.1.0
+query:
+  lhs:
+    - "HP:0010442"
+  rhs:
+    - "HP:0001780"
+  ic_base: gene
+  similarity: resnik
+  combiner: fun-sim-avg
+result:
+  - lhs: "HP:0010442"
+    rhs: "HP:0001780"
+    score: 1.2074362
 

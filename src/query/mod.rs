@@ -51,6 +51,24 @@ pub struct HpoTerm {
 pub mod query_result {
     use super::HpoTerm;
 
+    /// Struct for storing gene information in the result.
+    #[derive(serde::Serialize, serde::Deserialize, PartialEq, Eq, PartialOrd, Ord, Debug, Clone)]
+    pub struct Gene {
+        /// The NCBI gene ID.
+        pub entrez_id: u32,
+        /// The gene symbol.
+        pub gene_symbol: String,
+    }
+
+    /// The performed query.
+    #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
+    pub struct Query {
+        /// The query HPO terms.
+        pub terms: Vec<HpoTerm>,
+        /// The gene list to score.
+        pub genes: Vec<Gene>,
+    }
+
     /// Result container data structure.
     #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
     pub struct Container {
@@ -59,7 +77,7 @@ pub mod query_result {
         /// Version of the `viguno` package.
         pub viguno_version: String,
         /// The original query records.
-        pub query: Vec<HpoTerm>,
+        pub query: Query,
         /// The resulting records for the scored genes.
         pub result: Vec<Record>,
     }
@@ -124,19 +142,23 @@ pub fn run_query(
         .expect("database is missing 'scores' column family");
 
     let num_terms = std::cmp::min(10, patient.len());
+    let query = query_result::Query {
+        terms: patient
+        .iter()
+        .map(|t| {
+            let term = hpo.hpo(t).expect("could not resolve HPO term");
+            HpoTerm {
+                term_id: term.id().to_string(),
+                term_name: Some(term.name().to_string()),
+            }
+        })
+        .collect(),
+        genes: Vec::new(),
+    };
     let mut result = query_result::Container {
         hpo_version: hpo.hpo_version(),
         viguno_version: VERSION.to_string(),
-        query: patient
-            .iter()
-            .map(|t| {
-                let term = hpo.hpo(t).expect("could not resolve HPO term");
-                HpoTerm {
-                    term_id: term.id().to_string(),
-                    term_name: Some(term.name().to_string()),
-                }
-            })
-            .collect(),
+        query,
         result: Vec::new(),
     };
     for gene in genes {
@@ -210,6 +232,11 @@ pub fn run_query(
             .collect::<Vec<_>>();
         terms.sort_by(|a, b| b.score.partial_cmp(&a.score).unwrap());
 
+        result.query.genes.push(query_result::Gene {
+            entrez_id: ncbi_gene_id,
+            gene_symbol: gene.name().to_string(),
+        });
+
         result.result.push(query_result::Record {
             gene_symbol: gene.name().to_string(),
             // NB: we accept value truncation here ...
@@ -220,6 +247,10 @@ pub fn run_query(
         });
     }
 
+    // Sort genes for reproducibility.
+    result.query.genes.sort();
+
+    // Sort output records by score for reproducibility.
     result
         .result
         .sort_by(|a, b| b.score.partial_cmp(&a.score).unwrap());

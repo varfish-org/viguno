@@ -28,7 +28,7 @@ use super::{CustomError, Match, ResultHpoTerm};
 ///
 /// - `match` -- how to match
 #[derive(serde::Deserialize, Debug, Clone)]
-struct Request {
+struct Query {
     /// The gene ID to search for.
     pub gene_id: Option<String>,
     /// The gene symbol to search for.
@@ -97,7 +97,7 @@ impl ResultEntry {
 async fn handle(
     data: Data<WebServerData>,
     _path: Path<()>,
-    query: web::Query<Request>,
+    query: web::Query<Query>,
 ) -> actix_web::Result<impl Responder, CustomError> {
     let ontology = &data.ontology;
     let match_ = query.match_.unwrap_or_default();

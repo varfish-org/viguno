@@ -12,8 +12,11 @@ use hpo::{
 };
 use itertools::Itertools;
 
-use crate::common::{to_pairwise_sim, IcBasedOn, ScoreCombiner, SimilarityMethod};
 use crate::server::{actix_server::CustomError, WebServerData};
+use crate::{
+    common::{to_pairwise_sim, IcBasedOn, ScoreCombiner, SimilarityMethod},
+    simulate::VERSION,
+};
 
 /// Parameters for `handle`.
 ///
@@ -21,8 +24,8 @@ use crate::server::{actix_server::CustomError, WebServerData};
 ///
 /// - `lhs` -- first set of terms to compute similarity for
 /// - `rhs` -- econd set of terms to compute similarity for
-#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
-pub struct Request {
+#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
+pub struct RequestQuery {
     /// The one set of HPO terms to compute similarity for.
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
     pub lhs: Vec<String>,
@@ -40,21 +43,41 @@ pub struct Request {
     pub combiner: ScoreCombiner,
 }
 
+/// Request as sent together with the response.
+///
+/// The difference is that the `lhs` and `rhs` fields are replaced by vecs.
+#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
+pub struct ResponseQuery {
+    /// The one set of HPO terms to compute similarity for.
+    pub lhs: Vec<String>,
+    /// The second set of HPO terms to compute similarity for.
+    pub rhs: Vec<String>,
+    /// What should information content be based on.
+    #[serde(default = "IcBasedOn::default")]
+    pub ic_base: IcBasedOn,
+    /// The similarity method to use.
+    #[serde(default = "SimilarityMethod::default")]
+    pub similarity: SimilarityMethod,
+    /// The score combiner.
+    #[serde(default = "ScoreCombiner::default")]
+    pub combiner: ScoreCombiner,
+}
+
 /// Result container.
-#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
 pub struct Container {
     /// Version of the HPO.
     pub hpo_version: String,
     /// Version of the `viguno` package.
     pub viguno_version: String,
     /// The original query records.
-    pub query: Request,
+    pub query: ResponseQuery,
     /// The resulting records for the scored genes.
     pub result: Vec<ResultEntry>,
 }
 
 /// Result entry for `handle`.
-#[derive(serde::Serialize, serde::Deserialize, Debug, Clone, PartialEq, PartialOrd)]
+#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone, PartialEq, PartialOrd)]
 pub struct ResultEntry {
     /// The lhs entry.
     pub lhs: String,
@@ -76,7 +99,7 @@ pub struct ResultEntry {
 async fn handle(
     data: Data<WebServerData>,
     _path: Path<()>,
-    query: web::Query<Request>,
+    query: web::Query<RequestQuery>,
 ) -> actix_web::Result<impl Responder, CustomError> {
     let ontology: &Ontology = &data.ontology;
     let mut result = Vec::new();
@@ -112,6 +135,31 @@ async fn handle(
             .expect("could not sort by score")
     });
 
+    // We need to convert between Request and RequestResponse here so we can serialize the
+    // lhs and rhs as Vec (they must be strings to parse the GET).
+    let RequestQuery {
+        lhs,
+        rhs,
+        ic_base,
+        similarity,
+        combiner,
+    } = query.into_inner();
+
+    let result = Container {
+        hpo_version: data.ontology.hpo_version().to_string(),
+        viguno_version: VERSION.to_string(),
+        query: ResponseQuery {
+            lhs,
+            rhs,
+            ic_base,
+            similarity,
+            combiner,
+        },
+        result,
+    };
+
+    dbg!(&result);
+
     Ok(Json(result))
 }
 
@@ -119,7 +167,7 @@ async fn handle(
 mod test {
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(uri: &str) -> Result<Vec<super::ResultEntry>, anyhow::Error> {
+    async fn run_query(uri: &str) -> Result<super::Container, anyhow::Error> {
         let hpo_path = "tests/data/hpo";
         let ontology = crate::common::load_hpo("tests/data/hpo")?;
         let db = Some(rocksdb::DB::open_cf_for_read_only(
@@ -139,8 +187,13 @@ mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: Vec<super::ResultEntry> =
-            actix_web::test::call_and_read_body_json(&app, req).await;
+        dbg!(&req);
+        let resp: serde_json::Value = actix_web::test::call_and_read_body_json(&app, req).await;
+        dbg!(&resp);
+        let req = actix_web::test::TestRequest::get().uri(uri).to_request();
+        dbg!(&req);
+        let resp = actix_web::test::call_and_read_body_json(&app, req).await;
+        dbg!(&resp);
 
         Ok(resp)
     }

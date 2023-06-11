@@ -5,6 +5,8 @@ pub mod actix_server;
 use clap::Parser;
 use hpo::Ontology;
 
+use crate::common::load_hpo;
+
 /// Data structure for the web server data.
 pub struct WebServerData {
     /// The HPO ontology.
@@ -111,7 +113,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     // Load data that we need for running the server.
     tracing::info!("Loading HPO...");
     let before_loading = std::time::Instant::now();
-    let ontology = Ontology::from_standard(&args.path_hpo_dir)?;
+    let ontology = load_hpo(&args.path_hpo_dir)?;
     tracing::info!("...done loading HPO in {:?}", before_loading.elapsed());
     tracing::info!("Opening RocksDB for reading...");
     let before_rocksdb = std::time::Instant::now();

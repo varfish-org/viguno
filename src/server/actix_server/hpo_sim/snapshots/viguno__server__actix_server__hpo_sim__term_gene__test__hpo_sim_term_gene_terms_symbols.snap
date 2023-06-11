@@ -5,10 +5,16 @@ expression: "&run_query(\"/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_sy
 hpo_version: 2023-04-05
 viguno_version: 0.1.0
 query:
-  - term_id: "HP:0000347"
-    term_name: Micrognathia
-  - term_id: "HP:0010442"
-    term_name: Polydactyly
+  terms:
+    - term_id: "HP:0000347"
+      term_name: Micrognathia
+    - term_id: "HP:0010442"
+      term_name: Polydactyly
+  genes:
+    - entrez_id: 7273
+      gene_symbol: TTN
+    - entrez_id: 23483
+      gene_symbol: TGDS
 result:
   - gene_symbol: TGDS
     p_value: 0.1
