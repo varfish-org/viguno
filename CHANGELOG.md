@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.1](https://www.github.com/bihealth/viguno/compare/v0.1.0...v0.1.1) (2023-06-11)
+
+
+### Build System
+
+* provide Docker images from GitHub releases ([#6](https://www.github.com/bihealth/viguno/issues/6)) ([#13](https://www.github.com/bihealth/viguno/issues/13)) ([5df9de5](https://www.github.com/bihealth/viguno/commit/5df9de59ff3734896279003be7ff0a10fa86ae5a))
+
 ## 0.1.0 (2023-06-11)
 
 
