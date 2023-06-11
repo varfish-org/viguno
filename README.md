@@ -47,7 +47,10 @@ The number of simulations should be high for production (the default is 100k) bu
     --num-simulations 10 \
     --seed 42 \
     --path-hpo-dir /tmp/data/hpo/hpo \
-    --path-out-rocksdb /tmp/data/hpo/hpo/resnik
+    --path-out-rocksdb /tmp/data/hpo/hpo/scores-fun-sim-avg-resnik-gene \
+    --combiner fun-sim-avg \
+    --similarity resnik \
+    --ic-base gene
 ```
 
 ## Running the Server
@@ -68,7 +71,7 @@ INFO   try: http://127.0.0.1:8080/hpo/genes?gene_symbol=TGDS
 INFO   try: http://127.0.0.1:8080/hpo/genes?gene_id=23483&hpo_terms=true
 INFO   try: http://127.0.0.1:8080/hpo/omims?omim_id=616145&hpo_terms=true
 INFO   try: http://127.0.0.1:8080/hpo/terms?term_id=HP:0000023&genes=true
-INFO   try: http://127.0.0.1:8080/hpo/sim/term-term?lhs=HP:0001166,HP:0040069&rhs=HP:0005918,HP:0004188&sim=resnik::gene
+INFO   try: http://127.0.0.1:8080/hpo/sim/term-term?lhs=HP:0001166,HP:0040069&rhs=HP:0005918,HP:0004188
 INFO   try: http://127.0.0.1:8080/hpo/sim/term-gene?terms=HP:0001166,HP:0000098&gene_symbols=FBN1,TGDS,TTN
 INFO starting 4 workers
 INFO Actix runtime found; starting in Actix runtime
@@ -92,7 +95,7 @@ Note that we truncate the output JSON.
 # curl 'http://127.0.0.1:8080/hpo/terms?term_id=HP:0000023&genes=true'
 [{"term_id":"HP:0000023","name":"Inguinal hernia","genes":[{"gen...
 
-# curl 'http://127.0.0.1:8080/hpo/sim/term-term?lhs=HP:0001166,HP:0040069&rhs=HP:0005918,HP:0004188&sim=resnik::gene'
+# curl 'http://127.0.0.1:8080/hpo/sim/term-term?lhs=HP:0001166,HP:0040069&rhs=HP:0005918,HP:0004188'
 [{"lhs":"HP:0001166","rhs":"HP:0005918","score":1.4280319,"sim":...
 ```
 

@@ -12,8 +12,6 @@ use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
 use crate::algos::phenomizer;
 use crate::pbs::simulation::SimulationResults;
 use crate::query::query_result::TermDetails;
-use crate::server::actix_server::hpo_sim::term_gene::SimilarityMethod;
-use crate::simulate::VERSION;
 
 /// Command line arguments for `query` command.
 #[derive(Parser, Debug)]
@@ -52,17 +50,33 @@ pub struct HpoTerm {
 pub mod query_result {
     use super::HpoTerm;
 
+    /// Struct for storing gene information in the result.
+    #[derive(
+        serde::Serialize, serde::Deserialize, PartialEq, Eq, PartialOrd, Ord, Debug, Clone,
+    )]
+    pub struct Gene {
+        /// The NCBI gene ID.
+        pub entrez_id: u32,
+        /// The gene symbol.
+        pub gene_symbol: String,
+    }
+
+    /// The performed query.
+    #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
+    pub struct Query {
+        /// The query HPO terms.
+        pub terms: Vec<HpoTerm>,
+        /// The gene list to score.
+        pub genes: Vec<Gene>,
+    }
+
     /// Result container data structure.
     #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
     pub struct Container {
-        /// Version of the HPO.
-        pub hpo_version: String,
-        /// Version of the `varfish-server-worker` package.
-        pub varfish_version: String,
-        /// The scoring method used.
-        pub score_method: String,
+        /// Version information.
+        pub version: crate::common::Version,
         /// The original query records.
-        pub query: Vec<HpoTerm>,
+        pub query: Query,
         /// The resulting records for the scored genes.
         pub result: Vec<Record>,
     }
@@ -116,6 +130,7 @@ pub mod query_result {
 /// In the case that a term or database lookup fails.
 #[allow(clippy::cast_possible_truncation)]
 #[allow(clippy::cast_precision_loss)]
+#[allow(clippy::too_many_lines)]
 pub fn run_query(
     patient: &HpoGroup,
     genes: &Vec<&hpo::annotations::Gene>,
@@ -123,15 +138,12 @@ pub fn run_query(
     db: &DBWithThreadMode<MultiThreaded>,
 ) -> Result<query_result::Container, anyhow::Error> {
     let cf_resnik = db
-        .cf_handle("resnik_pvalues")
-        .expect("database is missing resnik_pvalues column family");
+        .cf_handle("scores")
+        .expect("database is missing 'scores' column family");
 
     let num_terms = std::cmp::min(10, patient.len());
-    let mut result = query_result::Container {
-        hpo_version: hpo.hpo_version(),
-        varfish_version: VERSION.to_string(),
-        score_method: SimilarityMethod::Phenomizer.to_string(),
-        query: patient
+    let query = query_result::Query {
+        terms: patient
             .iter()
             .map(|t| {
                 let term = hpo.hpo(t).expect("could not resolve HPO term");
@@ -141,6 +153,11 @@ pub fn run_query(
                 }
             })
             .collect(),
+        genes: Vec::new(),
+    };
+    let mut result = query_result::Container {
+        version: crate::common::Version::new(&hpo.hpo_version()),
+        query,
         result: Vec::new(),
     };
     for gene in genes {
@@ -214,6 +231,11 @@ pub fn run_query(
             .collect::<Vec<_>>();
         terms.sort_by(|a, b| b.score.partial_cmp(&a.score).unwrap());
 
+        result.query.genes.push(query_result::Gene {
+            entrez_id: ncbi_gene_id,
+            gene_symbol: gene.name().to_string(),
+        });
+
         result.result.push(query_result::Record {
             gene_symbol: gene.name().to_string(),
             // NB: we accept value truncation here ...
@@ -224,6 +246,10 @@ pub fn run_query(
         });
     }
 
+    // Sort genes for reproducibility.
+    result.query.genes.sort();
+
+    // Sort output records by score for reproducibility.
     result
         .result
         .sort_by(|a, b| b.score.partial_cmp(&a.score).unwrap());
@@ -261,11 +287,11 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
 
     tracing::info!("Opening RocksDB for reading...");
     let before_rocksdb = Instant::now();
-    let path_rocksdb = format!("{}/resnik", args.path_hpo_dir);
+    let path_rocksdb = format!("{}/scores-fun-sim-avg-resnik-gene", args.path_hpo_dir);
     let db = rocksdb::DB::open_cf_for_read_only(
         &rocksdb::Options::default(),
         &path_rocksdb,
-        ["meta", "resnik_pvalues"],
+        ["meta", "scores"],
         true,
     )?;
     tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());

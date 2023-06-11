@@ -8,13 +8,17 @@ use std::io::Write;
 use std::time::Instant;
 
 use clap::Parser;
-use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
+use hpo::{
+    annotations::AnnotationId,
+    similarity::{Builtins, GroupSimilarity, StandardCombiner},
+    term::{HpoGroup, InformationContentKind},
+    HpoSet, HpoTermId, Ontology,
+};
 
-use super::algos::phenomizer;
-use crate::pbs::simulation::SimulationResults;
-
-/// The version of `varfish-server-worker` package.
-pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+use crate::{
+    common::{IcBasedOn, ScoreCombiner, SimilarityMethod},
+    pbs::simulation::SimulationResults,
+};
 
 /// Command line arguments for Viguno.
 #[derive(Parser, Debug)]
@@ -36,6 +40,16 @@ pub struct Args {
     /// Run simulations for `min_terms..=max_terms` terms.
     #[arg(long, default_value_t = 10)]
     pub max_terms: usize,
+
+    /// What should information content be based on.
+    #[arg(long)]
+    pub ic_base: IcBasedOn,
+    /// The similarity method to use.
+    #[arg(long)]
+    pub similarity: SimilarityMethod,
+    /// The score combiner.
+    #[arg(long)]
+    pub combiner: ScoreCombiner,
 
     /// Optional gene ID or symbol to limit to.
     #[arg(long)]
@@ -89,6 +103,13 @@ fn run_simulation(
         genes
     };
 
+    // The pairwise term simliarity score to use.
+    let pairwise_sim = Builtins::Resnik(InformationContentKind::Gene);
+    // The combiner for multiple pairwise scores.
+    let combiner: StandardCombiner = args.combiner.into();
+    // The groupwise similarity to use.
+    let group_sim = GroupSimilarity::new(combiner, pairwise_sim);
+
     // Run simulations for each gene in parallel.
     genes
         .par_iter()
@@ -105,52 +126,58 @@ fn run_simulation(
                 None
             };
 
+            // Obtain `HpoSet` from gene.
+            let gene_terms = HpoSet::new(
+                ontology,
+                gene.to_hpo_set(ontology)
+                    .child_nodes()
+                    .without_modifier()
+                    .into_iter()
+                    .collect::<HpoGroup>(),
+            );
+
             // Obtain sorted list of similarity scores from simulations.
             let mut scores = (0..num_simulations)
                 .map(|_| {
                     // Pick `num_terms` random terms with circuit breakers on number of tries.
                     let max_tries = 1000;
-                    let mut tries = 0;
-                    let mut ts = HpoGroup::new();
-                    // let mut ts = Vec::new();
-                    while ts.len() < num_terms {
-                        tries += 1;
-                        assert!(tries <= max_tries, "tried too often to pick random terms");
-                        let term_id = term_ids[fastrand::usize(0..term_ids.len())];
-                        if !ts.contains(&term_id) {
-                            ts.insert(term_id);
+                    let sampled_terms = {
+                        let mut tries = 0;
+                        let mut hpo_group = HpoGroup::new();
+                        while hpo_group.len() < num_terms {
+                            tries += 1;
+                            assert!(tries <= max_tries, "tried too often to pick random terms");
+                            let term_id = term_ids[fastrand::usize(0..term_ids.len())];
+                            if !hpo_group.contains(&term_id) {
+                                hpo_group.insert(term_id);
+                            }
                         }
-                    }
+                        HpoSet::new(ontology, hpo_group)
+                    };
 
-                    // Compute similarity.
-                    let s = phenomizer::score(
-                        &ts,
-                        &gene
-                            .to_hpo_set(ontology)
-                            .child_nodes()
-                            .without_modifier()
-                            .into_iter()
-                            .collect::<HpoGroup>(),
-                        ontology,
-                    );
+                    // Compute the similarity from the sampled terms to the terms from the gene.
+                    let res_score = group_sim.calculate(&sampled_terms, &gene_terms);
 
                     if let Some(log_file) = log_file.as_mut() {
                         writeln!(
                             log_file,
                             "{}\t{}\t{}",
-                            s,
+                            res_score,
                             gene.symbol(),
-                            ts.iter()
-                                .map(|t| format!("{} ({})", t, ontology.hpo(t).unwrap().name()))
+                            sampled_terms
+                                .iter()
+                                .map(|t| format!("{} ({})", t.id(), t.name()))
                                 .collect::<Vec<_>>()
                                 .join(", ")
                         )
                         .expect("could not write");
                     }
 
-                    s
+                    res_score
                 })
                 .collect::<prost::alloc::vec::Vec<_>>();
+
+            // Sort the scores ascendingly.
             scores.sort_by(|a, b| a.partial_cmp(b).expect("NaN value"));
 
             // Copy the scores into the score distribution.
@@ -166,7 +193,7 @@ fn run_simulation(
             let sim_res = sim_res.encode_to_vec();
 
             // Write to RocksDB.
-            let cf_resnik = db.cf_handle("resnik_pvalues").unwrap();
+            let cf_resnik = db.cf_handle("scores").unwrap();
             let key = format!("{ncbi_gene_id}:{num_terms}");
             db.put_cf(&cf_resnik, key.as_bytes(), sim_res)
                 .expect("writing to RocksDB failed");
@@ -203,7 +230,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     tracing::info!("Opening RocksDB for writing...");
     let before_rocksdb = Instant::now();
     let options = rocksdb_utils_lookup::tune_options(rocksdb::Options::default(), None);
-    let cf_names = &["meta", "resnik_pvalues"];
+    let cf_names = &["meta", "scores"];
     let db = rocksdb::DB::open_cf_with_opts(
         &options,
         &args.path_out_rocksdb,
@@ -217,7 +244,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         .cf_handle("meta")
         .ok_or(anyhow::anyhow!("column family meta not found"))?;
     db.put_cf(&cf_meta, "hpo-version", ontology.hpo_version())?;
-    db.put_cf(&cf_meta, "app-version", VERSION)?;
+    db.put_cf(&cf_meta, "app-version", crate::common::VERSION)?;
     tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());
 
     tracing::info!("Running simulations...");
@@ -249,6 +276,8 @@ mod test {
     use clap_verbosity_flag::Verbosity;
     use temp_testdir::TempDir;
 
+    use crate::common::{IcBasedOn, ScoreCombiner, SimilarityMethod};
+
     #[test]
     fn smoke_test_run() -> Result<(), anyhow::Error> {
         let tmp_dir = TempDir::default();
@@ -266,6 +295,9 @@ mod test {
             path_gene_logs: None,
             num_threads: None,
             seed: Some(42),
+            ic_base: IcBasedOn::default(),
+            similarity: SimilarityMethod::default(),
+            combiner: ScoreCombiner::default(),
         };
 
         super::run(&args_common, &args)

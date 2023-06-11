@@ -1,19 +1,422 @@
 ---
 source: src/server/actix_server/hpo_sim/term_gene.rs
-expression: "&run_query(\"/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN&sim=resnik::gene\").await?"
+expression: "&run_query(\"/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN\").await?"
 ---
-hpo_version: 2023-04-05
-varfish_version: 0.1.0
-score_method: phenomizer
+version:
+  hpo: 2023-04-05
+  viguno: 0.1.0
 query:
-  - term_id: "HP:0000347"
-    term_name: Micrognathia
-  - term_id: "HP:0010442"
-    term_name: Polydactyly
+  terms:
+    - term_id: "HP:0000347"
+      term_name: Micrognathia
+    - term_id: "HP:0010442"
+      term_name: Polydactyly
+  genes:
+    - entrez_id: 7273
+      gene_symbol: TTN
+    - entrez_id: 23483
+      gene_symbol: TGDS
 result:
+  - gene_symbol: TGDS
+    p_value: 0.1
+    score: 10
+    terms:
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        score: 1.8309557
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0001831"
+          term_name: Short toe
+        score: 1.4382622
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0003097"
+          term_name: Short femur
+        score: 1.4382622
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0005792"
+          term_name: Short humerus
+        score: 1.4382622
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0010049"
+          term_name: Short metacarpal
+        score: 1.4382622
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000272"
+          term_name: Malar flattening
+        score: 1.341162
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0001181"
+          term_name: Adducted thumb
+        score: 1.2074362
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0004209"
+          term_name: Clinodactyly of the 5th finger
+        score: 1.2074362
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0009464"
+          term_name: Ulnar deviation of the 2nd finger
+        score: 1.2074362
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0009467"
+          term_name: Radial deviation of the 2nd finger
+        score: 1.2074362
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0030368"
+          term_name: Hyperphalangy of the 2nd finger
+        score: 1.2074362
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0100490"
+          term_name: Camptodactyly of finger
+        score: 1.2074362
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0002857"
+          term_name: Genu valgum
+        score: 1.0733097
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0010508"
+          term_name: Metatarsus valgus
+        score: 1.0733097
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0005930"
+          term_name: Abnormal epiphysis morphology
+        score: 1.002138
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0000954"
+          term_name: Single transverse palmar crease
+        score: 0.73446083
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0001762"
+          term_name: Talipes equinovarus
+        score: 0.73446083
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000470"
+          term_name: Short neck
+        score: 0.6371871
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000767"
+          term_name: Pectus excavatum
+        score: 0.6371871
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000768"
+          term_name: Pectus carinatum
+        score: 0.6371871
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0002650"
+          term_name: Scoliosis
+        score: 0.6371871
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0001373"
+          term_name: Joint dislocation
+        score: 0.48051217
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0001387"
+          term_name: Joint stiffness
+        score: 0.44339323
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0001388"
+          term_name: Joint laxity
+        score: 0.44339323
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0005692"
+          term_name: Joint hyperflexibility
+        score: 0.44339323
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000160"
+          term_name: Narrow mouth
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000162"
+          term_name: Glossoptosis
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000175"
+          term_name: Cleft palate
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000193"
+          term_name: Bifid uvula
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000201"
+          term_name: Pierre-Robin sequence
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000204"
+          term_name: Cleft upper lip
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000218"
+          term_name: High palate
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000293"
+          term_name: Full cheeks
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000460"
+          term_name: Narrow nose
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000579"
+          term_name: Nasolacrimal duct obstruction
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000582"
+          term_name: Upslanted palpebral fissure
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0002553"
+          term_name: Highly arched eyebrow
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0009933"
+          term_name: Narrow naris
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0010285"
+          term_name: Oral synechia
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0010763"
+          term_name: Low insertion of columella
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0045074"
+          term_name: Thin eyebrow
+        score: 0.4183606
+      - term_query:
+          term_id: "HP:0000347"
+          term_name: Micrognathia
+        term_gene:
+          term_id: "HP:0000476"
+          term_name: Cystic hygroma
+        score: 0.4094388
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0000023"
+          term_name: Inguinal hernia
+        score: 0.28058913
+      - term_query:
+          term_id: "HP:0010442"
+          term_name: Polydactyly
+        term_gene:
+          term_id: "HP:0001537"
+          term_name: Umbilical hernia
+        score: 0.28058913
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0000028"
+          term_name: Cryptorchidism
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0000316"
+          term_name: Hypertelorism
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0000368"
+          term_name: "Low-set, posteriorly rotated ears"
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0000389"
+          term_name: Chronic otitis media
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0000520"
+          term_name: Proptosis
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0001250"
+          term_name: Seizure
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0001263"
+          term_name: Global developmental delay
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0001508"
+          term_name: Failure to thrive
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0001511"
+          term_name: Intrauterine growth retardation
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0001629"
+          term_name: Ventricular septal defect
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0001631"
+          term_name: Atrial septal defect
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0001651"
+          term_name: Dextrocardia
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0001680"
+          term_name: Coarctation of aorta
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0002119"
+          term_name: Ventriculomegaly
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0002623"
+          term_name: Overriding aorta
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0004322"
+          term_name: Short stature
+        score: 0
+      - term_query: ~
+        term_gene:
+          term_id: "HP:0008897"
+          term_name: Postnatal growth retardation
+        score: 0
   - gene_symbol: TTN
-    p_value: 0.2
-    score: 6.9897
+    p_value: 0.3
+    score: 5.2287874
     terms:
       - term_query:
           term_id: "HP:0000347"
@@ -664,402 +1067,5 @@ result:
         term_gene:
           term_id: "HP:0030059"
           term_name: Mitochondrial depletion
-        score: 0
-  - gene_symbol: TGDS
-    p_value: 0.3
-    score: 5.2287874
-    terms:
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        score: 1.8309557
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0001831"
-          term_name: Short toe
-        score: 1.4382622
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0003097"
-          term_name: Short femur
-        score: 1.4382622
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0005792"
-          term_name: Short humerus
-        score: 1.4382622
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0010049"
-          term_name: Short metacarpal
-        score: 1.4382622
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000272"
-          term_name: Malar flattening
-        score: 1.341162
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0001181"
-          term_name: Adducted thumb
-        score: 1.2074362
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0004209"
-          term_name: Clinodactyly of the 5th finger
-        score: 1.2074362
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0009464"
-          term_name: Ulnar deviation of the 2nd finger
-        score: 1.2074362
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0009467"
-          term_name: Radial deviation of the 2nd finger
-        score: 1.2074362
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0030368"
-          term_name: Hyperphalangy of the 2nd finger
-        score: 1.2074362
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0100490"
-          term_name: Camptodactyly of finger
-        score: 1.2074362
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0002857"
-          term_name: Genu valgum
-        score: 1.0733097
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0010508"
-          term_name: Metatarsus valgus
-        score: 1.0733097
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0005930"
-          term_name: Abnormal epiphysis morphology
-        score: 1.002138
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0000954"
-          term_name: Single transverse palmar crease
-        score: 0.73446083
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0001762"
-          term_name: Talipes equinovarus
-        score: 0.73446083
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000470"
-          term_name: Short neck
-        score: 0.6371871
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000767"
-          term_name: Pectus excavatum
-        score: 0.6371871
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000768"
-          term_name: Pectus carinatum
-        score: 0.6371871
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0002650"
-          term_name: Scoliosis
-        score: 0.6371871
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0001373"
-          term_name: Joint dislocation
-        score: 0.48051217
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0001387"
-          term_name: Joint stiffness
-        score: 0.44339323
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0001388"
-          term_name: Joint laxity
-        score: 0.44339323
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0005692"
-          term_name: Joint hyperflexibility
-        score: 0.44339323
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000160"
-          term_name: Narrow mouth
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000162"
-          term_name: Glossoptosis
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000175"
-          term_name: Cleft palate
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000193"
-          term_name: Bifid uvula
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000201"
-          term_name: Pierre-Robin sequence
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000204"
-          term_name: Cleft upper lip
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000218"
-          term_name: High palate
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000293"
-          term_name: Full cheeks
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000460"
-          term_name: Narrow nose
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000579"
-          term_name: Nasolacrimal duct obstruction
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000582"
-          term_name: Upslanted palpebral fissure
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0002553"
-          term_name: Highly arched eyebrow
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0009933"
-          term_name: Narrow naris
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0010285"
-          term_name: Oral synechia
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0010763"
-          term_name: Low insertion of columella
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0045074"
-          term_name: Thin eyebrow
-        score: 0.4183606
-      - term_query:
-          term_id: "HP:0000347"
-          term_name: Micrognathia
-        term_gene:
-          term_id: "HP:0000476"
-          term_name: Cystic hygroma
-        score: 0.4094388
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0000023"
-          term_name: Inguinal hernia
-        score: 0.28058913
-      - term_query:
-          term_id: "HP:0010442"
-          term_name: Polydactyly
-        term_gene:
-          term_id: "HP:0001537"
-          term_name: Umbilical hernia
-        score: 0.28058913
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0000028"
-          term_name: Cryptorchidism
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0000316"
-          term_name: Hypertelorism
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0000368"
-          term_name: "Low-set, posteriorly rotated ears"
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0000389"
-          term_name: Chronic otitis media
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0000520"
-          term_name: Proptosis
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0001250"
-          term_name: Seizure
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0001263"
-          term_name: Global developmental delay
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0001508"
-          term_name: Failure to thrive
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0001511"
-          term_name: Intrauterine growth retardation
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0001629"
-          term_name: Ventricular septal defect
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0001631"
-          term_name: Atrial septal defect
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0001651"
-          term_name: Dextrocardia
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0001680"
-          term_name: Coarctation of aorta
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0002119"
-          term_name: Ventriculomegaly
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0002623"
-          term_name: Overriding aorta
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0004322"
-          term_name: Short stature
-        score: 0
-      - term_query: ~
-        term_gene:
-          term_id: "HP:0008897"
-          term_name: Postnatal growth retardation
         score: 0
 
