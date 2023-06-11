@@ -103,6 +103,20 @@ Note that we truncate the output JSON.
 
 The following is for developers of Viguno itself.
 
+## Creating Docker Builds
+
+We automatically build Docker images using GitHub actions.
+To do this locally, you can do:
+
+```
+# bash utils/docker/build-docker.sh
+```
+
+You can set the following environment variables
+
+- `GIT_TAG` a git "treeish" (can be a tag or version) to build (inferred via `git describe --tags` by default)
+- `DOCKER_VERSION` the version to use for the Docker label (by default it uses `$GIT_TAG` and the `v` prefix will be stripped)
+
 ## Managing Project with Terraform
 
 ```
