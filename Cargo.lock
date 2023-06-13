@@ -1294,9 +1294,9 @@ checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
 
 [[package]]
 name = "hgvs"
-version = "0.8.2"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b3a09f7b883b0059a6be1cb5b47f112318da2197f0760f3156afa6669a56197d"
+checksum = "04fe836c62a7eb3db717abf9bf9742afca84bdc26f31677ac3a494879089ca7f"
 dependencies = [
  "base16ct",
  "bio",
@@ -1867,9 +1867,9 @@ dependencies = [
 
 [[package]]
 name = "noodles-fasta"
-version = "0.23.0"
+version = "0.24.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "642d6f9e977a202d7efee2ee061944af786f5bced0eec977321f5b16bade80ca"
+checksum = "a8ca0458633b00d9b46b49665521847ecd290e083dd5744991e0c36849f6afbb"
 dependencies = [
  "bytes",
  "memchr",
@@ -2599,9 +2599,9 @@ checksum = "bebd363326d05ec3e2f532ab7660680f3b02130d780c299bca73469d521bc0ed"
 
 [[package]]
 name = "seqrepo"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "919e29fc3e9bbb0d9d467be4de3e0a1f69c91810da19b7f0ab10e981732b379c"
+checksum = "cc95a23e19fed1ec3fe518d0e408e43a32d4a381431d31d8ffcdceb5291e49a3"
 dependencies = [
  "chrono",
  "noodles-bgzf",
