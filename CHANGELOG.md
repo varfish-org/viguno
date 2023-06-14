@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.2](https://www.github.com/bihealth/viguno/compare/v0.1.1...v0.1.2) (2023-06-13)
+
+
+### Bug Fixes
+
+* make /hpo/genes endpoint return HGNC ID ([#16](https://www.github.com/bihealth/viguno/issues/16)) ([#17](https://www.github.com/bihealth/viguno/issues/17)) ([77bd9af](https://www.github.com/bihealth/viguno/commit/77bd9af0cc498183d6c1172eebc7a3a08fcf3ebb))
+
 ### [0.1.1](https://www.github.com/bihealth/viguno/compare/v0.1.0...v0.1.1) (2023-06-11)
 
 
