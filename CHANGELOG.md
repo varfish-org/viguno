@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.3](https://www.github.com/bihealth/viguno/compare/v0.1.2...v0.1.3) (2023-06-16)
+
+
+### Miscellaneous Chores
+
+* re-release as v0.1.3 ([81257d8](https://www.github.com/bihealth/viguno/commit/81257d8633686eac1d67d7d100ec12acd3d2636a))
+
 ### [0.1.2](https://www.github.com/bihealth/viguno/compare/v0.1.1...v0.1.2) (2023-06-13)
 
 
