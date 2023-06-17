@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.4](https://www.github.com/bihealth/viguno/compare/v0.1.3...v0.1.4) (2023-06-17)
+
+
+### Build System
+
+* adjust Docker builds for PRs and branches ([#23](https://www.github.com/bihealth/viguno/issues/23)) ([f4de844](https://www.github.com/bihealth/viguno/commit/f4de844a14865573de303319d43e4e095fb7bdaf))
+
 ### [0.1.3](https://www.github.com/bihealth/viguno/compare/v0.1.2...v0.1.3) (2023-06-16)
 
 
