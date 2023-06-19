@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.6](https://github.com/bihealth/viguno/compare/v0.1.5...v0.1.6) (2023-06-19)
+
+
+### Bug Fixes
+
+* docker build version in CI ([a3bdecf](https://github.com/bihealth/viguno/commit/a3bdecf9c0d7d37ebd08c08c62b565cd576833b4))
+
+
+### Build System
+
+* some small fixes to CI ([#27](https://github.com/bihealth/viguno/issues/27)) ([06177e7](https://github.com/bihealth/viguno/commit/06177e7dc0fea7029adcd213b9b6a081184e9c3c))
+
 ## [0.1.5](https://github.com/bihealth/viguno/compare/v0.1.4...v0.1.5) (2023-06-19)
 
 
