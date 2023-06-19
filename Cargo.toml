@@ -1,6 +1,6 @@
 [package]
 name = "viguno"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 authors = ["Manuel Holtgrewe <manuel.holtgrewe@bih-charite.de>"]
 description = "Rust template repository"
