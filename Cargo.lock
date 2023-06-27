@@ -978,9 +978,9 @@ checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
 
 [[package]]
 name = "hpo"
-version = "0.8.0"
+version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e56d6190d5c632bf9a4cc8596f956aa2904c4dfff546bfde39c538b9c07c792a"
+checksum = "b1ff6300a69364cd64636a5076291f56812f87923d01ef764655cb6ab79546fa"
 dependencies = [
  "aquamarine",
  "smallvec",
