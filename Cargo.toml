@@ -9,7 +9,7 @@ homepage = "https://github.com/bihealth/viguno"
 readme = "README.md"
 
 [dependencies]
-actix-web = "4.3"
+actix-web = "4.4"
 anyhow = "1.0"
 clap = { version = "4.4", features = ["derive", "help", "env"] }
 clap-verbosity-flag = "2.0"
