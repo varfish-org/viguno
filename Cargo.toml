@@ -30,7 +30,7 @@ prost = "0.12"
 rayon = "1.7"
 regex = "1.9"
 rocksdb = { version = "0.21", features = ["multi-threaded-cf"] }
-rocksdb-utils-lookup = "0.2"
+rocksdb-utils-lookup = "0.3"
 serde = { version = "1.0", features = ["serde_derive"] }
 serde_json = "1.0"
 serde_with = "3.3"
