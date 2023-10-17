@@ -77,11 +77,7 @@ impl Eq for ResultEntry {}
 
 impl PartialOrd for ResultEntry {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        match self.omim_id.partial_cmp(&other.omim_id) {
-            Some(core::cmp::Ordering::Equal) => {}
-            ord => return ord,
-        }
-        self.name.partial_cmp(&other.name)
+        Some(self.cmp(other))
     }
 }
 
