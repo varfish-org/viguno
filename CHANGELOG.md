@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/bihealth/viguno/compare/v0.1.6...v0.1.7) (2023-10-17)
+
+
+### Bug Fixes
+
+* make clippy happy about PartialOrd impls ([#96](https://github.com/bihealth/viguno/issues/96)) ([da19a5f](https://github.com/bihealth/viguno/commit/da19a5f122f51da83f344e3cf9857df3c5ebe5da))
+
 ## [0.1.6](https://github.com/bihealth/viguno/compare/v0.1.5...v0.1.6) (2023-06-19)
 
 
