@@ -41,7 +41,9 @@ enum Match {
 }
 
 /// Representation of a gene.
-#[derive(serde::Deserialize, serde::Serialize, Debug, Clone, PartialOrd, Ord, PartialEq, Eq)]
+#[derive(
+    serde::Deserialize, serde::Serialize, Default, Debug, Clone, PartialOrd, Ord, PartialEq, Eq,
+)]
 #[serde_with::skip_serializing_none]
 struct ResultGene {
     /// The HPO ID.
@@ -53,12 +55,20 @@ struct ResultGene {
 }
 
 /// Representation of an HPO term.
-#[derive(serde::Deserialize, serde::Serialize, Debug, Clone, PartialOrd, Ord, PartialEq, Eq)]
+#[derive(
+    serde::Deserialize, serde::Serialize, Default, Debug, Clone, PartialOrd, Ord, PartialEq, Eq,
+)]
 struct ResultHpoTerm {
     /// The HPO ID.
     pub term_id: String,
-    /// The description.
+    /// The term name.
     pub name: String,
+    /// Any matching synonyms.
+    pub synonyms: Option<Vec<String>>,
+    /// Any matching description.
+    pub definition: Option<String>,
+    /// Any matching xref.
+    pub xrefs: Option<Vec<String>>,
 }
 
 /// Helper to deserialize a comma-separated list of strings.

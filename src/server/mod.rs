@@ -11,7 +11,7 @@ use crate::common::load_hpo;
 
 /// Data structure for the web server data.
 pub struct WebServerData {
-    /// The HPO ontology.
+    /// The HPO ontology (`hpo` crate).
     pub ontology: Ontology,
     /// The database with precomputed Resnik P-values.
     pub db: Option<rocksdb::DBWithThreadMode<rocksdb::MultiThreaded>>,
@@ -19,6 +19,8 @@ pub struct WebServerData {
     pub ncbi_to_hgnc: HashMap<u32, String>,
     /// Xlink map from HGNC gene ID to NCBI gene ID.
     pub hgnc_to_ncbi: HashMap<String, u32>,
+    /// The HPO ontology as parsed by `fastobo`.
+    pub hpo_doc: fastobo::ast::OboDoc,
 }
 
 /// Command line arguments for `server pheno` sub command.
@@ -100,6 +102,15 @@ pub fn print_hints(args: &Args) {
     );
 }
 
+/// Convert ident to String.
+fn ident_to_string(ident: &fastobo::ast::Ident) -> String {
+    match ident {
+        fastobo::ast::Ident::Prefixed(val) => format!("{}:{}", val.prefix(), val.local()),
+        fastobo::ast::Ident::Unprefixed(val) => val.as_str().to_string(),
+        fastobo::ast::Ident::Url(val) => val.as_str().to_string(),
+    }
+}
+
 /// Main entry point for `run-server` sub command.
 ///
 /// # Errors
@@ -146,11 +157,55 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         before_load_xlink.elapsed()
     );
 
+    tracing::info!("Loading HPO OBO...");
+    let before_load_obo = std::time::Instant::now();
+    let hpo_doc = fastobo::from_file(&format!("{}/{}", &args.path_hpo_dir, "hp.obo"))
+        .map_err(|e| anyhow::anyhow!("Error loading HPO OBO: {}", e))?;
+    tracing::info!(
+        "... done loading HPO OBO in {:?}",
+        before_load_obo.elapsed()
+    );
+
+    let mut i = 0;
+    for term_frame in hpo_doc.entities().iter().flat_map(fastobo::ast::EntityFrame::as_term) {
+        tracing::info!("--");
+        tracing::info!("id: {}", ident_to_string(term_frame.id().as_inner().as_ref()));
+
+        for line in term_frame.clauses().iter().map(|l| l.as_inner()) {
+            match line {
+                fastobo::ast::TermClause::Name(name) => tracing::info!("name: {}", name.as_str()),
+                fastobo::ast::TermClause::AltId(alt_id) =>
+                    tracing::info!("alt_id: {}", ident_to_string(alt_id)),
+                fastobo::ast::TermClause::Def(def) => {
+                    tracing::info!("def: {}", def.text().as_str())
+                }
+                fastobo::ast::TermClause::Comment(comment) => {
+                    tracing::info!("comment: {}", comment.as_str())
+                }
+                fastobo::ast::TermClause::Synonym(synonym) => {
+                    tracing::info!("synonym: {}", synonym.description().as_str())
+                }
+                fastobo::ast::TermClause::Xref(xref) => tracing::info!(
+                    "xref: {}",
+                    ident_to_string(xref.id())
+                ),
+                _ => (),
+            }
+        }
+
+        tracing::info!("--");
+        i += 1;
+        if i > 100 {
+            break;
+        }
+    }
+
     let data = actix_web::web::Data::new(WebServerData {
         ontology,
         db: Some(db),
         ncbi_to_hgnc,
         hgnc_to_ncbi,
+        hpo_doc,
     });
 
     // Print the server URL and some hints (the latter: unless suppressed).

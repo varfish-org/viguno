@@ -111,6 +111,7 @@ impl ResultEntry {
                     ResultHpoTerm {
                         term_id: term.id().to_string(),
                         name: term.name().to_string(),
+                        ..Default::default()
                     }
                 })
                 .collect::<Vec<_>>();
