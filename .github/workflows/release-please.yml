@@ -26,7 +26,8 @@ jobs:
         id: release
         with:
           release-type: rust
-          package-name: ${{ env.PACKAGE_NAME}}
+          package-name: ${{ env.PACKAGE_NAME}
+          token: ${{ secrets.BOT_TOKEN }}
 
   cargo-release:
     needs: release-please
