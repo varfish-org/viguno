@@ -19,8 +19,8 @@ pub struct WebServerData {
     pub ncbi_to_hgnc: HashMap<u32, String>,
     /// Xlink map from HGNC gene ID to NCBI gene ID.
     pub hgnc_to_ncbi: HashMap<String, u32>,
-    /// The HPO ontology as parsed by `fastobo`.
-    pub hpo_doc: fastobo::ast::OboDoc,
+    /// The full text index over the HPO OBO document.
+    pub full_text_index: crate::index::Index,
 }
 
 /// Command line arguments for `server pheno` sub command.
@@ -102,15 +102,6 @@ pub fn print_hints(args: &Args) {
     );
 }
 
-/// Convert ident to String.
-fn ident_to_string(ident: &fastobo::ast::Ident) -> String {
-    match ident {
-        fastobo::ast::Ident::Prefixed(val) => format!("{}:{}", val.prefix(), val.local()),
-        fastobo::ast::Ident::Unprefixed(val) => val.as_str().to_string(),
-        fastobo::ast::Ident::Url(val) => val.as_str().to_string(),
-    }
-}
-
 /// Main entry point for `run-server` sub command.
 ///
 /// # Errors
@@ -166,46 +157,18 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         before_load_obo.elapsed()
     );
 
-    let mut i = 0;
-    for term_frame in hpo_doc.entities().iter().flat_map(fastobo::ast::EntityFrame::as_term) {
-        tracing::info!("--");
-        tracing::info!("id: {}", ident_to_string(term_frame.id().as_inner().as_ref()));
-
-        for line in term_frame.clauses().iter().map(|l| l.as_inner()) {
-            match line {
-                fastobo::ast::TermClause::Name(name) => tracing::info!("name: {}", name.as_str()),
-                fastobo::ast::TermClause::AltId(alt_id) =>
-                    tracing::info!("alt_id: {}", ident_to_string(alt_id)),
-                fastobo::ast::TermClause::Def(def) => {
-                    tracing::info!("def: {}", def.text().as_str())
-                }
-                fastobo::ast::TermClause::Comment(comment) => {
-                    tracing::info!("comment: {}", comment.as_str())
-                }
-                fastobo::ast::TermClause::Synonym(synonym) => {
-                    tracing::info!("synonym: {}", synonym.description().as_str())
-                }
-                fastobo::ast::TermClause::Xref(xref) => tracing::info!(
-                    "xref: {}",
-                    ident_to_string(xref.id())
-                ),
-                _ => (),
-            }
-        }
-
-        tracing::info!("--");
-        i += 1;
-        if i > 100 {
-            break;
-        }
-    }
+    tracing::info!("Indexing OBO...");
+    let before_index_obo = std::time::Instant::now();
+    let full_text_index = crate::index::Index::new(hpo_doc)
+        .map_err(|e| anyhow::anyhow!("Error indexing HPO OBO: {}", e))?;
+    tracing::info!("... done indexing OBO in {:?}", before_index_obo.elapsed());
 
     let data = actix_web::web::Data::new(WebServerData {
         ontology,
         db: Some(db),
         ncbi_to_hgnc,
         hgnc_to_ncbi,
-        hpo_doc,
+        full_text_index,
     });
 
     // Print the server URL and some hints (the latter: unless suppressed).

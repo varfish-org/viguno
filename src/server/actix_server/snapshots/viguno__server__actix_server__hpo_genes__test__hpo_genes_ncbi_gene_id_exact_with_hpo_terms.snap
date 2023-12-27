@@ -18,12 +18,27 @@ result:
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
+        synonyms: ~
+        definition: ~
+        xrefs: ~
       - term_id: "HP:0001249"
         name: Intellectual disability
+        synonyms: ~
+        definition: ~
+        xrefs: ~
       - term_id: "HP:0001250"
         name: Seizure
+        synonyms: ~
+        definition: ~
+        xrefs: ~
       - term_id: "HP:0002180"
         name: Neurodegeneration
+        synonyms: ~
+        definition: ~
+        xrefs: ~
       - term_id: "HP:0002376"
         name: Developmental regression
+        synonyms: ~
+        definition: ~
+        xrefs: ~
 

@@ -63,12 +63,6 @@ struct ResultHpoTerm {
     pub term_id: String,
     /// The term name.
     pub name: String,
-    /// Any matching synonyms.
-    pub synonyms: Option<Vec<String>>,
-    /// Any matching description.
-    pub definition: Option<String>,
-    /// Any matching xref.
-    pub xrefs: Option<Vec<String>>,
 }
 
 /// Helper to deserialize a comma-separated list of strings.
