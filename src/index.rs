@@ -96,7 +96,7 @@ impl Index {
         for term_frame in hpo_doc
             .entities()
             .iter()
-            .flat_map(fastobo::ast::EntityFrame::as_term)
+            .filter_map(fastobo::ast::EntityFrame::as_term)
         {
             let mut doc = tantivy::Document::default();
 
@@ -105,7 +105,11 @@ impl Index {
                 ident_to_string(term_frame.id().as_inner().as_ref()),
             );
 
-            for line in term_frame.clauses().iter().map(|l| l.as_inner()) {
+            for line in term_frame
+                .clauses()
+                .iter()
+                .map(fastobo::ast::Line::as_inner)
+            {
                 match line {
                     fastobo::ast::TermClause::Name(name) => {
                         doc.add_field_value(schema.get_field("name")?, name.as_str());

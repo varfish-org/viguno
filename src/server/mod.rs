@@ -150,7 +150,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
 
     tracing::info!("Loading HPO OBO...");
     let before_load_obo = std::time::Instant::now();
-    let hpo_doc = fastobo::from_file(&format!("{}/{}", &args.path_hpo_dir, "hp.obo"))
+    let hpo_doc = fastobo::from_file(format!("{}/{}", &args.path_hpo_dir, "hp.obo"))
         .map_err(|e| anyhow::anyhow!("Error loading HPO OBO: {}", e))?;
     tracing::info!(
         "... done loading HPO OBO in {:?}",

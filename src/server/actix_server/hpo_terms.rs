@@ -137,12 +137,12 @@ impl ResultEntry {
 
         let definition = doc
             .get_all(field_def)
-            .flat_map(|f| f.as_text().map(|s| s.to_string()))
+            .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
             .collect::<Vec<_>>();
-        let definition = definition.first().map(|s| s.clone());
+        let definition = definition.first().map(std::clone::Clone::clone);
         let synonyms = doc
             .get_all(field_synonym)
-            .flat_map(|f| f.as_text().map(|s| s.to_string()))
+            .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
             .collect::<Vec<_>>();
         let synonyms = if synonyms.is_empty() {
             None
@@ -151,7 +151,7 @@ impl ResultEntry {
         };
         let xrefs = doc
             .get_all(field_xref)
-            .flat_map(|f| f.as_text().map(|s| s.to_string()))
+            .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
             .collect::<Vec<_>>();
         let xrefs = if xrefs.is_empty() { None } else { Some(xrefs) };
 
@@ -199,6 +199,7 @@ struct Container {
 ///
 /// In the case that there is an error running the server.
 #[allow(clippy::unused_async)]
+#[allow(clippy::too_many_lines)]
 #[get("/hpo/terms")]
 async fn handle(
     data: Data<WebServerData>,
@@ -277,8 +278,8 @@ async fn handle(
             query_parser.set_field_fuzzy(field_synonym, true, 1, true);
             query_parser
         };
-        let index_query = query_parser.parse_query(&name).map_err(|e| {
-            eprintln!("{}", e);
+        let index_query = query_parser.parse_query(name).map_err(|e| {
+            eprintln!("{e}");
             CustomError::new(anyhow::anyhow!("Error parsing query: {}", e))
         })?;
         let top_docs = searcher
