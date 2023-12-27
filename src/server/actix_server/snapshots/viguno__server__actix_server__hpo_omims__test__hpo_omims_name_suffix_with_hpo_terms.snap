@@ -17,252 +17,102 @@ result:
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000023"
         name: Inguinal hernia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000028"
         name: Cryptorchidism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000160"
         name: Narrow mouth
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000162"
         name: Glossoptosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000175"
         name: Cleft palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000193"
         name: Bifid uvula
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000201"
         name: Pierre-Robin sequence
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000204"
         name: Cleft upper lip
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000218"
         name: High palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000293"
         name: Full cheeks
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000316"
         name: Hypertelorism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000347"
         name: Micrognathia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000369"
         name: Low-set ears
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000460"
         name: Narrow nose
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000470"
         name: Short neck
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000476"
         name: Cystic hygroma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000520"
         name: Proptosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000579"
         name: Nasolacrimal duct obstruction
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000582"
         name: Upslanted palpebral fissure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000767"
         name: Pectus excavatum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000768"
         name: Pectus carinatum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000954"
         name: Single transverse palmar crease
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001181"
         name: Adducted thumb
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001250"
         name: Seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001263"
         name: Global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001373"
         name: Joint dislocation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001388"
         name: Joint laxity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001511"
         name: Intrauterine growth retardation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001537"
         name: Umbilical hernia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001629"
         name: Ventricular septal defect
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001651"
         name: Dextrocardia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001680"
         name: Coarctation of aorta
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001762"
         name: Talipes equinovarus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001831"
         name: Short toe
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002623"
         name: Overriding aorta
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002650"
         name: Scoliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002857"
         name: Genu valgum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003097"
         name: Short femur
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003577"
         name: Congenital onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004209"
         name: Clinodactyly of the 5th finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005792"
         name: Short humerus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008897"
         name: Postnatal growth retardation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009464"
         name: Ulnar deviation of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009933"
         name: Narrow naris
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010049"
         name: Short metacarpal
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010763"
         name: Low insertion of columella
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012385"
         name: Camptodactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030368"
         name: Hyperphalangy of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0045074"
         name: Thin eyebrow
-        synonyms: ~
-        definition: ~
-        xrefs: ~
 

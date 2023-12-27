@@ -18,5082 +18,2094 @@ result:
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000093"
         name: Proteinuria
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000097"
         name: Focal segmental glomerulosclerosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000100"
         name: Nephrotic syndrome
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000407"
         name: Sensorineural hearing impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000737"
         name: Irritability
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001249"
         name: Intellectual disability
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001250"
         name: Seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001945"
         name: Fever
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001967"
         name: Diffuse mesangial sclerosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002027"
         name: Abdominal pain
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002315"
         name: Headache
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002586"
         name: Peritonitis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003073"
         name: Hypoalbuminemia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003623"
         name: Neonatal onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003678"
         name: Rapidly progressive
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003774"
         name: Stage 5 chronic kidney disease
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007430"
         name: Generalized edema
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011947"
         name: Respiratory tract infection
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012577"
         name: Thin glomerular basement membrane
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012579"
         name: Minimal change glomerulonephritis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0031504"
         name: Foamy urine
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100539"
         name: Periorbital edema
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100704"
         name: Cerebral visual impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 1421
     gene_symbol: CRYGD
     hgnc_id: "HGNC:2411"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000482"
         name: Microcornea
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000519"
         name: Developmental cataract
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000545"
         name: Myopia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000612"
         name: Iris coloboma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000639"
         name: Nystagmus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001131"
         name: Corneal dystrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007957"
         name: Corneal opacity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 2245
     gene_symbol: FGD1
     hgnc_id: "HGNC:3663"
     hpo_terms:
       - term_id: "HP:0000023"
         name: Inguinal hernia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000029"
         name: Testicular atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000049"
         name: Shawl scrotum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000144"
         name: Decreased fertility
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000175"
         name: Cleft palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000204"
         name: Cleft upper lip
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000232"
         name: Everted lower lip vermilion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000286"
         name: Epicanthus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000289"
         name: Broad philtrum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000311"
         name: Round face
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000316"
         name: Hypertelorism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000327"
         name: Hypoplasia of the maxilla
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000337"
         name: Broad forehead
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000343"
         name: Long philtrum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000349"
         name: "Widow's peak"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000368"
         name: "Low-set, posteriorly rotated ears"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000431"
         name: Wide nasal bridge
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000463"
         name: Anteverted nares
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000470"
         name: Short neck
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000485"
         name: Megalocornea
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000486"
         name: Strabismus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000494"
         name: Downslanted palpebral fissures
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000508"
         name: Ptosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000540"
         name: Hypermetropia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000668"
         name: Hypodontia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000684"
         name: Delayed eruption of teeth
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000767"
         name: Pectus excavatum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000823"
         name: Delayed puberty
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000954"
         name: Single transverse palmar crease
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000974"
         name: Hyperextensible skin
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001156"
         name: Brachydactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001169"
         name: Broad palm
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001187"
         name: Hyperextensibility of the finger joints
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001256"
         name: "Intellectual disability, mild"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001263"
         name: Global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001388"
         name: Joint laxity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001419"
         name: X-linked recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001508"
         name: Failure to thrive
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001537"
         name: Umbilical hernia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001544"
         name: Prominent umbilicus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001635"
         name: Congestive heart failure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001763"
         name: Pes planus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001769"
         name: Broad foot
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001773"
         name: Short foot
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001883"
         name: Talipes
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002055"
         name: Curved linear dimple below the lower lip
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002650"
         name: Scoliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002816"
         name: Genu recurvatum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003196"
         name: Short nose
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003311"
         name: Hypoplasia of the odontoid process
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003318"
         name: Cervical spine hypermobility
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003502"
         name: Mild short stature
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004209"
         name: Clinodactyly of the 5th finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004279"
         name: Short palm
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005640"
         name: Abnormal vertebral segmentation and fusion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005692"
         name: Joint hyperflexibility
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006101"
         name: Finger syndactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007018"
         name: Attention deficit hyperactivity disorder
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008232"
         name: Elevated circulating follicle stimulating hormone level
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008572"
         name: External ear malformation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008689"
         name: Bilateral cryptorchidism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009237"
         name: Short 5th finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009466"
         name: Radial deviation of finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009748"
         name: Large earlobe
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011969"
         name: Elevated circulating luteinizing hormone level
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012774"
         name: Increased upper to lower segment ratio
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030680"
         name: Abnormality of cardiovascular system morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0032277"
         name: Lozenge-shaped umbilicus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0040171"
         name: Decreased serum testosterone concentration
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100490"
         name: Camptodactyly of finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100543"
         name: Cognitive impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0200055"
         name: Small hand
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 2657
     gene_symbol: GDF1
     hgnc_id: "HGNC:4214"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000023"
         name: Inguinal hernia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000028"
         name: Cryptorchidism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000233"
         name: Thin vermilion border
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000268"
         name: Dolichocephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000337"
         name: Broad forehead
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000520"
         name: Proptosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001156"
         name: Brachydactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001274"
         name: Agenesis of corpus callosum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001511"
         name: Intrauterine growth retardation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001629"
         name: Ventricular septal defect
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001636"
         name: Tetralogy of Fallot
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001642"
         name: Pulmonic stenosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001669"
         name: Transposition of the great arteries
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001674"
         name: Complete atrioventricular canal defect
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001680"
         name: Coarctation of aorta
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001684"
         name: Secundum atrial septal defect
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001696"
         name: Situs inversus totalis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001719"
         name: Double outlet right ventricle
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001746"
         name: Asplenia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001748"
         name: Polysplenia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001750"
         name: Single ventricle
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002101"
         name: Abnormal lung lobation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004209"
         name: Clinodactyly of the 5th finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004467"
         name: Preauricular pit
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004935"
         name: Pulmonary artery atresia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005105"
         name: Abnormal nasal morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005160"
         name: Total anomalous pulmonary venous return
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005304"
         name: Hypoplastic pulmonary veins
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009891"
         name: Underdeveloped supraorbital ridges
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011536"
         name: Right atrial isomerism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011565"
         name: Common atrium
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012020"
         name: Right aortic arch
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0031565"
         name: Abdominal situs ambiguus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0031834"
         name: Aortopulmonary collateral arteries
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0032092"
         name: Left ventricular outflow tract obstruction
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 2658
     gene_symbol: GDF2
     hgnc_id: "HGNC:4217"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000524"
         name: Conjunctival telangiectasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000646"
         name: Amblyopia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000787"
         name: Nephrolithiasis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000790"
         name: Hematuria
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001048"
         name: Cavernous hemangioma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001081"
         name: Cholelithiasis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001082"
         name: Cholecystitis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001250"
         name: Seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001342"
         name: Cerebral hemorrhage
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001394"
         name: Cirrhosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001399"
         name: Hepatic failure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001409"
         name: Portal hypertension
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001635"
         name: Congestive heart failure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001935"
         name: Microcytic anemia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002040"
         name: Esophageal varix
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002076"
         name: Migraine
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002092"
         name: Pulmonary arterial hypertension
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002105"
         name: Hemoptysis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002138"
         name: Subarachnoid hemorrhage
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002204"
         name: Pulmonary embolism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002239"
         name: Gastrointestinal hemorrhage
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002326"
         name: Transient ischemic attack
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002910"
         name: Elevated hepatic transaminase
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004406"
         name: "Spontaneous, recurrent epistaxis"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004936"
         name: Venous thrombosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007420"
         name: Spontaneous hematomas
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007763"
         name: Retinal telangiectasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100585"
         name: Telangiectasia of the skin
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100761"
         name: Visceral angiomatosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100784"
         name: Peripheral arteriovenous fistula
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0200008"
         name: Intestinal polyposis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 2661
     gene_symbol: GDF9
     hgnc_id: "HGNC:4224"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000786"
         name: Primary amenorrhea
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008214"
         name: Decreased serum estradiol
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008232"
         name: Elevated circulating follicle stimulating hormone level
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011462"
         name: Young adult onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011969"
         name: Elevated circulating luteinizing hormone level
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 2664
     gene_symbol: GDI1
     hgnc_id: "HGNC:4226"
     hpo_terms:
       - term_id: "HP:0001256"
         name: "Intellectual disability, mild"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001263"
         name: Global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001328"
         name: Specific learning disability
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001423"
         name: X-linked dominant inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002121"
         name: Generalized non-motor (absence) seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008936"
         name: Axial hypotonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010864"
         name: "Intellectual disability, severe"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 2668
     gene_symbol: GDNF
     hgnc_id: "HGNC:4232"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000407"
         name: Sensorineural hearing impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001181"
         name: Adducted thumb
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001249"
         name: Intellectual disability
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001250"
         name: Seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001252"
         name: Hypotonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001531"
         name: Failure to thrive in infancy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001824"
         name: Weight loss
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002014"
         name: Diarrhea
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002017"
         name: Nausea and vomiting
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002019"
         name: Constipation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002027"
         name: Abdominal pain
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002093"
         name: Respiratory insufficiency
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003005"
         name: Ganglioneuroma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003577"
         name: Congenital onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004322"
         name: Short stature
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005214"
         name: Intestinal obstruction
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006747"
         name: Ganglioneuroblastoma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011285"
         name: Long-segment aganglionic megacolon
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011286"
         name: Total colonic aganglionosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100031"
         name: Neoplasm of the thyroid gland
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100543"
         name: Cognitive impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100806"
         name: Sepsis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0200008"
         name: Intestinal polyposis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 3081
     gene_symbol: HGD
     hgnc_id: "HGNC:4892"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000024"
         name: Prostatitis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000364"
         name: Hearing abnormality
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000366"
         name: Abnormality of the nose
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000504"
         name: Abnormality of vision
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000592"
         name: Blue sclerae
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000787"
         name: Nephrolithiasis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000822"
         name: Hypertension
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001373"
         name: Joint dislocation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001386"
         name: Joint swelling
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001387"
         name: Joint stiffness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001507"
         name: Growth abnormality
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001597"
         name: Abnormality of the nail
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001658"
         name: Myocardial infarction
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001717"
         name: Coronary artery calcification
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002621"
         name: Atherosclerosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002758"
         name: Osteoarthritis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002808"
         name: Kyphosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002829"
         name: Arthralgia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002948"
         name: Vertebral fusion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003040"
         name: Arthropathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003355"
         name: Aminoaciduria
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003419"
         name: Low back pain
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003581"
         name: Adult onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003593"
         name: Infantile onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004349"
         name: Reduced bone mineral density
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004380"
         name: Aortic valve calcification
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004382"
         name: Mitral valve calcification
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004690"
         name: Thickened Achilles tendon
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004942"
         name: Aortic aneurysm
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005645"
         name: Intervertebral disk calcification
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006467"
         name: Limited shoulder movement
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007400"
         name: Irregular hyperpigmentation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007832"
         name: Pigmentation of the sclera
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008419"
         name: Intervertebral disc degeneration
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008800"
         name: Limited hip movement
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010501"
         name: Limitation of knee mobility
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012213"
         name: Decreased glomerular filtration rate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030764"
         name: Ochronosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0033666"
         name: Diminished physical functioning
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0033704"
         name: Elevated urinary homogentisic acid
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100550"
         name: Tendon rupture
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100593"
         name: Calcification of cartilage
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100773"
         name: Cartilage destruction
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 3248
     gene_symbol: HPGD
     hgnc_id: "HGNC:5154"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000218"
         name: High palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000239"
         name: Large fontanelles
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000280"
         name: Coarse facial features
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000508"
         name: Ptosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000767"
         name: Pectus excavatum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000771"
         name: Gynecomastia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000845"
         name: Elevated circulating growth hormone concentration
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000890"
         name: Long clavicles
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000938"
         name: Osteopenia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000939"
         name: Osteoporosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000975"
         name: Hyperhidrosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000976"
         name: Eczematoid dermatitis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000982"
         name: Palmoplantar keratoderma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001051"
         name: Seborrheic dermatitis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001061"
         name: Acne
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001070"
         name: Mottled pigmentation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001386"
         name: Joint swelling
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001387"
         name: Joint stiffness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001519"
         name: Disproportionate tall stature
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001582"
         name: Redundant skin
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001643"
         name: Patent ductus arteriosus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001744"
         name: Splenomegaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001795"
         name: Hyperconvex nail
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001805"
         name: Onychogryposis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001821"
         name: Broad nail
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001837"
         name: Broad toe
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001903"
         name: Anemia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002024"
         name: Malabsorption
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002239"
         name: Gastrointestinal hemorrhage
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002240"
         name: Hepatomegaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002645"
         name: Wormian bones
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002650"
         name: Scoliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002653"
         name: Bone pain
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002684"
         name: Thickened calvaria
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002754"
         name: Osteomyelitis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002758"
         name: Osteoarthritis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002829"
         name: Arthralgia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002970"
         name: Genu varum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002992"
         name: Abnormality of tibia morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003040"
         name: Arthropathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003103"
         name: Abnormal cortical bone morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003549"
         name: Abnormality of connective tissue
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003577"
         name: Congenital onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004097"
         name: Deviation of finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004398"
         name: Peptic ulcer
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005561"
         name: Abnormality of bone marrow cell morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005930"
         name: Abnormal epiphysis morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008069"
         name: Neoplasm of the skin
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008391"
         name: Dystrophic fingernails
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009771"
         name: Osteolytic defects of the phalanges of the hand
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010541"
         name: Cutis gyrata of scalp
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010720"
         name: Abnormal hair pattern
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010783"
         name: Erythema
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010829"
         name: Impaired temperature sensation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010885"
         name: Avascular necrosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011300"
         name: Broad fingertip
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011304"
         name: Broad thumb
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011362"
         name: Abnormal hair quantity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012203"
         name: Onychomycosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0031284"
         name: Flushing
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100021"
         name: Cerebral palsy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100526"
         name: Neoplasm of the lung
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100759"
         name: Clubbing of fingers
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100760"
         name: Clubbing of toes
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0200055"
         name: Small hand
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 4967
     gene_symbol: OGDH
     hgnc_id: "HGNC:8124"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000238"
         name: Hydrocephalus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000750"
         name: Delayed speech and language development
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000816"
         name: Abnormality of Krebs cycle metabolism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001252"
         name: Hypotonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001263"
         name: Global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001310"
         name: Dysmetria
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001332"
         name: Dystonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001942"
         name: Metabolic acidosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002063"
         name: Rigidity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002066"
         name: Gait ataxia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002069"
         name: Bilateral tonic-clonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002119"
         name: Ventriculomegaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002151"
         name: Increased serum lactate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002194"
         name: Delayed gross motor development
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002317"
         name: Unsteady gait
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002527"
         name: Falls
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003593"
         name: Infantile onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003700"
         name: Generalized amyotrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003819"
         name: Death in childhood
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004322"
         name: Short stature
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004902"
         name: Congenital lactic acidosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010286"
         name: Abnormal salivary gland morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012401"
         name: Abnormal urine alpha-ketoglutarate concentration
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 7358
     gene_symbol: UGDH
     hgnc_id: "HGNC:12525"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000179"
         name: Thick lower lip vermilion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000252"
         name: Microcephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000286"
         name: Epicanthus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000307"
         name: Pointed chin
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000319"
         name: Smooth philtrum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000490"
         name: Deeply set eye
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000508"
         name: Ptosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000581"
         name: Blepharophimosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000664"
         name: Synophrys
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001284"
         name: Areflexia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001290"
         name: Generalized hypotonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001332"
         name: Dystonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001347"
         name: Hyperreflexia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001357"
         name: Plagiocephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002072"
         name: Chorea
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002119"
         name: Ventriculomegaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002179"
         name: Opisthotonus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002188"
         name: Delayed CNS myelination
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002521"
         name: Hypsarrhythmia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003487"
         name: Babinski sign
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008936"
         name: Axial hypotonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009748"
         name: Large earlobe
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010851"
         name: EEG with burst suppression
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011097"
         name: Epileptic spasm
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011344"
         name: Severe global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011471"
         name: Gastrostomy tube feeding in infancy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012745"
         name: Short palpebral fissure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0025336"
         name: Delayed ability to sit
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0200134"
         name: Epileptic encephalopathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 8200
     gene_symbol: GDF5
     hgnc_id: "HGNC:4220"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000324"
         name: Facial asymmetry
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000405"
         name: Conductive hearing impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000407"
         name: Sensorineural hearing impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000445"
         name: Wide nose
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000446"
         name: Narrow nasal bridge
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000486"
         name: Strabismus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000668"
         name: Hypodontia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000684"
         name: Delayed eruption of teeth
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001162"
         name: Postaxial hand polydactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001204"
         name: Distal symphalangism of hands
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001230"
         name: Broad metacarpals
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001231"
         name: Abnormal fingernail morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001249"
         name: Intellectual disability
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001385"
         name: Hip dysplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001387"
         name: Joint stiffness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001522"
         name: Death in infancy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001763"
         name: Pes planus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001772"
         name: Talipes equinovalgus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001773"
         name: Short foot
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001776"
         name: Bilateral talipes equinovarus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001792"
         name: Small nail
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001822"
         name: Hallux valgus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002167"
         name: Abnormality of speech or vocalization
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002650"
         name: Scoliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002652"
         name: Skeletal dysplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002750"
         name: Delayed skeletal maturation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002827"
         name: Hip dislocation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002948"
         name: Vertebral fusion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002983"
         name: Micromelia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002984"
         name: Hypoplasia of the radius
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002986"
         name: Radial bowing
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002990"
         name: Fibular aplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002999"
         name: Patellar dislocation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003022"
         name: Hypoplasia of the ulna
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003028"
         name: Abnormality of the ankle
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003038"
         name: Fibular hypoplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003041"
         name: Humeroradial synostosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003042"
         name: Elbow dislocation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003067"
         name: Madelung deformity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003070"
         name: Elbow ankylosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003086"
         name: Acromesomelia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003097"
         name: Short femur
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003577"
         name: Congenital onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003826"
         name: Stillbirth
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004209"
         name: Clinodactyly of the 5th finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004220"
         name: Short middle phalanx of the 5th finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004279"
         name: Short palm
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004691"
         name: 2-3 toe syndactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005048"
         name: Synostosis of carpal bones
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005096"
         name: Distal femoral bowing
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005692"
         name: Joint hyperflexibility
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005736"
         name: Short tibia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005792"
         name: Short humerus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005880"
         name: Metacarpophalangeal synostosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006011"
         name: Cuboidal metacarpal
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006014"
         name: Abnormally shaped carpal bones
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006092"
         name: Malaligned carpal bone
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006101"
         name: Finger syndactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006110"
         name: Shortening of all middle phalanges of the fingers
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006143"
         name: Abnormal finger flexion crease
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006144"
         name: Shortening of all proximal phalanges of the fingers
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006206"
         name: Hypersegmentation of proximal phalanx of second finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006228"
         name: Valgus hand deformity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006498"
         name: Aplasia/Hypoplasia of the patella
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007598"
         name: Bilateral single transverse palmar creases
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008081"
         name: Pes valgus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008096"
         name: Medially deviated second toe
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008119"
         name: Deformed tarsal bones
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008368"
         name: Tarsal synostosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008843"
         name: Hip osteoarthritis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008890"
         name: Severe short-limb dwarfism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008905"
         name: Rhizomelia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009177"
         name: Proximal/middle symphalangism of 5th finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009182"
         name: Triangular shaped middle phalanx of the 5th finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009295"
         name: Short middle phalanx of the 4th finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009324"
         name: Enlarged epiphysis of the middle phalanx of the 3rd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009331"
         name: Triangular epiphysis of the middle phalanx of the 3rd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009349"
         name: Enlarged epiphysis of the proximal phalanx of the 3rd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009356"
         name: Triangular epiphysis of the proximal phalanx of the 3rd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009372"
         name: Type A2 brachydactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009373"
         name: Type C brachydactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009417"
         name: Pseudoepiphyses of the 3rd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009436"
         name: Triangular shaped middle phalanx of the 3rd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009439"
         name: Short middle phalanx of the 3rd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009456"
         name: Triangular shaped proximal phalanx of the 3rd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009463"
         name: Ulnar deviation of the 3rd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009464"
         name: Ulnar deviation of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009467"
         name: Radial deviation of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009495"
         name: Pseudoepiphysis of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009516"
         name: Enlarged epiphysis of the middle phalanx of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009523"
         name: Triangular epiphysis of the middle phalanx of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009527"
         name: Enlarged epiphysis of the proximal phalanx of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009534"
         name: Triangular epiphysis of the proximal phalanx of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009575"
         name: Triangular shaped middle phalanx of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009577"
         name: Short middle phalanx of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009587"
         name: Triangular shaped proximal phalanx of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009606"
         name: Complete duplication of distal phalanx of the thumb
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009684"
         name: Stippling of the epiphysis of the distal phalanx of the thumb
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009882"
         name: Short distal phalanx of finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010034"
         name: Short 1st metacarpal
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010038"
         name: Short 2nd metacarpal
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010055"
         name: Broad hallux
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010109"
         name: Short hallux
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010259"
         name: Cone-shaped epiphyses of the middle phalanges of the hand
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010508"
         name: Metatarsus valgus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010624"
         name: Aplastic/hypoplastic toenail
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010743"
         name: Short metatarsal
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011304"
         name: Broad thumb
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011929"
         name: Hypersegmentation of proximal phalanx of third finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0032078"
         name: Angel-shaped phalanx
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100242"
         name: Sarcoma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100387"
         name: Aplasia of the middle phalanges of the toes
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100490"
         name: Camptodactyly of finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100543"
         name: Cognitive impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 9573
     gene_symbol: GDF3
     hgnc_id: "HGNC:4218"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000175"
         name: Cleft palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000324"
         name: Facial asymmetry
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000365"
         name: Hearing impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000465"
         name: Webbed neck
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000470"
         name: Short neck
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000505"
         name: Visual impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000567"
         name: Chorioretinal coloboma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000612"
         name: Iris coloboma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000639"
         name: Nystagmus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000772"
         name: Abnormal rib morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000912"
         name: Sprengel anomaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001291"
         name: Abnormal cranial nerve morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001629"
         name: Ventricular septal defect
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002023"
         name: Anal atresia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002162"
         name: Low posterior hairline
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002414"
         name: Spina bifida
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002943"
         name: Thoracic scoliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003043"
         name: Abnormal shoulder morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003577"
         name: Congenital onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004374"
         name: Hemiplegia/hemiparesis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004397"
         name: Ectopic anus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004602"
         name: Cervical C2/C3 vertebral fusion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004635"
         name: Cervical C5/C6 vertebrae fusion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005107"
         name: Abnormal sacrum morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005640"
         name: Abnormal vertebral segmentation and fusion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005988"
         name: Congenital muscular torticollis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007633"
         name: Bilateral microphthalmos
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007750"
         name: Hypoplasia of the fovea
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007766"
         name: Optic disc hypoplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008678"
         name: Renal hypoplasia/aplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009911"
         name: Abnormal temporal bone morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010984"
         name: Digenic inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030281"
         name: Cervical C3/C4 vertebral fusion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100543"
         name: Cognitive impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 10220
     gene_symbol: GDF11
     hgnc_id: "HGNC:4216"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000023"
         name: Inguinal hernia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000176"
         name: Submucous cleft hard palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000269"
         name: Prominent occiput
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000286"
         name: Epicanthus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000347"
         name: Micrognathia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000349"
         name: "Widow's peak"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000391"
         name: Thickened helices
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000463"
         name: Anteverted nares
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000592"
         name: Blue sclerae
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000767"
         name: Pectus excavatum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001382"
         name: Joint hypermobility
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001763"
         name: Pes planus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002558"
         name: Supernumerary nipple
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003577"
         name: Congenital onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003691"
         name: Scapular winging
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005815"
         name: Supernumerary ribs
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008416"
         name: Six lumbar vertebrae
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011261"
         name: Darwin tubercle of helix
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011800"
         name: Midface retrusion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100333"
         name: Unilateral cleft lip
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100334"
         name: Unilateral cleft palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 23483
     gene_symbol: TGDS
     hgnc_id: "HGNC:20324"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000023"
         name: Inguinal hernia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000028"
         name: Cryptorchidism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000160"
         name: Narrow mouth
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000162"
         name: Glossoptosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000175"
         name: Cleft palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000193"
         name: Bifid uvula
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000201"
         name: Pierre-Robin sequence
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000204"
         name: Cleft upper lip
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000218"
         name: High palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000272"
         name: Malar flattening
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000293"
         name: Full cheeks
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000316"
         name: Hypertelorism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000347"
         name: Micrognathia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000368"
         name: "Low-set, posteriorly rotated ears"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000389"
         name: Chronic otitis media
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000460"
         name: Narrow nose
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000470"
         name: Short neck
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000476"
         name: Cystic hygroma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000520"
         name: Proptosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000579"
         name: Nasolacrimal duct obstruction
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000582"
         name: Upslanted palpebral fissure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000767"
         name: Pectus excavatum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000768"
         name: Pectus carinatum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000954"
         name: Single transverse palmar crease
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001181"
         name: Adducted thumb
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001250"
         name: Seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001263"
         name: Global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001373"
         name: Joint dislocation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001387"
         name: Joint stiffness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001388"
         name: Joint laxity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001508"
         name: Failure to thrive
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001511"
         name: Intrauterine growth retardation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001537"
         name: Umbilical hernia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001629"
         name: Ventricular septal defect
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001631"
         name: Atrial septal defect
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001651"
         name: Dextrocardia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001680"
         name: Coarctation of aorta
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001762"
         name: Talipes equinovarus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001831"
         name: Short toe
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002119"
         name: Ventriculomegaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002553"
         name: Highly arched eyebrow
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002623"
         name: Overriding aorta
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002650"
         name: Scoliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002857"
         name: Genu valgum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003097"
         name: Short femur
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003577"
         name: Congenital onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004209"
         name: Clinodactyly of the 5th finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004322"
         name: Short stature
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005692"
         name: Joint hyperflexibility
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005792"
         name: Short humerus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005930"
         name: Abnormal epiphysis morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008897"
         name: Postnatal growth retardation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009464"
         name: Ulnar deviation of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009467"
         name: Radial deviation of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009933"
         name: Narrow naris
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010049"
         name: Short metacarpal
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010285"
         name: Oral synechia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010508"
         name: Metatarsus valgus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010763"
         name: Low insertion of columella
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030368"
         name: Hyperphalangy of the 2nd finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0045074"
         name: Thin eyebrow
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100490"
         name: Camptodactyly of finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 26227
     gene_symbol: PHGDH
     hgnc_id: "HGNC:8923"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000023"
         name: Inguinal hernia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000028"
         name: Cryptorchidism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000104"
         name: Renal agenesis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000135"
         name: Hypogonadism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000136"
         name: Bifid uterus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000175"
         name: Cleft palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000179"
         name: Thick lower lip vermilion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000204"
         name: Cleft upper lip
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000316"
         name: Hypertelorism
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000340"
         name: Sloping forehead
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000347"
         name: Micrognathia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000369"
         name: Low-set ears
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000400"
         name: Macrotia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000445"
         name: Wide nose
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000457"
         name: Depressed nasal ridge
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000470"
         name: Short neck
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000475"
         name: Broad neck
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000519"
         name: Developmental cataract
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000520"
         name: Proptosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000561"
         name: Absent eyelashes
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000565"
         name: Esotropia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000568"
         name: Microphthalmia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000639"
         name: Nystagmus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000737"
         name: Irritability
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001059"
         name: Pterygium
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001181"
         name: Adducted thumb
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001196"
         name: Short umbilical cord
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001249"
         name: Intellectual disability
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001274"
         name: Agenesis of corpus callosum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001305"
         name: Dandy-Walker malformation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001339"
         name: Lissencephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001508"
         name: Failure to thrive
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001511"
         name: Intrauterine growth retardation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001537"
         name: Umbilical hernia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001561"
         name: Polyhydramnios
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001629"
         name: Ventricular septal defect
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001643"
         name: Patent ductus arteriosus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001655"
         name: Patent foramen ovale
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001669"
         name: Transposition of the great arteries
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001770"
         name: Toe syndactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001838"
         name: Rocker bottom foot
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001848"
         name: Calcaneovalgus deformity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001873"
         name: Thrombocytopenia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001889"
         name: Megaloblastic anemia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001989"
         name: Fetal akinesia sequence
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001999"
         name: Abnormal facial shape
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002013"
         name: Vomiting
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002020"
         name: Gastroesophageal reflux
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002069"
         name: Bilateral tonic-clonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002079"
         name: Hypoplasia of the corpus callosum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002089"
         name: Pulmonary hypoplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002121"
         name: Generalized non-motor (absence) seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002123"
         name: Generalized myoclonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002190"
         name: Choroid plexus cyst
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002305"
         name: Athetosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002324"
         name: Hydranencephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002414"
         name: Spina bifida
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002510"
         name: Spastic tetraplegia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002521"
         name: Hypsarrhythmia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002983"
         name: Micromelia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003577"
         name: Congenital onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003811"
         name: Neonatal death
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003826"
         name: Stillbirth
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004322"
         name: Short stature
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006101"
         name: Finger syndactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006266"
         name: Small placenta
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006808"
         name: Cerebral hypomyelination
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006872"
         name: Cerebral hypoplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007266"
         name: Cerebral dysmyelination
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007281"
         name: Developmental stagnation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007430"
         name: Generalized edema
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007503"
         name: Generalized ichthyosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007525"
         name: "Yellow subcutaneous tissue covered by thin, scaly skin"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008734"
         name: Decreased testicular size
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009466"
         name: Radial deviation of finger
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009473"
         name: Joint contracture of the hand
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010719"
         name: Abnormality of hair texture
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010819"
         name: Atonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010821"
         name: Focal emotional seizure with laughing
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011097"
         name: Epileptic spasm
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011224"
         name: Ablepharon
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011343"
         name: Moderate global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011344"
         name: Severe global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011451"
         name: Primary microcephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011968"
         name: Feeding difficulties
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012277"
         name: Hypoglycinemia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012279"
         name: Hyposerinemia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012385"
         name: Camptodactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012444"
         name: Brain atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012448"
         name: Delayed myelination
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012762"
         name: Cerebral white matter atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030084"
         name: Clinodactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030215"
         name: Inappropriate crying
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0031244"
         name: Swollen lip
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0034691"
         name: Reduced 3-phosphoglycerate dehydrogenase activity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100633"
         name: Esophagitis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100704"
         name: Cerebral visual impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100807"
         name: Long fingers
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 29958
     gene_symbol: DMGDH
     hgnc_id: "HGNC:24475"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003236"
         name: Elevated circulating creatine kinase concentration
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003750"
         name: Increased muscle fatiguability
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012379"
         name: Abnormal circulating enzyme concentration or activity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0031945"
         name: "Elevated circulating N,N-dimethylglycine concentration"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0031946"
         name: "Elevated urinary N,N-dimethylglycine level"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0410020"
         name: Fish odor
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 54332
     gene_symbol: GDAP1
     hgnc_id: "HGNC:15968"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000765"
         name: Abnormal thorax morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001171"
         name: Split hand
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001178"
         name: Ulnar claw
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001270"
         name: Motor delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001284"
         name: Areflexia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001604"
         name: Vocal cord paresis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001609"
         name: Hoarse voice
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001761"
         name: Pes cavus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001765"
         name: Hammertoe
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001776"
         name: Bilateral talipes equinovarus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002091"
         name: Restrictive ventilatory defect
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002317"
         name: Unsteady gait
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002359"
         name: Frequent falls
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002505"
         name: Loss of ambulation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002751"
         name: Kyphoscoliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003376"
         name: Steppage gait
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003378"
         name: Axonal degeneration/regeneration
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003382"
         name: Hypertrophic nerve changes
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003387"
         name: Decreased number of large peripheral myelinated nerve fibers
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003400"
         name: Basal lamina onion bulb formation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003429"
         name: CNS hypomyelination
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003431"
         name: Decreased motor nerve conduction velocity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003445"
         name: "EMG: neuropathic changes"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003447"
         name: Axonal loss
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003448"
         name: Decreased sensory nerve conduction velocity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003547"
         name: Shoulder girdle muscle weakness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003577"
         name: Congenital onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003593"
         name: Infantile onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003678"
         name: Rapidly progressive
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003731"
         name: Quadriceps muscle weakness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006064"
         name: Limited interphalangeal movement
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006248"
         name: Limited wrist movement
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006858"
         name: Impaired distal proprioception
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006886"
         name: Impaired distal vibration sensation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006915"
         name: Inability to walk by childhood/adolescence
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006937"
         name: Impaired distal tactile sensation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007010"
         name: Poor fine motor coordination
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007015"
         name: Poor gross motor coordination
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007107"
         name: Segmental peripheral demyelination
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007108"
         name: Demyelinating peripheral neuropathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007141"
         name: Sensorimotor neuropathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007230"
         name: Decreased distal sensory nerve action potential
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007233"
         name: Clusters of axonal regeneration
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007249"
         name: Decreased number of small peripheral myelinated nerve fibers
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007267"
         name: Chronic axonal neuropathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007328"
         name: Impaired pain sensation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008443"
         name: Neuropathic spinal arthropathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008935"
         name: Generalized neonatal hypotonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008954"
         name: Intrinsic hand muscle atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008959"
         name: Distal upper limb muscle weakness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008997"
         name: Proximal muscle weakness in upper limbs
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009027"
         name: Foot dorsiflexor weakness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009072"
         name: Decreased Achilles reflex
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009109"
         name: Denervation of the diaphragm
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009473"
         name: Joint contracture of the hand
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011463"
         name: Childhood onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011675"
         name: Arrhythmia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011727"
         name: Peroneal muscle weakness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012078"
         name: Motor conduction block
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012391"
         name: Hyporeflexia of upper limbs
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030237"
         name: Hand muscle weakness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030319"
         name: Weakness of facial musculature
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0031629"
         name: Impaired tandem gait
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0040078"
         name: Axonal degeneration
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 54834
     gene_symbol: GDAP2
     hgnc_id: "HGNC:18010"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000473"
         name: Torticollis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000640"
         name: Gaze-evoked nystagmus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000716"
         name: Depression
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000718"
         name: Aggressive behavior
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000741"
         name: Apathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001257"
         name: Spasticity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001260"
         name: Dysarthria
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001268"
         name: Mental deterioration
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001272"
         name: Cerebellar atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001348"
         name: Brisk reflexes
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002015"
         name: Dysphagia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002066"
         name: Gait ataxia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002120"
         name: Cerebral cortical atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002141"
         name: Gait imbalance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002171"
         name: Gliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002359"
         name: Frequent falls
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002497"
         name: Spastic ataxia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003677"
         name: Slowly progressive
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006895"
         name: Lower limb hypertonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007338"
         name: Hypermetric saccades
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008003"
         name: Jerky ocular pursuit movements
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0025710"
         name: Late young adult onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 55753
     gene_symbol: OGDHL
     hgnc_id: "HGNC:25590"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000218"
         name: High palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000252"
         name: Microcephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000338"
         name: Hypomimic face
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000365"
         name: Hearing impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000494"
         name: Downslanted palpebral fissures
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000505"
         name: Visual impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000639"
         name: Nystagmus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000648"
         name: Optic atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001251"
         name: Ataxia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001257"
         name: Spasticity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001385"
         name: Hip dysplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001488"
         name: Bilateral ptosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001508"
         name: Failure to thrive
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001761"
         name: Pes cavus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002059"
         name: Cerebral atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002069"
         name: Bilateral tonic-clonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002079"
         name: Hypoplasia of the corpus callosum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002119"
         name: Ventriculomegaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002133"
         name: Status epilepticus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002521"
         name: Hypsarrhythmia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002540"
         name: Inability to walk
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002650"
         name: Scoliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003577"
         name: Congenital onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003593"
         name: Infantile onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003621"
         name: Juvenile onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006970"
         name: Periventricular leukomalacia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011170"
         name: Generalized myoclonic-atonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011344"
         name: Severe global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012469"
         name: Infantile spasms
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030799"
         name: Scaphocephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 79641
     gene_symbol: ROGDI
     hgnc_id: "HGNC:29478"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000238"
         name: Hydrocephalus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000252"
         name: Microcephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000705"
         name: Amelogenesis imperfecta
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000726"
         name: Dementia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000750"
         name: Delayed speech and language development
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000966"
         name: Hypohidrosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001251"
         name: Ataxia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001257"
         name: Spasticity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001263"
         name: Global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001321"
         name: Cerebellar hypoplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002059"
         name: Cerebral atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002069"
         name: Bilateral tonic-clonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002119"
         name: Ventriculomegaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002376"
         name: Developmental regression
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002521"
         name: Hypsarrhythmia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004322"
         name: Short stature
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006286"
         name: Yellow-brown discoloration of the teeth
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006297"
         name: Enamel hypoplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007359"
         name: Focal-onset seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010864"
         name: "Intellectual disability, severe"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0031936"
         name: Delayed ability to walk
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0032794"
         name: Myoclonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0200134"
         name: Epileptic encephalopathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 79944
     gene_symbol: L2HGDH
     hgnc_id: "HGNC:20499"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000256"
         name: Macrocephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000365"
         name: Hearing impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000486"
         name: Strabismus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000639"
         name: Nystagmus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000648"
         name: Optic atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000708"
         name: Atypical behavior
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001250"
         name: Seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001251"
         name: Ataxia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001252"
         name: Hypotonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001272"
         name: Cerebellar atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001285"
         name: Spastic tetraparesis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002062"
         name: Morphological abnormality of the pyramidal tract
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002071"
         name: Abnormality of extrapyramidal motor function
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002171"
         name: Gliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002283"
         name: Global brain atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002352"
         name: Leukoencephalopathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002376"
         name: Developmental regression
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002381"
         name: Aphasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002383"
         name: Infectious encephalitis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003593"
         name: Infantile onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004375"
         name: Neoplasm of the nervous system
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006887"
         name: "Intellectual disability, progressive"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007256"
         name: Abnormal pyramidal sign
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007258"
         name: Severe demyelination of the white matter
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007360"
         name: Aplasia/Hypoplasia of the cerebellum
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007371"
         name: Corpus callosum atrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010864"
         name: "Intellectual disability, severe"
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0040144"
         name: L-2-hydroxyglutaric aciduria
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0040147"
         name: L-2-hydroxyglutaric acidemia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 121512
     gene_symbol: FGD4
     hgnc_id: "HGNC:19125"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001245"
         name: Small thenar eminence
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001265"
         name: Hyporeflexia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001270"
         name: Motor delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001284"
         name: Areflexia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001761"
         name: Pes cavus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001762"
         name: Talipes equinovarus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002317"
         name: Unsteady gait
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002515"
         name: Waddling gait
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002650"
         name: Scoliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002936"
         name: Distal sensory impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003380"
         name: Decreased number of peripheral myelinated nerve fibers
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003383"
         name: Onion bulb formation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003431"
         name: Decreased motor nerve conduction velocity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003484"
         name: Upper limb muscle weakness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007182"
         name: Peripheral hypomyelination
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008944"
         name: Distal lower limb amyotrophy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009053"
         name: Distal lower limb muscle weakness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010487"
         name: Small hypothenar eminence
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011463"
         name: Childhood onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0033748"
         name: Hypoesthesia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 392255
     gene_symbol: GDF6
     hgnc_id: "HGNC:4221"
     hpo_terms:
       - term_id: "HP:0000006"
         name: Autosomal dominant inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000122"
         name: Unilateral renal agenesis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000175"
         name: Cleft palate
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000324"
         name: Facial asymmetry
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000362"
         name: Otosclerosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000410"
         name: Mixed hearing impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000465"
         name: Webbed neck
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000466"
         name: Limited neck range of motion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000470"
         name: Short neck
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000512"
         name: Abnormal electroretinogram
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000518"
         name: Cataract
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000563"
         name: Keratoconus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000589"
         name: Coloboma
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000639"
         name: Nystagmus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000772"
         name: Abnormal rib morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000912"
         name: Sprengel anomaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001141"
         name: Severely reduced visual acuity
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001156"
         name: Brachydactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001249"
         name: Intellectual disability
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001250"
         name: Seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001252"
         name: Hypotonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001263"
         name: Global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001291"
         name: Abnormal cranial nerve morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001335"
         name: Bimanual synkinesia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001629"
         name: Ventricular septal defect
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001763"
         name: Pes planus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001769"
         name: Broad foot
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001845"
         name: Overlapping toe
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002023"
         name: Anal atresia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002084"
         name: Encephalocele
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002162"
         name: Low posterior hairline
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002269"
         name: Abnormality of neuronal migration
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002414"
         name: Spina bifida
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002650"
         name: Scoliosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003043"
         name: Abnormal shoulder morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004374"
         name: Hemiplegia/hemiparesis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004397"
         name: Ectopic anus
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0004602"
         name: Cervical C2/C3 vertebral fusion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005107"
         name: Abnormal sacrum morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005640"
         name: Abnormal vertebral segmentation and fusion
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005988"
         name: Congenital muscular torticollis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006817"
         name: Aplasia/Hypoplasia of the cerebellar vermis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007291"
         name: Posterior fossa cyst
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007633"
         name: Bilateral microphthalmos
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007703"
         name: Abnormality of retinal pigmentation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007750"
         name: Hypoplasia of the fovea
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007766"
         name: Optic disc hypoplasia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0008368"
         name: Tarsal synostosis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0009911"
         name: Abnormal temporal bone morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010469"
         name: Absent testis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0010984"
         name: Digenic inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012795"
         name: Abnormal optic disc morphology
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0030325"
         name: Cervicomedullary schisis
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0032284"
         name: Ultra-low vision with retained motion projection
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100259"
         name: Postaxial polydactyly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100543"
         name: Cognitive impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
   - gene_ncbi_id: 728294
     gene_symbol: D2HGDH
     hgnc_id: "HGNC:28358"
     hpo_terms:
       - term_id: "HP:0000007"
         name: Autosomal recessive inheritance
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000256"
         name: Macrocephaly
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0000347"
         name: Micrognathia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001249"
         name: Intellectual disability
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001252"
         name: Hypotonia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001263"
         name: Global developmental delay
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001324"
         name: Muscle weakness
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001638"
         name: Cardiomyopathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0001659"
         name: Aortic regurgitation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002007"
         name: Frontal bossing
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002069"
         name: Bilateral tonic-clonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002104"
         name: Apnea
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002188"
         name: Delayed CNS myelination
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002416"
         name: Subependymal cysts
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002521"
         name: Hypsarrhythmia
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0002572"
         name: Episodic vomiting
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003150"
         name: Glutaric aciduria
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0003593"
         name: Infantile onset
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0005348"
         name: Inspiratory stridor
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0006956"
         name: Lateral ventricle dilatation
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007052"
         name: Multifocal cerebral white matter abnormalities
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0007105"
         name: Infantile encephalopathy
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0011220"
         name: Prominent forehead
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012321"
         name: D-2-hydroxyglutaric aciduria
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0012469"
         name: Infantile spasms
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0032792"
         name: Tonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0032794"
         name: Myoclonic seizure
-        synonyms: ~
-        definition: ~
-        xrefs: ~
       - term_id: "HP:0100704"
         name: Cerebral visual impairment
-        synonyms: ~
-        definition: ~
-        xrefs: ~
 

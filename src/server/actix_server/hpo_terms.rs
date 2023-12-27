@@ -124,7 +124,7 @@ impl ResultEntry {
             let query_parser =
                 tantivy::query::QueryParser::for_index(index.index(), vec![field_term_id]);
             let query = query_parser
-                .parse_query(&format!("{}", term.id()))
+                .parse_query(&format!("\"{}\"", term.id()))
                 .expect("bad term ID query");
             let top_docs = searcher
                 .search(&query, &tantivy::collector::TopDocs::with_limit(1))
@@ -273,6 +273,9 @@ async fn handle(
                 ],
             );
             query_parser.set_conjunction_by_default();
+            query_parser.set_field_boost(field_name, 3.0);
+            query_parser.set_field_boost(field_synonym, 0.8);
+            query_parser.set_field_boost(field_def, 0.6);
             query_parser.set_field_fuzzy(field_name, true, 1, true);
             query_parser.set_field_fuzzy(field_def, true, 1, true);
             query_parser.set_field_fuzzy(field_synonym, true, 1, true);
@@ -382,44 +385,16 @@ mod test {
     }
 
     #[actix_web::test]
-    async fn hpo_terms_name_prefix_no_genes() -> Result<(), anyhow::Error> {
+    async fn hpo_terms_name_fuzzy_no_genes() -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=Inguinal+hern&match=prefix").await?
+            &run_query("/hpo/terms?name=Inguinal+hern").await?
         ))
     }
 
     #[actix_web::test]
-    async fn hpo_terms_name_prefix_with_genes() -> Result<(), anyhow::Error> {
+    async fn hpo_terms_name_fuzzy_with_genes() -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=Inguinal+hern&match=prefix&genes=true").await?
-        ))
-    }
-
-    #[actix_web::test]
-    async fn hpo_terms_name_suffix_no_genes() -> Result<(), anyhow::Error> {
-        Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=guinal+hernia&match=suffix").await?
-        ))
-    }
-
-    #[actix_web::test]
-    async fn hpo_terms_name_suffix_with_genes() -> Result<(), anyhow::Error> {
-        Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=guinal+hernia&match=suffix&genes=true").await?
-        ))
-    }
-
-    #[actix_web::test]
-    async fn hpo_terms_name_contains_no_genes() -> Result<(), anyhow::Error> {
-        Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=guinal+hern&match=contains").await?
-        ))
-    }
-
-    #[actix_web::test]
-    async fn hpo_terms_name_contains_with_genes() -> Result<(), anyhow::Error> {
-        Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=guinal+hern&match=contains&genes=true").await?
+            &run_query("/hpo/terms?name=Inguinal+hern&genes=true").await?
         ))
     }
 }
