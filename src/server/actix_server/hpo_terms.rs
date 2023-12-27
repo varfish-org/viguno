@@ -11,7 +11,7 @@ use hpo::{annotations::AnnotationId, HpoTerm, HpoTermId, Ontology};
 
 use crate::server::WebServerData;
 
-use super::{CustomError, Match, ResultGene};
+use super::{CustomError, ResultGene};
 
 /// Parameters for `handle`.
 ///
@@ -22,19 +22,12 @@ use super::{CustomError, Match, ResultGene};
 /// - `gene_symbol` -- specify the gene symbol
 /// - `max_results` -- the maximum number of records to return
 /// - `genes` -- whether to include `"genes"` in result
-///
-/// The following propery defines how matches are performed:
-///
-/// - `match` -- how to match
 #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
 struct Query {
     /// The term ID to search for.
     pub term_id: Option<String>,
     /// The term name to search for.
     pub name: Option<String>,
-    /// The match mode.
-    #[serde(alias = "match")]
-    pub match_: Option<Match>,
     /// Maximal number of results to return.
     #[serde(default = "_default_max_results")]
     pub max_results: usize,
@@ -60,6 +53,12 @@ struct ResultEntry {
     pub term_id: String,
     /// The HPO term's name.
     pub name: String,
+    /// Any matching description.
+    pub definition: Option<String>,
+    /// Any matching synonyms.
+    pub synonyms: Option<Vec<String>>,
+    /// Any matching xref.
+    pub xrefs: Option<Vec<String>>,
     /// The gene's associated HPO terms.
     #[serde(default = "Option::default", skip_serializing_if = "Option::is_none")]
     pub genes: Option<Vec<ResultGene>>,
@@ -95,7 +94,67 @@ impl ResultEntry {
         ontology: &Ontology,
         genes: bool,
         ncbi_to_hgnc: &HashMap<u32, String>,
+        index: &crate::index::Index,
+        doc: Option<&tantivy::Document>,
     ) -> Self {
+        let field_term_id = index
+            .schema()
+            .get_field("term_id")
+            .expect("field must exist");
+        let field_def = index
+            .index()
+            .schema()
+            .get_field("def")
+            .expect("field must exist");
+        let field_synonym = index
+            .index()
+            .schema()
+            .get_field("synonym")
+            .expect("field must exist");
+        let field_xref = index
+            .index()
+            .schema()
+            .get_field("xref")
+            .expect("field must exist");
+
+        let searcher = index.reader().searcher();
+        let doc = if let Some(doc) = doc {
+            doc.clone()
+        } else {
+            let query_parser =
+                tantivy::query::QueryParser::for_index(index.index(), vec![field_term_id]);
+            let query = query_parser
+                .parse_query(&format!("\"{}\"", term.id()))
+                .expect("bad term ID query");
+            let top_docs = searcher
+                .search(&query, &tantivy::collector::TopDocs::with_limit(1))
+                .expect("problemw ith term ID search");
+
+            searcher
+                .doc(top_docs[0].1)
+                .expect("problem with term ID query")
+        };
+
+        let definition = doc
+            .get_all(field_def)
+            .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
+            .collect::<Vec<_>>();
+        let definition = definition.first().map(std::clone::Clone::clone);
+        let synonyms = doc
+            .get_all(field_synonym)
+            .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
+            .collect::<Vec<_>>();
+        let synonyms = if synonyms.is_empty() {
+            None
+        } else {
+            Some(synonyms)
+        };
+        let xrefs = doc
+            .get_all(field_xref)
+            .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
+            .collect::<Vec<_>>();
+        let xrefs = if xrefs.is_empty() { None } else { Some(xrefs) };
+
         let genes = if genes {
             let mut genes = term
                 .gene_ids()
@@ -116,6 +175,9 @@ impl ResultEntry {
             term_id: term.id().to_string(),
             name: term.name().to_string(),
             genes,
+            definition,
+            synonyms,
+            xrefs,
         }
     }
 }
@@ -137,6 +199,7 @@ struct Container {
 ///
 /// In the case that there is an error running the server.
 #[allow(clippy::unused_async)]
+#[allow(clippy::too_many_lines)]
 #[get("/hpo/terms")]
 async fn handle(
     data: Data<WebServerData>,
@@ -144,60 +207,117 @@ async fn handle(
     query: web::Query<Query>,
 ) -> actix_web::Result<impl Responder, CustomError> {
     let ontology = &data.ontology;
-    let match_ = query.match_.unwrap_or_default();
     let mut result: Vec<ResultEntry> = Vec::new();
 
-    if match_ == Match::Exact {
-        let term = if let Some(term_id) = &query.term_id {
-            let term_id = HpoTermId::from(term_id.clone());
-            ontology.hpo(term_id)
-        } else if let Some(name) = &query.name {
-            let mut term = None;
-            let mut it = ontology.hpos();
-            let mut tmp = it.next();
-            while tmp.is_some() && term.is_none() {
-                if tmp.expect("checked above").name() == name {
-                    term = tmp;
-                }
-                tmp = it.next();
-            }
-            term
-        } else {
-            None
+    let field_term_id = data
+        .full_text_index
+        .index()
+        .schema()
+        .get_field("term_id")
+        .expect("field must exist");
+    let field_alt_id = data
+        .full_text_index
+        .schema()
+        .get_field("alt_id")
+        .expect("field must exist");
+    let field_name = data
+        .full_text_index
+        .index()
+        .schema()
+        .get_field("name")
+        .expect("field must exist");
+    let field_def = data
+        .full_text_index
+        .index()
+        .schema()
+        .get_field("def")
+        .expect("field must exist");
+    let field_synonym = data
+        .full_text_index
+        .index()
+        .schema()
+        .get_field("synonym")
+        .expect("field must exist");
+    let field_xref = data
+        .full_text_index
+        .index()
+        .schema()
+        .get_field("xref")
+        .expect("field must exist");
+
+    if let Some(term_id) = &query.term_id {
+        let term_id = HpoTermId::from(term_id.clone());
+        let term = ontology.hpo(term_id).ok_or_else(|| {
+            CustomError::new(anyhow::anyhow!("Term ID {} not found in HPO", term_id))
+        })?;
+        result.push(ResultEntry::from_term_with_ontology(
+            &term,
+            ontology,
+            query.genes,
+            &data.ncbi_to_hgnc,
+            &data.full_text_index,
+            None,
+        ));
+    } else if let Some(name) = &query.name {
+        let searcher = data.full_text_index.reader().searcher();
+        let query_parser = {
+            let mut query_parser = tantivy::query::QueryParser::for_index(
+                data.full_text_index.index(),
+                vec![
+                    field_term_id,
+                    field_alt_id,
+                    field_name,
+                    field_def,
+                    field_synonym,
+                    field_xref,
+                ],
+            );
+            query_parser.set_conjunction_by_default();
+            query_parser.set_field_boost(field_name, 3.0);
+            query_parser.set_field_boost(field_synonym, 0.8);
+            query_parser.set_field_boost(field_def, 0.6);
+            query_parser.set_field_fuzzy(field_name, true, 1, true);
+            query_parser.set_field_fuzzy(field_def, true, 1, true);
+            query_parser.set_field_fuzzy(field_synonym, true, 1, true);
+            query_parser
         };
-        if let Some(term) = &term {
+        let index_query = query_parser.parse_query(name).map_err(|e| {
+            eprintln!("{e}");
+            CustomError::new(anyhow::anyhow!("Error parsing query: {}", e))
+        })?;
+        let top_docs = searcher
+            .search(
+                &index_query,
+                &tantivy::collector::TopDocs::with_limit(query.max_results),
+            )
+            .map_err(|e| CustomError::new(anyhow::anyhow!("Error searching index: {}", e)))?;
+
+        for (_score, doc_address) in top_docs {
+            let retrieved_doc = searcher.doc(doc_address).map_err(|e| {
+                CustomError::new(anyhow::anyhow!("Error retrieving document: {}", e))
+            })?;
+            let term_id = retrieved_doc
+                .get_first(field_term_id)
+                .ok_or_else(|| {
+                    CustomError::new(anyhow::anyhow!("Document has no `term_id` field"))
+                })?
+                .as_text()
+                .unwrap_or_default();
+            let term_id = HpoTermId::from(term_id.to_string());
+            let term = ontology.hpo(term_id).ok_or_else(|| {
+                CustomError::new(anyhow::anyhow!("Term ID {} not found in HPO", term_id))
+            })?;
+
             result.push(ResultEntry::from_term_with_ontology(
-                term,
+                &term,
                 ontology,
                 query.genes,
                 &data.ncbi_to_hgnc,
+                &data.full_text_index,
+                Some(&retrieved_doc),
             ));
         }
-    } else if let Some(name) = &query.name {
-        let mut it = ontology.hpos();
-        let mut term = it.next();
-        while term.is_some() && result.len() < query.max_results {
-            let term_name = term.as_ref().expect("checked above").name();
-            let is_match = match query.match_.unwrap_or_default() {
-                Match::Prefix => term_name.starts_with(name),
-                Match::Suffix => term_name.ends_with(name),
-                Match::Contains => term_name.contains(name),
-                Match::Exact => panic!("cannot happen here"),
-            };
-            if is_match {
-                result.push(ResultEntry::from_term_with_ontology(
-                    term.as_ref().expect("checked above"),
-                    ontology,
-                    query.genes,
-                    &data.ncbi_to_hgnc,
-                ));
-            }
-
-            term = it.next();
-        }
-    }
-
-    result.sort();
+    };
 
     let result = Container {
         version: crate::common::Version::new(&data.ontology.hpo_version()),
@@ -217,6 +337,7 @@ mod test {
         let ncbi_to_hgnc =
             crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;
         let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
+        let hpo_doc = fastobo::from_file("tests/data/hpo/hp.obo")?;
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(crate::server::WebServerData {
@@ -224,6 +345,7 @@ mod test {
                     db: None,
                     ncbi_to_hgnc,
                     hgnc_to_ncbi,
+                    full_text_index: crate::index::Index::new(hpo_doc)?,
                 }))
                 .service(super::handle),
         )
@@ -263,44 +385,16 @@ mod test {
     }
 
     #[actix_web::test]
-    async fn hpo_terms_name_prefix_no_genes() -> Result<(), anyhow::Error> {
+    async fn hpo_terms_name_fuzzy_no_genes() -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=Inguinal+hern&match=prefix").await?
+            &run_query("/hpo/terms?name=Inguinal+hern").await?
         ))
     }
 
     #[actix_web::test]
-    async fn hpo_terms_name_prefix_with_genes() -> Result<(), anyhow::Error> {
+    async fn hpo_terms_name_fuzzy_with_genes() -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=Inguinal+hern&match=prefix&genes=true").await?
-        ))
-    }
-
-    #[actix_web::test]
-    async fn hpo_terms_name_suffix_no_genes() -> Result<(), anyhow::Error> {
-        Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=guinal+hernia&match=suffix").await?
-        ))
-    }
-
-    #[actix_web::test]
-    async fn hpo_terms_name_suffix_with_genes() -> Result<(), anyhow::Error> {
-        Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=guinal+hernia&match=suffix&genes=true").await?
-        ))
-    }
-
-    #[actix_web::test]
-    async fn hpo_terms_name_contains_no_genes() -> Result<(), anyhow::Error> {
-        Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=guinal+hern&match=contains").await?
-        ))
-    }
-
-    #[actix_web::test]
-    async fn hpo_terms_name_contains_with_genes() -> Result<(), anyhow::Error> {
-        Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/terms?name=guinal+hern&match=contains&genes=true").await?
+            &run_query("/hpo/terms?name=Inguinal+hern&genes=true").await?
         ))
     }
 }

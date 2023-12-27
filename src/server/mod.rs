@@ -11,7 +11,7 @@ use crate::common::load_hpo;
 
 /// Data structure for the web server data.
 pub struct WebServerData {
-    /// The HPO ontology.
+    /// The HPO ontology (`hpo` crate).
     pub ontology: Ontology,
     /// The database with precomputed Resnik P-values.
     pub db: Option<rocksdb::DBWithThreadMode<rocksdb::MultiThreaded>>,
@@ -19,6 +19,8 @@ pub struct WebServerData {
     pub ncbi_to_hgnc: HashMap<u32, String>,
     /// Xlink map from HGNC gene ID to NCBI gene ID.
     pub hgnc_to_ncbi: HashMap<String, u32>,
+    /// The full text index over the HPO OBO document.
+    pub full_text_index: crate::index::Index,
 }
 
 /// Command line arguments for `server pheno` sub command.
@@ -146,11 +148,27 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         before_load_xlink.elapsed()
     );
 
+    tracing::info!("Loading HPO OBO...");
+    let before_load_obo = std::time::Instant::now();
+    let hpo_doc = fastobo::from_file(format!("{}/{}", &args.path_hpo_dir, "hp.obo"))
+        .map_err(|e| anyhow::anyhow!("Error loading HPO OBO: {}", e))?;
+    tracing::info!(
+        "... done loading HPO OBO in {:?}",
+        before_load_obo.elapsed()
+    );
+
+    tracing::info!("Indexing OBO...");
+    let before_index_obo = std::time::Instant::now();
+    let full_text_index = crate::index::Index::new(hpo_doc)
+        .map_err(|e| anyhow::anyhow!("Error indexing HPO OBO: {}", e))?;
+    tracing::info!("... done indexing OBO in {:?}", before_index_obo.elapsed());
+
     let data = actix_web::web::Data::new(WebServerData {
         ontology,
         db: Some(db),
         ncbi_to_hgnc,
         hgnc_to_ncbi,
+        full_text_index,
     });
 
     // Print the server URL and some hints (the latter: unless suppressed).

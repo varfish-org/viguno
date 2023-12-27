@@ -1,7 +1,0 @@
----
-source: src/server/actix_server/hpo_omims.rs
-expression: "&run_query(\"/hpo/omims?name=Catel-Manzke+syndro&match=prefix\").await?"
----
-- omim_id: "OMIM:616145"
-  name: Catel-Manzke syndrome
-

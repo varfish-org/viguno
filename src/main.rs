@@ -7,6 +7,7 @@
 pub mod algos;
 pub mod common;
 pub mod convert;
+pub mod index;
 pub mod pbs;
 pub mod query;
 pub mod server;

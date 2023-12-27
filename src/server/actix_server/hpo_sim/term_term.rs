@@ -173,6 +173,7 @@ mod test {
             ["meta", "scores"],
             true,
         )?);
+        let hpo_doc = fastobo::from_file("tests/data/hpo/hp.obo")?;
 
         let app = actix_web::test::init_service(
             actix_web::App::new()
@@ -181,6 +182,7 @@ mod test {
                     db,
                     ncbi_to_hgnc,
                     hgnc_to_ncbi,
+                    full_text_index: crate::index::Index::new(hpo_doc)?,
                 }))
                 .service(super::handle),
         )

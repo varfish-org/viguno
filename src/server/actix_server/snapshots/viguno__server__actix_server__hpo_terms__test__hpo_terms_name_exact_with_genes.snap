@@ -8,12 +8,18 @@ version:
 query:
   term_id: ~
   name: Inguinal hernia
-  match_: ~
   max_results: 100
   genes: true
 result:
   - term_id: "HP:0000023"
     name: Inguinal hernia
+    definition: Protrusion of the contents of the abdominal cavity through the inguinal canal.
+    synonyms: ~
+    xrefs:
+      - "MEDDRA:10022016"
+      - "MSH:D006552"
+      - "SNOMEDCT_US:396232000"
+      - "UMLS:C0019294"
     genes:
       - ncbi_gene_id: 59
         gene_symbol: ACTA2
@@ -891,4 +897,69 @@ result:
       - ncbi_gene_id: 653361
         gene_symbol: NCF1
         hgnc_id: "HGNC:7660"
+  - term_id: "HP:0100541"
+    name: Femoral hernia
+    definition: "A hernia which occurs just below the inguinal ligament, where abdominal contents pass through a naturally occurring weakness called the femoral canal."
+    synonyms:
+      - Crural hernia
+    xrefs:
+      - "MEDDRA:10016434"
+      - "MSH:D006550"
+      - "SNOMEDCT_US:50063009"
+      - "UMLS:C0019288"
+    genes:
+      - ncbi_gene_id: 538
+        gene_symbol: ATP7A
+        hgnc_id: "HGNC:869"
+      - ncbi_gene_id: 1277
+        gene_symbol: COL1A1
+        hgnc_id: "HGNC:2197"
+      - ncbi_gene_id: 1278
+        gene_symbol: COL1A2
+        hgnc_id: "HGNC:2198"
+      - ncbi_gene_id: 1836
+        gene_symbol: SLC26A2
+        hgnc_id: "HGNC:10994"
+      - ncbi_gene_id: 1855
+        gene_symbol: DVL1
+        hgnc_id: "HGNC:3084"
+      - ncbi_gene_id: 1857
+        gene_symbol: DVL3
+        hgnc_id: "HGNC:3087"
+      - ncbi_gene_id: 2187
+        gene_symbol: FANCB
+        hgnc_id: "HGNC:3583"
+      - ncbi_gene_id: 2535
+        gene_symbol: FZD2
+        hgnc_id: "HGNC:4040"
+      - ncbi_gene_id: 4089
+        gene_symbol: SMAD4
+        hgnc_id: "HGNC:6770"
+      - ncbi_gene_id: 6899
+        gene_symbol: TBX1
+        hgnc_id: "HGNC:11592"
+      - ncbi_gene_id: 7474
+        gene_symbol: WNT5A
+        hgnc_id: "HGNC:12784"
+      - ncbi_gene_id: 9321
+        gene_symbol: TRIP11
+        hgnc_id: "HGNC:12305"
+      - ncbi_gene_id: 9509
+        gene_symbol: ADAMTS2
+        hgnc_id: "HGNC:218"
+      - ncbi_gene_id: 9719
+        gene_symbol: ADAMTSL2
+        hgnc_id: "HGNC:14631"
+      - ncbi_gene_id: 9791
+        gene_symbol: PTDSS1
+        hgnc_id: "HGNC:9587"
+      - ncbi_gene_id: 79813
+        gene_symbol: EHMT1
+        hgnc_id: "HGNC:24650"
+      - ncbi_gene_id: 81031
+        gene_symbol: SLC2A10
+        hgnc_id: "HGNC:13444"
+      - ncbi_gene_id: 129563
+        gene_symbol: DIS3L2
+        hgnc_id: "HGNC:28648"
 
