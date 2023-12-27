@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/bihealth/viguno/compare/v0.1.6...v0.2.0) (2023-12-27)
+
+
+### Features
+
+* improve term search with full-text index ([#109](https://github.com/bihealth/viguno/issues/109)) ([#112](https://github.com/bihealth/viguno/issues/112)) ([9751e83](https://github.com/bihealth/viguno/commit/9751e8329f6407b73e1309fe66367ebc8e539952))
+
+
+### Bug Fixes
+
+* make clippy happy about PartialOrd impls ([#96](https://github.com/bihealth/viguno/issues/96)) ([da19a5f](https://github.com/bihealth/viguno/commit/da19a5f122f51da83f344e3cf9857df3c5ebe5da))
+
 ## [0.1.6](https://github.com/bihealth/viguno/compare/v0.1.5...v0.1.6) (2023-06-19)
 
 
