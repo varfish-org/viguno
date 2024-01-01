@@ -55,7 +55,7 @@ dependencies = [
  "tokio",
  "tokio-util",
  "tracing",
- "zstd",
+ "zstd 0.13.0",
 ]
 
 [[package]]
@@ -2615,7 +2615,7 @@ checksum = "fc0c1bb43e5e8b8e05eb8009610344dbf285f06066c844032fbb3e546b3c71df"
 dependencies = [
  "tantivy-common",
  "tantivy-fst",
- "zstd",
+ "zstd 0.12.4",
 ]
 
 [[package]]
@@ -2677,18 +2677,18 @@ dependencies = [
 
 [[package]]
 name = "thiserror"
-version = "1.0.52"
+version = "1.0.53"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "83a48fd946b02c0a526b2e9481c8e2a17755e47039164a86c4070446e3a4614d"
+checksum = "b2cd5904763bad08ad5513ddbb12cf2ae273ca53fa9f68e843e236ec6dfccc09"
 dependencies = [
  "thiserror-impl",
 ]
 
 [[package]]
 name = "thiserror-impl"
-version = "1.0.52"
+version = "1.0.53"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e7fbe9b594d6568a6a1443250a7e67d80b74e1e96f6d1715e1e21cc1888291d3"
+checksum = "3dcf4a824cce0aeacd6f38ae6f24234c8e80d68632338ebaa1443b5df9e29e19"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -3338,11 +3338,30 @@ dependencies = [
 
 [[package]]
 name = "zstd"
+version = "0.12.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a27595e173641171fc74a1232b7b1c7a7cb6e18222c11e9dfb9888fa424c53c"
+dependencies = [
+ "zstd-safe 6.0.6",
+]
+
+[[package]]
+name = "zstd"
 version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bffb3309596d527cfcba7dfc6ed6052f1d39dfbd7c867aa2e865e4a449c10110"
 dependencies = [
- "zstd-safe",
+ "zstd-safe 7.0.0",
+]
+
+[[package]]
+name = "zstd-safe"
+version = "6.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ee98ffd0b48ee95e6c5168188e44a54550b1564d9d530ee21d5f0eaed1069581"
+dependencies = [
+ "libc",
+ "zstd-sys",
 ]
 
 [[package]]
