@@ -1,12 +1,12 @@
 [![Crates.io](https://img.shields.io/crates/d/viguno.svg)](https://crates.io/crates/viguno)
 [![Crates.io](https://img.shields.io/crates/v/viguno.svg)](https://crates.io/crates/viguno)
 [![Crates.io](https://img.shields.io/crates/l/viguno.svg)](https://crates.io/crates/viguno)
-[![CI](https://github.com/bihealth/viguno/actions/workflows/rust.yml/badge.svg)](https://github.com/bihealth/viguno/actions/workflows/rust.yml)
-[![codecov](https://codecov.io/gh/bihealth/viguno/branch/main/graph/badge.svg?token=aZchhLWdzt)](https://codecov.io/gh/bihealth/viguno)
+[![CI](https://github.com/varfish-org/viguno/actions/workflows/rust.yml/badge.svg)](https://github.com/varfish-org/viguno/actions/workflows/rust.yml)
+[![codecov](https://codecov.io/gh/varfish-org/viguno/branch/main/graph/badge.svg?token=aZchhLWdzt)](https://codecov.io/gh/varfish-org/viguno)
 
 # Viguno
 
-<img src="https://raw.githubusercontent.com/bihealth/viguno/main/utils/vicuna-wrangling-ontology-and-genes.png" width="256px" height="256px" align="right">
+<img src="https://raw.githubusercontent.com/varfish-org/viguno/main/utils/vicuna-wrangling-ontology-and-genes.png" width="256px" height="256px" align="right">
 
 Viguno (Versatile Interface for Genetics Utilization of Nice Ontologies) is the component of a VarFish installation that provides information on HPO phenotypes, diseases, and their relation to genes.
 
@@ -23,7 +23,7 @@ We bind-mount this into the container with `-v $PWD/tests/data:/data`.
 ```
 # docker run \
     -v $PWD/tests/data:/data \
-    -it ghcr.io/bihealth/viguno:0.1.1
+    -it ghcr.io/varfish-org/viguno:0.1.1
 ```
 
 ## Preparing Data

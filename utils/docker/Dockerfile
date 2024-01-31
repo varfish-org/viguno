@@ -5,7 +5,7 @@
 # We don't do cross compilation at the moment but build the dependencies first
 # anyway to get the ability to increment.
 #
-# cf. https://github.com/bihealth/viguno/issues/6#issuecomment-1586216139
+# cf. https://github.com/varfish-org/viguno/issues/6#issuecomment-1586216139
 
 # ---------------------------------------------------------------------------
 # Builder
