@@ -130,18 +130,3 @@ You can set the following environment variables
 
 - `GIT_TAG` a git "treeish" (can be a tag or version) to build (inferred via `git describe --tags` by default)
 - `DOCKER_VERSION` the version to use for the Docker label (by default it uses `$GIT_TAG` and the `v` prefix will be stripped)
-
-## Managing Project with Terraform
-
-```
-# export GITHUB_OWNER=bihealth
-# export GITHUB_TOKEN=ghp_TOKEN
-
-# cd utils/terraform
-# terraform init
-# terraform import github_repository.viguno viguno
-# terraform validate
-# terraform fmt
-# terraform plan
-# terraform apply
-```
