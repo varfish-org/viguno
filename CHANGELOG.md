@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/varfish-org/viguno/compare/v0.2.0...v0.2.1) (2024-02-01)
+
+
+### Miscellaneous Chores
+
+* changed org (bihealth =&gt; varfish-org) ([#132](https://github.com/varfish-org/viguno/issues/132)) ([dacd570](https://github.com/varfish-org/viguno/commit/dacd57039962bf689fea2128a605d602dc236817))
+
 ## [0.2.0](https://github.com/varfish-org/viguno/compare/v0.1.6...v0.2.0) (2023-12-27)
 
 
