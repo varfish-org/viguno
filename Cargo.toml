@@ -28,7 +28,7 @@ lazy_static = "1.4"
 log = "0.4"
 once_cell = "1.18"
 prost = "0.12"
-rayon = "1.8"
+rayon = "1.9"
 regex = "1.10"
 rocksdb = { version = "0.21", features = ["multi-threaded-cf"] }
 rocksdb-utils-lookup = "0.3"
