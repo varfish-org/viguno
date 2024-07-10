@@ -1,3 +1,4 @@
-//! Code for running the REST API server.
+//! Code for the REST API server.
 
 pub mod run;
+pub mod schema;

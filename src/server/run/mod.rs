@@ -24,7 +24,7 @@ pub struct WebServerData {
     pub full_text_index: crate::index::Index,
 }
 
-/// Command line arguments for `server pheno` sub command.
+/// Command line arguments for `server run` sub command.
 #[derive(clap::Parser, Debug)]
 #[command(author, version, about = "Run viguno REST API server", long_about = None)]
 pub struct Args {
