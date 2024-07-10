@@ -13,8 +13,6 @@ use crate::common::load_hpo;
 pub struct WebServerData {
     /// The HPO ontology (`hpo` crate).
     pub ontology: Ontology,
-    /// The database with precomputed Resnik P-values.
-    pub db: Option<rocksdb::DBWithThreadMode<rocksdb::MultiThreaded>>,
     /// Xlink map from NCBI gene ID to HGNC gene ID.
     pub ncbi_to_hgnc: HashMap<u32, String>,
     /// Xlink map from HGNC gene ID to NCBI gene ID.
@@ -126,18 +124,6 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     let before_loading = std::time::Instant::now();
     let ontology = load_hpo(&args.path_hpo_dir)?;
     tracing::info!("...done loading HPO in {:?}", before_loading.elapsed());
-    tracing::info!("Opening RocksDB for reading...");
-    let before_rocksdb = std::time::Instant::now();
-    let db = rocksdb::DB::open_cf_for_read_only(
-        &rocksdb::Options::default(),
-        format!(
-            "{}/{}",
-            &args.path_hpo_dir, "scores-fun-sim-avg-resnik-gene"
-        ),
-        ["meta", "scores"],
-        true,
-    )?;
-    tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());
 
     tracing::info!("Loading HGNC xlink...");
     let before_load_xlink = std::time::Instant::now();
@@ -165,7 +151,6 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
 
     let data = actix_web::web::Data::new(WebServerData {
         ontology,
-        db: Some(db),
         ncbi_to_hgnc,
         hgnc_to_ncbi,
         full_text_index,

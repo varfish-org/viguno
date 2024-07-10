@@ -224,7 +224,6 @@ mod test {
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(crate::server::WebServerData {
                     ontology,
-                    db: None,
                     ncbi_to_hgnc,
                     hgnc_to_ncbi,
                     full_text_index: crate::index::Index::new(hpo_doc)?,

@@ -52,21 +52,6 @@ You can now conver the downloaded text HPO files to a binary format which will i
     --path-out-bin /tmp/data/hpo/hpo.bin
 ```
 
-To use the similarity computations, you will need to run some simulation as precomputation.
-You should fix the seed for reproducibility.
-The number of simulations should be high for production (the default is 100k) but you can reduce this for a local setup.
-
-```
-# viguno simulate \
-    --num-simulations 10 \
-    --seed 42 \
-    --path-hpo-dir /tmp/data/hpo/hpo \
-    --path-out-rocksdb /tmp/data/hpo/hpo/scores-fun-sim-avg-resnik-gene \
-    --combiner fun-sim-avg \
-    --similarity resnik \
-    --ic-base gene
-```
-
 ## Running the Server
 
 After having the precomputed data, you can startup the server as follows:

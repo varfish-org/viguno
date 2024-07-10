@@ -40,7 +40,7 @@ fn score_dir(qs: &HpoGroup, ds: &HpoGroup, o: &Ontology, s: &impl Similarity) ->
 
     // NB: we allow loss of precision in this function for the following statement.
     let len: u16 = qs.len().try_into().expect("more than 2^16 query terms");
-    let len: f32 = len.try_into().expect("too many query terms for f32");
+    let len: f32 = len.into();
     tmp.iter().sum::<f32>() / len
 }
 

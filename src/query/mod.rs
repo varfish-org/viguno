@@ -1,8 +1,6 @@
 //! Code for ranking genes on the command line.
 
 use hpo::similarity::Builtins;
-use prost::Message;
-use rocksdb::{DBWithThreadMode, MultiThreaded};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::time::Instant;
@@ -11,7 +9,6 @@ use clap::Parser;
 use hpo::{annotations::AnnotationId, term::HpoGroup, HpoTermId, Ontology};
 
 use crate::algos::phenomizer;
-use crate::pbs::simulation::SimulationResults;
 use crate::query::query_result::TermDetails;
 
 /// Command line arguments for `query` command.
@@ -93,10 +90,8 @@ pub mod query_result {
     pub struct Record {
         /// The gene symbol.
         pub gene_symbol: String,
-        /// The estimate for empirical P-value
-        pub p_value: f32,
-        /// The score (`-10 * log10(p_value)`).
-        pub score: f32,
+        /// The raw Phenomizer score.
+        pub raw_score: f32,
         /// Details on individual terms.
         #[serde(default = "Option::default")]
         pub terms: Option<Vec<TermDetails>>,
@@ -142,17 +137,11 @@ pub fn run_query<S>(
     patient: &HpoGroup,
     genes: &Vec<&hpo::annotations::Gene>,
     hpo: &Ontology,
-    db: &DBWithThreadMode<MultiThreaded>,
     ncbi_to_hgnc: &HashMap<u32, String, S>,
 ) -> Result<query_result::Container, anyhow::Error>
 where
     S: std::hash::BuildHasher,
 {
-    let cf_resnik = db
-        .cf_handle("scores")
-        .expect("database is missing 'scores' column family");
-
-    let num_terms = std::cmp::min(10, patient.len());
     let query = query_result::Query {
         terms: patient
             .iter()
@@ -173,13 +162,8 @@ where
     };
     for gene in genes {
         let ncbi_gene_id = gene.id().as_u32();
-        let key = format!("{ncbi_gene_id}:{num_terms}");
-        let data = db
-            .get_cf(&cf_resnik, key.as_bytes())?
-            .expect("key not found");
-        let res = SimulationResults::decode(&data[..])?;
         tracing::debug!("gene = {:?}", gene);
-        let score = phenomizer::score(
+        let raw_score = phenomizer::score(
             patient,
             &gene
                 .to_hpo_set(hpo)
@@ -189,14 +173,6 @@ where
                 .collect::<HpoGroup>(),
             hpo,
         );
-
-        let lower_bound = res.scores[..].partition_point(|x| *x < score);
-        let upper_bound = res.scores[..].partition_point(|x| *x <= score);
-        let idx = (lower_bound + upper_bound) / 2;
-        let idx = std::cmp::min(idx, res.scores.len() - 1);
-        // NB: we accept loss of precision when converting to f64 below.
-        let p = 1.0 - (idx as f64) / (res.scores.len() as f64);
-        let log_p = -10.0 * p.log10();
 
         // For each term in the gene, provide query term with the highest similarity.
         let mut terms = gene
@@ -250,10 +226,7 @@ where
 
         result.result.push(query_result::Record {
             gene_symbol: gene.name().to_string(),
-            // NB: we accept value truncation here ...
-            p_value: p as f32,
-            // NB: ... and here.
-            score: log_p as f32,
+            raw_score,
             terms: Some(terms),
         });
     }
@@ -261,10 +234,10 @@ where
     // Sort genes for reproducibility.
     result.query.genes.sort();
 
-    // Sort output records by score for reproducibility.
+    // Sort output records by raw score for reproducibility.
     result
         .result
-        .sort_by(|a, b| b.score.partial_cmp(&a.score).unwrap());
+        .sort_by(|a, b| b.raw_score.partial_cmp(&a.raw_score).unwrap());
 
     Ok(result)
 }
@@ -296,17 +269,6 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     let before_loading = Instant::now();
     let hpo = crate::common::load_hpo(&args.path_hpo_dir)?;
     tracing::info!("...done loading HPO in {:?}", before_loading.elapsed());
-
-    tracing::info!("Opening RocksDB for reading...");
-    let before_rocksdb = Instant::now();
-    let path_rocksdb = format!("{}/scores-fun-sim-avg-resnik-gene", args.path_hpo_dir);
-    let db = rocksdb::DB::open_cf_for_read_only(
-        &rocksdb::Options::default(),
-        &path_rocksdb,
-        ["meta", "scores"],
-        true,
-    )?;
-    tracing::info!("...done opening RocksDB in {:?}", before_rocksdb.elapsed());
 
     tracing::info!("Loading genes...");
     let before_load_genes = Instant::now();
@@ -358,7 +320,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
 
     tracing::info!("Starting priorization...");
     let before_priorization = Instant::now();
-    let result = run_query(&query, &genes, &hpo, &db, &ncbi_to_hgnc)?;
+    let result = run_query(&query, &genes, &hpo, &ncbi_to_hgnc)?;
     tracing::info!(
         "... done with prioritization in {:?}",
         before_priorization.elapsed()
@@ -373,14 +335,13 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         "P-value",
         "score"
     );
-    tracing::info!("     |            |            |");
+    tracing::info!("     |            |");
     for (i, gene) in result.result.iter().enumerate() {
         tracing::info!(
-            "{: >4} | {: <10} | {: >10.5} | {: >10.2}",
+            "{: >4} | {: <10} | {: >10.5}",
             i + 1,
             gene.gene_symbol,
-            gene.p_value,
-            gene.score
+            gene.raw_score
         );
     }
 

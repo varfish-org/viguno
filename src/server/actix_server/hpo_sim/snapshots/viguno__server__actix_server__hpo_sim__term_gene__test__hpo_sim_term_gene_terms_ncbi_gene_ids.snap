@@ -20,8 +20,7 @@ query:
       hgnc_id: "HGNC:20324"
 result:
   - gene_symbol: TGDS
-    p_value: 0.1
-    score: 10
+    raw_score: 1.028543
     terms:
       - term_query:
           term_id: "HP:0000347"
@@ -417,8 +416,7 @@ result:
           term_name: Postnatal growth retardation
         score: 0
   - gene_symbol: TTN
-    p_value: 0.3
-    score: 5.2287874
+    raw_score: 0.91585016
     terms:
       - term_query:
           term_id: "HP:0000347"
@@ -1070,4 +1068,3 @@ result:
           term_id: "HP:0030059"
           term_name: Mitochondrial depletion
         score: 0
-
