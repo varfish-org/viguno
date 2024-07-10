@@ -9,6 +9,7 @@ use std::collections::HashMap;
 
 use actix_web::{middleware::Logger, web::Data, App, HttpServer, ResponseError};
 use serde::{Deserialize, Deserializer, Serialize};
+use utoipa::{OpenApi};
 
 use crate::common::load_hpo;
 
@@ -67,7 +68,7 @@ impl CustomError {
 impl ResponseError for CustomError {}
 
 /// Specify how to perform query matches in the API calls.
-#[derive(Serialize, Deserialize, Debug, Clone, Copy, Default, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, utoipa::ToSchema, Debug, Clone, Copy, Default, PartialEq, Eq)]
 #[serde(rename_all = "lowercase")]
 enum Match {
     #[default]
@@ -79,7 +80,7 @@ enum Match {
 
 /// Representation of a gene.
 #[derive(
-    serde::Deserialize, serde::Serialize, Default, Debug, Clone, PartialOrd, Ord, PartialEq, Eq,
+    serde::Deserialize, serde::Serialize, utoipa::ToSchema, Default, Debug, Clone, PartialOrd, Ord, PartialEq, Eq,
 )]
 #[serde_with::skip_serializing_none]
 struct ResultGene {
@@ -93,7 +94,7 @@ struct ResultGene {
 
 /// Representation of an HPO term.
 #[derive(
-    serde::Deserialize, serde::Serialize, Default, Debug, Clone, PartialOrd, Ord, PartialEq, Eq,
+    serde::Deserialize, serde::Serialize, utoipa::ToSchema, Default, Debug, Clone, PartialOrd, Ord, PartialEq, Eq,
 )]
 struct ResultHpoTerm {
     /// The HPO ID.
@@ -136,6 +137,12 @@ where
 #[allow(clippy::unused_async)]
 #[actix_web::main]
 pub async fn main(args: &Args, dbs: Data<WebServerData>) -> std::io::Result<()> {
+    #[derive(utoipa::OpenApi)]
+    #[openapi(paths(hpo_genes::handle))]
+    struct ApiDoc;
+
+    let openapi = ApiDoc::openapi();
+
     HttpServer::new(move || {
         App::new()
             .app_data(dbs.clone())
@@ -144,6 +151,9 @@ pub async fn main(args: &Args, dbs: Data<WebServerData>) -> std::io::Result<()> 
             .service(hpo_omims::handle)
             .service(hpo_sim::term_term::handle)
             .service(hpo_sim::term_gene::handle)
+            .service(
+                utoipa_swagger_ui::SwaggerUi::new("/swagger-ui/{_:.*}").url("/api-docs/openapi.json", openapi.clone())
+            )
             .wrap(Logger::default())
     })
     .bind((args.listen_host.as_str(), args.listen_port))?
@@ -163,6 +173,12 @@ pub fn print_hints(args: &Args) {
     if args.suppress_hints {
         return;
     }
+
+    tracing::info!(
+        "  ==> for Swagger UI, see: http://{}:{}/swagger-ui/",
+        args.listen_host.as_str(),
+        args.listen_port
+    );
 
     // The endpoint `/hpo/genes` provides information related to genes by symbol.
     tracing::info!(

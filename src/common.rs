@@ -224,7 +224,7 @@ pub fn version() -> &'static str {
 }
 
 /// Version information that is returned by the HTTP server.
-#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Default, Debug, Clone)]
 pub struct Version {
     /// Version of the HPO.
     pub hpo: String,

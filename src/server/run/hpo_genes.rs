@@ -29,7 +29,7 @@ use super::{CustomError, Match, ResultHpoTerm};
 /// The following propery defines how matches are performed:
 ///
 /// - `match` -- how to match
-#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
 struct Query {
     /// The gene ID to search for.
     pub gene_id: Option<String>,
@@ -57,7 +57,7 @@ fn _default_hpo_terms() -> bool {
 }
 
 /// Result entry for `handle`.
-#[derive(serde::Serialize, serde::Deserialize, Debug, Clone, Eq, PartialEq, Ord, PartialOrd)]
+#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone, Eq, PartialEq, Ord, PartialOrd)]
 #[serde_with::skip_serializing_none]
 struct ResultEntry {
     /// The gene's NCBI ID.
@@ -103,7 +103,7 @@ impl ResultEntry {
 }
 
 /// Container for the result.
-#[derive(Debug, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
 struct Container {
     /// Version information.
     pub version: crate::common::Version,
@@ -115,6 +115,11 @@ struct Container {
 
 /// Query for genes in the HPO database.
 #[allow(clippy::unused_async)]
+#[utoipa::path(
+    responses(
+        (status = 200, description = "The query was successful.", body = Container),
+    )
+)]
 #[get("/hpo/genes")]
 async fn handle(
     data: Data<WebServerData>,
