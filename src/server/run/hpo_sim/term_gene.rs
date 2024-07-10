@@ -10,7 +10,7 @@ use actix_web::{
 use hpo::{annotations::GeneId, term::HpoGroup, HpoTermId, Ontology};
 
 use super::super::CustomError;
-use crate::{query, server::WebServerData};
+use crate::{query, server::run::WebServerData};
 
 /// Parameters for `handle`.
 ///
@@ -110,12 +110,14 @@ mod test {
 
         let app = actix_web::test::init_service(
             actix_web::App::new()
-                .app_data(actix_web::web::Data::new(crate::server::WebServerData {
-                    ontology,
-                    ncbi_to_hgnc,
-                    hgnc_to_ncbi,
-                    full_text_index: crate::index::Index::new(hpo_doc)?,
-                }))
+                .app_data(actix_web::web::Data::new(
+                    crate::server::run::WebServerData {
+                        ontology,
+                        ncbi_to_hgnc,
+                        hgnc_to_ncbi,
+                        full_text_index: crate::index::Index::new(hpo_doc)?,
+                    },
+                ))
                 .service(super::handle),
         )
         .await;

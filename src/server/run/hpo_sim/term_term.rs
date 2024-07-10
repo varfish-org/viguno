@@ -13,7 +13,7 @@ use hpo::{
 use itertools::Itertools;
 
 use crate::common::{to_pairwise_sim, IcBasedOn, ScoreCombiner, SimilarityMethod};
-use crate::server::{actix_server::CustomError, WebServerData};
+use crate::server::{run::CustomError, run::WebServerData};
 
 /// Parameters for `handle`.
 ///
@@ -170,12 +170,14 @@ mod test {
 
         let app = actix_web::test::init_service(
             actix_web::App::new()
-                .app_data(actix_web::web::Data::new(crate::server::WebServerData {
-                    ontology,
-                    ncbi_to_hgnc,
-                    hgnc_to_ncbi,
-                    full_text_index: crate::index::Index::new(hpo_doc)?,
-                }))
+                .app_data(actix_web::web::Data::new(
+                    crate::server::run::WebServerData {
+                        ontology,
+                        ncbi_to_hgnc,
+                        hgnc_to_ncbi,
+                        full_text_index: crate::index::Index::new(hpo_doc)?,
+                    },
+                ))
                 .service(super::handle),
         )
         .await;

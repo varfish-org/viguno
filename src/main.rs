@@ -40,7 +40,7 @@ struct Cli {
 enum Commands {
     Convert(crate::convert::Args),
     Query(crate::query::Args),
-    RunServer(crate::server::Args),
+    ServerRun(crate::server::run::Args),
 }
 
 fn main() -> Result<(), anyhow::Error> {
@@ -71,8 +71,8 @@ fn main() -> Result<(), anyhow::Error> {
             Commands::Query(args) => {
                 query::run(&cli.common, args)?;
             }
-            Commands::RunServer(args) => {
-                server::run(&cli.common, args)?;
+            Commands::ServerRun(args) => {
+                server::run::run(&cli.common, args)?;
             }
         }
 
