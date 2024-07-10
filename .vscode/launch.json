@@ -1,0 +1,57 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'viguno'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=viguno",
+                    "--package=viguno"
+                ],
+                "filter": {
+                    "name": "viguno",
+                    "kind": "bin"
+                }
+            },
+            "args": [
+              "simulate",
+              "--ic-base", "gene",
+              "--similarity", "resnik",
+              "--combiner", "fun-sim-avg",
+              "--path-hpo-dir", "/home/holtgrem_c/Development/varfish-db-downloader/work/download/hpo/20240111",
+              "--path-out-rocksdb", "/tmp/viguno-rocksdb",
+              "--min-terms", "1",
+              "--max-terms", "1",
+              "--num-simulations", "10",
+              "--only-gene", "ARID1B",
+              "--seed", "42"
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+          "type": "lldb",
+          "request": "launch",
+          "name": "Debug unit tests in executable 'viguno'",
+          "cargo": {
+              "args": [
+                  "test",
+                  "--no-run",
+                  "--bin=viguno",
+                  "--package=viguno"
+              ],
+              "filter": {
+                  "name": "viguno",
+                  "kind": "bin"
+              }
+          },
+          "args": [],
+          "cwd": "${workspaceFolder}"
+      }
+  ]
+}

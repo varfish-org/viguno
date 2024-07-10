@@ -139,7 +139,7 @@ impl ResultEntry {
             .get_all(field_def)
             .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
             .collect::<Vec<_>>();
-        let definition = definition.first().map(std::clone::Clone::clone);
+        let definition = definition.first().cloned();
         let synonyms = doc
             .get_all(field_synonym)
             .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
@@ -342,7 +342,6 @@ mod test {
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(crate::server::WebServerData {
                     ontology,
-                    db: None,
                     ncbi_to_hgnc,
                     hgnc_to_ncbi,
                     full_text_index: crate::index::Index::new(hpo_doc)?,

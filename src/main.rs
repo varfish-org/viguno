@@ -11,7 +11,6 @@ pub mod index;
 pub mod pbs;
 pub mod query;
 pub mod server;
-pub mod simulate;
 
 use clap::{Parser, Subcommand};
 
@@ -42,7 +41,6 @@ enum Commands {
     Convert(crate::convert::Args),
     Query(crate::query::Args),
     RunServer(crate::server::Args),
-    Simulate(crate::simulate::Args),
 }
 
 fn main() -> Result<(), anyhow::Error> {
@@ -75,9 +73,6 @@ fn main() -> Result<(), anyhow::Error> {
             }
             Commands::RunServer(args) => {
                 server::run(&cli.common, args)?;
-            }
-            Commands::Simulate(args) => {
-                simulate::run(&cli.common, args)?;
             }
         }
 

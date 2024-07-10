@@ -162,24 +162,16 @@ mod test {
     /// Helper function for running a query.
     #[allow(dead_code)]
     async fn run_query(uri: &str) -> Result<super::Container, anyhow::Error> {
-        let hpo_path = "tests/data/hpo";
         let ontology = crate::common::load_hpo("tests/data/hpo")?;
         let ncbi_to_hgnc =
             crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;
         let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
-        let db = Some(rocksdb::DB::open_cf_for_read_only(
-            &rocksdb::Options::default(),
-            format!("{}/{}", hpo_path, "scores-fun-sim-avg-resnik-gene"),
-            ["meta", "scores"],
-            true,
-        )?);
         let hpo_doc = fastobo::from_file("tests/data/hpo/hp.obo")?;
 
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(crate::server::WebServerData {
                     ontology,
-                    db,
                     ncbi_to_hgnc,
                     hgnc_to_ncbi,
                     full_text_index: crate::index::Index::new(hpo_doc)?,
