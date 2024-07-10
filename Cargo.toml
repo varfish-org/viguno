@@ -3,9 +3,9 @@ name = "viguno"
 version = "0.2.1"
 edition = "2021"
 authors = ["Manuel Holtgrewe <manuel.holtgrewe@bih-charite.de>"]
-description = "Rust template repository"
+description = "Phenotype/disease for VarFish"
 license = "Apache-2.0"
-homepage = "https://github.com/varfish-org/viguno"
+repository = "https://github.com/varfish-org/viguno"
 readme = "README.md"
 
 [dependencies]
