@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/varfish-org/viguno/compare/v0.3.0...v0.3.1) (2024-07-11)
+
+
+### Bug Fixes
+
+* remove path to hgnc_xlink.tsv from Docker entrypoint ([#176](https://github.com/varfish-org/viguno/issues/176)) ([f061c9d](https://github.com/varfish-org/viguno/commit/f061c9df36a17c08d0d02d2c9ede169c9836cc84))
+
 ## [0.3.0](https://github.com/varfish-org/viguno/compare/v0.2.1...v0.3.0) (2024-07-11)
 
 
