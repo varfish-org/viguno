@@ -1,9 +1,9 @@
 ---
 source: src/server/run/hpo_sim/term_term.rs
-expression: "&run_query(\"/hpo/sim/term-term?lhs=HP:0010442&rhs=HP:0001780\").await?"
+expression: "&run_query(web_server_data.clone(),\n                \"/hpo/sim/term-term?lhs=HP:0010442&rhs=HP:0001780\").await?"
 ---
 version:
-  hpo: 2023-04-05
+  hpo: 2024-07-01
   viguno: 0.0.0
 query:
   lhs:
@@ -16,4 +16,4 @@ query:
 result:
   - lhs: "HP:0010442"
     rhs: "HP:0001780"
-    score: 1.2074362
+    score: 1.1945721

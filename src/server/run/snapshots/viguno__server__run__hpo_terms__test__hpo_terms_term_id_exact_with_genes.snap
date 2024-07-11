@@ -1,9 +1,9 @@
 ---
 source: src/server/run/hpo_terms.rs
-expression: "&run_query(\"/hpo/terms?term_id=HP:0000023&genes=true\").await?"
+expression: "&run_query(web_server_data.clone(),\n                \"/hpo/terms?term_id=HP:0000023&genes=true\").await?"
 ---
 version:
-  hpo: 2023-04-05
+  hpo: 2024-07-01
   viguno: 0.0.0
 query:
   term_id: "HP:0000023"
@@ -17,7 +17,6 @@ result:
     synonyms: ~
     xrefs:
       - "MEDDRA:10022016"
-      - "MSH:D006552"
       - "SNOMEDCT_US:396232000"
       - "UMLS:C0019294"
     genes:
@@ -111,6 +110,9 @@ result:
       - ncbi_gene_id: 1312
         gene_symbol: COMT
         hgnc_id: "HGNC:2228"
+      - ncbi_gene_id: 1353
+        gene_symbol: COX11
+        hgnc_id: "HGNC:2261"
       - ncbi_gene_id: 1387
         gene_symbol: CREBBP
         hgnc_id: "HGNC:2348"
@@ -126,9 +128,15 @@ result:
       - ncbi_gene_id: 1656
         gene_symbol: DDX6
         hgnc_id: "HGNC:2747"
+      - ncbi_gene_id: 1748
+        gene_symbol: DLX4
+        hgnc_id: "HGNC:2917"
       - ncbi_gene_id: 1801
         gene_symbol: DPH1
         hgnc_id: "HGNC:3003"
+      - ncbi_gene_id: 1802
+        gene_symbol: DPH2
+        hgnc_id: "HGNC:3004"
       - ncbi_gene_id: 1836
         gene_symbol: SLC26A2
         hgnc_id: "HGNC:10994"
@@ -156,6 +164,9 @@ result:
       - ncbi_gene_id: 2200
         gene_symbol: FBN1
         hgnc_id: "HGNC:3603"
+      - ncbi_gene_id: 2202
+        gene_symbol: EFEMP1
+        hgnc_id: "HGNC:3218"
       - ncbi_gene_id: 2239
         gene_symbol: GPC4
         hgnc_id: "HGNC:4452"
@@ -228,6 +239,9 @@ result:
       - ncbi_gene_id: 2990
         gene_symbol: GUSB
         hgnc_id: "HGNC:4696"
+      - ncbi_gene_id: 3229
+        gene_symbol: HOXC13
+        hgnc_id: "HGNC:5125"
       - ncbi_gene_id: 3339
         gene_symbol: HSPG2
         hgnc_id: "HGNC:5273"
@@ -357,6 +371,9 @@ result:
       - ncbi_gene_id: 5832
         gene_symbol: ALDH18A1
         hgnc_id: "HGNC:9722"
+      - ncbi_gene_id: 5908
+        gene_symbol: RAP1B
+        hgnc_id: "HGNC:9857"
       - ncbi_gene_id: 5982
         gene_symbol: RFC2
         hgnc_id: "HGNC:9970"
@@ -396,6 +413,9 @@ result:
       - ncbi_gene_id: 6804
         gene_symbol: STX1A
         hgnc_id: "HGNC:11433"
+      - ncbi_gene_id: 6874
+        gene_symbol: TAF4
+        hgnc_id: "HGNC:11537"
       - ncbi_gene_id: 6899
         gene_symbol: TBX1
         hgnc_id: "HGNC:11592"
@@ -426,6 +446,9 @@ result:
       - ncbi_gene_id: 7353
         gene_symbol: UFD1
         hgnc_id: "HGNC:12520"
+      - ncbi_gene_id: 7403
+        gene_symbol: KDM6A
+        hgnc_id: "HGNC:12637"
       - ncbi_gene_id: 7458
         gene_symbol: EIF4H
         hgnc_id: "HGNC:12741"
@@ -447,6 +470,9 @@ result:
       - ncbi_gene_id: 8076
         gene_symbol: MFAP5
         hgnc_id: "HGNC:29673"
+      - ncbi_gene_id: 8085
+        gene_symbol: KMT2D
+        hgnc_id: "HGNC:7133"
       - ncbi_gene_id: 8091
         gene_symbol: HMGA2
         hgnc_id: "HGNC:5009"
@@ -516,6 +542,9 @@ result:
       - ncbi_gene_id: 9469
         gene_symbol: CHST3
         hgnc_id: "HGNC:1971"
+      - ncbi_gene_id: 9487
+        gene_symbol: PIGL
+        hgnc_id: "HGNC:8966"
       - ncbi_gene_id: 9509
         gene_symbol: ADAMTS2
         hgnc_id: "HGNC:218"
@@ -528,6 +557,9 @@ result:
       - ncbi_gene_id: 9652
         gene_symbol: SKIC3
         hgnc_id: "HGNC:23639"
+      - ncbi_gene_id: 9681
+        gene_symbol: DEPDC5
+        hgnc_id: "HGNC:18423"
       - ncbi_gene_id: 9719
         gene_symbol: ADAMTSL2
         hgnc_id: "HGNC:14631"
@@ -597,6 +629,9 @@ result:
       - ncbi_gene_id: 10984
         gene_symbol: KCNQ1OT1
         hgnc_id: "HGNC:6295"
+      - ncbi_gene_id: 11080
+        gene_symbol: DNAJB4
+        hgnc_id: "HGNC:14886"
       - ncbi_gene_id: 11107
         gene_symbol: PRDM5
         hgnc_id: "HGNC:9349"
@@ -633,6 +668,9 @@ result:
       - ncbi_gene_id: 23405
         gene_symbol: DICER1
         hgnc_id: "HGNC:17098"
+      - ncbi_gene_id: 23476
+        gene_symbol: BRD4
+        hgnc_id: "HGNC:13575"
       - ncbi_gene_id: 23483
         gene_symbol: TGDS
         hgnc_id: "HGNC:20324"
@@ -654,6 +692,9 @@ result:
       - ncbi_gene_id: 25836
         gene_symbol: NIPBL
         hgnc_id: "HGNC:28862"
+      - ncbi_gene_id: 25885
+        gene_symbol: POLR1A
+        hgnc_id: "HGNC:17264"
       - ncbi_gene_id: 25942
         gene_symbol: SIN3A
         hgnc_id: "HGNC:19353"
@@ -735,6 +776,12 @@ result:
       - ncbi_gene_id: 56623
         gene_symbol: INPP5E
         hgnc_id: "HGNC:21474"
+      - ncbi_gene_id: 56896
+        gene_symbol: DPYSL5
+        hgnc_id: "HGNC:20637"
+      - ncbi_gene_id: 57020
+        gene_symbol: VPS35L
+        hgnc_id: "HGNC:24641"
       - ncbi_gene_id: 57492
         gene_symbol: ARID1B
         hgnc_id: "HGNC:18040"
@@ -774,6 +821,9 @@ result:
       - ncbi_gene_id: 64840
         gene_symbol: PORCN
         hgnc_id: "HGNC:17652"
+      - ncbi_gene_id: 65267
+        gene_symbol: WNK3
+        hgnc_id: "HGNC:14543"
       - ncbi_gene_id: 79158
         gene_symbol: GNPTAB
         hgnc_id: "HGNC:29670"
@@ -783,6 +833,9 @@ result:
       - ncbi_gene_id: 79813
         gene_symbol: EHMT1
         hgnc_id: "HGNC:24650"
+      - ncbi_gene_id: 79875
+        gene_symbol: THSD4
+        hgnc_id: "HGNC:25835"
       - ncbi_gene_id: 79989
         gene_symbol: IFT56
         hgnc_id: "HGNC:21882"
@@ -798,6 +851,9 @@ result:
       - ncbi_gene_id: 84163
         gene_symbol: GTF2IRD2
         hgnc_id: "HGNC:30775"
+      - ncbi_gene_id: 84231
+        gene_symbol: TRAF7
+        hgnc_id: "HGNC:20456"
       - ncbi_gene_id: 84277
         gene_symbol: DNAJC30
         hgnc_id: "HGNC:16410"
@@ -813,6 +869,12 @@ result:
       - ncbi_gene_id: 84992
         gene_symbol: PIGY
         hgnc_id: "HGNC:28213"
+      - ncbi_gene_id: 90459
+        gene_symbol: ERI1
+        hgnc_id: "HGNC:23994"
+      - ncbi_gene_id: 91039
+        gene_symbol: DPP9
+        hgnc_id: "HGNC:18648"
       - ncbi_gene_id: 91147
         gene_symbol: TMEM67
         hgnc_id: "HGNC:28396"
@@ -861,6 +923,9 @@ result:
       - ncbi_gene_id: 170302
         gene_symbol: ARX
         hgnc_id: "HGNC:18060"
+      - ncbi_gene_id: 170689
+        gene_symbol: ADAMTS15
+        hgnc_id: "HGNC:16305"
       - ncbi_gene_id: 197257
         gene_symbol: LDHD
         hgnc_id: "HGNC:19708"

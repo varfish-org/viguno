@@ -84,7 +84,7 @@ mod test {
 
         let score = score(&prepare(query), &hpo_marfan, &hpo);
 
-        assert!((score - 1.770_859_7).abs() < 0.00001, "score = {score}");
+        assert!((score - 1.757_194).abs() < 0.00001, "score = {score}");
 
         Ok(())
     }

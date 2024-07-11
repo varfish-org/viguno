@@ -1,9 +1,9 @@
 ---
 source: src/server/run/hpo_omims.rs
-expression: "&run_query(\"/hpo/omims?name=tel-Manzke+syndrome&match=suffix&hpo_terms=true\").await?"
+expression: "&run_query(web_server_data.clone(),\n                \"/hpo/omims?name=tel-Manzke+syndrome&match=suffix&hpo_terms=true\").await?"
 ---
 version:
-  hpo: 2023-04-05
+  hpo: 2024-07-01
   viguno: 0.0.0
 query:
   omim_id: ~
@@ -69,8 +69,8 @@ result:
         name: Global developmental delay
       - term_id: "HP:0001373"
         name: Joint dislocation
-      - term_id: "HP:0001388"
-        name: Joint laxity
+      - term_id: "HP:0001382"
+        name: Joint hypermobility
       - term_id: "HP:0001511"
         name: Intrauterine growth retardation
       - term_id: "HP:0001537"

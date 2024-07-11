@@ -1,9 +1,9 @@
 ---
 source: src/server/run/hpo_genes.rs
-expression: "&run_query(\"/hpo/genes?gene_id=2348&hpo_terms=true\").await?"
+expression: "&run_query(web_server_data.clone(),\n                \"/hpo/genes?gene_id=2348&hpo_terms=true\").await?"
 ---
 version:
-  hpo: 2023-04-05
+  hpo: 2024-07-01
   viguno: 0.0.0
 query:
   gene_id: "2348"
