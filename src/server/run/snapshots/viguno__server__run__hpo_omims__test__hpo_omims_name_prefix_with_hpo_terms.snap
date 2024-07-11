@@ -9,6 +9,7 @@ query:
   omim_id: ~
   name: Catel-Manzke syndro
   match_: prefix
+  ignore_case: ~
   max_results: 100
   hpo_terms: true
 result:
