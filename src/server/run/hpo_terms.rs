@@ -295,8 +295,13 @@ async fn handle(
             query_parser.set_field_fuzzy(field_synonym, true, 1, true);
             query_parser
         };
+        let name = if name.contains(":") {
+            format!("\"{name}\"")
+        } else {
+            name.to_string()
+        };
         let index_query = query_parser
-            .parse_query(&format!("\"{name}\""))
+            .parse_query(&name)
             .map_err(|e| CustomError::new(anyhow::anyhow!("Error parsing query: {}", e)))?;
         let top_docs = searcher
             .search(
