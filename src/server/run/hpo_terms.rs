@@ -94,6 +94,7 @@ impl Ord for ResultEntry {
 
 impl ResultEntry {
     /// Create a `ResultEntry` from an `HpoTerm`.
+    #[allow(clippy::missing_panics_doc)]
     pub fn from_term_with_ontology(
         term: &HpoTerm,
         ontology: &Ontology,

@@ -155,7 +155,7 @@ where
     }
 }
 
-/// Utoipa-based OpenAPI generation helper.
+/// Utoipa-based `OpenAPI` generation helper.
 #[derive(utoipa::OpenApi)]
 #[openapi(
     paths(hpo_genes::handle, hpo_terms::handle, hpo_omims::handle,),

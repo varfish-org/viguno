@@ -109,14 +109,10 @@ impl ResultEntry {
                 .into_iter()
                 .collect::<HpoGroup>()
                 .into_iter()
-                .map(|term_id| ontology.hpo(term_id))
-                .filter(std::option::Option::is_some)
-                .map(|term| {
-                    let term = term.expect("filtered above");
-                    ResultHpoTerm {
-                        term_id: term.id().to_string(),
-                        name: term.name().to_string(),
-                    }
+                .filter_map(|term_id| ontology.hpo(term_id))
+                .map(|term| ResultHpoTerm {
+                    term_id: term.id().to_string(),
+                    name: term.name().to_string(),
                 })
                 .collect::<Vec<_>>();
             result.sort();
