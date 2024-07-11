@@ -1,9 +1,9 @@
 ---
 source: src/server/run/hpo_genes.rs
-expression: "&run_query(\"/hpo/genes?gene_symbol=GD&match=contains\").await?"
+expression: "&run_query(web_server_data.clone(),\n                \"/hpo/genes?gene_symbol=GD&match=contains\").await?"
 ---
 version:
-  hpo: 2023-04-05
+  hpo: 2024-07-01
   viguno: 0.0.0
 query:
   gene_id: ~
@@ -45,12 +45,18 @@ result:
   - gene_ncbi_id: 4967
     gene_symbol: OGDH
     hgnc_id: "HGNC:8124"
+  - gene_ncbi_id: 5910
+    gene_symbol: RAP1GDS1
+    hgnc_id: "HGNC:9859"
   - gene_ncbi_id: 7358
     gene_symbol: UGDH
     hgnc_id: "HGNC:12525"
   - gene_ncbi_id: 8200
     gene_symbol: GDF5
     hgnc_id: "HGNC:4220"
+  - gene_ncbi_id: 9518
+    gene_symbol: GDF15
+    hgnc_id: "HGNC:30142"
   - gene_ncbi_id: 9573
     gene_symbol: GDF3
     hgnc_id: "HGNC:4218"
@@ -75,6 +81,9 @@ result:
   - gene_ncbi_id: 55753
     gene_symbol: OGDHL
     hgnc_id: "HGNC:25590"
+  - gene_ncbi_id: 58528
+    gene_symbol: RRAGD
+    hgnc_id: "HGNC:19903"
   - gene_ncbi_id: 79641
     gene_symbol: ROGDI
     hgnc_id: "HGNC:29478"

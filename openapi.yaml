@@ -14,7 +14,7 @@ paths:
       tags:
       - hpo_genes
       summary: Query for genes in the HPO database.
-      operationId: handle
+      operationId: hpo_genes
       parameters:
       - name: gene_id
         in: query
@@ -63,7 +63,7 @@ paths:
       tags:
       - hpo_omims
       summary: Query for OMIM diseases in the HPO database.
-      operationId: handle
+      operationId: hpo_omims
       parameters:
       - name: omim_id
         in: query
@@ -107,6 +107,101 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Result'
+  /hpo/sim/term-gene:
+    get:
+      tags:
+      - hpo_sim::term_gene
+      summary: Query for similarity between a set of terms to each entry in a
+      description: list of genes.
+      operationId: hpo_sim_term_gene
+      parameters:
+      - name: terms
+        in: query
+        description: Set of terms to use as query.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: gene_ids
+        in: query
+        description: The set of ids for genes to use as "database".
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+          nullable: true
+      - name: gene_symbols
+        in: query
+        description: The set of symbols for genes to use as "database".
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+          nullable: true
+      responses:
+        '200':
+          description: The query was successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+  /hpo/sim/term-term:
+    get:
+      tags:
+      - hpo_sim::term_term
+      summary: Query for pairwise term similarity.
+      description: |-
+        In the case of Resnik, this corresponds to `IC(MICA(t_1, t_2))`.
+
+        # Errors
+
+        In the case that there is an error running the server.
+      operationId: hpo_sim_term_term
+      parameters:
+      - name: lhs
+        in: query
+        description: The one set of HPO terms to compute similarity for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: rhs
+        in: query
+        description: The second set of HPO terms to compute similarity for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ic_base
+        in: query
+        description: What should information content be based on.
+        required: false
+        schema:
+          $ref: '#/components/schemas/IcBasedOn'
+      - name: similarity
+        in: query
+        description: The similarity method to use.
+        required: false
+        schema:
+          $ref: '#/components/schemas/SimilarityMethod'
+      - name: combiner
+        in: query
+        description: The score combiner.
+        required: false
+        schema:
+          $ref: '#/components/schemas/ScoreCombiner'
+      responses:
+        '200':
+          description: The query was successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
   /hpo/terms:
     get:
       tags:
@@ -116,7 +211,7 @@ paths:
         # Errors
 
         In the case that there is an error running the server.
-      operationId: handle
+      operationId: hpo_terms
       parameters:
       - name: term_id
         in: query

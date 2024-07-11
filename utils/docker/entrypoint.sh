@@ -26,8 +26,7 @@ if [ "$first" == exec ]; then
   exec "$@"
 else
   exec \
-    viguno \
-    run-server \
+    viguno server run \
       --path-hpo-dir "$PATH_HPO_DIR" \
       --path-hgnc-xlink "$PATH_HGNC_XLINK" \
       --listen-host "$HTTP_HOST" \

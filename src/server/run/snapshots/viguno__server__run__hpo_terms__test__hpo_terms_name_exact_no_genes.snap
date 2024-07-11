@@ -1,9 +1,9 @@
 ---
 source: src/server/run/hpo_terms.rs
-expression: "&run_query(\"/hpo/terms?name=Inguinal+hernia\").await?"
+expression: "&run_query(web_server_data.clone(), \"/hpo/terms?name=Inguinal+hernia\").await?"
 ---
 version:
-  hpo: 2023-04-05
+  hpo: 2024-07-01
   viguno: 0.0.0
 query:
   term_id: ~
@@ -17,7 +17,6 @@ result:
     synonyms: ~
     xrefs:
       - "MEDDRA:10022016"
-      - "MSH:D006552"
       - "SNOMEDCT_US:396232000"
       - "UMLS:C0019294"
   - term_id: "HP:0100541"
@@ -27,6 +26,5 @@ result:
       - Crural hernia
     xrefs:
       - "MEDDRA:10016434"
-      - "MSH:D006550"
       - "SNOMEDCT_US:50063009"
       - "UMLS:C0019288"

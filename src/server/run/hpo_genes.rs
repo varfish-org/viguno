@@ -132,6 +132,7 @@ pub struct Result {
 /// Query for genes in the HPO database.
 #[allow(clippy::unused_async)]
 #[utoipa::path(
+    operation_id = "hpo_genes",
     params(Query),
     responses(
         (status = 200, description = "The query was successful.", body = Result),
@@ -215,7 +216,7 @@ pub(crate) mod test {
     pub fn web_server_data() -> Arc<crate::server::run::WebServerData> {
         let ontology = crate::common::load_hpo("tests/data/hpo").expect("could not load HPO");
         let ncbi_to_hgnc =
-            crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")
+            crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hpo/hgnc_xlink.tsv")
                 .expect("could not HGNC xlink");
         let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
         let hpo_doc = fastobo::from_file("tests/data/hpo/hp.obo").expect("could not load HPO OBO");

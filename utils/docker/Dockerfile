@@ -25,7 +25,7 @@ RUN apt-get update && \
 RUN rustup component add rustfmt
 # Install build dependency `protoc`.
 COPY utils/install-protoc.sh /tmp
-RUN CMAKE_INSTALL_PREFIX=/usr/local bash /tmp/install-protoc.sh
+RUN PREFIX=/usr/local bash /tmp/install-protoc.sh
 
 # Now for the two-step building.
 #
@@ -43,6 +43,7 @@ RUN cargo build --release
 # Now copy in the rest of the sources.
 COPY build.rs /usr/src/viguno/
 COPY src /usr/src/viguno/src/
+COPY protos /usr/src/viguno/protos/
 COPY utils/alpine-linker-script.sh /usr/src/viguno/utils/
 RUN chmod a+rx /usr/src/viguno/utils/alpine-linker-script.sh
 COPY .cargo /usr/src/viguno/.cargo/

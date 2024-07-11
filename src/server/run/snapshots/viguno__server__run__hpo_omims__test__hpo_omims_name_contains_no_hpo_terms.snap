@@ -1,9 +1,9 @@
 ---
 source: src/server/run/hpo_omims.rs
-expression: "&run_query(\"/hpo/omims?name=tel-Manzke+syndro&match=contains\").await?"
+expression: "&run_query(web_server_data.clone(),\n                \"/hpo/omims?name=tel-Manzke+syndro&match=contains\").await?"
 ---
 version:
-  hpo: 2023-04-05
+  hpo: 2024-07-01
   viguno: 0.0.0
 query:
   omim_id: ~

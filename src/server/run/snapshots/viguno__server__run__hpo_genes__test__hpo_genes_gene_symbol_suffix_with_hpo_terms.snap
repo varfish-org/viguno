@@ -1,9 +1,9 @@
 ---
 source: src/server/run/hpo_genes.rs
-expression: "&run_query(\"/hpo/genes?gene_symbol=GDS&match=suffix&hpo_terms=true\").await?"
+expression: "&run_query(web_server_data.clone(),\n                \"/hpo/genes?gene_symbol=GDS&match=suffix&hpo_terms=true\").await?"
 ---
 version:
-  hpo: 2023-04-05
+  hpo: 2024-07-01
   viguno: 0.0.0
 query:
   gene_id: ~
@@ -74,10 +74,10 @@ result:
         name: Global developmental delay
       - term_id: "HP:0001373"
         name: Joint dislocation
+      - term_id: "HP:0001382"
+        name: Joint hypermobility
       - term_id: "HP:0001387"
         name: Joint stiffness
-      - term_id: "HP:0001388"
-        name: Joint laxity
       - term_id: "HP:0001508"
         name: Failure to thrive
       - term_id: "HP:0001511"
@@ -114,8 +114,6 @@ result:
         name: Clinodactyly of the 5th finger
       - term_id: "HP:0004322"
         name: Short stature
-      - term_id: "HP:0005692"
-        name: Joint hyperflexibility
       - term_id: "HP:0005792"
         name: Short humerus
       - term_id: "HP:0005930"

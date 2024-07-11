@@ -45,6 +45,7 @@ utoipa-swagger-ui = { version = "7.1.0", features = ["actix-web"] }
 utoipa = { version = "4.2", features = ["actix_extras", "chrono", "indexmap", "preserve_order", "yaml"] }
 
 [build-dependencies]
+anyhow = "1.0"
 prost-build = "0.12"
 
 [dev-dependencies]
