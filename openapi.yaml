@@ -81,11 +81,18 @@ paths:
           nullable: true
       - name: match_
         in: query
-        description: The match mode.
+        description: The match mode, default is `Match::Exact`.
         required: false
         schema:
           allOf:
           - $ref: '#/components/schemas/Match'
+          nullable: true
+      - name: ignore_case
+        in: query
+        description: Whether case is insentivie, default is `false`.
+        required: false
+        schema:
+          type: boolean
           nullable: true
       - name: max_results
         in: query
