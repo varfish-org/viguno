@@ -1,0 +1,16 @@
+---
+source: src/server/run/hpo_omims.rs
+expression: "&run_query(\"/hpo/omims?omim_id=616145\").await?"
+---
+version:
+  hpo: 2023-04-05
+  viguno: 0.0.0
+query:
+  omim_id: "616145"
+  name: ~
+  match_: ~
+  max_results: 100
+  hpo_terms: false
+result:
+  - omim_id: "OMIM:616145"
+    name: Catel-Manzke syndrome

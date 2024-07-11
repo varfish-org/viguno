@@ -1,0 +1,32 @@
+---
+source: src/server/run/hpo_terms.rs
+expression: "&run_query(\"/hpo/terms?name=Inguinal+hernia\").await?"
+---
+version:
+  hpo: 2023-04-05
+  viguno: 0.0.0
+query:
+  term_id: ~
+  name: Inguinal hernia
+  max_results: 100
+  genes: false
+result:
+  - term_id: "HP:0000023"
+    name: Inguinal hernia
+    definition: Protrusion of the contents of the abdominal cavity through the inguinal canal.
+    synonyms: ~
+    xrefs:
+      - "MEDDRA:10022016"
+      - "MSH:D006552"
+      - "SNOMEDCT_US:396232000"
+      - "UMLS:C0019294"
+  - term_id: "HP:0100541"
+    name: Femoral hernia
+    definition: "A hernia which occurs just below the inguinal ligament, where abdominal contents pass through a naturally occurring weakness called the femoral canal."
+    synonyms:
+      - Crural hernia
+    xrefs:
+      - "MEDDRA:10016434"
+      - "MSH:D006550"
+      - "SNOMEDCT_US:50063009"
+      - "UMLS:C0019288"
