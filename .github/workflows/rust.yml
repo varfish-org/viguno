@@ -113,7 +113,6 @@ jobs:
 
       - name: Check schema
         run: |
-          cargo run --bin check-schema
           cargo run -- server schema --output-file /tmp/openapi.yaml
           set -e
           diff openapi.yaml /tmp/openapi.yaml
