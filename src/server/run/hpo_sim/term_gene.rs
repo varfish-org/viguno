@@ -107,26 +107,19 @@ async fn handle(
 
 #[cfg(test)]
 mod test {
+    use std::sync::Arc;
+
+    use crate::server::run::hpo_genes::test::web_server_data;
+
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(uri: &str) -> Result<crate::query::query_result::Result, anyhow::Error> {
-        let hpo_path = "tests/data/hpo";
-        let ontology = crate::common::load_hpo(hpo_path)?;
-        let ncbi_to_hgnc =
-            crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;
-        let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
-        let hpo_doc = fastobo::from_file("tests/data/hpo/hp.obo")?;
-
+    pub async fn run_query(
+        web_server_data: Arc<crate::server::run::WebServerData>,
+        uri: &str,
+    ) -> Result<crate::query::query_result::Result, anyhow::Error> {
         let app = actix_web::test::init_service(
             actix_web::App::new()
-                .app_data(actix_web::web::Data::new(
-                    crate::server::run::WebServerData {
-                        ontology,
-                        ncbi_to_hgnc,
-                        hgnc_to_ncbi,
-                        full_text_index: crate::index::Index::new(hpo_doc)?,
-                    },
-                ))
+                .app_data(actix_web::web::Data::new(web_server_data))
                 .service(super::handle),
         )
         .await;
@@ -137,29 +130,45 @@ mod test {
         Ok(resp)
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_sim_term_gene_terms_ncbi_gene_ids() -> Result<(), anyhow::Error> {
+    async fn hpo_sim_term_gene_terms_ncbi_gene_ids(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=23483,7273")
-                .await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=23483,7273"
+            )
+            .await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_sim_term_gene_terms_hgnc_gene_ids() -> Result<(), anyhow::Error> {
+    async fn hpo_sim_term_gene_terms_hgnc_gene_ids(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
+                web_server_data.clone(),
                 "/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=HGNC:20324,HGNC:12403"
             )
             .await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_sim_term_gene_terms_symbols() -> Result<(), anyhow::Error> {
+    async fn hpo_sim_term_gene_terms_symbols(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN")
-                .await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN"
+            )
+            .await?
         ))
     }
 }

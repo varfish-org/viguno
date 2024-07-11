@@ -206,7 +206,7 @@ async fn handle(
 }
 
 #[cfg(test)]
-mod test {
+pub(crate) mod test {
     use std::sync::Arc;
 
     /// Return the default ``crate::server::run::WebServerData`` for testing.
@@ -231,7 +231,7 @@ mod test {
 
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(
+    pub async fn run_query(
         web_server_data: Arc<crate::server::run::WebServerData>,
         uri: &str,
     ) -> Result<super::Result, anyhow::Error> {
