@@ -9,6 +9,7 @@ query:
   omim_id: ~
   name: tel-Manzke syndro
   match_: contains
+  ignore_case: ~
   max_results: 100
   hpo_terms: true
 result:

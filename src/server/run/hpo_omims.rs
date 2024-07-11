@@ -39,9 +39,11 @@ pub struct Query {
     pub omim_id: Option<String>,
     /// The disease name to search for.
     pub name: Option<String>,
-    /// The match mode.
+    /// The match mode, default is `Match::Exact`.
     #[serde(alias = "match")]
     pub match_: Option<Match>,
+    /// Whether case is insentivie, default is `false`.
+    pub ignore_case: Option<bool>,
     /// Maximal number of results to return.
     #[serde(default = "_default_max_results")]
     pub max_results: usize,
@@ -144,6 +146,7 @@ pub struct Result {
 
 /// Query for OMIM diseases in the HPO database.
 #[allow(clippy::unused_async)]
+#[allow(clippy::too_many_lines)]
 #[utoipa::path(
     operation_id = "hpo_omims",
     params(Query),
@@ -167,11 +170,22 @@ async fn handle(
                 .map_err(|e| CustomError::new(anyhow::anyhow!(e)))?;
             ontology.omim_disease(&omim_id)
         } else if let Some(name) = &query.name {
+            let name = if query.ignore_case.unwrap_or_default() {
+                name.to_lowercase()
+            } else {
+                name.clone()
+            };
             let mut omim_disease = None;
             let mut it = ontology.omim_diseases();
             let mut tmp = it.next();
             while tmp.is_some() && omim_disease.is_none() {
-                if tmp.expect("checked above").name() == name {
+                let tmp_name = tmp.expect("checked above").name();
+                let tmp_name = if query.ignore_case.unwrap_or_default() {
+                    tmp_name.to_lowercase()
+                } else {
+                    tmp_name.to_string()
+                };
+                if tmp_name == name {
                     omim_disease = tmp;
                 }
                 tmp = it.next();
@@ -191,11 +205,21 @@ async fn handle(
         let mut it = ontology.omim_diseases();
         let mut omim_disease = it.next();
         while omim_disease.is_some() && result.len() < query.max_results {
+            let name = if query.ignore_case.unwrap_or_default() {
+                name.to_lowercase()
+            } else {
+                name.clone()
+            };
             let omim_name = omim_disease.as_ref().expect("checked above").name();
+            let omim_name = if query.ignore_case.unwrap_or_default() {
+                omim_name.to_lowercase()
+            } else {
+                omim_name.to_string()
+            };
             let is_match = match query.match_.unwrap_or_default() {
-                Match::Prefix => omim_name.starts_with(name),
-                Match::Suffix => omim_name.ends_with(name),
-                Match::Contains => omim_name.contains(name),
+                Match::Prefix => omim_name.starts_with(&name),
+                Match::Suffix => omim_name.ends_with(&name),
+                Match::Contains => omim_name.contains(&name),
                 Match::Exact => panic!("cannot happen here"),
             };
             if is_match {
