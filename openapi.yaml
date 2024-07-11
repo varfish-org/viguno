@@ -416,6 +416,24 @@ components:
         name:
           type: string
           description: The term name.
+    Result_:
+      type: object
+      title: HpoTermsResult
+      description: Container for the result.
+      required:
+      - version
+      - query
+      - result
+      properties:
+        version:
+          $ref: '#/components/schemas/Version'
+        query:
+          $ref: '#/components/schemas/Query'
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResultEntry'
+          description: The resulting records for the scored genes.
     ScoreCombiner:
       type: string
       description: |-

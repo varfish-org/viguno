@@ -115,4 +115,6 @@ jobs:
         run: |
           cargo run -- server schema --output-file /tmp/openapi.yaml
           set -e
-          diff openapi.yaml /tmp/openapi.yaml
+          diff \
+            <(sed 's/^  version:.*$/  version: x.y.z/g' openapi.yaml) \
+            <(sed 's/^  version:.*$/  version: x.y.z/g' /tmp/openapi.yaml)

@@ -170,7 +170,7 @@ where
         hpo_omims::Result,
         hpo_omims::ResultEntry,
         hpo_terms::Query,
-        hpo_terms::Result,
+        hpo_terms::Result_,
         hpo_terms::ResultEntry,
         hpo_sim::term_gene::Query,
         crate::query::query_result::Result,
