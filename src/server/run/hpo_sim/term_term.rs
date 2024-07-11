@@ -12,7 +12,7 @@ use hpo::{
 };
 use itertools::Itertools;
 
-use crate::common::{to_pairwise_sim, IcBasedOn, ScoreCombiner, SimilarityMethod};
+use crate::common::{to_pairwise_sim, IcBasedOn, ScoreCombiner, SimilarityMethod, Version};
 use crate::server::{run::CustomError, run::WebServerData};
 
 /// Parameters for `handle`.
@@ -21,7 +21,7 @@ use crate::server::{run::CustomError, run::WebServerData};
 ///
 /// - `lhs` -- first set of terms to compute similarity for
 /// - `rhs` -- econd set of terms to compute similarity for
-#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, utoipa::IntoParams, Default, Debug, Clone)]
 pub struct RequestQuery {
     /// The one set of HPO terms to compute similarity for.
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
@@ -43,7 +43,8 @@ pub struct RequestQuery {
 /// Request as sent together with the response.
 ///
 /// The difference is that the `lhs` and `rhs` fields are replaced by vecs.
-#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Default, Debug, Clone)]
+#[schema(title = "HpoSimTermTermQuery")]
 pub struct ResponseQuery {
     /// The one set of HPO terms to compute similarity for.
     pub lhs: Vec<String>,
@@ -61,10 +62,11 @@ pub struct ResponseQuery {
 }
 
 /// Result container.
-#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
-pub struct Container {
+#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Default, Debug, Clone)]
+#[schema(title = "HpoSimTermTermResult")]
+pub struct Result {
     /// Version information.
-    pub version: crate::common::Version,
+    pub version: Version,
     /// The original query records.
     pub query: ResponseQuery,
     /// The resulting records for the scored genes.
@@ -72,7 +74,17 @@ pub struct Container {
 }
 
 /// Result entry for `handle`.
-#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone, PartialEq, PartialOrd)]
+#[derive(
+    serde::Serialize,
+    serde::Deserialize,
+    utoipa::ToSchema,
+    Default,
+    Debug,
+    Clone,
+    PartialEq,
+    PartialOrd,
+)]
+#[schema(title = "HpoSimTermTermResultEntry")]
 pub struct ResultEntry {
     /// The lhs entry.
     pub lhs: String,
@@ -90,6 +102,12 @@ pub struct ResultEntry {
 ///
 /// In the case that there is an error running the server.
 #[allow(clippy::unused_async)]
+#[utoipa::path(
+    params(RequestQuery),
+    responses(
+        (status = 200, description = "The query was successful.", body = Result),
+    )
+)]
 #[get("/hpo/sim/term-term")]
 async fn handle(
     data: Data<WebServerData>,
@@ -140,8 +158,8 @@ async fn handle(
         combiner,
     } = query.into_inner();
 
-    let result = Container {
-        version: crate::common::Version::new(&data.ontology.hpo_version()),
+    let result = Result {
+        version: Version::new(&data.ontology.hpo_version()),
         query: ResponseQuery {
             lhs,
             rhs,
@@ -161,7 +179,7 @@ async fn handle(
 mod test {
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(uri: &str) -> Result<super::Container, anyhow::Error> {
+    async fn run_query(uri: &str) -> Result<super::Result, anyhow::Error> {
         let ontology = crate::common::load_hpo("tests/data/hpo")?;
         let ncbi_to_hgnc =
             crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;

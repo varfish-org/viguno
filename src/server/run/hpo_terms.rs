@@ -9,7 +9,7 @@ use actix_web::{
 };
 use hpo::{annotations::AnnotationId, HpoTerm, HpoTermId, Ontology};
 
-use crate::server::run::WebServerData;
+use crate::{common::Version, server::run::WebServerData};
 
 use super::{CustomError, ResultGene};
 
@@ -22,8 +22,11 @@ use super::{CustomError, ResultGene};
 /// - `gene_symbol` -- specify the gene symbol
 /// - `max_results` -- the maximum number of records to return
 /// - `genes` -- whether to include `"genes"` in result
-#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
-struct Query {
+#[derive(
+    serde::Serialize, serde::Deserialize, utoipa::ToSchema, utoipa::IntoParams, Debug, Clone,
+)]
+#[schema(title = "HpoTermsQuery")]
+pub struct Query {
     /// The term ID to search for.
     pub term_id: Option<String>,
     /// The term name to search for.
@@ -47,8 +50,9 @@ fn _default_genes() -> bool {
 }
 
 /// Result entry for `fetch_hpo_genes`.
-#[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
-struct ResultEntry {
+#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
+#[schema(title = "HpoTermsResultEntry")]
+pub struct ResultEntry {
     /// The HPO term's ID.
     pub term_id: String,
     /// The HPO term's name.
@@ -89,6 +93,7 @@ impl Ord for ResultEntry {
 }
 
 impl ResultEntry {
+    /// Create a `ResultEntry` from an `HpoTerm`.
     pub fn from_term_with_ontology(
         term: &HpoTerm,
         ontology: &Ontology,
@@ -183,10 +188,11 @@ impl ResultEntry {
 }
 
 /// Container for the result.
-#[derive(Debug, serde::Serialize, serde::Deserialize)]
-struct Container {
+#[derive(Debug, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
+#[schema(title = "HpoTermsResult")]
+pub struct Result {
     /// Version information.
-    pub version: crate::common::Version,
+    pub version: Version,
     /// The original query records.
     pub query: Query,
     /// The resulting records for the scored genes.
@@ -200,6 +206,12 @@ struct Container {
 /// In the case that there is an error running the server.
 #[allow(clippy::unused_async)]
 #[allow(clippy::too_many_lines)]
+#[utoipa::path(
+    params(Query),
+    responses(
+        (status = 200, description = "The query was successful.", body = Result),
+    )
+)]
 #[get("/hpo/terms")]
 async fn handle(
     data: Data<WebServerData>,
@@ -319,8 +331,8 @@ async fn handle(
         }
     };
 
-    let result = Container {
-        version: crate::common::Version::new(&data.ontology.hpo_version()),
+    let result = Result {
+        version: Version::new(&data.ontology.hpo_version()),
         query: query.into_inner(),
         result,
     };
@@ -332,7 +344,7 @@ async fn handle(
 mod test {
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(uri: &str) -> Result<super::Container, anyhow::Error> {
+    async fn run_query(uri: &str) -> Result<super::Result, anyhow::Error> {
         let ontology = crate::common::load_hpo("tests/data/hpo")?;
         let ncbi_to_hgnc =
             crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;
@@ -352,7 +364,7 @@ mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: super::Container = actix_web::test::call_and_read_body_json(&app, req).await;
+        let resp: super::Result = actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
     }

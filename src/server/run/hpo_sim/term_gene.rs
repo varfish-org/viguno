@@ -21,8 +21,9 @@ use crate::{query, server::run::WebServerData};
 ///                 gene ID or HGNC gene ID.
 /// - `gene_symbols` -- set of symbols for genes to use as
 ///   "database"
-#[derive(serde::Deserialize, Debug, Clone)]
-struct Query {
+#[derive(serde::Deserialize, Debug, Clone, utoipa::ToSchema, utoipa::IntoParams)]
+#[schema(title = "HpoSimTermGeneQuery")]
+pub struct Query {
     /// Set of terms to use as query.
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
     pub terms: Vec<String>,
@@ -45,6 +46,12 @@ struct Query {
 /// Query for similarity between a set of terms to each entry in a
 /// list of genes.
 #[allow(clippy::unused_async)]
+#[utoipa::path(
+    params(Query),
+    responses(
+        (status = 200, description = "The query was successful.", body = Result),
+    )
+)]
 #[get("/hpo/sim/term-gene")]
 async fn handle(
     data: Data<WebServerData>,
@@ -100,7 +107,7 @@ async fn handle(
 mod test {
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(uri: &str) -> Result<crate::query::query_result::Container, anyhow::Error> {
+    async fn run_query(uri: &str) -> Result<crate::query::query_result::Result, anyhow::Error> {
         let hpo_path = "tests/data/hpo";
         let ontology = crate::common::load_hpo(hpo_path)?;
         let ncbi_to_hgnc =
@@ -122,7 +129,7 @@ mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: crate::query::query_result::Container =
+        let resp: crate::query::query_result::Result =
             actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)

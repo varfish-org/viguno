@@ -9,7 +9,7 @@ use std::collections::HashMap;
 
 use actix_web::{middleware::Logger, web::Data, App, HttpServer, ResponseError};
 use serde::{Deserialize, Deserializer, Serialize};
-use utoipa::{OpenApi};
+use utoipa::OpenApi;
 
 use crate::common::load_hpo;
 
@@ -70,20 +70,33 @@ impl ResponseError for CustomError {}
 /// Specify how to perform query matches in the API calls.
 #[derive(Serialize, Deserialize, utoipa::ToSchema, Debug, Clone, Copy, Default, PartialEq, Eq)]
 #[serde(rename_all = "lowercase")]
-enum Match {
+pub enum Match {
     #[default]
+    /// Exact string match.
     Exact,
+    /// Prefix string match.
     Prefix,
+    /// Suffix string match.
     Suffix,
+    /// String containment.
     Contains,
 }
 
 /// Representation of a gene.
 #[derive(
-    serde::Deserialize, serde::Serialize, utoipa::ToSchema, Default, Debug, Clone, PartialOrd, Ord, PartialEq, Eq,
+    serde::Deserialize,
+    serde::Serialize,
+    utoipa::ToSchema,
+    Default,
+    Debug,
+    Clone,
+    PartialOrd,
+    Ord,
+    PartialEq,
+    Eq,
 )]
 #[serde_with::skip_serializing_none]
-struct ResultGene {
+pub struct ResultGene {
     /// The HPO ID.
     pub ncbi_gene_id: u32,
     /// The description.
@@ -94,9 +107,18 @@ struct ResultGene {
 
 /// Representation of an HPO term.
 #[derive(
-    serde::Deserialize, serde::Serialize, utoipa::ToSchema, Default, Debug, Clone, PartialOrd, Ord, PartialEq, Eq,
+    serde::Deserialize,
+    serde::Serialize,
+    utoipa::ToSchema,
+    Default,
+    Debug,
+    Clone,
+    PartialOrd,
+    Ord,
+    PartialEq,
+    Eq,
 )]
-struct ResultHpoTerm {
+pub struct ResultHpoTerm {
     /// The HPO ID.
     pub term_id: String,
     /// The term name.
@@ -133,14 +155,43 @@ where
     }
 }
 
+/// Utoipa-based OpenAPI generation helper.
+#[derive(utoipa::OpenApi)]
+#[openapi(
+    paths(hpo_genes::handle, hpo_terms::handle, hpo_omims::handle,),
+    components(schemas(
+        hpo_genes::Query,
+        hpo_genes::Result,
+        hpo_genes::ResultEntry,
+        hpo_omims::Query,
+        hpo_omims::Result,
+        hpo_omims::ResultEntry,
+        hpo_terms::Query,
+        hpo_terms::Result,
+        hpo_terms::ResultEntry,
+        hpo_sim::term_gene::Query,
+        crate::query::query_result::Result,
+        crate::query::query_result::ResultEntry,
+        crate::query::query_result::TermDetails,
+        crate::query::HpoTerm,
+        hpo_sim::term_term::ResponseQuery,
+        hpo_sim::term_term::Result,
+        hpo_sim::term_term::ResultEntry,
+        ResultGene,
+        ResultHpoTerm,
+        Match,
+        crate::common::Version,
+        crate::common::IcBasedOn,
+        crate::common::SimilarityMethod,
+        crate::common::ScoreCombiner,
+    ))
+)]
+pub struct ApiDoc;
+
 /// Main entry point for running the REST server.
 #[allow(clippy::unused_async)]
 #[actix_web::main]
 pub async fn main(args: &Args, dbs: Data<WebServerData>) -> std::io::Result<()> {
-    #[derive(utoipa::OpenApi)]
-    #[openapi(paths(hpo_genes::handle))]
-    struct ApiDoc;
-
     let openapi = ApiDoc::openapi();
 
     HttpServer::new(move || {
@@ -152,7 +203,8 @@ pub async fn main(args: &Args, dbs: Data<WebServerData>) -> std::io::Result<()> 
             .service(hpo_sim::term_term::handle)
             .service(hpo_sim::term_gene::handle)
             .service(
-                utoipa_swagger_ui::SwaggerUi::new("/swagger-ui/{_:.*}").url("/api-docs/openapi.json", openapi.clone())
+                utoipa_swagger_ui::SwaggerUi::new("/swagger-ui/{_:.*}")
+                    .url("/api-docs/openapi.json", openapi.clone()),
             )
             .wrap(Logger::default())
     })
