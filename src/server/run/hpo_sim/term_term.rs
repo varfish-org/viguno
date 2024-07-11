@@ -105,6 +105,7 @@ pub struct ResultEntry {
 /// In the case that there is an error running the server.
 #[allow(clippy::unused_async)]
 #[utoipa::path(
+    operation_id = "hpo_sim_term_term",
     params(RequestQuery),
     responses(
         (status = 200, description = "The query was successful.", body = Result),

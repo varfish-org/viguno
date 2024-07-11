@@ -32,9 +32,6 @@ pub struct Args {
     /// Path to the directory with the HPO files.
     #[arg(long, required = true)]
     pub path_hpo_dir: String,
-    /// Path to the TSV file with the HGNC xlink data.
-    #[arg(long, required = true)]
-    pub path_hgnc_xlink: String,
 
     /// Whether to suppress printing hints.
     #[arg(long, default_value_t = false)]
@@ -158,7 +155,13 @@ where
 /// Utoipa-based `OpenAPI` generation helper.
 #[derive(utoipa::OpenApi)]
 #[openapi(
-    paths(hpo_genes::handle, hpo_terms::handle, hpo_omims::handle,),
+    paths(
+        hpo_genes::handle,
+        hpo_terms::handle,
+        hpo_omims::handle,
+        hpo_sim::term_term::handle,
+        hpo_sim::term_gene::handle,
+    ),
     components(schemas(
         hpo_genes::Query,
         hpo_genes::Result,
@@ -227,49 +230,7 @@ pub fn print_hints(args: &Args) {
     }
 
     tracing::info!(
-        "  ==> for Swagger UI, see: http://{}:{}/swagger-ui/",
-        args.listen_host.as_str(),
-        args.listen_port
-    );
-
-    // The endpoint `/hpo/genes` provides information related to genes by symbol.
-    tracing::info!(
-        "  try: http://{}:{}/hpo/genes?gene_symbol=TGDS",
-        args.listen_host.as_str(),
-        args.listen_port
-    );
-    // Also, you can query `/hpo/genes` by NCBI gene ID and return the HPO terms of the gene.
-    tracing::info!(
-        "  try: http://{}:{}/hpo/genes?gene_id=23483&hpo_terms=true",
-        args.listen_host.as_str(),
-        args.listen_port
-    );
-    // The `/hpo/omims` term provides information on OMIM terms and can include HPO terms for
-    // the disease.
-    tracing::info!(
-        "  try: http://{}:{}/hpo/omims?omim_id=616145&hpo_terms=true",
-        args.listen_host.as_str(),
-        args.listen_port
-    );
-    // The `/hpo/terms` endpoint allows to query by HPO term ID and optionally return a list of
-    // genes that are linked to the term.
-    tracing::info!(
-        "  try: http://{}:{}/hpo/terms?term_id=HP:0000023&genes=true",
-        args.listen_host.as_str(),
-        args.listen_port
-    );
-    // We can use `/hpo/sim/term-term` to compute similarity between two HPO term sets `lhs`
-    // and `rhs` using a similarity metric.
-    tracing::info!(
-        "  try: http://{}:{}/hpo/sim/term-term?lhs=HP:0001166,HP:0040069&rhs=HP:0005918,\
-        HP:0004188",
-        args.listen_host.as_str(),
-        args.listen_port
-    );
-    // The endpoint `/hpo/sim/term-gene` allows to compute the same for a list of `terms` and
-    // `gene_symbols`.
-    tracing::info!(
-        "  try: http://{}:{}/hpo/sim/term-gene?terms=HP:0001166,HP:0000098&gene_symbols=FBN1,TGDS,TTN",
+        "  SEE SWAGGER UI FOR INTERACTIVE DOCS: http://{}:{}/swagger-ui/",
         args.listen_host.as_str(),
         args.listen_port
     );
@@ -302,7 +263,8 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
 
     tracing::info!("Loading HGNC xlink...");
     let before_load_xlink = std::time::Instant::now();
-    let ncbi_to_hgnc = crate::common::hgnc_xlink::load_ncbi_to_hgnc(&args.path_hgnc_xlink)?;
+    let path_hgnc_xlink = format!("{}/hgnc_xlink.tsv", args.path_hpo_dir);
+    let ncbi_to_hgnc = crate::common::hgnc_xlink::load_ncbi_to_hgnc(&path_hgnc_xlink)?;
     let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
     tracing::info!(
         "... done loading HGNC xlink in {:?}",

@@ -145,6 +145,7 @@ pub struct Result {
 /// Query for OMIM diseases in the HPO database.
 #[allow(clippy::unused_async)]
 #[utoipa::path(
+    operation_id = "hpo_omims",
     params(Query),
     responses(
         (status = 200, description = "The query was successful.", body = Result),

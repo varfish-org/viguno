@@ -208,6 +208,7 @@ pub struct Result {
 #[allow(clippy::unused_async)]
 #[allow(clippy::too_many_lines)]
 #[utoipa::path(
+    operation_id = "hpo_terms",
     params(Query),
     responses(
         (status = 200, description = "The query was successful.", body = Result),

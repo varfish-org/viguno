@@ -34,7 +34,7 @@ We fix ourselves to the release from 2023-06-06.
 ```
 # RELEASE=2023-06-06
 # URL=https://github.com/obophenotype/human-phenotype-ontology/releases/download
-# NAMES="hp.obo phenotype.hpoa phenotype_to_genes.txt genes_to_phenotype.txt"
+# NAMES="hp-base.obo phenotype.hpoa phenotype_to_genes.txt genes_to_phenotype.txt"
 
 # mkdir -p /tmp/data/hpo
 # for name in $NAMES; do \
@@ -42,6 +42,21 @@ We fix ourselves to the release from 2023-06-06.
         -O /tmp/data/hpo/$name \
         $URL/v$RELEASE/$name;
   done
+# mv /tmp/data/hpo/hp-base.obo /tmp/data/hpo/hp.obo
+# sed -i -e 's|/hp-base.owl||' /tmp/data/hpo/hp.obo
+```
+
+Next, generate the cross-link file between different gene identifiers.
+
+```
+# wget -O /tmp/hgnc_complete_set.json \
+    https://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/json/hgnc_complete_set.json
+# echo -e "hgnc_id\tensembl_gene_id\tentrez_id\tgene_symbol" \
+    > /tmp/data/hpo/hgnc_xlink.tsv
+# jq -r '.response.docs[] | select(.entrez_id != null) | [.hgnc_id, .ensembl_gene_id, .entrez_id, .symbol] | @tsv' \
+    /tmp/hgnc_complete_set.json \
+  | LC_ALL=C sort -t $'\t' -k3,3n \
+  >> /tmp/data/hpo/hgnc_xlink.tsv
 ```
 
 You can now conver the downloaded text HPO files to a binary format which will improve performance of loading data.
@@ -57,46 +72,29 @@ You can now conver the downloaded text HPO files to a binary format which will i
 After having the precomputed data, you can startup the server as follows:
 
 ```
-# viguno run-server \
+# viguno server run \
     --path-hpo-dir tests/data/hpo
 INFO args_common = Args { verbose: Verbosity { verbose: 0, quiet: 0, phantom: PhantomData<clap_verbosity_flag::InfoLevel> } }
 INFO args = Args { path_hpo_dir: "tests/data/hpo", suppress_hints: false, listen_host: "127.0.0.1", listen_port: 8080 }
 INFO Loading HPO...
-INFO ...done loading HPO in 8.180012599s
-INFO Opening RocksDB for reading...
-INFO ...done opening RocksDB in 19.027133ms
+INFO   attempting to load binary HPO file from tests/data/hpo
+INFO ...done loading HPO in 4.788750172s
+INFO Loading HGNC xlink...
+INFO ... done loading HGNC xlink in 156.362034ms
+INFO Loading HPO OBO...
+INFO ... done loading HPO OBO in 1.90213703s
+INFO Indexing OBO...
+INFO ... done indexing OBO in 835.558794ms
 INFO Launching server main on http://127.0.0.1:8080 ...
-INFO   try: http://127.0.0.1:8080/hpo/genes?gene_symbol=TGDS
-INFO   try: http://127.0.0.1:8080/hpo/genes?gene_id=23483&hpo_terms=true
-INFO   try: http://127.0.0.1:8080/hpo/omims?omim_id=616145&hpo_terms=true
-INFO   try: http://127.0.0.1:8080/hpo/terms?term_id=HP:0000023&genes=true
-INFO   try: http://127.0.0.1:8080/hpo/sim/term-term?lhs=HP:0001166,HP:0040069&rhs=HP:0005918,HP:0004188
-INFO   try: http://127.0.0.1:8080/hpo/sim/term-gene?terms=HP:0001166,HP:0000098&gene_symbols=FBN1,TGDS,TTN
-INFO starting 4 workers
+INFO   SEE SWAGGER UI FOR INTERACTIVE DOCS: http://127.0.0.1:8080/swagger-ui/
+INFO starting 8 workers
 INFO Actix runtime found; starting in Actix runtime
 ```
 
 Now the server is running and you could stop it with `Ctrl-C`.
 
-In another terminal, you then now do as suggested above.
-Note that we truncate the output JSON.
-
-```
-# curl 'http://127.0.0.1:8080/hpo/genes?gene_symbol=TGDS'
-[{"gene_ncbi_id":23483,"gene_symbol":"TGDS"}]
-
-# curl 'http://127.0.0.1:8080/hpo/genes?gene_id=23483&hpo_terms=true'
-[{"gene_ncbi_id":23483,"gene_symbol":"TGDS","hpo_terms":[{"term_...
-
-# curl 'http://127.0.0.1:8080/hpo/omims?omim_id=616145&hpo_terms=true'
-[{"omim_id":"OMIM:616145","name":"Catel-Manzke syndrome","hpo_te...
-
-# curl 'http://127.0.0.1:8080/hpo/terms?term_id=HP:0000023&genes=true'
-[{"term_id":"HP:0000023","name":"Inguinal hernia","genes":[{"gen...
-
-# curl 'http://127.0.0.1:8080/hpo/sim/term-term?lhs=HP:0001166,HP:0040069&rhs=HP:0005918,HP:0004188'
-[{"lhs":"HP:0001166","rhs":"HP:0005918","score":1.4280319,"sim":...
-```
+You can go to http://127.0.0.1/swagger-ui to see the automatically generated interactive API documentation.
+You can find the OpenAPI YAML file for the `main` branch [here on GitHub](https://raw.githubusercontent.com/varfish-org/viguno/main/openapi.yaml) and e.g., open it [here in the public Swagger editor](https://editor.swagger.io?url=https://raw.githubusercontent.com/varfish-org/viguno/main/openapi.yaml).
 
 # Developer Documentation
 

@@ -132,6 +132,7 @@ pub struct Result {
 /// Query for genes in the HPO database.
 #[allow(clippy::unused_async)]
 #[utoipa::path(
+    operation_id = "hpo_genes",
     params(Query),
     responses(
         (status = 200, description = "The query was successful.", body = Result),
