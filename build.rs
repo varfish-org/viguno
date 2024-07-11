@@ -2,7 +2,7 @@ use std::{env, path::PathBuf};
 
 fn main() -> Result<(), anyhow::Error> {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("protos");
-    let proto_files = vec!["viguno/v1/simulation.proto"]
+    let proto_files = ["viguno/v1/simulation.proto"]
         .iter()
         .map(|f| root.join(f))
         .collect::<Vec<_>>();

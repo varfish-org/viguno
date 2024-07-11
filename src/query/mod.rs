@@ -316,7 +316,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     tracing::info!("Loading HGNC xlink...");
     let before_load_xlink = Instant::now();
     let path_hgnc_xlink = format!("{}/hgnc_xlink.tsv", args.path_hpo_dir);
-    let ncbi_to_hgnc = crate::common::hgnc_xlink::load_ncbi_to_hgnc(&path_hgnc_xlink)?;
+    let ncbi_to_hgnc = crate::common::hgnc_xlink::load_ncbi_to_hgnc(path_hgnc_xlink)?;
     tracing::info!(
         "... done loading HGNC xlink in {:?}",
         before_load_xlink.elapsed()

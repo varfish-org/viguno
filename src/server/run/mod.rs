@@ -264,7 +264,7 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     tracing::info!("Loading HGNC xlink...");
     let before_load_xlink = std::time::Instant::now();
     let path_hgnc_xlink = format!("{}/hgnc_xlink.tsv", args.path_hpo_dir);
-    let ncbi_to_hgnc = crate::common::hgnc_xlink::load_ncbi_to_hgnc(&path_hgnc_xlink)?;
+    let ncbi_to_hgnc = crate::common::hgnc_xlink::load_ncbi_to_hgnc(path_hgnc_xlink)?;
     let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
     tracing::info!(
         "... done loading HGNC xlink in {:?}",
