@@ -94,6 +94,10 @@ impl Ord for ResultEntry {
 
 impl ResultEntry {
     /// Create a `ResultEntry` from an `HpoTerm`.
+    ///
+    /// # Errors
+    ///
+    /// In the case that there is an error parsing the term.
     #[allow(clippy::missing_panics_doc)]
     pub fn from_term_with_ontology(
         term: &HpoTerm,
@@ -260,7 +264,7 @@ async fn handle(
         .expect("field must exist");
 
     if let Some(term_id) = &query.term_id {
-        let re = regex::Regex::new(r"hpo:\d+$").unwrap();
+        let re = regex::Regex::new(r"^hp:\d+$").unwrap();
         if !re.is_match(&term_id.to_lowercase()) {
             return Err(CustomError::new(anyhow::anyhow!(
                 "Invalid term ID: {}",
@@ -306,7 +310,7 @@ async fn handle(
             query_parser.set_field_fuzzy(field_synonym, true, 1, true);
             query_parser
         };
-        let name = if name.contains(":") {
+        let name = if name.contains(':') {
             format!("\"{name}\"")
         } else {
             name.to_string()
