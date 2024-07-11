@@ -1,6 +1,6 @@
 [package]
 name = "viguno"
-version = "0.2.1"
+version = "0.3.0"
 edition = "2021"
 authors = ["Manuel Holtgrewe <manuel.holtgrewe@bih-charite.de>"]
 description = "Phenotype/disease for VarFish"

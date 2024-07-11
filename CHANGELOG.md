@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.0](https://github.com/varfish-org/viguno/compare/v0.2.1...v0.3.0) (2024-07-11)
+
+
+### Features
+
+* hgnc_xlink.tsv is expected now in hpo folder ([#170](https://github.com/varfish-org/viguno/issues/170)) ([#171](https://github.com/varfish-org/viguno/issues/171)) ([5c19d95](https://github.com/varfish-org/viguno/commit/5c19d95511df5b60af7c6134d5a93b54b07290a8))
+* implement OpenAPI documentation ([#162](https://github.com/varfish-org/viguno/issues/162)) ([#165](https://github.com/varfish-org/viguno/issues/165)) ([b89fc26](https://github.com/varfish-org/viguno/commit/b89fc26d0f9c5555730b576aa5bac0a8ed9f2cf0))
+* remove Phenix-like P-value precomputation ([#148](https://github.com/varfish-org/viguno/issues/148)) ([#163](https://github.com/varfish-org/viguno/issues/163)) ([3fb8be1](https://github.com/varfish-org/viguno/commit/3fb8be1c01d829768336c959b4b8bab8f3d975ab))
+
+
+### Bug Fixes
+
+* allow case insensitive search for OMIM terms ([#160](https://github.com/varfish-org/viguno/issues/160)) ([#172](https://github.com/varfish-org/viguno/issues/172)) ([0d0e5af](https://github.com/varfish-org/viguno/commit/0d0e5af1ce2ee553c5f28324d6ae0e96f126ca95))
+* escape colons in term query ([#159](https://github.com/varfish-org/viguno/issues/159)) ([#173](https://github.com/varfish-org/viguno/issues/173)) ([5c40e30](https://github.com/varfish-org/viguno/commit/5c40e30ae5a9ac44b6ae1bddd14d5abcd4f61e30))
+* proper error handling in /hpo/terms ([#156](https://github.com/varfish-org/viguno/issues/156)) ([#175](https://github.com/varfish-org/viguno/issues/175)) ([c0436de](https://github.com/varfish-org/viguno/commit/c0436de1a85eecd279876a4b6ae3e48442caae22))
+
 ## [0.2.1](https://github.com/varfish-org/viguno/compare/v0.2.0...v0.2.1) (2024-02-01)
 
 
