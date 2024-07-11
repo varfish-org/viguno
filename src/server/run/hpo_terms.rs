@@ -102,26 +102,26 @@ impl ResultEntry {
         ncbi_to_hgnc: &HashMap<u32, String>,
         index: &crate::index::Index,
         doc: Option<&tantivy::Document>,
-    ) -> Self {
+    ) -> Result<Self, anyhow::Error> {
         let field_term_id = index
             .schema()
             .get_field("term_id")
-            .expect("field must exist");
+            .map_err(|e| anyhow::anyhow!("field term_id must exist: {}", e))?;
         let field_def = index
             .index()
             .schema()
             .get_field("def")
-            .expect("field must exist");
+            .map_err(|e| anyhow::anyhow!("field def must exist: {}", e))?;
         let field_synonym = index
             .index()
             .schema()
             .get_field("synonym")
-            .expect("field must exist");
+            .map_err(|e| anyhow::anyhow!("field synonym must exist: {}", e))?;
         let field_xref = index
             .index()
             .schema()
             .get_field("xref")
-            .expect("field must exist");
+            .map_err(|e| anyhow::anyhow!("field xref must exist: {}", e))?;
 
         let searcher = index.reader().searcher();
         let doc = if let Some(doc) = doc {
@@ -131,14 +131,14 @@ impl ResultEntry {
                 tantivy::query::QueryParser::for_index(index.index(), vec![field_term_id]);
             let query = query_parser
                 .parse_query(&format!("\"{}\"", term.id()))
-                .expect("bad term ID query");
+                .map_err(|e| anyhow::anyhow!("problem with term ID query: {}", e))?;
             let top_docs = searcher
                 .search(&query, &tantivy::collector::TopDocs::with_limit(1))
-                .expect("problemw ith term ID search");
+                .map_err(|e| anyhow::anyhow!("problem searching for query: {}", e))?;
 
             searcher
                 .doc(top_docs[0].1)
-                .expect("problem with term ID query")
+                .map_err(|e| anyhow::anyhow!("problem retrieving document: {}", e))?
         };
 
         let definition = doc
@@ -177,21 +177,21 @@ impl ResultEntry {
         } else {
             None
         };
-        ResultEntry {
+        Ok(ResultEntry {
             term_id: term.id().to_string(),
             name: term.name().to_string(),
             genes,
             definition,
             synonyms,
             xrefs,
-        }
+        })
     }
 }
 
 /// Container for the result.
 #[derive(Debug, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
 #[schema(title = "HpoTermsResult")]
-pub struct Result {
+pub struct Result_ {
     /// Version information.
     pub version: Version,
     /// The original query records.
@@ -260,18 +260,29 @@ async fn handle(
         .expect("field must exist");
 
     if let Some(term_id) = &query.term_id {
+        let re = regex::Regex::new(r"hpo:\d+$").unwrap();
+        if !re.is_match(&term_id.to_lowercase()) {
+            return Err(CustomError::new(anyhow::anyhow!(
+                "Invalid term ID: {}",
+                term_id
+            )));
+        }
+
         let term_id = HpoTermId::from(term_id.clone());
         let term = ontology.hpo(term_id).ok_or_else(|| {
             CustomError::new(anyhow::anyhow!("Term ID {} not found in HPO", term_id))
         })?;
-        result.push(ResultEntry::from_term_with_ontology(
-            &term,
-            ontology,
-            query.genes,
-            &data.ncbi_to_hgnc,
-            &data.full_text_index,
-            None,
-        ));
+        result.push(
+            ResultEntry::from_term_with_ontology(
+                &term,
+                ontology,
+                query.genes,
+                &data.ncbi_to_hgnc,
+                &data.full_text_index,
+                None,
+            )
+            .map_err(|e| CustomError::new(anyhow::anyhow!("Problem parsing term: {}", e)))?,
+        );
     } else if let Some(name) = &query.name {
         let searcher = data.full_text_index.reader().searcher();
         let query_parser = {
@@ -326,18 +337,21 @@ async fn handle(
                 CustomError::new(anyhow::anyhow!("Term ID {} not found in HPO", term_id))
             })?;
 
-            result.push(ResultEntry::from_term_with_ontology(
-                &term,
-                ontology,
-                query.genes,
-                &data.ncbi_to_hgnc,
-                &data.full_text_index,
-                Some(&retrieved_doc),
-            ));
+            result.push(
+                ResultEntry::from_term_with_ontology(
+                    &term,
+                    ontology,
+                    query.genes,
+                    &data.ncbi_to_hgnc,
+                    &data.full_text_index,
+                    Some(&retrieved_doc),
+                )
+                .map_err(|e| CustomError::new(anyhow::anyhow!("Problem parsing term: {}", e)))?,
+            );
         }
     };
 
-    let result = Result {
+    let result = Result_ {
         version: Version::new(&data.ontology.hpo_version()),
         query: query.into_inner(),
         result,
@@ -357,7 +371,7 @@ mod test {
     pub async fn run_query(
         web_server_data: Arc<crate::server::run::WebServerData>,
         uri: &str,
-    ) -> Result<super::Result, anyhow::Error> {
+    ) -> Result<super::Result_, anyhow::Error> {
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(web_server_data))
@@ -365,7 +379,7 @@ mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: super::Result = actix_web::test::call_and_read_body_json(&app, req).await;
+        let resp: super::Result_ = actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
     }
