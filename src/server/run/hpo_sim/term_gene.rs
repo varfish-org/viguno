@@ -1,6 +1,8 @@
 //! Entry point `/hpo/sim/term-gene` that allows the similarity computation between a set of
 //! terms and a gene.
 
+use std::sync::Arc;
+
 use actix_web::{
     get,
     web::{self, Data, Json, Path},
@@ -54,7 +56,7 @@ pub struct Query {
 )]
 #[get("/hpo/sim/term-gene")]
 async fn handle(
-    data: Data<WebServerData>,
+    data: Data<Arc<WebServerData>>,
     _path: Path<()>,
     query: web::Query<Query>,
 ) -> actix_web::Result<impl Responder, CustomError> {

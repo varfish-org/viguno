@@ -1,6 +1,8 @@
 //! Entry point `/hpo/sim/term-term` allows the pairwise similary computation between two sets
 //! of HPO terms.
 
+use std::sync::Arc;
+
 use actix_web::{
     get,
     web::{self, Data, Json, Path},
@@ -110,7 +112,7 @@ pub struct ResultEntry {
 )]
 #[get("/hpo/sim/term-term")]
 async fn handle(
-    data: Data<WebServerData>,
+    data: Data<Arc<WebServerData>>,
     _path: Path<()>,
     query: web::Query<RequestQuery>,
 ) -> actix_web::Result<impl Responder, CustomError> {

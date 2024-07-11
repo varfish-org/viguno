@@ -5,7 +5,7 @@ pub mod hpo_omims;
 pub mod hpo_sim;
 pub mod hpo_terms;
 
-use std::collections::HashMap;
+use std::{collections::HashMap, sync::Arc};
 
 use actix_web::{middleware::Logger, web::Data, App, HttpServer, ResponseError};
 use serde::{Deserialize, Deserializer, Serialize};
@@ -191,7 +191,7 @@ pub struct ApiDoc;
 /// Main entry point for running the REST server.
 #[allow(clippy::unused_async)]
 #[actix_web::main]
-pub async fn main(args: &Args, dbs: Data<WebServerData>) -> std::io::Result<()> {
+pub async fn main(args: &Args, dbs: Data<Arc<WebServerData>>) -> std::io::Result<()> {
     let openapi = ApiDoc::openapi();
 
     HttpServer::new(move || {
@@ -324,12 +324,12 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
         .map_err(|e| anyhow::anyhow!("Error indexing HPO OBO: {}", e))?;
     tracing::info!("... done indexing OBO in {:?}", before_index_obo.elapsed());
 
-    let data = actix_web::web::Data::new(WebServerData {
+    let data = actix_web::web::Data::new(Arc::new(WebServerData {
         ontology,
         ncbi_to_hgnc,
         hgnc_to_ncbi,
         full_text_index,
-    });
+    }));
 
     // Print the server URL and some hints (the latter: unless suppressed).
     print_hints(args);
