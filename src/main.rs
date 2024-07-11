@@ -40,7 +40,24 @@ struct Cli {
 enum Commands {
     Convert(crate::convert::Args),
     Query(crate::query::Args),
-    RunServer(crate::server::Args),
+    Server(Server),
+}
+
+/// Clap sub command below "server".
+#[derive(Debug, Parser)]
+struct Server {
+    /// The sub command to run
+    #[clap(subcommand)]
+    pub command: ServerSubCommands,
+}
+
+/// Sub commands for "server".
+#[derive(Debug, Subcommand)]
+enum ServerSubCommands {
+    /// Run the server.
+    Run(crate::server::run::Args),
+    /// Dump the schema.
+    Schema(crate::server::schema::Args),
 }
 
 fn main() -> Result<(), anyhow::Error> {
@@ -71,9 +88,14 @@ fn main() -> Result<(), anyhow::Error> {
             Commands::Query(args) => {
                 query::run(&cli.common, args)?;
             }
-            Commands::RunServer(args) => {
-                server::run(&cli.common, args)?;
-            }
+            Commands::Server(cmd_server) => match &cmd_server.command {
+                ServerSubCommands::Run(args) => {
+                    server::run::run(&cli.common, args)?;
+                }
+                ServerSubCommands::Schema(args) => {
+                    server::schema::run(&cli.common, args)?;
+                }
+            },
         }
 
         Ok::<(), anyhow::Error>(())

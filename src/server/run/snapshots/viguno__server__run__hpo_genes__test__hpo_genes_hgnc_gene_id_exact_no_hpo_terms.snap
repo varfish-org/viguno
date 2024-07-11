@@ -1,0 +1,17 @@
+---
+source: src/server/run/hpo_genes.rs
+expression: "&run_query(\"/hpo/genes?gene_id=HGNC:3791\").await?"
+---
+version:
+  hpo: 2023-04-05
+  viguno: 0.0.0
+query:
+  gene_id: "HGNC:3791"
+  gene_symbol: ~
+  match_: ~
+  max_results: 100
+  hpo_terms: false
+result:
+  - gene_ncbi_id: 2348
+    gene_symbol: FOLR1
+    hgnc_id: "HGNC:3791"

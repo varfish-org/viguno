@@ -38,7 +38,7 @@ pub struct Gene {
 }
 
 /// Struct for loading an HPO term from JSON.
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, utoipa::ToSchema, Debug, Clone)]
 pub struct HpoTerm {
     /// The term ID.
     pub term_id: String,
@@ -49,6 +49,8 @@ pub struct HpoTerm {
 
 /// Query result records.
 pub mod query_result {
+    use crate::common::Version;
+
     use super::HpoTerm;
 
     /// Struct for storing gene information in the result.
@@ -66,7 +68,8 @@ pub mod query_result {
     }
 
     /// The performed query.
-    #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
+    #[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
+    #[schema(title = "HpoSimTermGeneQuery")]
     pub struct Query {
         /// The query HPO terms.
         pub terms: Vec<HpoTerm>,
@@ -75,19 +78,21 @@ pub mod query_result {
     }
 
     /// Result container data structure.
-    #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
-    pub struct Container {
+    #[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
+    #[schema(title = "HpoSimTermGeneResult")]
+    pub struct Result {
         /// Version information.
-        pub version: crate::common::Version,
+        pub version: Version,
         /// The original query records.
         pub query: Query,
         /// The resulting records for the scored genes.
-        pub result: Vec<Record>,
+        pub result: Vec<ResultEntry>,
     }
 
     /// Store score for a record with information on individual terms.
-    #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
-    pub struct Record {
+    #[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
+    #[schema(title = "HpoSimTermGeneResultEntry")]
+    pub struct ResultEntry {
         /// The gene symbol.
         pub gene_symbol: String,
         /// The raw Phenomizer score.
@@ -98,7 +103,8 @@ pub mod query_result {
     }
 
     /// Detailed term scores.
-    #[derive(serde::Serialize, serde::Deserialize, Debug, Clone)]
+    #[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
+    #[schema(title = "HpoSimTermGeneTermDetails")]
     pub struct TermDetails {
         /// The query HPO term.
         pub term_query: Option<HpoTerm>,
@@ -138,7 +144,7 @@ pub fn run_query<S>(
     genes: &Vec<&hpo::annotations::Gene>,
     hpo: &Ontology,
     ncbi_to_hgnc: &HashMap<u32, String, S>,
-) -> Result<query_result::Container, anyhow::Error>
+) -> Result<query_result::Result, anyhow::Error>
 where
     S: std::hash::BuildHasher,
 {
@@ -155,7 +161,7 @@ where
             .collect(),
         genes: Vec::new(),
     };
-    let mut result = query_result::Container {
+    let mut result = query_result::Result {
         version: crate::common::Version::new(&hpo.hpo_version()),
         query,
         result: Vec::new(),
@@ -224,7 +230,7 @@ where
             hgnc_id: ncbi_to_hgnc.get(&ncbi_gene_id).cloned(),
         });
 
-        result.result.push(query_result::Record {
+        result.result.push(query_result::ResultEntry {
             gene_symbol: gene.name().to_string(),
             raw_score,
             terms: Some(terms),

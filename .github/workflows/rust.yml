@@ -79,11 +79,6 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: Swatinem/rust-cache@v2
-        with:
-          cache-directories: |
-            ~/.cargo/registry/src/**/librocksdb-sys-*
-
       - name: Run cargo-tarpaulin
         uses: actions-rs/tarpaulin@v0.1
         with:
@@ -95,3 +90,29 @@ jobs:
         with:
           verbose: true
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  Schema-Unchanged:  # ensure schema is not changed
+    needs: Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Setup protoc
+        uses: arduino/setup-protoc@v1.1.2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check schema
+        run: |
+          cargo run -- server schema --output-file /tmp/openapi.yaml
+          set -e
+          diff openapi.yaml /tmp/openapi.yaml

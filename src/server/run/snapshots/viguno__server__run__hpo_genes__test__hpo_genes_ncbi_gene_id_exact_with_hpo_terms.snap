@@ -1,0 +1,28 @@
+---
+source: src/server/run/hpo_genes.rs
+expression: "&run_query(\"/hpo/genes?gene_id=2348&hpo_terms=true\").await?"
+---
+version:
+  hpo: 2023-04-05
+  viguno: 0.0.0
+query:
+  gene_id: "2348"
+  gene_symbol: ~
+  match_: ~
+  max_results: 100
+  hpo_terms: true
+result:
+  - gene_ncbi_id: 2348
+    gene_symbol: FOLR1
+    hgnc_id: "HGNC:3791"
+    hpo_terms:
+      - term_id: "HP:0000007"
+        name: Autosomal recessive inheritance
+      - term_id: "HP:0001249"
+        name: Intellectual disability
+      - term_id: "HP:0001250"
+        name: Seizure
+      - term_id: "HP:0002180"
+        name: Neurodegeneration
+      - term_id: "HP:0002376"
+        name: Developmental regression

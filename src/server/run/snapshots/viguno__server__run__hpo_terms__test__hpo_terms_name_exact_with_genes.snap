@@ -1,0 +1,964 @@
+---
+source: src/server/run/hpo_terms.rs
+expression: "&run_query(\"/hpo/terms?name=Inguinal+hernia&genes=true\").await?"
+---
+version:
+  hpo: 2023-04-05
+  viguno: 0.0.0
+query:
+  term_id: ~
+  name: Inguinal hernia
+  max_results: 100
+  genes: true
+result:
+  - term_id: "HP:0000023"
+    name: Inguinal hernia
+    definition: Protrusion of the contents of the abdominal cavity through the inguinal canal.
+    synonyms: ~
+    xrefs:
+      - "MEDDRA:10022016"
+      - "MSH:D006552"
+      - "SNOMEDCT_US:396232000"
+      - "UMLS:C0019294"
+    genes:
+      - ncbi_gene_id: 59
+        gene_symbol: ACTA2
+        hgnc_id: "HGNC:130"
+      - ncbi_gene_id: 165
+        gene_symbol: AEBP1
+        hgnc_id: "HGNC:303"
+      - ncbi_gene_id: 175
+        gene_symbol: AGA
+        hgnc_id: "HGNC:318"
+      - ncbi_gene_id: 268
+        gene_symbol: AMH
+        hgnc_id: "HGNC:464"
+      - ncbi_gene_id: 269
+        gene_symbol: AMHR2
+        hgnc_id: "HGNC:465"
+      - ncbi_gene_id: 367
+        gene_symbol: AR
+        hgnc_id: "HGNC:644"
+      - ncbi_gene_id: 411
+        gene_symbol: ARSB
+        hgnc_id: "HGNC:714"
+      - ncbi_gene_id: 421
+        gene_symbol: ARVCF
+        hgnc_id: "HGNC:728"
+      - ncbi_gene_id: 477
+        gene_symbol: ATP1A2
+        hgnc_id: "HGNC:800"
+      - ncbi_gene_id: 523
+        gene_symbol: ATP6V1A
+        hgnc_id: "HGNC:851"
+      - ncbi_gene_id: 529
+        gene_symbol: ATP6V1E1
+        hgnc_id: "HGNC:857"
+      - ncbi_gene_id: 538
+        gene_symbol: ATP7A
+        hgnc_id: "HGNC:869"
+      - ncbi_gene_id: 613
+        gene_symbol: BCR
+        hgnc_id: "HGNC:1014"
+      - ncbi_gene_id: 699
+        gene_symbol: BUB1
+        hgnc_id: "HGNC:1148"
+      - ncbi_gene_id: 715
+        gene_symbol: C1R
+        hgnc_id: "HGNC:1246"
+      - ncbi_gene_id: 716
+        gene_symbol: C1S
+        hgnc_id: "HGNC:1247"
+      - ncbi_gene_id: 871
+        gene_symbol: SERPINH1
+        hgnc_id: "HGNC:1546"
+      - ncbi_gene_id: 875
+        gene_symbol: CBS
+        hgnc_id: "HGNC:1550"
+      - ncbi_gene_id: 998
+        gene_symbol: CDC42
+        hgnc_id: "HGNC:1736"
+      - ncbi_gene_id: 1028
+        gene_symbol: CDKN1C
+        hgnc_id: "HGNC:1786"
+      - ncbi_gene_id: 1107
+        gene_symbol: CHD3
+        hgnc_id: "HGNC:1918"
+      - ncbi_gene_id: 1146
+        gene_symbol: CHRNG
+        hgnc_id: "HGNC:1967"
+      - ncbi_gene_id: 1183
+        gene_symbol: CLCN4
+        hgnc_id: "HGNC:2022"
+      - ncbi_gene_id: 1277
+        gene_symbol: COL1A1
+        hgnc_id: "HGNC:2197"
+      - ncbi_gene_id: 1278
+        gene_symbol: COL1A2
+        hgnc_id: "HGNC:2198"
+      - ncbi_gene_id: 1280
+        gene_symbol: COL2A1
+        hgnc_id: "HGNC:2200"
+      - ncbi_gene_id: 1281
+        gene_symbol: COL3A1
+        hgnc_id: "HGNC:2201"
+      - ncbi_gene_id: 1289
+        gene_symbol: COL5A1
+        hgnc_id: "HGNC:2209"
+      - ncbi_gene_id: 1290
+        gene_symbol: COL5A2
+        hgnc_id: "HGNC:2210"
+      - ncbi_gene_id: 1312
+        gene_symbol: COMT
+        hgnc_id: "HGNC:2228"
+      - ncbi_gene_id: 1387
+        gene_symbol: CREBBP
+        hgnc_id: "HGNC:2348"
+      - ncbi_gene_id: 1399
+        gene_symbol: CRKL
+        hgnc_id: "HGNC:2363"
+      - ncbi_gene_id: 1457
+        gene_symbol: CSNK2A1
+        hgnc_id: "HGNC:2457"
+      - ncbi_gene_id: 1501
+        gene_symbol: CTNND2
+        hgnc_id: "HGNC:2516"
+      - ncbi_gene_id: 1656
+        gene_symbol: DDX6
+        hgnc_id: "HGNC:2747"
+      - ncbi_gene_id: 1801
+        gene_symbol: DPH1
+        hgnc_id: "HGNC:3003"
+      - ncbi_gene_id: 1836
+        gene_symbol: SLC26A2
+        hgnc_id: "HGNC:10994"
+      - ncbi_gene_id: 1855
+        gene_symbol: DVL1
+        hgnc_id: "HGNC:3084"
+      - ncbi_gene_id: 1857
+        gene_symbol: DVL3
+        hgnc_id: "HGNC:3087"
+      - ncbi_gene_id: 1859
+        gene_symbol: DYRK1A
+        hgnc_id: "HGNC:3091"
+      - ncbi_gene_id: 1861
+        gene_symbol: TOR1A
+        hgnc_id: "HGNC:3098"
+      - ncbi_gene_id: 2006
+        gene_symbol: ELN
+        hgnc_id: "HGNC:3327"
+      - ncbi_gene_id: 2146
+        gene_symbol: EZH2
+        hgnc_id: "HGNC:3527"
+      - ncbi_gene_id: 2187
+        gene_symbol: FANCB
+        hgnc_id: "HGNC:3583"
+      - ncbi_gene_id: 2200
+        gene_symbol: FBN1
+        hgnc_id: "HGNC:3603"
+      - ncbi_gene_id: 2239
+        gene_symbol: GPC4
+        hgnc_id: "HGNC:4452"
+      - ncbi_gene_id: 2245
+        gene_symbol: FGD1
+        hgnc_id: "HGNC:3663"
+      - ncbi_gene_id: 2260
+        gene_symbol: FGFR1
+        hgnc_id: "HGNC:3688"
+      - ncbi_gene_id: 2301
+        gene_symbol: FOXE3
+        hgnc_id: "HGNC:3808"
+      - ncbi_gene_id: 2313
+        gene_symbol: FLI1
+        hgnc_id: "HGNC:3749"
+      - ncbi_gene_id: 2316
+        gene_symbol: FLNA
+        hgnc_id: "HGNC:3754"
+      - ncbi_gene_id: 2317
+        gene_symbol: FLNB
+        hgnc_id: "HGNC:3755"
+      - ncbi_gene_id: 2535
+        gene_symbol: FZD2
+        hgnc_id: "HGNC:4040"
+      - ncbi_gene_id: 2542
+        gene_symbol: SLC37A4
+        hgnc_id: "HGNC:4061"
+      - ncbi_gene_id: 2588
+        gene_symbol: GALNS
+        hgnc_id: "HGNC:4122"
+      - ncbi_gene_id: 2626
+        gene_symbol: GATA4
+        hgnc_id: "HGNC:4173"
+      - ncbi_gene_id: 2627
+        gene_symbol: GATA6
+        hgnc_id: "HGNC:4174"
+      - ncbi_gene_id: 2657
+        gene_symbol: GDF1
+        hgnc_id: "HGNC:4214"
+      - ncbi_gene_id: 2719
+        gene_symbol: GPC3
+        hgnc_id: "HGNC:4451"
+      - ncbi_gene_id: 2720
+        gene_symbol: GLB1
+        hgnc_id: "HGNC:4298"
+      - ncbi_gene_id: 2737
+        gene_symbol: GLI3
+        hgnc_id: "HGNC:4319"
+      - ncbi_gene_id: 2741
+        gene_symbol: GLRA1
+        hgnc_id: "HGNC:4326"
+      - ncbi_gene_id: 2783
+        gene_symbol: GNB2
+        hgnc_id: "HGNC:4398"
+      - ncbi_gene_id: 2799
+        gene_symbol: GNS
+        hgnc_id: "HGNC:4422"
+      - ncbi_gene_id: 2812
+        gene_symbol: GP1BB
+        hgnc_id: "HGNC:4440"
+      - ncbi_gene_id: 2904
+        gene_symbol: GRIN2B
+        hgnc_id: "HGNC:4586"
+      - ncbi_gene_id: 2969
+        gene_symbol: GTF2I
+        hgnc_id: "HGNC:4659"
+      - ncbi_gene_id: 2972
+        gene_symbol: BRF1
+        hgnc_id: "HGNC:11551"
+      - ncbi_gene_id: 2990
+        gene_symbol: GUSB
+        hgnc_id: "HGNC:4696"
+      - ncbi_gene_id: 3339
+        gene_symbol: HSPG2
+        hgnc_id: "HGNC:5273"
+      - ncbi_gene_id: 3423
+        gene_symbol: IDS
+        hgnc_id: "HGNC:5389"
+      - ncbi_gene_id: 3425
+        gene_symbol: IDUA
+        hgnc_id: "HGNC:5391"
+      - ncbi_gene_id: 3481
+        gene_symbol: IGF2
+        hgnc_id: "HGNC:5466"
+      - ncbi_gene_id: 3670
+        gene_symbol: ISL1
+        hgnc_id: "HGNC:6132"
+      - ncbi_gene_id: 3955
+        gene_symbol: LFNG
+        hgnc_id: "HGNC:6560"
+      - ncbi_gene_id: 3984
+        gene_symbol: LIMK1
+        hgnc_id: "HGNC:6613"
+      - ncbi_gene_id: 4015
+        gene_symbol: LOX
+        hgnc_id: "HGNC:6664"
+      - ncbi_gene_id: 4052
+        gene_symbol: LTBP1
+        hgnc_id: "HGNC:6714"
+      - ncbi_gene_id: 4087
+        gene_symbol: SMAD2
+        hgnc_id: "HGNC:6768"
+      - ncbi_gene_id: 4088
+        gene_symbol: SMAD3
+        hgnc_id: "HGNC:6769"
+      - ncbi_gene_id: 4089
+        gene_symbol: SMAD4
+        hgnc_id: "HGNC:6770"
+      - ncbi_gene_id: 4094
+        gene_symbol: MAF
+        hgnc_id: "HGNC:6776"
+      - ncbi_gene_id: 4125
+        gene_symbol: MAN2B1
+        hgnc_id: "HGNC:6826"
+      - ncbi_gene_id: 4144
+        gene_symbol: MAT2A
+        hgnc_id: "HGNC:6904"
+      - ncbi_gene_id: 4212
+        gene_symbol: MEIS2
+        hgnc_id: "HGNC:7001"
+      - ncbi_gene_id: 4281
+        gene_symbol: MID1
+        hgnc_id: "HGNC:7095"
+      - ncbi_gene_id: 4621
+        gene_symbol: MYH3
+        hgnc_id: "HGNC:7573"
+      - ncbi_gene_id: 4629
+        gene_symbol: MYH11
+        hgnc_id: "HGNC:7569"
+      - ncbi_gene_id: 4638
+        gene_symbol: MYLK
+        hgnc_id: "HGNC:7590"
+      - ncbi_gene_id: 4702
+        gene_symbol: NDUFA8
+        hgnc_id: "HGNC:7692"
+      - ncbi_gene_id: 4758
+        gene_symbol: NEU1
+        hgnc_id: "HGNC:7758"
+      - ncbi_gene_id: 4774
+        gene_symbol: NFIA
+        hgnc_id: "HGNC:7784"
+      - ncbi_gene_id: 4851
+        gene_symbol: NOTCH1
+        hgnc_id: "HGNC:7881"
+      - ncbi_gene_id: 4853
+        gene_symbol: NOTCH2
+        hgnc_id: "HGNC:7882"
+      - ncbi_gene_id: 4854
+        gene_symbol: NOTCH3
+        hgnc_id: "HGNC:7883"
+      - ncbi_gene_id: 4920
+        gene_symbol: ROR2
+        hgnc_id: "HGNC:10257"
+      - ncbi_gene_id: 4952
+        gene_symbol: OCRL
+        hgnc_id: "HGNC:8108"
+      - ncbi_gene_id: 4953
+        gene_symbol: ODC1
+        hgnc_id: "HGNC:8109"
+      - ncbi_gene_id: 5048
+        gene_symbol: PAFAH1B1
+        hgnc_id: "HGNC:8574"
+      - ncbi_gene_id: 5295
+        gene_symbol: PIK3R1
+        hgnc_id: "HGNC:8979"
+      - ncbi_gene_id: 5324
+        gene_symbol: PLAG1
+        hgnc_id: "HGNC:9045"
+      - ncbi_gene_id: 5337
+        gene_symbol: PLD1
+        hgnc_id: "HGNC:9067"
+      - ncbi_gene_id: 5351
+        gene_symbol: PLOD1
+        hgnc_id: "HGNC:9081"
+      - ncbi_gene_id: 5352
+        gene_symbol: PLOD2
+        hgnc_id: "HGNC:9082"
+      - ncbi_gene_id: 5430
+        gene_symbol: POLR2A
+        hgnc_id: "HGNC:9187"
+      - ncbi_gene_id: 5515
+        gene_symbol: PPP2CA
+        hgnc_id: "HGNC:9299"
+      - ncbi_gene_id: 5518
+        gene_symbol: PPP2R1A
+        hgnc_id: "HGNC:9302"
+      - ncbi_gene_id: 5592
+        gene_symbol: PRKG1
+        hgnc_id: "HGNC:9414"
+      - ncbi_gene_id: 5594
+        gene_symbol: MAPK1
+        hgnc_id: "HGNC:6871"
+      - ncbi_gene_id: 5826
+        gene_symbol: ABCD4
+        hgnc_id: "HGNC:68"
+      - ncbi_gene_id: 5831
+        gene_symbol: PYCR1
+        hgnc_id: "HGNC:9721"
+      - ncbi_gene_id: 5832
+        gene_symbol: ALDH18A1
+        hgnc_id: "HGNC:9722"
+      - ncbi_gene_id: 5982
+        gene_symbol: RFC2
+        hgnc_id: "HGNC:9970"
+      - ncbi_gene_id: 6134
+        gene_symbol: RPL10
+        hgnc_id: "HGNC:10298"
+      - ncbi_gene_id: 6197
+        gene_symbol: RPS6KA3
+        hgnc_id: "HGNC:10432"
+      - ncbi_gene_id: 6239
+        gene_symbol: RREB1
+        hgnc_id: "HGNC:10449"
+      - ncbi_gene_id: 6418
+        gene_symbol: SET
+        hgnc_id: "HGNC:10760"
+      - ncbi_gene_id: 6448
+        gene_symbol: SGSH
+        hgnc_id: "HGNC:10818"
+      - ncbi_gene_id: 6497
+        gene_symbol: SKI
+        hgnc_id: "HGNC:10896"
+      - ncbi_gene_id: 6499
+        gene_symbol: SKIC2
+        hgnc_id: "HGNC:10898"
+      - ncbi_gene_id: 6595
+        gene_symbol: SMARCA2
+        hgnc_id: "HGNC:11098"
+      - ncbi_gene_id: 6598
+        gene_symbol: SMARCB1
+        hgnc_id: "HGNC:11103"
+      - ncbi_gene_id: 6601
+        gene_symbol: SMARCC2
+        hgnc_id: "HGNC:11105"
+      - ncbi_gene_id: 6785
+        gene_symbol: ELOVL4
+        hgnc_id: "HGNC:14415"
+      - ncbi_gene_id: 6804
+        gene_symbol: STX1A
+        hgnc_id: "HGNC:11433"
+      - ncbi_gene_id: 6899
+        gene_symbol: TBX1
+        hgnc_id: "HGNC:11592"
+      - ncbi_gene_id: 6926
+        gene_symbol: TBX3
+        hgnc_id: "HGNC:11602"
+      - ncbi_gene_id: 6935
+        gene_symbol: ZEB1
+        hgnc_id: "HGNC:11642"
+      - ncbi_gene_id: 7042
+        gene_symbol: TGFB2
+        hgnc_id: "HGNC:11768"
+      - ncbi_gene_id: 7043
+        gene_symbol: TGFB3
+        hgnc_id: "HGNC:11769"
+      - ncbi_gene_id: 7046
+        gene_symbol: TGFBR1
+        hgnc_id: "HGNC:11772"
+      - ncbi_gene_id: 7048
+        gene_symbol: TGFBR2
+        hgnc_id: "HGNC:11773"
+      - ncbi_gene_id: 7290
+        gene_symbol: HIRA
+        hgnc_id: "HGNC:4916"
+      - ncbi_gene_id: 7317
+        gene_symbol: UBA1
+        hgnc_id: "HGNC:12469"
+      - ncbi_gene_id: 7353
+        gene_symbol: UFD1
+        hgnc_id: "HGNC:12520"
+      - ncbi_gene_id: 7458
+        gene_symbol: EIF4H
+        hgnc_id: "HGNC:12741"
+      - ncbi_gene_id: 7461
+        gene_symbol: CLIP2
+        hgnc_id: "HGNC:2586"
+      - ncbi_gene_id: 7474
+        gene_symbol: WNT5A
+        hgnc_id: "HGNC:12784"
+      - ncbi_gene_id: 7518
+        gene_symbol: XRCC4
+        hgnc_id: "HGNC:12831"
+      - ncbi_gene_id: 7531
+        gene_symbol: YWHAE
+        hgnc_id: "HGNC:12851"
+      - ncbi_gene_id: 8036
+        gene_symbol: SHOC2
+        hgnc_id: "HGNC:15454"
+      - ncbi_gene_id: 8076
+        gene_symbol: MFAP5
+        hgnc_id: "HGNC:29673"
+      - ncbi_gene_id: 8091
+        gene_symbol: HMGA2
+        hgnc_id: "HGNC:5009"
+      - ncbi_gene_id: 8214
+        gene_symbol: DGCR6
+        hgnc_id: "HGNC:2846"
+      - ncbi_gene_id: 8220
+        gene_symbol: ESS2
+        hgnc_id: "HGNC:16817"
+      - ncbi_gene_id: 8260
+        gene_symbol: NAA10
+        hgnc_id: "HGNC:18704"
+      - ncbi_gene_id: 8289
+        gene_symbol: ARID1A
+        hgnc_id: "HGNC:11110"
+      - ncbi_gene_id: 8295
+        gene_symbol: TRRAP
+        hgnc_id: "HGNC:12347"
+      - ncbi_gene_id: 8425
+        gene_symbol: LTBP4
+        hgnc_id: "HGNC:6717"
+      - ncbi_gene_id: 8443
+        gene_symbol: GNPAT
+        hgnc_id: "HGNC:4416"
+      - ncbi_gene_id: 8450
+        gene_symbol: CUL4B
+        hgnc_id: "HGNC:2555"
+      - ncbi_gene_id: 8468
+        gene_symbol: FKBP6
+        hgnc_id: "HGNC:3722"
+      - ncbi_gene_id: 8481
+        gene_symbol: OFD1
+        hgnc_id: "HGNC:2567"
+      - ncbi_gene_id: 8626
+        gene_symbol: TP63
+        hgnc_id: "HGNC:15979"
+      - ncbi_gene_id: 8720
+        gene_symbol: MBTPS1
+        hgnc_id: "HGNC:15456"
+      - ncbi_gene_id: 8726
+        gene_symbol: EED
+        hgnc_id: "HGNC:3188"
+      - ncbi_gene_id: 8788
+        gene_symbol: DLK1
+        hgnc_id: "HGNC:2907"
+      - ncbi_gene_id: 8884
+        gene_symbol: SLC5A6
+        hgnc_id: "HGNC:11041"
+      - ncbi_gene_id: 8905
+        gene_symbol: AP1S2
+        hgnc_id: "HGNC:560"
+      - ncbi_gene_id: 9031
+        gene_symbol: BAZ1B
+        hgnc_id: "HGNC:961"
+      - ncbi_gene_id: 9037
+        gene_symbol: SEMA5A
+        hgnc_id: "HGNC:10736"
+      - ncbi_gene_id: 9091
+        gene_symbol: PIGQ
+        hgnc_id: "HGNC:14135"
+      - ncbi_gene_id: 9158
+        gene_symbol: FIBP
+        hgnc_id: "HGNC:3705"
+      - ncbi_gene_id: 9275
+        gene_symbol: BCL7B
+        hgnc_id: "HGNC:1005"
+      - ncbi_gene_id: 9469
+        gene_symbol: CHST3
+        hgnc_id: "HGNC:1971"
+      - ncbi_gene_id: 9509
+        gene_symbol: ADAMTS2
+        hgnc_id: "HGNC:218"
+      - ncbi_gene_id: 9569
+        gene_symbol: GTF2IRD1
+        hgnc_id: "HGNC:4661"
+      - ncbi_gene_id: 9632
+        gene_symbol: SEC24C
+        hgnc_id: "HGNC:10705"
+      - ncbi_gene_id: 9652
+        gene_symbol: SKIC3
+        hgnc_id: "HGNC:23639"
+      - ncbi_gene_id: 9719
+        gene_symbol: ADAMTSL2
+        hgnc_id: "HGNC:14631"
+      - ncbi_gene_id: 9791
+        gene_symbol: PTDSS1
+        hgnc_id: "HGNC:9587"
+      - ncbi_gene_id: 9897
+        gene_symbol: WASHC5
+        hgnc_id: "HGNC:28984"
+      - ncbi_gene_id: 9968
+        gene_symbol: MED12
+        hgnc_id: "HGNC:11957"
+      - ncbi_gene_id: 9993
+        gene_symbol: DGCR2
+        hgnc_id: "HGNC:2845"
+      - ncbi_gene_id: 10020
+        gene_symbol: GNE
+        hgnc_id: "HGNC:23657"
+      - ncbi_gene_id: 10056
+        gene_symbol: FARSB
+        hgnc_id: "HGNC:17800"
+      - ncbi_gene_id: 10093
+        gene_symbol: ARPC4
+        hgnc_id: "HGNC:707"
+      - ncbi_gene_id: 10128
+        gene_symbol: LRPPRC
+        hgnc_id: "HGNC:15714"
+      - ncbi_gene_id: 10220
+        gene_symbol: GDF11
+        hgnc_id: "HGNC:4216"
+      - ncbi_gene_id: 10243
+        gene_symbol: GPHN
+        hgnc_id: "HGNC:15465"
+      - ncbi_gene_id: 10265
+        gene_symbol: IRX5
+        hgnc_id: "HGNC:14361"
+      - ncbi_gene_id: 10283
+        gene_symbol: CWC27
+        hgnc_id: "HGNC:10664"
+      - ncbi_gene_id: 10297
+        gene_symbol: APC2
+        hgnc_id: "HGNC:24036"
+      - ncbi_gene_id: 10516
+        gene_symbol: FBLN5
+        hgnc_id: "HGNC:3602"
+      - ncbi_gene_id: 10526
+        gene_symbol: IPO8
+        hgnc_id: "HGNC:9853"
+      - ncbi_gene_id: 10664
+        gene_symbol: CTCF
+        hgnc_id: "HGNC:13723"
+      - ncbi_gene_id: 10683
+        gene_symbol: DLL3
+        hgnc_id: "HGNC:2909"
+      - ncbi_gene_id: 10765
+        gene_symbol: KDM5B
+        hgnc_id: "HGNC:18039"
+      - ncbi_gene_id: 10847
+        gene_symbol: SRCAP
+        hgnc_id: "HGNC:16974"
+      - ncbi_gene_id: 10907
+        gene_symbol: TXNL4A
+        hgnc_id: "HGNC:30551"
+      - ncbi_gene_id: 10982
+        gene_symbol: MAPRE2
+        hgnc_id: "HGNC:6891"
+      - ncbi_gene_id: 10984
+        gene_symbol: KCNQ1OT1
+        hgnc_id: "HGNC:6295"
+      - ncbi_gene_id: 11107
+        gene_symbol: PRDM5
+        hgnc_id: "HGNC:9349"
+      - ncbi_gene_id: 11342
+        gene_symbol: RNF13
+        hgnc_id: "HGNC:10057"
+      - ncbi_gene_id: 22827
+        gene_symbol: PUF60
+        hgnc_id: "HGNC:17042"
+      - ncbi_gene_id: 22872
+        gene_symbol: SEC31A
+        hgnc_id: "HGNC:17052"
+      - ncbi_gene_id: 23112
+        gene_symbol: TNRC6B
+        hgnc_id: "HGNC:29190"
+      - ncbi_gene_id: 23126
+        gene_symbol: POGZ
+        hgnc_id: "HGNC:18801"
+      - ncbi_gene_id: 23291
+        gene_symbol: FBXW11
+        hgnc_id: "HGNC:13607"
+      - ncbi_gene_id: 23314
+        gene_symbol: SATB2
+        hgnc_id: "HGNC:21637"
+      - ncbi_gene_id: 23322
+        gene_symbol: RPGRIP1L
+        hgnc_id: "HGNC:29168"
+      - ncbi_gene_id: 23347
+        gene_symbol: SMCHD1
+        hgnc_id: "HGNC:29090"
+      - ncbi_gene_id: 23394
+        gene_symbol: ADNP
+        hgnc_id: "HGNC:15766"
+      - ncbi_gene_id: 23405
+        gene_symbol: DICER1
+        hgnc_id: "HGNC:17098"
+      - ncbi_gene_id: 23483
+        gene_symbol: TGDS
+        hgnc_id: "HGNC:20324"
+      - ncbi_gene_id: 23493
+        gene_symbol: HEY2
+        hgnc_id: "HGNC:4881"
+      - ncbi_gene_id: 23512
+        gene_symbol: SUZ12
+        hgnc_id: "HGNC:17101"
+      - ncbi_gene_id: 23545
+        gene_symbol: ATP6V0A2
+        hgnc_id: "HGNC:18481"
+      - ncbi_gene_id: 23729
+        gene_symbol: SHPK
+        hgnc_id: "HGNC:1492"
+      - ncbi_gene_id: 25782
+        gene_symbol: RAB3GAP2
+        hgnc_id: "HGNC:17168"
+      - ncbi_gene_id: 25836
+        gene_symbol: NIPBL
+        hgnc_id: "HGNC:28862"
+      - ncbi_gene_id: 25942
+        gene_symbol: SIN3A
+        hgnc_id: "HGNC:19353"
+      - ncbi_gene_id: 26040
+        gene_symbol: SETBP1
+        hgnc_id: "HGNC:15573"
+      - ncbi_gene_id: 26053
+        gene_symbol: AUTS2
+        hgnc_id: "HGNC:14262"
+      - ncbi_gene_id: 26227
+        gene_symbol: PHGDH
+        hgnc_id: "HGNC:8923"
+      - ncbi_gene_id: 26229
+        gene_symbol: B3GAT3
+        hgnc_id: "HGNC:923"
+      - ncbi_gene_id: 26608
+        gene_symbol: TBL2
+        hgnc_id: "HGNC:11586"
+      - ncbi_gene_id: 27031
+        gene_symbol: NPHP3
+        hgnc_id: "HGNC:7907"
+      - ncbi_gene_id: 28952
+        gene_symbol: CCDC22
+        hgnc_id: "HGNC:28909"
+      - ncbi_gene_id: 29072
+        gene_symbol: SETD2
+        hgnc_id: "HGNC:18420"
+      - ncbi_gene_id: 29940
+        gene_symbol: DSE
+        hgnc_id: "HGNC:21144"
+      - ncbi_gene_id: 29969
+        gene_symbol: MDFIC
+        hgnc_id: "HGNC:28870"
+      - ncbi_gene_id: 30008
+        gene_symbol: EFEMP2
+        hgnc_id: "HGNC:3219"
+      - ncbi_gene_id: 51085
+        gene_symbol: MLXIPL
+        hgnc_id: "HGNC:12744"
+      - ncbi_gene_id: 51360
+        gene_symbol: MBTPS2
+        hgnc_id: "HGNC:15455"
+      - ncbi_gene_id: 51780
+        gene_symbol: KDM3B
+        hgnc_id: "HGNC:1337"
+      - ncbi_gene_id: 54101
+        gene_symbol: RIPK4
+        hgnc_id: "HGNC:496"
+      - ncbi_gene_id: 54487
+        gene_symbol: DGCR8
+        hgnc_id: "HGNC:2847"
+      - ncbi_gene_id: 54499
+        gene_symbol: TMCO1
+        hgnc_id: "HGNC:18188"
+      - ncbi_gene_id: 54914
+        gene_symbol: FOCAD
+        hgnc_id: "HGNC:23377"
+      - ncbi_gene_id: 54968
+        gene_symbol: TMEM70
+        hgnc_id: "HGNC:26050"
+      - ncbi_gene_id: 55033
+        gene_symbol: FKBP14
+        hgnc_id: "HGNC:18625"
+      - ncbi_gene_id: 55384
+        gene_symbol: MEG3
+        hgnc_id: "HGNC:14575"
+      - ncbi_gene_id: 55503
+        gene_symbol: TRPV6
+        hgnc_id: "HGNC:14006"
+      - ncbi_gene_id: 55617
+        gene_symbol: TASP1
+        hgnc_id: "HGNC:15859"
+      - ncbi_gene_id: 55690
+        gene_symbol: PACS1
+        hgnc_id: "HGNC:30032"
+      - ncbi_gene_id: 55764
+        gene_symbol: IFT122
+        hgnc_id: "HGNC:13556"
+      - ncbi_gene_id: 56623
+        gene_symbol: INPP5E
+        hgnc_id: "HGNC:21474"
+      - ncbi_gene_id: 57492
+        gene_symbol: ARID1B
+        hgnc_id: "HGNC:18040"
+      - ncbi_gene_id: 57539
+        gene_symbol: WDR35
+        hgnc_id: "HGNC:29250"
+      - ncbi_gene_id: 57545
+        gene_symbol: CC2D2A
+        hgnc_id: "HGNC:29253"
+      - ncbi_gene_id: 57589
+        gene_symbol: RIC1
+        hgnc_id: "HGNC:17686"
+      - ncbi_gene_id: 57728
+        gene_symbol: WDR19
+        hgnc_id: "HGNC:18340"
+      - ncbi_gene_id: 58508
+        gene_symbol: KMT2C
+        hgnc_id: "HGNC:13726"
+      - ncbi_gene_id: 63895
+        gene_symbol: PIEZO2
+        hgnc_id: "HGNC:26270"
+      - ncbi_gene_id: 64175
+        gene_symbol: P3H1
+        hgnc_id: "HGNC:19316"
+      - ncbi_gene_id: 64220
+        gene_symbol: STRA6
+        hgnc_id: "HGNC:30650"
+      - ncbi_gene_id: 64324
+        gene_symbol: NSD1
+        hgnc_id: "HGNC:14234"
+      - ncbi_gene_id: 64359
+        gene_symbol: NXN
+        hgnc_id: "HGNC:18008"
+      - ncbi_gene_id: 64412
+        gene_symbol: GZF1
+        hgnc_id: "HGNC:15808"
+      - ncbi_gene_id: 64840
+        gene_symbol: PORCN
+        hgnc_id: "HGNC:17652"
+      - ncbi_gene_id: 79158
+        gene_symbol: GNPTAB
+        hgnc_id: "HGNC:29670"
+      - ncbi_gene_id: 79633
+        gene_symbol: FAT4
+        hgnc_id: "HGNC:23109"
+      - ncbi_gene_id: 79813
+        gene_symbol: EHMT1
+        hgnc_id: "HGNC:24650"
+      - ncbi_gene_id: 79989
+        gene_symbol: IFT56
+        hgnc_id: "HGNC:21882"
+      - ncbi_gene_id: 81031
+        gene_symbol: SLC2A10
+        hgnc_id: "HGNC:13444"
+      - ncbi_gene_id: 81857
+        gene_symbol: MED25
+        hgnc_id: "HGNC:28845"
+      - ncbi_gene_id: 84068
+        gene_symbol: SLC10A7
+        hgnc_id: "HGNC:23088"
+      - ncbi_gene_id: 84163
+        gene_symbol: GTF2IRD2
+        hgnc_id: "HGNC:30775"
+      - ncbi_gene_id: 84277
+        gene_symbol: DNAJC30
+        hgnc_id: "HGNC:16410"
+      - ncbi_gene_id: 84314
+        gene_symbol: TMEM107
+        hgnc_id: "HGNC:28128"
+      - ncbi_gene_id: 84667
+        gene_symbol: HES7
+        hgnc_id: "HGNC:15977"
+      - ncbi_gene_id: 84896
+        gene_symbol: ATAD1
+        hgnc_id: "HGNC:25903"
+      - ncbi_gene_id: 84992
+        gene_symbol: PIGY
+        hgnc_id: "HGNC:28213"
+      - ncbi_gene_id: 91147
+        gene_symbol: TMEM67
+        hgnc_id: "HGNC:28396"
+      - ncbi_gene_id: 92579
+        gene_symbol: G6PC3
+        hgnc_id: "HGNC:24861"
+      - ncbi_gene_id: 94005
+        gene_symbol: PIGS
+        hgnc_id: "HGNC:14937"
+      - ncbi_gene_id: 113189
+        gene_symbol: CHST14
+        hgnc_id: "HGNC:24464"
+      - ncbi_gene_id: 114049
+        gene_symbol: BUD23
+        hgnc_id: "HGNC:16405"
+      - ncbi_gene_id: 123263
+        gene_symbol: MTFMT
+        hgnc_id: "HGNC:29666"
+      - ncbi_gene_id: 129563
+        gene_symbol: DIS3L2
+        hgnc_id: "HGNC:28648"
+      - ncbi_gene_id: 134701
+        gene_symbol: RIPPLY2
+        hgnc_id: "HGNC:21390"
+      - ncbi_gene_id: 135886
+        gene_symbol: TMEM270
+        hgnc_id: "HGNC:23018"
+      - ncbi_gene_id: 145173
+        gene_symbol: B3GLCT
+        hgnc_id: "HGNC:20207"
+      - ncbi_gene_id: 145873
+        gene_symbol: MESP2
+        hgnc_id: "HGNC:29659"
+      - ncbi_gene_id: 149461
+        gene_symbol: CLDN19
+        hgnc_id: "HGNC:2040"
+      - ncbi_gene_id: 155368
+        gene_symbol: METTL27
+        hgnc_id: "HGNC:19068"
+      - ncbi_gene_id: 155382
+        gene_symbol: VPS37D
+        hgnc_id: "HGNC:18287"
+      - ncbi_gene_id: 168667
+        gene_symbol: BMPER
+        hgnc_id: "HGNC:24154"
+      - ncbi_gene_id: 170302
+        gene_symbol: ARX
+        hgnc_id: "HGNC:18060"
+      - ncbi_gene_id: 197257
+        gene_symbol: LDHD
+        hgnc_id: "HGNC:19708"
+      - ncbi_gene_id: 203068
+        gene_symbol: TUBB
+        hgnc_id: "HGNC:20778"
+      - ncbi_gene_id: 221037
+        gene_symbol: JMJD1C
+        hgnc_id: "HGNC:12313"
+      - ncbi_gene_id: 221927
+        gene_symbol: BRAT1
+        hgnc_id: "HGNC:21701"
+      - ncbi_gene_id: 259232
+        gene_symbol: NALCN
+        hgnc_id: "HGNC:19082"
+      - ncbi_gene_id: 283120
+        gene_symbol: H19
+        hgnc_id: "HGNC:4713"
+      - ncbi_gene_id: 284098
+        gene_symbol: PIGW
+        hgnc_id: "HGNC:23213"
+      - ncbi_gene_id: 285590
+        gene_symbol: SH3PXD2B
+        hgnc_id: "HGNC:29242"
+      - ncbi_gene_id: 339983
+        gene_symbol: NAT8L
+        hgnc_id: "HGNC:26742"
+      - ncbi_gene_id: 374654
+        gene_symbol: KIF7
+        hgnc_id: "HGNC:30497"
+      - ncbi_gene_id: 388015
+        gene_symbol: RTL1
+        hgnc_id: "HGNC:14665"
+      - ncbi_gene_id: 653361
+        gene_symbol: NCF1
+        hgnc_id: "HGNC:7660"
+  - term_id: "HP:0100541"
+    name: Femoral hernia
+    definition: "A hernia which occurs just below the inguinal ligament, where abdominal contents pass through a naturally occurring weakness called the femoral canal."
+    synonyms:
+      - Crural hernia
+    xrefs:
+      - "MEDDRA:10016434"
+      - "MSH:D006550"
+      - "SNOMEDCT_US:50063009"
+      - "UMLS:C0019288"
+    genes:
+      - ncbi_gene_id: 538
+        gene_symbol: ATP7A
+        hgnc_id: "HGNC:869"
+      - ncbi_gene_id: 1277
+        gene_symbol: COL1A1
+        hgnc_id: "HGNC:2197"
+      - ncbi_gene_id: 1278
+        gene_symbol: COL1A2
+        hgnc_id: "HGNC:2198"
+      - ncbi_gene_id: 1836
+        gene_symbol: SLC26A2
+        hgnc_id: "HGNC:10994"
+      - ncbi_gene_id: 1855
+        gene_symbol: DVL1
+        hgnc_id: "HGNC:3084"
+      - ncbi_gene_id: 1857
+        gene_symbol: DVL3
+        hgnc_id: "HGNC:3087"
+      - ncbi_gene_id: 2187
+        gene_symbol: FANCB
+        hgnc_id: "HGNC:3583"
+      - ncbi_gene_id: 2535
+        gene_symbol: FZD2
+        hgnc_id: "HGNC:4040"
+      - ncbi_gene_id: 4089
+        gene_symbol: SMAD4
+        hgnc_id: "HGNC:6770"
+      - ncbi_gene_id: 6899
+        gene_symbol: TBX1
+        hgnc_id: "HGNC:11592"
+      - ncbi_gene_id: 7474
+        gene_symbol: WNT5A
+        hgnc_id: "HGNC:12784"
+      - ncbi_gene_id: 9321
+        gene_symbol: TRIP11
+        hgnc_id: "HGNC:12305"
+      - ncbi_gene_id: 9509
+        gene_symbol: ADAMTS2
+        hgnc_id: "HGNC:218"
+      - ncbi_gene_id: 9719
+        gene_symbol: ADAMTSL2
+        hgnc_id: "HGNC:14631"
+      - ncbi_gene_id: 9791
+        gene_symbol: PTDSS1
+        hgnc_id: "HGNC:9587"
+      - ncbi_gene_id: 79813
+        gene_symbol: EHMT1
+        hgnc_id: "HGNC:24650"
+      - ncbi_gene_id: 81031
+        gene_symbol: SLC2A10
+        hgnc_id: "HGNC:13444"
+      - ncbi_gene_id: 129563
+        gene_symbol: DIS3L2
+        hgnc_id: "HGNC:28648"

@@ -49,12 +49,6 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: Swatinem/rust-cache@v2
-        if: ${{ needs.release-please.outputs.release_created }}
-        with:
-          cache-directories: |
-            ~/.cargo/registry/src/**/librocksdb-sys-*
-
       - name: Publish crate
         if: ${{ needs.release-please.outputs.release_created }}
         uses: actions-rs/cargo@v1

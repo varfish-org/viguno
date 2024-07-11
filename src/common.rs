@@ -60,6 +60,7 @@ pub fn load_hpo<P: AsRef<std::path::Path>>(path: P) -> Result<hpo::Ontology, any
     derive_more::Display,
     serde::Serialize,
     serde::Deserialize,
+    utoipa::ToSchema,
 )]
 #[serde(rename_all = "kebab-case")]
 pub enum IcBasedOn {
@@ -99,6 +100,7 @@ impl FromStr for IcBasedOn {
     derive_more::Display,
     serde::Serialize,
     serde::Deserialize,
+    utoipa::ToSchema,
 )]
 #[serde(rename_all = "kebab-case")]
 pub enum SimilarityMethod {
@@ -174,6 +176,7 @@ impl FromStr for SimilarityMethod {
     derive_more::Display,
     serde::Serialize,
     serde::Deserialize,
+    utoipa::ToSchema,
 )]
 #[serde(rename_all = "kebab-case")]
 pub enum ScoreCombiner {
@@ -224,7 +227,7 @@ pub fn version() -> &'static str {
 }
 
 /// Version information that is returned by the HTTP server.
-#[derive(serde::Serialize, serde::Deserialize, Default, Debug, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Default, Debug, Clone)]
 pub struct Version {
     /// Version of the HPO.
     pub hpo: String,
