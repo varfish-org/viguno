@@ -1,6 +1,6 @@
 //! Implementation of `/hpo/genes`.
 
-use std::collections::HashMap;
+use std::{collections::HashMap, sync::Arc};
 
 use actix_web::{
     get,
@@ -139,7 +139,7 @@ pub struct Result {
 )]
 #[get("/hpo/genes")]
 async fn handle(
-    data: Data<WebServerData>,
+    data: Data<Arc<WebServerData>>,
     _path: Path<()>,
     query: web::Query<Query>,
 ) -> actix_web::Result<impl Responder, CustomError> {
@@ -207,24 +207,37 @@ async fn handle(
 
 #[cfg(test)]
 mod test {
+    use std::sync::Arc;
+
+    /// Return the default ``crate::server::run::WebServerData`` for testing.
+    #[rstest::fixture]
+    #[once]
+    pub fn web_server_data() -> Arc<crate::server::run::WebServerData> {
+        let ontology = crate::common::load_hpo("tests/data/hpo").expect("could not load HPO");
+        let ncbi_to_hgnc =
+            crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")
+                .expect("could not HGNC xlink");
+        let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
+        let hpo_doc = fastobo::from_file("tests/data/hpo/hp.obo").expect("could not load HPO OBO");
+
+        Arc::new(crate::server::run::WebServerData {
+            ontology,
+            ncbi_to_hgnc,
+            hgnc_to_ncbi,
+            full_text_index: crate::index::Index::new(hpo_doc)
+                .expect("could not create full text index"),
+        })
+    }
+
     /// Helper function for running a query.
     #[allow(dead_code)]
-    async fn run_query(uri: &str) -> Result<super::Result, anyhow::Error> {
-        let ontology = crate::common::load_hpo("tests/data/hpo")?;
-        let ncbi_to_hgnc =
-            crate::common::hgnc_xlink::load_ncbi_to_hgnc("tests/data/hgnc_xlink.tsv")?;
-        let hgnc_to_ncbi = crate::common::hgnc_xlink::inverse_hashmap(&ncbi_to_hgnc);
-        let hpo_doc = fastobo::from_file("tests/data/hpo/hp.obo")?;
+    async fn run_query(
+        web_server_data: Arc<crate::server::run::WebServerData>,
+        uri: &str,
+    ) -> Result<super::Result, anyhow::Error> {
         let app = actix_web::test::init_service(
             actix_web::App::new()
-                .app_data(actix_web::web::Data::new(
-                    crate::server::run::WebServerData {
-                        ontology,
-                        ncbi_to_hgnc,
-                        hgnc_to_ncbi,
-                        full_text_index: crate::index::Index::new(hpo_doc)?,
-                    },
-                ))
+                .app_data(actix_web::web::Data::new(web_server_data))
                 .service(super::handle),
         )
         .await;
@@ -234,87 +247,159 @@ mod test {
         Ok(resp)
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_ncbi_gene_id_exact_no_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_ncbi_gene_id_exact_no_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_id=2348").await?
+            &run_query(web_server_data.clone(), "/hpo/genes?gene_id=2348").await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_ncbi_gene_id_exact_with_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_ncbi_gene_id_exact_with_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_id=2348&hpo_terms=true").await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/genes?gene_id=2348&hpo_terms=true"
+            )
+            .await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_hgnc_gene_id_exact_no_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_hgnc_gene_id_exact_no_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_id=HGNC:3791").await?
+            &run_query(web_server_data.clone(), "/hpo/genes?gene_id=HGNC:3791").await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_hgnc_gene_id_exact_with_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_hgnc_gene_id_exact_with_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_id=HGNC:3791&hpo_terms=true").await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/genes?gene_id=HGNC:3791&hpo_terms=true"
+            )
+            .await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_gene_symbol_exact_no_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_gene_symbol_exact_no_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_symbol=TGDS").await?
+            &run_query(web_server_data.clone(), "/hpo/genes?gene_symbol=TGDS").await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_gene_symbol_exact_with_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_gene_symbol_exact_with_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_symbol=TGDS&hpo_terms=true").await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/genes?gene_symbol=TGDS&hpo_terms=true"
+            )
+            .await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_gene_symbol_prefix_no_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_gene_symbol_prefix_no_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_symbol=TGD&match=prefix").await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/genes?gene_symbol=TGD&match=prefix"
+            )
+            .await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_gene_symbol_prefix_with_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_gene_symbol_prefix_with_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_symbol=TGD&match=prefix&hpo_terms=true").await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/genes?gene_symbol=TGD&match=prefix&hpo_terms=true"
+            )
+            .await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_gene_symbol_suffix_no_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_gene_symbol_suffix_no_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_symbol=GDS&match=suffix").await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/genes?gene_symbol=GDS&match=suffix"
+            )
+            .await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_gene_symbol_suffix_with_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_gene_symbol_suffix_with_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_symbol=GDS&match=suffix&hpo_terms=true").await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/genes?gene_symbol=GDS&match=suffix&hpo_terms=true"
+            )
+            .await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_gene_symbol_contains_no_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_gene_symbol_contains_no_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_symbol=GD&match=contains").await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/genes?gene_symbol=GD&match=contains"
+            )
+            .await?
         ))
     }
 
+    #[rstest::rstest]
     #[actix_web::test]
-    async fn hpo_genes_gene_symbol_contains_with_hpo_terms() -> Result<(), anyhow::Error> {
+    async fn hpo_genes_gene_symbol_contains_with_hpo_terms(
+        web_server_data: &Arc<crate::server::run::WebServerData>,
+    ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query("/hpo/genes?gene_symbol=GD&match=contains&hpo_terms=true").await?
+            &run_query(
+                web_server_data.clone(),
+                "/hpo/genes?gene_symbol=GD&match=contains&hpo_terms=true"
+            )
+            .await?
         ))
     }
 }

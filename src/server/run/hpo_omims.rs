@@ -1,5 +1,7 @@
 //! Implementation of `/hpo/omims`.
 
+use std::sync::Arc;
+
 use actix_web::{
     get,
     web::{self, Data, Json, Path},
@@ -154,7 +156,7 @@ pub struct Result {
 )]
 #[get("/hpo/omims")]
 async fn handle(
-    data: Data<WebServerData>,
+    data: Data<Arc<WebServerData>>,
     _path: Path<()>,
     query: web::Query<Query>,
 ) -> actix_web::Result<impl Responder, CustomError> {

@@ -1,6 +1,9 @@
 //! Dump schema of the REST API server.
 
-use std::{fs::File, io::{self, Write}};
+use std::{
+    fs::File,
+    io::{self, Write},
+};
 
 use utoipa::OpenApi as _;
 
@@ -34,15 +37,14 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     tracing::info!("args_common = {:?}", &args_common);
     tracing::info!("args = {:?}", &args);
 
-    let schema_yaml = ApiDoc::openapi().to_yaml().map_err(|e| {
-        anyhow::anyhow!("Failed to convert OpenAPI to YAML: {}", e)
-    })?;
-    let mut output = args.get_output().map_err(|e| {
-        anyhow::anyhow!("Failed to open output file: {}", e)
-    })?;
-    write!(output, "{}", &schema_yaml).map_err(|e| {
-        anyhow::anyhow!("Failed to write output: {}", e)
-    })?;
+    let schema_yaml = ApiDoc::openapi()
+        .to_yaml()
+        .map_err(|e| anyhow::anyhow!("Failed to convert OpenAPI to YAML: {}", e))?;
+    let mut output = args
+        .get_output()
+        .map_err(|e| anyhow::anyhow!("Failed to open output file: {}", e))?;
+    write!(output, "{}", &schema_yaml)
+        .map_err(|e| anyhow::anyhow!("Failed to write output: {}", e))?;
 
     tracing::info!("All done. Have a nice day!");
     Ok(())

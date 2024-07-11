@@ -1,6 +1,6 @@
 //! Implementation of `/hpo/terms`.
 
-use std::collections::HashMap;
+use std::{collections::HashMap, sync::Arc};
 
 use actix_web::{
     get,
@@ -214,7 +214,7 @@ pub struct Result {
 )]
 #[get("/hpo/terms")]
 async fn handle(
-    data: Data<WebServerData>,
+    data: Data<Arc<WebServerData>>,
     _path: Path<()>,
     query: web::Query<Query>,
 ) -> actix_web::Result<impl Responder, CustomError> {
