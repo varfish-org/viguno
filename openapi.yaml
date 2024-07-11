@@ -372,4 +372,3 @@ components:
         viguno:
           type: string
           description: Version of the `viguno` package.
-
