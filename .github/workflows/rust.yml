@@ -94,6 +94,7 @@ jobs:
 
   Schema-Unchanged:  # ensure schema is not changed
     needs: Formatting
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
