@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/varfish-org/viguno/compare/v0.3.1...v0.3.2) (2024-07-14)
+
+
+### Bug Fixes
+
+* allow "OMIM:" and "MIM:" prefixes in omim_id param ([#178](https://github.com/varfish-org/viguno/issues/178)) ([#179](https://github.com/varfish-org/viguno/issues/179)) ([5cbd43d](https://github.com/varfish-org/viguno/commit/5cbd43d369867e612b0663cb2bd02fa7a40742f0))
+
 ## [0.3.1](https://github.com/varfish-org/viguno/compare/v0.3.0...v0.3.1) (2024-07-11)
 
 
