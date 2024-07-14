@@ -52,6 +52,25 @@ pub struct Query {
     pub hpo_terms: bool,
 }
 
+impl Query {
+    /// Strip "OMIM:" prefix from `omim_id`, if any.
+    fn with_stripped_prefix(self) -> Self {
+        Self {
+            omim_id: self.omim_id.map(|omim_id| {
+                let lower_omim_id = omim_id.to_lowercase();
+                if lower_omim_id.starts_with("omim:") {
+                    omim_id[5..].to_string()
+                } else if lower_omim_id.starts_with("mim:") {
+                    omim_id[4..].to_string()
+                } else {
+                    omim_id
+                }
+            }),
+            ..self
+        }
+    }
+}
+
 /// Return default of `Request::max_results`.
 fn _default_max_results() -> usize {
     100
@@ -164,6 +183,9 @@ async fn handle(
     let match_ = query.match_.unwrap_or_default();
     let mut result: Vec<ResultEntry> = Vec::new();
 
+    // Strip "OMIM:" and "MIM:" prefix from `query.omim_id` if given.
+    let query = query.into_inner().with_stripped_prefix();
+
     if match_ == Match::Exact {
         let omim_disease = if let Some(omim_id) = &query.omim_id {
             let omim_id = OmimDiseaseId::try_from(omim_id.as_ref())
@@ -238,7 +260,7 @@ async fn handle(
 
     let result = Result {
         version: Version::new(&data.ontology.hpo_version()),
-        query: query.into_inner(),
+        query,
         result,
     };
 
