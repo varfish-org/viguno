@@ -36,7 +36,7 @@ serde_with = { version = "3.6", features=["alloc", "macros", "indexmap_2"], defa
 shellexpand = "3.0"
 strum_macros = "0.26"
 strum = { version = "0.26", features = ["strum_macros", "derive"] }
-tantivy = "0.21.1"
+tantivy = "0.22.0"
 tempdir = "0.3.7"
 thiserror = "1.0"
 tracing = "0.1"
