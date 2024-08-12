@@ -24,7 +24,7 @@ hpo = "0.8"
 indexmap = { version = "2.2", features = ["serde"] }
 indicatif = { version = "0.17", features = ["rayon"] }
 itertools = "0.13"
-lazy_static = "1.4"
+lazy_static = "1.5"
 log = "0.4"
 once_cell = "1.18"
 prost = "0.13"
