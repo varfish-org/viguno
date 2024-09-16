@@ -20,7 +20,7 @@ env_logger = "0.10"
 fastobo = "0.15.2"
 fastrand = "2.1"
 flate2 = "1.0"
-hpo = "0.8"
+hpo = "0.11"
 indexmap = { version = "2.5", features = ["serde"] }
 indicatif = { version = "0.17", features = ["rayon"] }
 itertools = "0.13"
