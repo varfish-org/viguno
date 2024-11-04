@@ -21,7 +21,7 @@ fastobo = "0.15.2"
 fastrand = "2.1"
 flate2 = "1.0"
 hpo = "0.8"
-indexmap = { version = "2.5", features = ["serde"] }
+indexmap = { version = "2.6", features = ["serde"] }
 indicatif = { version = "0.17", features = ["rayon"] }
 itertools = "0.13"
 lazy_static = "1.5"
