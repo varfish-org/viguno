@@ -5,9 +5,9 @@ use std::{collections::HashMap, sync::Arc};
 use actix_web::{
     get,
     web::{self, Data, Json, Path},
-    Responder,
 };
 use hpo::{annotations::AnnotationId, HpoTerm, HpoTermId, Ontology};
+use tantivy::schema::Value as _;
 
 use crate::{common::Version, server::run::WebServerData};
 
@@ -105,7 +105,7 @@ impl ResultEntry {
         genes: bool,
         ncbi_to_hgnc: &HashMap<u32, String>,
         index: &crate::index::Index,
-        doc: Option<&tantivy::Document>,
+        doc: Option<&tantivy::TantivyDocument>,
     ) -> Result<Self, anyhow::Error> {
         let field_term_id = index
             .schema()
@@ -147,12 +147,12 @@ impl ResultEntry {
 
         let definition = doc
             .get_all(field_def)
-            .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
+            .filter_map(|f| f.as_value().as_str().map(std::string::ToString::to_string))
             .collect::<Vec<_>>();
         let definition = definition.first().cloned();
         let synonyms = doc
             .get_all(field_synonym)
-            .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
+            .filter_map(|f| f.as_value().as_str().map(std::string::ToString::to_string))
             .collect::<Vec<_>>();
         let synonyms = if synonyms.is_empty() {
             None
@@ -161,7 +161,7 @@ impl ResultEntry {
         };
         let xrefs = doc
             .get_all(field_xref)
-            .filter_map(|f| f.as_text().map(std::string::ToString::to_string))
+            .filter_map(|f| f.as_value().as_str().map(std::string::ToString::to_string))
             .collect::<Vec<_>>();
         let xrefs = if xrefs.is_empty() { None } else { Some(xrefs) };
 
@@ -215,7 +215,7 @@ pub struct Result_ {
     operation_id = "hpo_terms",
     params(Query),
     responses(
-        (status = 200, description = "The query was successful.", body = Result),
+        (status = 200, description = "The query was successful.", body = Result_),
     )
 )]
 #[get("/hpo/terms")]
@@ -223,7 +223,7 @@ async fn handle(
     data: Data<Arc<WebServerData>>,
     _path: Path<()>,
     query: web::Query<Query>,
-) -> actix_web::Result<impl Responder, CustomError> {
+) -> actix_web::Result<Json<Result_>, CustomError> {
     let ontology = &data.ontology;
     let mut result: Vec<ResultEntry> = Vec::new();
 
@@ -326,15 +326,18 @@ async fn handle(
             .map_err(|e| CustomError::new(anyhow::anyhow!("Error searching index: {}", e)))?;
 
         for (_score, doc_address) in top_docs {
-            let retrieved_doc = searcher.doc(doc_address).map_err(|e| {
-                CustomError::new(anyhow::anyhow!("Error retrieving document: {}", e))
-            })?;
+            let retrieved_doc = searcher
+                .doc::<tantivy::TantivyDocument>(doc_address)
+                .map_err(|e| {
+                    CustomError::new(anyhow::anyhow!("Error retrieving document: {}", e))
+                })?;
             let term_id = retrieved_doc
                 .get_first(field_term_id)
                 .ok_or_else(|| {
                     CustomError::new(anyhow::anyhow!("Document has no `term_id` field"))
                 })?
-                .as_text()
+                .as_value()
+                .as_str()
                 .unwrap_or_default();
             let term_id = HpoTermId::from(term_id.to_string());
             let term = ontology.hpo(term_id).ok_or_else(|| {

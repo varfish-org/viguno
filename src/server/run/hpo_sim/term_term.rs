@@ -6,7 +6,6 @@ use std::sync::Arc;
 use actix_web::{
     get,
     web::{self, Data, Json, Path},
-    Responder,
 };
 use hpo::{
     similarity::{Builtins, Similarity},
@@ -116,7 +115,7 @@ async fn handle(
     data: Data<Arc<WebServerData>>,
     _path: Path<()>,
     query: web::Query<RequestQuery>,
-) -> actix_web::Result<impl Responder, CustomError> {
+) -> actix_web::Result<Json<Result>, CustomError> {
     let ontology: &Ontology = &data.ontology;
     let mut result = Vec::new();
 

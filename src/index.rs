@@ -98,7 +98,7 @@ impl Index {
             .iter()
             .filter_map(fastobo::ast::EntityFrame::as_term)
         {
-            let mut doc = tantivy::Document::default();
+            let mut doc = tantivy::TantivyDocument::default();
 
             doc.add_field_value(
                 schema.get_field("term_id")?,

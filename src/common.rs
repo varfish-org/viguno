@@ -66,10 +66,10 @@ pub fn load_hpo<P: AsRef<std::path::Path>>(path: P) -> Result<hpo::Ontology, any
 pub enum IcBasedOn {
     /// Compute information content based on gene.
     #[default]
-    #[display(fmt = "gene")]
+    #[display("gene")]
     Gene,
     /// Compute information content based on OMIM disease.
-    #[display(fmt = "omim")]
+    #[display("omim")]
     Omim,
 }
 
@@ -105,29 +105,29 @@ impl FromStr for IcBasedOn {
 #[serde(rename_all = "kebab-case")]
 pub enum SimilarityMethod {
     /// "Distance" similarity.
-    #[display(fmt = "distance")]
+    #[display("distance")]
     DistanceGene,
     /// Graph IC similarity.
-    #[display(fmt = "graph-ic")]
+    #[display("graph-ic")]
     GraphIc,
     /// Information coefficient similarity..
-    #[display(fmt = "information-coefficient")]
+    #[display("information-coefficient")]
     InformationCoefficient,
     /// Jiang & Conrath similarity.
-    #[display(fmt = "jc")]
+    #[display("jc")]
     Jc,
     /// Lin similarity..
-    #[display(fmt = "lin")]
+    #[display("lin")]
     Lin,
     /// "Mutation" similarity.
-    #[display(fmt = "mutation")]
+    #[display("mutation")]
     Mutation,
     /// "Relevance" similarity.
-    #[display(fmt = "relevance")]
+    #[display("relevance")]
     Relevance,
     /// Resnik similarity..
     #[default]
-    #[display(fmt = "resnik")]
+    #[display("resnik")]
     Resnik,
 }
 
@@ -182,13 +182,13 @@ impl FromStr for SimilarityMethod {
 pub enum ScoreCombiner {
     /// funSimAvg algborithm.
     #[default]
-    #[display(fmt = "fun-sim-avg")]
+    #[display("fun-sim-avg")]
     FunSimAvg,
     /// funSimMax algorithm.
-    #[display(fmt = "fun-sim-max")]
+    #[display("fun-sim-max")]
     FunSimMax,
     /// BMA algorithm.
-    #[display(fmt = "bma")]
+    #[display("bma")]
     Bma,
 }
 
@@ -197,7 +197,7 @@ impl From<ScoreCombiner> for StandardCombiner {
         match val {
             ScoreCombiner::FunSimAvg => StandardCombiner::FunSimAvg,
             ScoreCombiner::FunSimMax => StandardCombiner::FunSimMax,
-            ScoreCombiner::Bma => StandardCombiner::Bwa,
+            ScoreCombiner::Bma => StandardCombiner::Bma,
         }
     }
 }

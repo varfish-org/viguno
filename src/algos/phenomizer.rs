@@ -47,7 +47,11 @@ fn score_dir(qs: &HpoGroup, ds: &HpoGroup, o: &Ontology, s: &impl Similarity) ->
 #[cfg(test)]
 mod test {
     use super::*;
-    use hpo::{annotations::OmimDiseaseId, term::HpoGroup, HpoTermId, Ontology};
+    use hpo::{
+        annotations::{Disease as _, OmimDiseaseId},
+        term::HpoGroup,
+        HpoTermId, Ontology,
+    };
 
     fn load_hpo() -> Result<Ontology, anyhow::Error> {
         Ok(Ontology::from_standard("tests/data/hpo")?)
@@ -84,7 +88,7 @@ mod test {
 
         let score = score(&prepare(query), &hpo_marfan, &hpo);
 
-        assert!((score - 1.757_194).abs() < 0.00001, "score = {score}");
+        assert!((score - 1.756_347).abs() < 0.00001, "score = {score}");
 
         Ok(())
     }
