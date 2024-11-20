@@ -1,6 +1,6 @@
 ---
 source: src/server/run/hpo_omims.rs
-expression: "&run_query(web_server_data.clone(),\n                \"/hpo/omims?omim_id=616145&hpo_terms=true\").await?"
+expression: "&run_query(web_server_data.clone(),\n\"/api/v1/hpo/omims?omim_id=616145&hpo_terms=true\").await?"
 ---
 version:
   hpo: 2024-07-01
@@ -8,7 +8,7 @@ version:
 query:
   omim_id: "616145"
   name: ~
-  match_: ~
+  match: ~
   ignore_case: ~
   max_results: 100
   hpo_terms: true

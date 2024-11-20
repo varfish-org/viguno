@@ -12,7 +12,7 @@ use hpo::{annotations::GeneId, term::HpoGroup, HpoTermId, Ontology};
 
 use super::super::CustomError;
 use crate::{
-    query::{self, query_result},
+    query::{self, query_result::HpoSimTermGeneResult},
     server::run::WebServerData,
 };
 
@@ -26,8 +26,7 @@ use crate::{
 /// - `gene_symbols` -- set of symbols for genes to use as
 ///   "database"
 #[derive(serde::Deserialize, Debug, Clone, utoipa::ToSchema, utoipa::IntoParams)]
-#[schema(title = "HpoSimTermGeneQuery")]
-pub struct Query {
+pub struct HpoSimTermGeneQuery {
     /// Set of terms to use as query.
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
     pub terms: Vec<String>,
@@ -51,18 +50,20 @@ pub struct Query {
 /// list of genes.
 #[allow(clippy::unused_async)]
 #[utoipa::path(
-    operation_id = "hpo_sim_term_gene",
-    params(Query),
+    get,
+    operation_id = "hpoSimTermGene",
+    params(HpoSimTermGeneQuery),
     responses(
-        (status = 200, description = "The query was successful.", body = query_result::Result),
+        (status = 200, description = "The query was successful.", body = HpoSimTermGeneResult),
+        (status = 500, description = "The server encountered an error.", body = CustomError)
     )
 )]
-#[get("/hpo/sim/term-gene")]
+#[get("/api/v1/hpo/sim/term-gene")]
 async fn handle(
     data: Data<Arc<WebServerData>>,
     _path: Path<()>,
-    query: web::Query<Query>,
-) -> actix_web::Result<Json<query_result::Result>, CustomError> {
+    query: web::Query<HpoSimTermGeneQuery>,
+) -> actix_web::Result<Json<HpoSimTermGeneResult>, CustomError> {
     let hpo: &Ontology = &data.ontology;
 
     // Translate strings from the query into an `HpoGroup`.
@@ -119,7 +120,7 @@ mod test {
     pub async fn run_query(
         web_server_data: Arc<crate::server::run::WebServerData>,
         uri: &str,
-    ) -> Result<crate::query::query_result::Result, anyhow::Error> {
+    ) -> Result<crate::query::query_result::HpoSimTermGeneResult, anyhow::Error> {
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(web_server_data))
@@ -127,7 +128,7 @@ mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: crate::query::query_result::Result =
+        let resp: crate::query::query_result::HpoSimTermGeneResult =
             actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
@@ -141,7 +142,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=23483,7273"
+                "/api/v1/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=23483,7273"
             )
             .await?
         ))
@@ -155,7 +156,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=HGNC:20324,HGNC:12403"
+                "/api/v1/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=HGNC:20324,HGNC:12403"
             )
             .await?
         ))
@@ -169,7 +170,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN"
+                "/api/v1/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN"
             )
             .await?
         ))
