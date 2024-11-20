@@ -254,7 +254,7 @@ pub(crate) mod test {
         web_server_data: &Arc<crate::server::run::WebServerData>,
     ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query(web_server_data.clone(), "/hpo/genes?gene_id=2348").await?
+            &run_query(web_server_data.clone(), "/api/v1/hpo/genes?gene_id=2348").await?
         ))
     }
 
@@ -266,7 +266,7 @@ pub(crate) mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/genes?gene_id=2348&hpo_terms=true"
+                "/api/v1/hpo/genes?gene_id=2348&hpo_terms=true"
             )
             .await?
         ))
@@ -278,7 +278,7 @@ pub(crate) mod test {
         web_server_data: &Arc<crate::server::run::WebServerData>,
     ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query(web_server_data.clone(), "/hpo/genes?gene_id=HGNC:3791").await?
+            &run_query(web_server_data.clone(), "/api/v1/hpo/genes?gene_id=HGNC:3791").await?
         ))
     }
 
@@ -290,7 +290,7 @@ pub(crate) mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/genes?gene_id=HGNC:3791&hpo_terms=true"
+                "/api/v1/hpo/genes?gene_id=HGNC:3791&hpo_terms=true"
             )
             .await?
         ))
@@ -302,7 +302,7 @@ pub(crate) mod test {
         web_server_data: &Arc<crate::server::run::WebServerData>,
     ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query(web_server_data.clone(), "/hpo/genes?gene_symbol=TGDS").await?
+            &run_query(web_server_data.clone(), "/api/v1/hpo/genes?gene_symbol=TGDS").await?
         ))
     }
 
@@ -314,7 +314,7 @@ pub(crate) mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/genes?gene_symbol=TGDS&hpo_terms=true"
+                "/api/v1/hpo/genes?gene_symbol=TGDS&hpo_terms=true"
             )
             .await?
         ))
@@ -328,7 +328,7 @@ pub(crate) mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/genes?gene_symbol=TGD&match=prefix"
+                "/api/v1/hpo/genes?gene_symbol=TGD&match=prefix"
             )
             .await?
         ))
@@ -342,7 +342,7 @@ pub(crate) mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/genes?gene_symbol=TGD&match=prefix&hpo_terms=true"
+                "/api/v1/hpo/genes?gene_symbol=TGD&match=prefix&hpo_terms=true"
             )
             .await?
         ))
@@ -356,7 +356,7 @@ pub(crate) mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/genes?gene_symbol=GDS&match=suffix"
+                "/api/v1/hpo/genes?gene_symbol=GDS&match=suffix"
             )
             .await?
         ))
@@ -370,7 +370,7 @@ pub(crate) mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/genes?gene_symbol=GDS&match=suffix&hpo_terms=true"
+                "/api/v1/hpo/genes?gene_symbol=GDS&match=suffix&hpo_terms=true"
             )
             .await?
         ))
@@ -384,7 +384,7 @@ pub(crate) mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/genes?gene_symbol=GD&match=contains"
+                "/api/v1/hpo/genes?gene_symbol=GD&match=contains"
             )
             .await?
         ))
@@ -398,7 +398,7 @@ pub(crate) mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/genes?gene_symbol=GD&match=contains&hpo_terms=true"
+                "/api/v1/hpo/genes?gene_symbol=GD&match=contains&hpo_terms=true"
             )
             .await?
         ))

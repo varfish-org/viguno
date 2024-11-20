@@ -396,7 +396,7 @@ mod test {
         web_server_data: &Arc<crate::server::run::WebServerData>,
     ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query(web_server_data.clone(), "/hpo/terms?term_id=HP:0000023").await?
+            &run_query(web_server_data.clone(), "/api/v1/hpo/terms?term_id=HP:0000023").await?
         ))
     }
 
@@ -408,7 +408,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/terms?term_id=HP:0000023&genes=true"
+                "/api/v1/hpo/terms?term_id=HP:0000023&genes=true"
             )
             .await?
         ))
@@ -420,7 +420,7 @@ mod test {
         web_server_data: &Arc<crate::server::run::WebServerData>,
     ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query(web_server_data.clone(), "/hpo/terms?name=Inguinal+hernia").await?
+            &run_query(web_server_data.clone(), "/api/v1/hpo/terms?name=Inguinal+hernia").await?
         ))
     }
 
@@ -432,7 +432,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/terms?name=Inguinal+hernia&genes=true"
+                "/api/v1/hpo/terms?name=Inguinal+hernia&genes=true"
             )
             .await?
         ))
@@ -444,7 +444,7 @@ mod test {
         web_server_data: &Arc<crate::server::run::WebServerData>,
     ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query(web_server_data.clone(), "/hpo/terms?name=Inguinal+hern").await?
+            &run_query(web_server_data.clone(), "/api/v1/hpo/terms?name=Inguinal+hern").await?
         ))
     }
 
@@ -456,7 +456,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/terms?name=Inguinal+hern&genes=true"
+                "/api/v1/hpo/terms?name=Inguinal+hern&genes=true"
             )
             .await?
         ))

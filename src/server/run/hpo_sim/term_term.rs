@@ -208,7 +208,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/sim/term-term?lhs=HP:0010442&rhs=HP:0001780"
+                "/api/v1/hpo/sim/term-term?lhs=HP:0010442&rhs=HP:0001780"
             )
             .await?
         ))
@@ -222,7 +222,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/sim/term-term?lhs=HP:0010442,HP:0000347&rhs=HP:0001780,HP:0000252"
+                "/api/v1/hpo/sim/term-term?lhs=HP:0010442,HP:0000347&rhs=HP:0001780,HP:0000252"
             )
             .await?
         ))

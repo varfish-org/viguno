@@ -1,6 +1,6 @@
 ---
 source: src/server/run/hpo_omims.rs
-expression: "&run_query(web_server_data.clone(),\n                \"/hpo/omims?name=Catel-Manzke+syndro&match=prefix\").await?"
+expression: "&run_query(web_server_data.clone(),\n\"/api/v1/hpo/omims?name=Catel-Manzke+syndro&match=prefix\").await?"
 ---
 version:
   hpo: 2024-07-01
@@ -8,7 +8,7 @@ version:
 query:
   omim_id: ~
   name: Catel-Manzke syndro
-  match_: prefix
+  match: prefix
   ignore_case: ~
   max_results: 100
   hpo_terms: false

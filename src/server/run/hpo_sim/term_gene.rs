@@ -142,7 +142,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=23483,7273"
+                "/api/v1/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=23483,7273"
             )
             .await?
         ))
@@ -156,7 +156,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=HGNC:20324,HGNC:12403"
+                "/api/v1/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_ids=HGNC:20324,HGNC:12403"
             )
             .await?
         ))
@@ -170,7 +170,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN"
+                "/api/v1/hpo/sim/term-gene?terms=HP:0010442,HP:0000347&gene_symbols=TGDS,TTN"
             )
             .await?
         ))

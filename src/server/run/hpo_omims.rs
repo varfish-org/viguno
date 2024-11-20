@@ -293,7 +293,7 @@ mod test {
         web_server_data: &Arc<crate::server::run::WebServerData>,
     ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query(web_server_data.clone(), "/hpo/omims?omim_id=616145").await?
+            &run_query(web_server_data.clone(), "/api/v1/hpo/omims?omim_id=616145").await?
         ))
     }
 
@@ -305,7 +305,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/omims?omim_id=616145&hpo_terms=true"
+                "/api/v1/hpo/omims?omim_id=616145&hpo_terms=true"
             )
             .await?
         ))
@@ -319,7 +319,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/omims?name=Catel-Manzke+syndrome"
+                "/api/v1/hpo/omims?name=Catel-Manzke+syndrome"
             )
             .await?
         ))
@@ -333,7 +333,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/omims?name=Catel-Manzke+syndrome&hpo_terms=true"
+                "/api/v1/hpo/omims?name=Catel-Manzke+syndrome&hpo_terms=true"
             )
             .await?
         ))
@@ -347,7 +347,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/omims?name=Catel-Manzke+syndro&match=prefix"
+                "/api/v1/hpo/omims?name=Catel-Manzke+syndro&match=prefix"
             )
             .await?
         ))
@@ -361,7 +361,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/omims?name=Catel-Manzke+syndro&match=prefix&hpo_terms=true"
+                "/api/v1/hpo/omims?name=Catel-Manzke+syndro&match=prefix&hpo_terms=true"
             )
             .await?
         ))
@@ -375,7 +375,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/omims?name=tel-Manzke+syndrome&match=suffix"
+                "/api/v1/hpo/omims?name=tel-Manzke+syndrome&match=suffix"
             )
             .await?
         ))
@@ -389,7 +389,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/omims?name=tel-Manzke+syndrome&match=suffix&hpo_terms=true"
+                "/api/v1/hpo/omims?name=tel-Manzke+syndrome&match=suffix&hpo_terms=true"
             )
             .await?
         ))
@@ -403,7 +403,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/omims?name=tel-Manzke+syndro&match=contains"
+                "/api/v1/hpo/omims?name=tel-Manzke+syndro&match=contains"
             )
             .await?
         ))
@@ -417,7 +417,7 @@ mod test {
         Ok(insta::assert_yaml_snapshot!(
             &run_query(
                 web_server_data.clone(),
-                "/hpo/omims?name=tel-Manzke+syndro&match=contains&hpo_terms=true"
+                "/api/v1/hpo/omims?name=tel-Manzke+syndro&match=contains&hpo_terms=true"
             )
             .await?
         ))
