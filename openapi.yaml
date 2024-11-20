@@ -9,12 +9,16 @@ info:
     name: Apache-2.0
   version: 0.3.2
 paths:
-  /hpo/genes:
+  /api/v1/hpo/genes:
     get:
       tags:
       - hpo_genes
       summary: Query for genes in the HPO database.
-      operationId: hpo_genes
+      description: |-
+        # Errors
+
+        In the case that there is an error running the server.
+      operationId: hpoGenes
       parameters:
       - name: gene_id
         in: query
@@ -59,13 +63,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Result'
-  /hpo/omims:
+                $ref: '#/components/schemas/HpoGenesResult'
+        '500':
+          description: The server encountered an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomError'
+  /api/v1/hpo/omims:
     get:
       tags:
       - hpo_omims
       summary: Query for OMIM diseases in the HPO database.
-      operationId: hpo_omims
+      operationId: hpoOmims
       parameters:
       - name: omim_id
         in: query
@@ -83,7 +93,7 @@ paths:
           type:
           - string
           - 'null'
-      - name: match_
+      - name: match
         in: query
         description: The match mode, default is `Match::Exact`.
         required: false
@@ -118,15 +128,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Result'
-  /hpo/sim/term-gene:
+                $ref: '#/components/schemas/HpoOmimsResult'
+        '500':
+          description: The server encountered an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomError'
+  /api/v1/hpo/sim/term-gene:
     get:
       tags:
       - hpo_sim::term_gene
       summary: |-
         Query for similarity between a set of terms to each entry in a
         list of genes.
-      operationId: hpo_sim_term_gene
+      operationId: hpoSimTermGene
       parameters:
       - name: terms
         in: query
@@ -162,8 +178,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Result'
-  /hpo/sim/term-term:
+                $ref: '#/components/schemas/HpoSimTermGeneResult'
+        '500':
+          description: The server encountered an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomError'
+  /api/v1/hpo/sim/term-term:
     get:
       tags:
       - hpo_sim::term_term
@@ -174,7 +196,7 @@ paths:
         # Errors
 
         In the case that there is an error running the server.
-      operationId: hpo_sim_term_term
+      operationId: hpoSimTermTerm
       parameters:
       - name: lhs
         in: query
@@ -216,8 +238,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Result'
-  /hpo/terms:
+                $ref: '#/components/schemas/HpoSimTermTermResult'
+        '500':
+          description: The server encountered an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomError'
+  /api/v1/hpo/terms:
     get:
       tags:
       - hpo_terms
@@ -226,7 +254,7 @@ paths:
         # Errors
 
         In the case that there is an error running the server.
-      operationId: hpo_terms
+      operationId: hpoTerms
       parameters:
       - name: term_id
         in: query
@@ -263,9 +291,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Result_'
+                $ref: '#/components/schemas/HpoTermsResult'
+        '500':
+          description: The server encountered an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomError'
 components:
   schemas:
+    CustomError:
+      type: object
+      required:
+      - err
+      properties:
+        err:
+          type: string
     Gene:
       type: object
       description: Struct for storing gene information in the result.
@@ -286,41 +327,176 @@ components:
           - string
           - 'null'
           description: The HGNC ID.
-    HpoTerm:
+    HpoGenesQuery:
       type: object
-      description: Struct for loading an HPO term from JSON.
-      required:
-      - term_id
+      description: |-
+        Parameters for `fetch_hpo_genes`.
+
+        This allows to query for genes.  The first given of the following is
+        interpreted.
+
+        - `gene_id` -- specify gene ID (either NCBI or HGNC gene ID)
+        - `gene_symbol` -- specify the gene symbol
+        - `max_results` -- the maximnum number of records to return
+        - `hpo_terms` -- whether to include `"hpo_terms"` in result
+
+        The following propery defines how matches are performed:
+
+        - `match` -- how to match
       properties:
-        term_id:
-          type: string
-          description: The term ID.
-        term_name:
+        gene_id:
           type:
           - string
           - 'null'
-          description: The term name (optional).
-    IcBasedOn:
-      type: string
-      description: |-
-        Enum for representing the information content kind.
-
-        We replicate what is in the `hpo` create so we can put them on the command line and use
-        them in HTTP queries more easily.
-      enum:
-      - gene
-      - omim
-    Match:
-      type: string
-      description: Specify how to perform query matches in the API calls.
-      enum:
-      - exact
-      - prefix
-      - suffix
-      - contains
-    Query:
+          description: The gene ID to search for.
+        gene_symbol:
+          type:
+          - string
+          - 'null'
+          description: The gene symbol to search for.
+        match_:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Match'
+            description: The match mode.
+        max_results:
+          type: integer
+          description: Maximal number of results to return.
+          minimum: 0
+        hpo_terms:
+          type: boolean
+          description: Whether to include HPO terms.
+    HpoGenesResult:
       type: object
-      title: HpoSimTermGeneQuery
+      description: Container for the result.
+      required:
+      - version
+      - query
+      - result
+      properties:
+        version:
+          $ref: '#/components/schemas/Version'
+          description: Version information.
+        query:
+          $ref: '#/components/schemas/HpoGenesQuery'
+          description: The original query records.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/HpoGenesResultEntry'
+          description: The resulting records for the scored genes.
+    HpoGenesResultEntry:
+      type: object
+      description: Result entry for `handle`.
+      required:
+      - gene_ncbi_id
+      - gene_symbol
+      properties:
+        gene_ncbi_id:
+          type: integer
+          format: int32
+          description: The gene's NCBI ID.
+          minimum: 0
+        gene_symbol:
+          type: string
+          description: The gene's HGNC symbol.
+        hgnc_id:
+          type:
+          - string
+          - 'null'
+          description: The gene's HGNC ID.
+        hpo_terms:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResultHpoTerm'
+          description: The gene's associated HPO terms.
+    HpoOmimsQuery:
+      type: object
+      description: |-
+        Parameters for `handle`.
+
+        This allows to query for diseases.  The first given of the following
+        is interpreted.
+
+        - `omim_id` -- specify disease ID
+        - `name` -- specify the name to query for
+        - `max_results` -- the maximum number of records to return
+        - `hpo_terms` -- whether to include `"hpo_terms"` in result
+
+        The following propery defines how matches are performed:
+
+        - `match` -- how to match
+      properties:
+        omim_id:
+          type:
+          - string
+          - 'null'
+          description: The OMIM ID to search for.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The disease name to search for.
+        match:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Match'
+            description: The match mode, default is `Match::Exact`.
+        ignore_case:
+          type:
+          - boolean
+          - 'null'
+          description: Whether case is insentivie, default is `false`.
+        max_results:
+          type: integer
+          description: Maximal number of results to return.
+          minimum: 0
+        hpo_terms:
+          type: boolean
+          description: Whether to include HPO terms.
+    HpoOmimsResult:
+      type: object
+      description: Container for the result.
+      required:
+      - version
+      - query
+      - result
+      properties:
+        version:
+          $ref: '#/components/schemas/Version'
+          description: Version information.
+        query:
+          $ref: '#/components/schemas/HpoOmimsQuery'
+          description: The original query records.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/HpoOmimsResultEntry'
+          description: The resulting records for the scored genes.
+    HpoOmimsResultEntry:
+      type: object
+      description: Result entry for `handle`.
+      required:
+      - omim_id
+      - name
+      properties:
+        omim_id:
+          type: string
+          description: The OMIM ID.
+        name:
+          type: string
+          description: The OMIM disease name.
+        hpo_terms:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResultHpoTerm'
+          description: The gene's associated HPO terms.
+    HpoSimTermGeneQuery:
+      type: object
       description: The performed query.
       required:
       - terms
@@ -336,9 +512,67 @@ components:
           items:
             $ref: '#/components/schemas/Gene'
           description: The gene list to score.
-    ResponseQuery:
+    HpoSimTermGeneResult:
       type: object
-      title: HpoSimTermTermQuery
+      description: Result container data structure.
+      required:
+      - version
+      - query
+      - result
+      properties:
+        version:
+          $ref: '#/components/schemas/Version'
+          description: Version information.
+        query:
+          $ref: '#/components/schemas/HpoSimTermGeneQuery'
+          description: The original query records.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/HpoSimTermGeneResultEntry'
+          description: The resulting records for the scored genes.
+    HpoSimTermGeneResultEntry:
+      type: object
+      description: Store score for a record with information on individual terms.
+      required:
+      - gene_symbol
+      - raw_score
+      properties:
+        gene_symbol:
+          type: string
+          description: The gene symbol.
+        raw_score:
+          type: number
+          format: float
+          description: The raw Phenomizer score.
+        terms:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HpoSimTermGeneTermDetails'
+          description: Details on individual terms.
+    HpoSimTermGeneTermDetails:
+      type: object
+      description: Detailed term scores.
+      required:
+      - term_gene
+      - score
+      properties:
+        term_query:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/HpoTerm'
+            description: The query HPO term.
+        term_gene:
+          $ref: '#/components/schemas/HpoTerm'
+          description: The gene's HPO term.
+        score:
+          type: number
+          format: float
+          description: The similarity score.
+    HpoSimTermTermQuery:
+      type: object
       description: |-
         Request as sent together with the response.
 
@@ -366,10 +600,9 @@ components:
         combiner:
           $ref: '#/components/schemas/ScoreCombiner'
           description: The score combiner.
-    Result:
+    HpoSimTermTermResult:
       type: object
-      title: HpoSimTermGeneResult
-      description: Result container data structure.
+      description: Result container.
       required:
       - version
       - query
@@ -379,35 +612,151 @@ components:
           $ref: '#/components/schemas/Version'
           description: Version information.
         query:
-          $ref: '#/components/schemas/Query'
+          $ref: '#/components/schemas/HpoSimTermTermQuery'
           description: The original query records.
         result:
           type: array
           items:
-            $ref: '#/components/schemas/ResultEntry'
+            $ref: '#/components/schemas/HpoSimTermTermResultEntry'
           description: The resulting records for the scored genes.
-    ResultEntry:
+    HpoSimTermTermResultEntry:
       type: object
-      title: HpoSimTermGeneResultEntry
-      description: Store score for a record with information on individual terms.
+      description: Result entry for `handle`.
       required:
-      - gene_symbol
-      - raw_score
+      - lhs
+      - rhs
+      - score
       properties:
-        gene_symbol:
+        lhs:
           type: string
-          description: The gene symbol.
-        raw_score:
+          description: The lhs entry.
+        rhs:
+          type: string
+          description: The rhs entry.
+        score:
           type: number
           format: float
-          description: The raw Phenomizer score.
-        terms:
+          description: The similarity score.
+    HpoTerm:
+      type: object
+      description: Struct for loading an HPO term from JSON.
+      required:
+      - term_id
+      properties:
+        term_id:
+          type: string
+          description: The term ID.
+        term_name:
+          type:
+          - string
+          - 'null'
+          description: The term name (optional).
+    HpoTermsQuery:
+      type: object
+      description: |-
+        Parameters for `handle`.
+
+        This allows to query for terms.  The first given of the following is
+        interpreted.
+
+        - `term_id` -- specify term ID
+        - `gene_symbol` -- specify the gene symbol
+        - `max_results` -- the maximum number of records to return
+        - `genes` -- whether to include `"genes"` in result
+      properties:
+        term_id:
+          type:
+          - string
+          - 'null'
+          description: The term ID to search for.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The term name to search for.
+        max_results:
+          type: integer
+          description: Maximal number of results to return.
+          minimum: 0
+        genes:
+          type: boolean
+          description: Whether to include genes.
+    HpoTermsResult:
+      type: object
+      description: Container for the result.
+      required:
+      - version
+      - query
+      - result
+      properties:
+        version:
+          $ref: '#/components/schemas/Version'
+          description: Version information.
+        query:
+          $ref: '#/components/schemas/HpoTermsQuery'
+          description: The original query records.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/HpoTermsResultEntry'
+          description: The resulting records for the scored genes.
+    HpoTermsResultEntry:
+      type: object
+      description: Result entry for `fetch_hpo_genes`.
+      required:
+      - term_id
+      - name
+      properties:
+        term_id:
+          type: string
+          description: The HPO term's ID.
+        name:
+          type: string
+          description: The HPO term's name.
+        definition:
+          type:
+          - string
+          - 'null'
+          description: Any matching description.
+        synonyms:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/TermDetails'
-          description: Details on individual terms.
+            type: string
+          description: Any matching synonyms.
+        xrefs:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Any matching xref.
+        genes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResultGene'
+          description: The gene's associated HPO terms.
+    IcBasedOn:
+      type: string
+      description: |-
+        Enum for representing the information content kind.
+
+        We replicate what is in the `hpo` create so we can put them on the command line and use
+        them in HTTP queries more easily.
+      enum:
+      - gene
+      - omim
+    Match:
+      type: string
+      description: Specify how to perform query matches in the API calls.
+      enum:
+      - exact
+      - prefix
+      - suffix
+      - contains
     ResultGene:
       type: object
       description: Representation of a gene.
@@ -441,26 +790,6 @@ components:
         name:
           type: string
           description: The term name.
-    Result_:
-      type: object
-      title: HpoTermsResult
-      description: Container for the result.
-      required:
-      - version
-      - query
-      - result
-      properties:
-        version:
-          $ref: '#/components/schemas/Version'
-          description: Version information.
-        query:
-          $ref: '#/components/schemas/Query'
-          description: The original query records.
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResultEntry'
-          description: The resulting records for the scored genes.
     ScoreCombiner:
       type: string
       description: |-
@@ -488,26 +817,6 @@ components:
       - mutation
       - relevance
       - resnik
-    TermDetails:
-      type: object
-      title: HpoSimTermGeneTermDetails
-      description: Detailed term scores.
-      required:
-      - term_gene
-      - score
-      properties:
-        term_query:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/HpoTerm'
-            description: The query HPO term.
-        term_gene:
-          $ref: '#/components/schemas/HpoTerm'
-          description: The gene's HPO term.
-        score:
-          type: number
-          format: float
-          description: The similarity score.
     Version:
       type: object
       description: Version information that is returned by the HTTP server.
