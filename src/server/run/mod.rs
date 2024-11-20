@@ -45,9 +45,9 @@ pub struct Args {
     pub listen_port: u16,
 }
 
-#[derive(Debug)]
+#[derive(Debug, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
 struct CustomError {
-    err: anyhow::Error,
+    err: String,
 }
 
 impl std::fmt::Display for CustomError {
@@ -57,8 +57,11 @@ impl std::fmt::Display for CustomError {
 }
 
 impl CustomError {
+    #[allow(clippy::needless_pass_by_value)]
     fn new(err: anyhow::Error) -> Self {
-        CustomError { err }
+        CustomError {
+            err: err.to_string(),
+        }
     }
 }
 
@@ -163,23 +166,23 @@ where
         hpo_sim::term_gene::handle,
     ),
     components(schemas(
-        hpo_genes::Query,
-        hpo_genes::Result,
-        hpo_genes::ResultEntry,
-        hpo_omims::Query,
-        hpo_omims::Result,
-        hpo_omims::ResultEntry,
-        hpo_terms::Query,
-        hpo_terms::Result_,
-        hpo_terms::ResultEntry,
-        hpo_sim::term_gene::Query,
-        crate::query::query_result::Result,
-        crate::query::query_result::ResultEntry,
-        crate::query::query_result::TermDetails,
+        hpo_genes::HpoGenesQuery,
+        hpo_genes::HpoGenesResult,
+        hpo_genes::HpoGenesResultEntry,
+        hpo_omims::HpoOmimsQuery,
+        hpo_omims::HpoOmimsResult,
+        hpo_omims::HpoOmimsResultEntry,
+        hpo_terms::HpoTermsQuery,
+        hpo_terms::HpoTermsResult,
+        hpo_terms::HpoTermsResultEntry,
+        hpo_sim::term_gene::HpoSimTermGeneQuery,
+        crate::query::query_result::HpoSimTermGeneResult,
+        crate::query::query_result::HpoSimTermGeneResultEntry,
+        crate::query::query_result::HpoSimTermGeneTermDetails,
         crate::query::HpoTerm,
-        hpo_sim::term_term::ResponseQuery,
-        hpo_sim::term_term::Result,
-        hpo_sim::term_term::ResultEntry,
+        hpo_sim::term_term::HpoSimTermTermQuery,
+        hpo_sim::term_term::HpoSimTermTermResult,
+        hpo_sim::term_term::HpoSimTermTermResultEntry,
         ResultGene,
         ResultHpoTerm,
         Match,

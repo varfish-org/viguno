@@ -29,10 +29,9 @@ use super::{CustomError, Match, ResultHpoTerm};
 ///
 /// - `match` -- how to match
 #[derive(
-    serde::Serialize, serde::Deserialize, utoipa::ToSchema, utoipa::IntoParams, Debug, Clone,
+    Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema, utoipa::IntoParams,
 )]
-#[schema(title = "HpoGenesQuery")]
-pub struct Query {
+pub struct HpoGenesQuery {
     /// The gene ID to search for.
     pub gene_id: Option<String>,
     /// The gene symbol to search for.
@@ -60,19 +59,17 @@ fn _default_hpo_terms() -> bool {
 
 /// Result entry for `handle`.
 #[derive(
-    serde::Serialize,
-    serde::Deserialize,
-    utoipa::ToSchema,
     Debug,
     Clone,
     Eq,
     PartialEq,
     Ord,
     PartialOrd,
+    serde::Serialize,
+    serde::Deserialize,
+    utoipa::ToSchema,
 )]
-#[serde_with::skip_serializing_none]
-#[schema(title = "HpoGenesResultEntry")]
-pub struct ResultEntry {
+pub struct HpoGenesResultEntry {
     /// The gene's NCBI ID.
     pub gene_ncbi_id: u32,
     /// The gene's HGNC symbol.
@@ -84,7 +81,7 @@ pub struct ResultEntry {
     pub hpo_terms: Option<Vec<ResultHpoTerm>>,
 }
 
-impl ResultEntry {
+impl HpoGenesResultEntry {
     /// Create a `ResultEntry` from a `Gene` with an `Ontology`.
     pub fn from_gene_with_ontology(
         gene: &Gene,
@@ -107,7 +104,7 @@ impl ResultEntry {
         } else {
             None
         };
-        ResultEntry {
+        HpoGenesResultEntry {
             gene_ncbi_id: gene.id().as_u32(),
             gene_symbol: gene.name().to_string(),
             hgnc_id: ncbi_to_hgnc.get(&gene.id().as_u32()).cloned(),
@@ -117,35 +114,39 @@ impl ResultEntry {
 }
 
 /// Container for the result.
-#[derive(Debug, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
-#[schema(title = "HpoGenesResult")]
-pub struct Result {
+#[derive(Debug, serde::Serialize, serde::Deserialize, utoipa::ToSchema, utoipa::ToResponse)]
+pub struct HpoGenesResult {
     /// Version information.
     pub version: Version,
     /// The original query records.
-    pub query: Query,
+    pub query: HpoGenesQuery,
     /// The resulting records for the scored genes.
-    pub result: Vec<ResultEntry>,
+    pub result: Vec<HpoGenesResultEntry>,
 }
 
 /// Query for genes in the HPO database.
-#[allow(clippy::unused_async)]
+///
+/// # Errors
+///
+/// In the case that there is an error running the server.
 #[utoipa::path(
-    operation_id = "hpo_genes",
-    params(Query),
+    get,
+    operation_id = "hpoGenes",
+    params(HpoGenesQuery),
     responses(
-        (status = 200, description = "The query was successful.", body = Result),
+        (status = 200, description = "The query was successful.", body = HpoGenesResult),
+        (status = 500, description = "The server encountered an error.", body = CustomError)
     )
 )]
-#[get("/hpo/genes")]
+#[get("/api/v1/hpo/genes")]
 async fn handle(
     data: Data<Arc<WebServerData>>,
     _path: Path<()>,
-    query: web::Query<Query>,
-) -> actix_web::Result<Json<Result>, CustomError> {
+    query: web::Query<HpoGenesQuery>,
+) -> actix_web::Result<Json<HpoGenesResult>, CustomError> {
     let ontology = &data.ontology;
     let match_ = query.match_.unwrap_or_default();
-    let mut result: Vec<ResultEntry> = Vec::new();
+    let mut result: Vec<HpoGenesResultEntry> = Vec::new();
 
     if match_ == Match::Exact {
         let gene = if let Some(gene_id) = &query.gene_id {
@@ -163,7 +164,7 @@ async fn handle(
             None
         };
         if let Some(gene) = gene {
-            result.push(ResultEntry::from_gene_with_ontology(
+            result.push(HpoGenesResultEntry::from_gene_with_ontology(
                 gene,
                 ontology,
                 query.hpo_terms,
@@ -182,7 +183,7 @@ async fn handle(
                 Match::Exact => panic!("cannot happen here"),
             };
             if is_match {
-                result.push(ResultEntry::from_gene_with_ontology(
+                result.push(HpoGenesResultEntry::from_gene_with_ontology(
                     gene.expect("checked above"),
                     ontology,
                     query.hpo_terms,
@@ -196,7 +197,7 @@ async fn handle(
 
     result.sort();
 
-    let result = Result {
+    let result = HpoGenesResult {
         version: Version::new(&data.ontology.hpo_version()),
         query: query.into_inner(),
         result,
@@ -234,7 +235,7 @@ pub(crate) mod test {
     pub async fn run_query(
         web_server_data: Arc<crate::server::run::WebServerData>,
         uri: &str,
-    ) -> Result<super::Result, anyhow::Error> {
+    ) -> Result<super::HpoGenesResult, anyhow::Error> {
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(web_server_data))
@@ -242,7 +243,7 @@ pub(crate) mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: super::Result = actix_web::test::call_and_read_body_json(&app, req).await;
+        let resp: super::HpoGenesResult = actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
     }

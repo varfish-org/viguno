@@ -30,17 +30,15 @@ use super::{CustomError, Match, ResultHpoTerm};
 ///
 /// - `match` -- how to match
 #[derive(
-    serde::Serialize, serde::Deserialize, utoipa::ToSchema, utoipa::IntoParams, Debug, Clone,
+    Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema, utoipa::IntoParams,
 )]
-#[schema(title = "HpoOmimsQuery")]
-pub struct Query {
+pub struct HpoOmimsQuery {
     /// The OMIM ID to search for.
     pub omim_id: Option<String>,
     /// The disease name to search for.
     pub name: Option<String>,
     /// The match mode, default is `Match::Exact`.
-    #[serde(alias = "match")]
-    pub match_: Option<Match>,
+    pub r#match: Option<Match>,
     /// Whether case is insentivie, default is `false`.
     pub ignore_case: Option<bool>,
     /// Maximal number of results to return.
@@ -51,7 +49,7 @@ pub struct Query {
     pub hpo_terms: bool,
 }
 
-impl Query {
+impl HpoOmimsQuery {
     /// Strip "OMIM:" prefix from `omim_id`, if any.
     fn with_stripped_prefix(self) -> Self {
         Self {
@@ -81,9 +79,8 @@ fn _default_hpo_terms() -> bool {
 }
 
 /// Result entry for `handle`.
-#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
-#[schema(title = "HpoOmimsResultEntry")]
-pub struct ResultEntry {
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
+pub struct HpoOmimsResultEntry {
     /// The OMIM ID.
     pub omim_id: String,
     /// The OMIM disease name.
@@ -93,21 +90,21 @@ pub struct ResultEntry {
     pub hpo_terms: Option<Vec<ResultHpoTerm>>,
 }
 
-impl PartialEq for ResultEntry {
+impl PartialEq for HpoOmimsResultEntry {
     fn eq(&self, other: &Self) -> bool {
         (self.omim_id == other.omim_id) && (self.name == other.name)
     }
 }
 
-impl Eq for ResultEntry {}
+impl Eq for HpoOmimsResultEntry {}
 
-impl PartialOrd for ResultEntry {
+impl PartialOrd for HpoOmimsResultEntry {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
         Some(self.cmp(other))
     }
 }
 
-impl Ord for ResultEntry {
+impl Ord for HpoOmimsResultEntry {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         match self.omim_id.cmp(&other.omim_id) {
             core::cmp::Ordering::Equal => {}
@@ -117,7 +114,7 @@ impl Ord for ResultEntry {
     }
 }
 
-impl ResultEntry {
+impl HpoOmimsResultEntry {
     /// Create a `ResultEntry` from an `OmimDisease`.
     pub fn from_omim_disease_with_ontology(
         omim_disease: &OmimDisease,
@@ -142,7 +139,7 @@ impl ResultEntry {
         } else {
             None
         };
-        ResultEntry {
+        HpoOmimsResultEntry {
             omim_id: omim_disease.id().to_string(),
             name: omim_disease.name().to_string(),
             hpo_terms,
@@ -151,36 +148,36 @@ impl ResultEntry {
 }
 
 /// Container for the result.
-#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug)]
-#[schema(title = "HpoOmimsResult")]
-pub struct Result {
+#[derive(Debug, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
+pub struct HpoOmimsResult {
     /// Version information.
     pub version: Version,
     /// The original query records.
-    pub query: Query,
+    pub query: HpoOmimsQuery,
     /// The resulting records for the scored genes.
-    pub result: Vec<ResultEntry>,
+    pub result: Vec<HpoOmimsResultEntry>,
 }
 
 /// Query for OMIM diseases in the HPO database.
-#[allow(clippy::unused_async)]
 #[allow(clippy::too_many_lines)]
 #[utoipa::path(
-    operation_id = "hpo_omims",
-    params(Query),
+    get,
+    operation_id = "hpoOmims",
+    params(HpoOmimsQuery),
     responses(
-        (status = 200, description = "The query was successful.", body = Result),
+        (status = 200, description = "The query was successful.", body = HpoOmimsResult),
+        (status = 500, description = "The server encountered an error.", body = CustomError)
     )
 )]
-#[get("/hpo/omims")]
+#[get("/api/v1/hpo/omims")]
 async fn handle(
     data: Data<Arc<WebServerData>>,
     _path: Path<()>,
-    query: web::Query<Query>,
-) -> actix_web::Result<Json<Result>, CustomError> {
+    query: web::Query<HpoOmimsQuery>,
+) -> actix_web::Result<Json<HpoOmimsResult>, CustomError> {
     let ontology = &data.ontology;
-    let match_ = query.match_.unwrap_or_default();
-    let mut result: Vec<ResultEntry> = Vec::new();
+    let match_ = query.r#match.unwrap_or_default();
+    let mut result: Vec<HpoOmimsResultEntry> = Vec::new();
 
     // Strip "OMIM:" and "MIM:" prefix from `query.omim_id` if given.
     let query = query.into_inner().with_stripped_prefix();
@@ -216,7 +213,7 @@ async fn handle(
             None
         };
         if let Some(omim_disease) = &omim_disease {
-            result.push(ResultEntry::from_omim_disease_with_ontology(
+            result.push(HpoOmimsResultEntry::from_omim_disease_with_ontology(
                 omim_disease,
                 ontology,
                 query.hpo_terms,
@@ -237,14 +234,14 @@ async fn handle(
             } else {
                 omim_name.to_string()
             };
-            let is_match = match query.match_.unwrap_or_default() {
+            let is_match = match query.r#match.unwrap_or_default() {
                 Match::Prefix => omim_name.starts_with(&name),
                 Match::Suffix => omim_name.ends_with(&name),
                 Match::Contains => omim_name.contains(&name),
                 Match::Exact => panic!("cannot happen here"),
             };
             if is_match {
-                result.push(ResultEntry::from_omim_disease_with_ontology(
+                result.push(HpoOmimsResultEntry::from_omim_disease_with_ontology(
                     omim_disease.as_ref().expect("checked above"),
                     ontology,
                     query.hpo_terms,
@@ -257,7 +254,7 @@ async fn handle(
 
     result.sort();
 
-    let result = Result {
+    let result = HpoOmimsResult {
         version: Version::new(&data.ontology.hpo_version()),
         query,
         result,
@@ -277,7 +274,7 @@ mod test {
     pub async fn run_query(
         web_server_data: Arc<crate::server::run::WebServerData>,
         uri: &str,
-    ) -> Result<super::Result, anyhow::Error> {
+    ) -> Result<super::HpoOmimsResult, anyhow::Error> {
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(web_server_data))
@@ -285,7 +282,7 @@ mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: super::Result = actix_web::test::call_and_read_body_json(&app, req).await;
+        let resp: super::HpoOmimsResult = actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
     }

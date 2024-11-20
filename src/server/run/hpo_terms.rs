@@ -23,10 +23,9 @@ use super::{CustomError, ResultGene};
 /// - `max_results` -- the maximum number of records to return
 /// - `genes` -- whether to include `"genes"` in result
 #[derive(
-    serde::Serialize, serde::Deserialize, utoipa::ToSchema, utoipa::IntoParams, Debug, Clone,
+    Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema, utoipa::IntoParams,
 )]
-#[schema(title = "HpoTermsQuery")]
-pub struct Query {
+pub struct HpoTermsQuery {
     /// The term ID to search for.
     pub term_id: Option<String>,
     /// The term name to search for.
@@ -50,9 +49,8 @@ fn _default_genes() -> bool {
 }
 
 /// Result entry for `fetch_hpo_genes`.
-#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
-#[schema(title = "HpoTermsResultEntry")]
-pub struct ResultEntry {
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
+pub struct HpoTermsResultEntry {
     /// The HPO term's ID.
     pub term_id: String,
     /// The HPO term's name.
@@ -68,21 +66,21 @@ pub struct ResultEntry {
     pub genes: Option<Vec<ResultGene>>,
 }
 
-impl PartialEq for ResultEntry {
+impl PartialEq for HpoTermsResultEntry {
     fn eq(&self, other: &Self) -> bool {
         (self.term_id == other.term_id) && (self.name == other.name)
     }
 }
 
-impl Eq for ResultEntry {}
+impl Eq for HpoTermsResultEntry {}
 
-impl PartialOrd for ResultEntry {
+impl PartialOrd for HpoTermsResultEntry {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
         Some(self.cmp(other))
     }
 }
 
-impl Ord for ResultEntry {
+impl Ord for HpoTermsResultEntry {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         match self.term_id.cmp(&other.term_id) {
             core::cmp::Ordering::Equal => {}
@@ -92,7 +90,7 @@ impl Ord for ResultEntry {
     }
 }
 
-impl ResultEntry {
+impl HpoTermsResultEntry {
     /// Create a `ResultEntry` from an `HpoTerm`.
     ///
     /// # Errors
@@ -181,7 +179,7 @@ impl ResultEntry {
         } else {
             None
         };
-        Ok(ResultEntry {
+        Ok(HpoTermsResultEntry {
             term_id: term.id().to_string(),
             name: term.name().to_string(),
             genes,
@@ -194,14 +192,13 @@ impl ResultEntry {
 
 /// Container for the result.
 #[derive(Debug, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
-#[schema(title = "HpoTermsResult")]
-pub struct Result_ {
+pub struct HpoTermsResult {
     /// Version information.
     pub version: Version,
     /// The original query records.
-    pub query: Query,
+    pub query: HpoTermsQuery,
     /// The resulting records for the scored genes.
-    pub result: Vec<ResultEntry>,
+    pub result: Vec<HpoTermsResultEntry>,
 }
 
 /// Query for terms in the HPO database.
@@ -212,20 +209,22 @@ pub struct Result_ {
 #[allow(clippy::unused_async)]
 #[allow(clippy::too_many_lines)]
 #[utoipa::path(
-    operation_id = "hpo_terms",
-    params(Query),
+    get,
+    operation_id = "hpoTerms",
+    params(HpoTermsQuery),
     responses(
-        (status = 200, description = "The query was successful.", body = Result_),
+        (status = 200, description = "The query was successful.", body = HpoTermsResult),
+        (status = 500, description = "The server encountered an error.", body = CustomError)
     )
 )]
-#[get("/hpo/terms")]
+#[get("/api/v1/hpo/terms")]
 async fn handle(
     data: Data<Arc<WebServerData>>,
     _path: Path<()>,
-    query: web::Query<Query>,
-) -> actix_web::Result<Json<Result_>, CustomError> {
+    query: web::Query<HpoTermsQuery>,
+) -> actix_web::Result<Json<HpoTermsResult>, CustomError> {
     let ontology = &data.ontology;
-    let mut result: Vec<ResultEntry> = Vec::new();
+    let mut result: Vec<HpoTermsResultEntry> = Vec::new();
 
     let field_term_id = data
         .full_text_index
@@ -277,7 +276,7 @@ async fn handle(
             CustomError::new(anyhow::anyhow!("Term ID {} not found in HPO", term_id))
         })?;
         result.push(
-            ResultEntry::from_term_with_ontology(
+            HpoTermsResultEntry::from_term_with_ontology(
                 &term,
                 ontology,
                 query.genes,
@@ -345,7 +344,7 @@ async fn handle(
             })?;
 
             result.push(
-                ResultEntry::from_term_with_ontology(
+                HpoTermsResultEntry::from_term_with_ontology(
                     &term,
                     ontology,
                     query.genes,
@@ -358,7 +357,7 @@ async fn handle(
         }
     };
 
-    let result = Result_ {
+    let result = HpoTermsResult {
         version: Version::new(&data.ontology.hpo_version()),
         query: query.into_inner(),
         result,
@@ -378,7 +377,7 @@ mod test {
     pub async fn run_query(
         web_server_data: Arc<crate::server::run::WebServerData>,
         uri: &str,
-    ) -> Result<super::Result_, anyhow::Error> {
+    ) -> Result<super::HpoTermsResult, anyhow::Error> {
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(web_server_data))
@@ -386,7 +385,7 @@ mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: super::Result_ = actix_web::test::call_and_read_body_json(&app, req).await;
+        let resp: super::HpoTermsResult = actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
     }

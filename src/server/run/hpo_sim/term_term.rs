@@ -22,7 +22,7 @@ use crate::server::{run::CustomError, run::WebServerData};
 ///
 /// - `lhs` -- first set of terms to compute similarity for
 /// - `rhs` -- econd set of terms to compute similarity for
-#[derive(serde::Serialize, serde::Deserialize, utoipa::IntoParams, Default, Debug, Clone)]
+#[derive(Default, Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::IntoParams)]
 pub struct RequestQuery {
     /// The one set of HPO terms to compute similarity for.
     #[serde(deserialize_with = "super::super::vec_str_deserialize")]
@@ -44,9 +44,8 @@ pub struct RequestQuery {
 /// Request as sent together with the response.
 ///
 /// The difference is that the `lhs` and `rhs` fields are replaced by vecs.
-#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Default, Debug, Clone)]
-#[schema(title = "HpoSimTermTermQuery")]
-pub struct ResponseQuery {
+#[derive(Default, Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
+pub struct HpoSimTermTermQuery {
     /// The one set of HPO terms to compute similarity for.
     pub lhs: Vec<String>,
     /// The second set of HPO terms to compute similarity for.
@@ -63,30 +62,28 @@ pub struct ResponseQuery {
 }
 
 /// Result container.
-#[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Default, Debug, Clone)]
-#[schema(title = "HpoSimTermTermResult")]
-pub struct Result {
+#[derive(Default, Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
+pub struct HpoSimTermTermResult {
     /// Version information.
     pub version: Version,
     /// The original query records.
-    pub query: ResponseQuery,
+    pub query: HpoSimTermTermQuery,
     /// The resulting records for the scored genes.
-    pub result: Vec<ResultEntry>,
+    pub result: Vec<HpoSimTermTermResultEntry>,
 }
 
 /// Result entry for `handle`.
 #[derive(
-    serde::Serialize,
-    serde::Deserialize,
-    utoipa::ToSchema,
     Default,
     Debug,
     Clone,
     PartialEq,
     PartialOrd,
+    serde::Serialize,
+    serde::Deserialize,
+    utoipa::ToSchema,
 )]
-#[schema(title = "HpoSimTermTermResultEntry")]
-pub struct ResultEntry {
+pub struct HpoSimTermTermResultEntry {
     /// The lhs entry.
     pub lhs: String,
     /// The rhs entry.
@@ -102,20 +99,21 @@ pub struct ResultEntry {
 /// # Errors
 ///
 /// In the case that there is an error running the server.
-#[allow(clippy::unused_async)]
 #[utoipa::path(
-    operation_id = "hpo_sim_term_term",
+    get,
+    operation_id = "hpoSimTermTerm",
     params(RequestQuery),
     responses(
-        (status = 200, description = "The query was successful.", body = Result),
+        (status = 200, description = "The query was successful.", body = HpoSimTermTermResult),
+        (status = 500, description = "The server encountered an error.", body = CustomError)
     )
 )]
-#[get("/hpo/sim/term-term")]
+#[get("/api/v1/hpo/sim/term-term")]
 async fn handle(
     data: Data<Arc<WebServerData>>,
     _path: Path<()>,
     query: web::Query<RequestQuery>,
-) -> actix_web::Result<Json<Result>, CustomError> {
+) -> actix_web::Result<Json<HpoSimTermTermResult>, CustomError> {
     let ontology: &Ontology = &data.ontology;
     let mut result = Vec::new();
 
@@ -136,7 +134,7 @@ async fn handle(
     // Compute the similarity for each pair.
     for (lhs, rhs) in lhs.iter().cartesian_product(rhs.iter()) {
         let similarity = ic.calculate(lhs, rhs);
-        let elem = ResultEntry {
+        let elem = HpoSimTermTermResultEntry {
             lhs: lhs.id().to_string(),
             rhs: rhs.id().to_string(),
             score: similarity,
@@ -160,9 +158,9 @@ async fn handle(
         combiner,
     } = query.into_inner();
 
-    let result = Result {
+    let result = HpoSimTermTermResult {
         version: Version::new(&data.ontology.hpo_version()),
-        query: ResponseQuery {
+        query: HpoSimTermTermQuery {
             lhs,
             rhs,
             ic_base,
@@ -188,7 +186,7 @@ mod test {
     pub async fn run_query(
         web_server_data: Arc<crate::server::run::WebServerData>,
         uri: &str,
-    ) -> Result<super::Result, anyhow::Error> {
+    ) -> Result<super::HpoSimTermTermResult, anyhow::Error> {
         let app = actix_web::test::init_service(
             actix_web::App::new()
                 .app_data(actix_web::web::Data::new(web_server_data))
@@ -196,7 +194,8 @@ mod test {
         )
         .await;
         let req = actix_web::test::TestRequest::get().uri(uri).to_request();
-        let resp: super::Result = actix_web::test::call_and_read_body_json(&app, req).await;
+        let resp: super::HpoSimTermTermResult =
+            actix_web::test::call_and_read_body_json(&app, req).await;
 
         Ok(resp)
     }
