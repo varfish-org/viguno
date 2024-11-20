@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/varfish-org/viguno/compare/v0.3.2...v0.4.0) (2024-11-20)
+
+
+### Features
+
+* proper OpenAPI-documented and versioned endpoints ([#227](https://github.com/varfish-org/viguno/issues/227)) ([#228](https://github.com/varfish-org/viguno/issues/228)) ([900858e](https://github.com/varfish-org/viguno/commit/900858e16ef9b5d3c0a266c9a62425f53f0aac98))
+
 ## [0.3.2](https://github.com/varfish-org/viguno/compare/v0.3.1...v0.3.2) (2024-07-14)
 
 
