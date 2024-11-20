@@ -6,13 +6,15 @@ use std::sync::Arc;
 use actix_web::{
     get,
     web::{self, Data, Json, Path},
-    Responder,
 };
 
 use hpo::{annotations::GeneId, term::HpoGroup, HpoTermId, Ontology};
 
 use super::super::CustomError;
-use crate::{query, server::run::WebServerData};
+use crate::{
+    query::{self, query_result},
+    server::run::WebServerData,
+};
 
 /// Parameters for `handle`.
 ///
@@ -52,7 +54,7 @@ pub struct Query {
     operation_id = "hpo_sim_term_gene",
     params(Query),
     responses(
-        (status = 200, description = "The query was successful.", body = Result),
+        (status = 200, description = "The query was successful.", body = query_result::Result),
     )
 )]
 #[get("/hpo/sim/term-gene")]
@@ -60,7 +62,7 @@ async fn handle(
     data: Data<Arc<WebServerData>>,
     _path: Path<()>,
     query: web::Query<Query>,
-) -> actix_web::Result<impl Responder, CustomError> {
+) -> actix_web::Result<Json<query_result::Result>, CustomError> {
     let hpo: &Ontology = &data.ontology;
 
     // Translate strings from the query into an `HpoGroup`.

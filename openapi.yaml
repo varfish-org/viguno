@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: viguno
   description: Phenotype/disease for VarFish
@@ -7,7 +7,7 @@ info:
     email: manuel.holtgrewe@bih-charite.de
   license:
     name: Apache-2.0
-  version: 0.2.1
+  version: 0.3.2
 paths:
   /hpo/genes:
     get:
@@ -21,23 +21,25 @@ paths:
         description: The gene ID to search for.
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       - name: gene_symbol
         in: query
         description: The gene symbol to search for.
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       - name: match_
         in: query
         description: The match mode.
         required: false
         schema:
-          allOf:
+          oneOf:
+          - type: 'null'
           - $ref: '#/components/schemas/Match'
-          nullable: true
       - name: max_results
         in: query
         description: Maximal number of results to return.
@@ -70,30 +72,33 @@ paths:
         description: The OMIM ID to search for.
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       - name: name
         in: query
         description: The disease name to search for.
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       - name: match_
         in: query
         description: The match mode, default is `Match::Exact`.
         required: false
         schema:
-          allOf:
+          oneOf:
+          - type: 'null'
           - $ref: '#/components/schemas/Match'
-          nullable: true
       - name: ignore_case
         in: query
         description: Whether case is insentivie, default is `false`.
         required: false
         schema:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
       - name: max_results
         in: query
         description: Maximal number of results to return.
@@ -118,8 +123,9 @@ paths:
     get:
       tags:
       - hpo_sim::term_gene
-      summary: Query for similarity between a set of terms to each entry in a
-      description: list of genes.
+      summary: |-
+        Query for similarity between a set of terms to each entry in a
+        list of genes.
       operationId: hpo_sim_term_gene
       parameters:
       - name: terms
@@ -135,19 +141,21 @@ paths:
         description: The set of ids for genes to use as "database".
         required: false
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
       - name: gene_symbols
         in: query
         description: The set of symbols for genes to use as "database".
         required: false
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
       responses:
         '200':
           description: The query was successful.
@@ -225,15 +233,17 @@ paths:
         description: The term ID to search for.
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       - name: name
         in: query
         description: The term name to search for.
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       - name: max_results
         in: query
         description: Maximal number of results to return.
@@ -253,9 +263,29 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Result'
+                $ref: '#/components/schemas/Result_'
 components:
   schemas:
+    Gene:
+      type: object
+      description: Struct for storing gene information in the result.
+      required:
+      - entrez_id
+      - gene_symbol
+      properties:
+        entrez_id:
+          type: integer
+          format: int32
+          description: The NCBI gene ID.
+          minimum: 0
+        gene_symbol:
+          type: string
+          description: The gene symbol.
+        hgnc_id:
+          type:
+          - string
+          - 'null'
+          description: The HGNC ID.
     HpoTerm:
       type: object
       description: Struct for loading an HPO term from JSON.
@@ -266,9 +296,10 @@ components:
           type: string
           description: The term ID.
         term_name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The term name (optional).
-          nullable: true
     IcBasedOn:
       type: string
       description: |-
@@ -290,36 +321,21 @@ components:
     Query:
       type: object
       title: HpoSimTermGeneQuery
-      description: |-
-        Parameters for `handle`.
-
-        This allows to compute differences between
-
-        - `terms` -- set of terms to use as query
-        - `gene_ids` -- set of ids for genes to use as "database", can be NCBI\
-        gene ID or HGNC gene ID.
-        - `gene_symbols` -- set of symbols for genes to use as
-        "database"
+      description: The performed query.
       required:
       - terms
+      - genes
       properties:
         terms:
           type: array
           items:
-            type: string
-          description: Set of terms to use as query.
-        gene_ids:
+            $ref: '#/components/schemas/HpoTerm'
+          description: The query HPO terms.
+        genes:
           type: array
           items:
-            type: string
-          description: The set of ids for genes to use as "database".
-          nullable: true
-        gene_symbols:
-          type: array
-          items:
-            type: string
-          description: The set of symbols for genes to use as "database".
-          nullable: true
+            $ref: '#/components/schemas/Gene'
+          description: The gene list to score.
     ResponseQuery:
       type: object
       title: HpoSimTermTermQuery
@@ -343,14 +359,17 @@ components:
           description: The second set of HPO terms to compute similarity for.
         ic_base:
           $ref: '#/components/schemas/IcBasedOn'
+          description: What should information content be based on.
         similarity:
           $ref: '#/components/schemas/SimilarityMethod'
+          description: The similarity method to use.
         combiner:
           $ref: '#/components/schemas/ScoreCombiner'
+          description: The score combiner.
     Result:
       type: object
-      title: HpoSimTermTermResult
-      description: Result container.
+      title: HpoSimTermGeneResult
+      description: Result container data structure.
       required:
       - version
       - query
@@ -358,8 +377,10 @@ components:
       properties:
         version:
           $ref: '#/components/schemas/Version'
+          description: Version information.
         query:
-          $ref: '#/components/schemas/ResponseQuery'
+          $ref: '#/components/schemas/Query'
+          description: The original query records.
         result:
           type: array
           items:
@@ -367,23 +388,26 @@ components:
           description: The resulting records for the scored genes.
     ResultEntry:
       type: object
-      title: HpoSimTermTermResultEntry
-      description: Result entry for `handle`.
+      title: HpoSimTermGeneResultEntry
+      description: Store score for a record with information on individual terms.
       required:
-      - lhs
-      - rhs
-      - score
+      - gene_symbol
+      - raw_score
       properties:
-        lhs:
+        gene_symbol:
           type: string
-          description: The lhs entry.
-        rhs:
-          type: string
-          description: The rhs entry.
-        score:
+          description: The gene symbol.
+        raw_score:
           type: number
           format: float
-          description: The similarity score.
+          description: The raw Phenomizer score.
+        terms:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TermDetails'
+          description: Details on individual terms.
     ResultGene:
       type: object
       description: Representation of a gene.
@@ -400,9 +424,10 @@ components:
           type: string
           description: The description.
         hgnc_id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The HGNC ID.
-          nullable: true
     ResultHpoTerm:
       type: object
       description: Representation of an HPO term.
@@ -427,8 +452,10 @@ components:
       properties:
         version:
           $ref: '#/components/schemas/Version'
+          description: Version information.
         query:
           $ref: '#/components/schemas/Query'
+          description: The original query records.
         result:
           type: array
           items:
@@ -470,11 +497,13 @@ components:
       - score
       properties:
         term_query:
-          allOf:
+          oneOf:
+          - type: 'null'
           - $ref: '#/components/schemas/HpoTerm'
-          nullable: true
+            description: The query HPO term.
         term_gene:
           $ref: '#/components/schemas/HpoTerm'
+          description: The gene's HPO term.
         score:
           type: number
           format: float

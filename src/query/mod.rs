@@ -52,7 +52,15 @@ pub mod query_result {
 
     /// Struct for storing gene information in the result.
     #[derive(
-        serde::Serialize, serde::Deserialize, PartialEq, Eq, PartialOrd, Ord, Debug, Clone,
+        PartialEq,
+        Eq,
+        PartialOrd,
+        Ord,
+        Debug,
+        Clone,
+        serde::Serialize,
+        serde::Deserialize,
+        utoipa::ToSchema,
     )]
     #[serde_with::skip_serializing_none]
     pub struct Gene {
@@ -65,7 +73,7 @@ pub mod query_result {
     }
 
     /// The performed query.
-    #[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
+    #[derive(Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
     #[schema(title = "HpoSimTermGeneQuery")]
     pub struct Query {
         /// The query HPO terms.
@@ -75,7 +83,7 @@ pub mod query_result {
     }
 
     /// Result container data structure.
-    #[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
+    #[derive(Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
     #[schema(title = "HpoSimTermGeneResult")]
     pub struct Result {
         /// Version information.
@@ -87,7 +95,7 @@ pub mod query_result {
     }
 
     /// Store score for a record with information on individual terms.
-    #[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
+    #[derive(Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
     #[schema(title = "HpoSimTermGeneResultEntry")]
     pub struct ResultEntry {
         /// The gene symbol.
@@ -100,7 +108,7 @@ pub mod query_result {
     }
 
     /// Detailed term scores.
-    #[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema, Debug, Clone)]
+    #[derive(Debug, Clone, serde::Serialize, serde::Deserialize, utoipa::ToSchema)]
     #[schema(title = "HpoSimTermGeneTermDetails")]
     pub struct TermDetails {
         /// The query HPO term.
@@ -258,14 +266,9 @@ pub fn run(args_common: &crate::common::Args, args: &Args) -> Result<(), anyhow:
     tracing::info!("args_common = {:?}", &args_common);
     tracing::info!("args = {:?}", &args);
 
-    if let Some(level) = args_common.verbose.log_level() {
-        match level {
-            log::Level::Trace | log::Level::Debug => {
-                std::env::set_var("RUST_LOG", "debug");
-                env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
-            }
-            _ => (),
-        }
+    if let Some(log::Level::Trace | log::Level::Debug) = args_common.verbose.log_level() {
+        std::env::set_var("RUST_LOG", "debug");
+        env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
     }
 
     tracing::info!("Loading HPO...");

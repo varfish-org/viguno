@@ -5,10 +5,9 @@ use std::sync::Arc;
 use actix_web::{
     get,
     web::{self, Data, Json, Path},
-    Responder,
 };
 use hpo::{
-    annotations::{OmimDisease, OmimDiseaseId},
+    annotations::{Disease as _, OmimDisease, OmimDiseaseId},
     term::HpoGroup,
     Ontology,
 };
@@ -178,7 +177,7 @@ async fn handle(
     data: Data<Arc<WebServerData>>,
     _path: Path<()>,
     query: web::Query<Query>,
-) -> actix_web::Result<impl Responder, CustomError> {
+) -> actix_web::Result<Json<Result>, CustomError> {
     let ontology = &data.ontology;
     let match_ = query.match_.unwrap_or_default();
     let mut result: Vec<ResultEntry> = Vec::new();
