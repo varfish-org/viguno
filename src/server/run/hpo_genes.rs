@@ -278,7 +278,11 @@ pub(crate) mod test {
         web_server_data: &Arc<crate::server::run::WebServerData>,
     ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query(web_server_data.clone(), "/api/v1/hpo/genes?gene_id=HGNC:3791").await?
+            &run_query(
+                web_server_data.clone(),
+                "/api/v1/hpo/genes?gene_id=HGNC:3791"
+            )
+            .await?
         ))
     }
 
@@ -302,7 +306,11 @@ pub(crate) mod test {
         web_server_data: &Arc<crate::server::run::WebServerData>,
     ) -> Result<(), anyhow::Error> {
         Ok(insta::assert_yaml_snapshot!(
-            &run_query(web_server_data.clone(), "/api/v1/hpo/genes?gene_symbol=TGDS").await?
+            &run_query(
+                web_server_data.clone(),
+                "/api/v1/hpo/genes?gene_symbol=TGDS"
+            )
+            .await?
         ))
     }
 
