@@ -11,7 +11,7 @@ readme = "README.md"
 [dependencies]
 actix-web = "4.9"
 anyhow = "1.0"
-clap-verbosity-flag = "2.2"
+clap-verbosity-flag = "3.0"
 clap = { version = "4.5", features = ["derive", "help", "env"] }
 console = "0.15"
 csv = "1.3"
